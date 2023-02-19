@@ -1,6 +1,6 @@
-<?php $servername = "localhost";
-$username = "root";
-$password = "";
+<?php $servername = "define.cduh3xdezln5.us-east-1.rds.amazonaws.com";
+$username = "admindefine";
+$password = "vr88094852";
 $dbname = "define";
 
 // Create connection
