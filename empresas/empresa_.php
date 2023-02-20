@@ -208,7 +208,8 @@
                         <label for="setor">Senha:</label>
                         <input type="text" class="form-control" id="senha" placeholder="Digite uma senha" name="senha">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <br>
+                    <button type="submit" class="btn btn-sm btn-success">Submit</button>
                 </form>
 
             </div>
@@ -258,7 +259,7 @@
             <div class="container-small">
               <div class="row position-relative">
                 <div class="col-12 col-sm-12 col-lg-5 mb-4 order-0 order-sm-0"><a href="#"><img class="mb-3" src="../assets/img/icons/logo-white.png" height="48" alt="" /></a>
-                  <h3 class="text-white light">phoenix</h3>
+                  <h3 class="text-white light">define</h3>
                   <p class="text-white opacity-50 light">All over the world. Alice in <br />wonderland and other places.</p>
                 </div>
                 <div class="col-lg-7">
