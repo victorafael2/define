@@ -10,9 +10,10 @@ $email = $_POST['email'];
 $whatsapp = $_POST['whatsapp'];
 $uf = $_POST['uf'];
 $setor = $_POST['setor'];
+$senha = $_POST['senha'];
 
 // Preparar a consulta SQL para inserir os dados na tabela "clientes"
-$sql = "INSERT INTO empresas (nome, empresa, cnpj, email, whatsapp, uf, setor) VALUES ('$nome', '$nome_empresa', '$cnpj', '$email', '$whatsapp', '$uf', '$setor')";
+$sql = "INSERT INTO empresas (nome, empresa, cnpj, email, whatsapp, uf, setor, senha) VALUES ('$nome', '$nome_empresa', '$cnpj', '$email', '$whatsapp', '$uf', '$setor', '$senha')";
 
 // Executar a consulta SQL e verificar se houve algum erro
 if ($conn->query($sql) === TRUE) {

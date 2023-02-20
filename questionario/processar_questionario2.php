@@ -12,7 +12,7 @@ $equipe = $_POST['equipe'];
 $beneficio_inovacao = $_POST['beneficio-inovacao'];
 
 // Conexão com o banco de dados
-$conexao = mysqli_connect('localhost', 'root', '', 'define');
+$conexao = mysqli_connect('define.cduh3xdezln5.us-east-1.rds.amazonaws.com', 'admindefine', 'vr88094852', 'define');
 
 // Verifica se houve erro na conexão
 if (mysqli_connect_errno()) {
@@ -50,5 +50,5 @@ if (!$resultado) {
 mysqli_close($conexao);
 
 // Redireciona para a página de sucesso
-header("Location: sucess.php?id=".urlencode($last_id)."");
+header("Location: sucess_.php?id=".urlencode($last_id)."");
 ?>

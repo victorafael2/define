@@ -76,7 +76,7 @@
                     </div>
 
 
-<br>
+                    <br>
 
                     <div class="card">
                         <div class="card-header">
@@ -256,7 +256,7 @@
                         </div>
                     </div>
 
-<br>
+                    <br>
                     <div class="card">
                         <div class="card-header">
                             <h3>Qualificação da equipe</h3>
