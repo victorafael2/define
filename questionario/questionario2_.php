@@ -219,7 +219,7 @@
 
 
                             <div class="form-group">
-                                <label for="regime_tributario"><h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">A
+                                <label for="regime_tributario"><h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">
                                 EM RELAÇÃO AO REGIME TRIBUTÁRIO, MINHA EMPRESA OPERA EM:</a></h4></label>
                                 <select id="regime_tributario" name="regime_tributario" data-choices="data-choices"
                                         data-options='{"removeItemButton":false,"placeholder":true}' require>
@@ -316,6 +316,9 @@
                                     <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU
                                         PROJETO ESTÁ NO TRL:</a></h4>
                                 </label>
+                                <br>
+                                <img src="../assets/img/maturidade-tecnologicablog.png">
+                                <br>
                                 <select class="form-control" id="risco-tecnologico" name="risco-tecnologico"
                                     data-choices="data-choices"
                                     data-options='{"removeItemButton":false,"placeholder":true}'>
