@@ -1,3 +1,44 @@
+<?php
+// Conectar-se ao banco de dados
+include '../conexao/conexao.php';
+
+// Verificar se a conexão foi estabelecida com sucesso
+if (!$conn) {
+    die("Conexão falhou: " . mysqli_connect_error());
+}
+
+// Executar a consulta SQL para selecionar os dados
+$sql = "SELECT setor,id FROM adm_setores";
+$result = mysqli_query($conn, $sql);
+
+// Processar os resultados da consulta e criar o array de opções do select
+$options = array();
+while ($row = mysqli_fetch_array($result)) {
+    $id = $row['id'];
+    $nome = $row['setor'];
+    $options[] = "<option value=\"$id\">$nome</option>";
+}
+
+// Criar o elemento select e adicionar as opções
+$select = "<select class='form-control' id='setor' name='setor' data-choices='data-choices'
+data-options='{'removeItemButton':true,'placeholder':true}' required>" . implode('', $options) . "</select>";
+
+// Mostrar o select na página
+// echo $select;
+
+// Fechar a conexão com o banco de dados
+mysqli_close($conn);
+
+
+
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-BR" dir="ltr">
 
@@ -6,7 +47,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
@@ -16,9 +58,9 @@
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicons/favicon.ico">
     <link rel="manifest" href="../assets/img/favicons/manifest.json">
     <meta name="msapplication-TileImage" content="../assets/img/favicons/mstile-150x150.png">
@@ -26,6 +68,59 @@
     <script src="../vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="../vendors/simplebar/simplebar.min.js"></script>
     <script src="../assets/js/config.js"></script>
+
+
+
+    <script>
+        // Verificar a força da senha em tempo real usando JavaScript
+        function verificarSenha() {
+            var senha = document.getElementById("senha").value;
+            var forca = document.getElementById("forca-senha");
+
+            // Verificar o comprimento da senha
+            if (senha.length < 8) {
+                forca.innerHTML = "Senha fraca";
+                forca.style.color = "red";
+            } else {
+                forca.innerHTML = "Senha forte";
+                forca.style.color = "green";
+            }
+
+            // Verificar se a senha contém letras maiúsculas, minúsculas, números e caracteres especiais
+            var pattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])/;
+            if (!pattern.test(senha)) {
+                forca.innerHTML = "Senha fraca";
+                forca.style.color = "red";
+            }
+        }
+
+        // Confirmar o envio do formulário usando SweetAlert2
+        function confirmarEnvio() {
+            var senha = document.getElementById("senha").value;
+
+            // Verificar se a senha atende aos critérios de segurança
+            if (senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) && /[!@#$%^&*()\-_=+{};:,<.>]/.test(senha)) {
+                Swal.fire({
+                    title: 'Confirmação',
+                    text: 'Tem certeza de que deseja prosseguir?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim',
+                    cancelButtonText: 'Não'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById("empresa").submit();
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'A senha deve ter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.',
+                });
+            }
+        }
+    </script>
 
 
     <!-- ===============================================-->
@@ -41,6 +136,7 @@
     <link href="../assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
     <link href="../assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
     <link href="../assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+    <link href="../vendors/choices/choices.min.css" rel="stylesheet" />
     <script>
     var phoenixIsRTL = JSON.parse(localStorage.getItem('phoenixIsRTL'));
     if (phoenixIsRTL) {
@@ -56,6 +152,11 @@
         userLinkRTL.setAttribute('disabled', true);
     }
     </script>
+
+
+
+
+</head>
 </head>
 
 
@@ -66,7 +167,8 @@
     <!-- ===============================================-->
     <main style="--phoenix-scroll-margin-top: 1.2rem;">
         <nav class="navbar bg-white navbar-expand-lg sticky-top">
-            <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="index.html">
+            <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0"
+                    href="../index.html">
                     <div class="d-flex align-items-center"><img src="../assets/img/icons/logo.png" alt="phoenix"
                             width="27" />
                         <p class="logo-text ms-2">define</p>
@@ -177,257 +279,107 @@
 
         <div class="container py-5">
             <div class="row">
-              <div class="card h-100">
-                <div class="card-body">
-                    <form method="POST" action="processar_questionario2.php">
 
+                <div class="container py-5">
+                    <h2>Cadastro de Empresa</h2>
+                    <form id="empresa" method="post" action="salvar.php">
                         <div class="form-group">
-                            <label for="tecnologia">
-                              <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">A TECNOLOGIA A SER DESENVOLVIDA É UMA INOVAÇÃO:</a></h4>
-                            </label>
-                            <div>
-                                <input type="radio" id="tecnologia-1" name="tecnologia" value="2">
-                                <label for="tecnologia-1">Para minha empresa, já existe no mercado</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="tecnologia-2" name="tecnologia" value="4">
-                                <label for="tecnologia-2">Para meu Estado</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="tecnologia-3" name="tecnologia" value="4">
-                                <label for="tecnologia-3">Para meu país</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="tecnologia-4" name="tecnologia" value="5">
-                                <label for="tecnologia-4">Inovação mundial</label>
-                            </div>
+                            <label for="nome">Nome:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
                         </div>
-                        <br>
-
                         <div class="form-group">
-                            <label for="potencial-tecnologico"> <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU PROJETO VISA DESENVOLVER:</a></h4></label>
-                            <div>
-                                <input type="radio" id="potencial-tecnologico-1" name="potencial-tecnologico" value="5">
-                                <label for="potencial-tecnologico-1">Inovação tecnológica: produto, processo ou
-                                    serviço</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="potencial-tecnologico-2" name="potencial-tecnologico" value="3">
-                                <label for="potencial-tecnologico-2">Inovação em modelo de negócio</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="potencial-tecnologico-3" name="potencial-tecnologico" value="2">
-                                <label for="potencial-tecnologico-3">Inovação de Método: Marketing e
-                                    Organizacional</label>
-                            </div>
+                            <label for="nome_empresa">Nome da Empresa:</label>
+                            <input type="text" class="form-control" id="nome_empresa" name="nome_empresa" required>
                         </div>
-
-                        <br>
-
                         <div class="form-group">
-                            <label for="tipologia-inovacao"><h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU PROJETO APRESENTA UMA INOVAÇÃO:</a></h4></label>
-                            <div>
-                                <input type="radio" id="tipologia-inovacao-1" name="tipologia-inovacao" value="4">
-                                <label for="tipologia-inovacao-1">Incremental: Melhorias em produto ou processos</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="tipologia-inovacao-2" name="tipologia-inovacao" value="5">
-                                <label for="tipologia-inovacao-2">Disruptiva: Cria novo produto e processo, sem alterar
-                                    a
-                                    cadeia
-                                    de fornecedores existente associada à empresa</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="tipologia-inovacao-3" name="tipologia-inovacao" value="5">
-                                <label for="tipologia-inovacao-3">Radical: Cria novo produto e processo que redefine
-                                    toda a
-                                    cadeia de fornecedores bem como o mercado</label>
-                            </div>
-
+                            <label for="cnpj">CNPJ:</label>
+                            <input type="text" class="form-control" id="cnpj" name="cnpj" required>
                         </div>
-
-                        <br>
-
                         <div class="form-group">
-                            <label for="risco-tecnologico"><h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU PROJETO ESTÁ NO TRL:</a></h4></label>
-                            <select class="form-control" id="risco-tecnologico" name="risco-tecnologico">
-                                <option value="3">TRL0</option>
-                                <option value="5">TRL1</option>
-                                <option value="5">TRL2</option>
-                                <option value="5">TRL3</option>
-                                <option value="5">TRL4</option>
-                                <option value="4">TRL5</option>
-                                <option value="3">TRL6</option>
-                                <option value="3">TRL7</option>
-                                <option value="2">TRL8</option>
-                                <option value="2">TRL9</option>
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp">Whatsapp:</label>
+                            <input type="text" class="form-control" id="whatsapp" name="whatsapp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="uf">UF:</label>
+                            <select class="form-control" id="uf" name="uf" data-choices="data-choices"
+                                data-options='{"removeItemButton":true,"placeholder":true}' required>
+                                <option value="">Selecione</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+
                             </select>
+
+
                         </div>
 
-                        <br>
 
                         <div class="form-group">
-                            <label for="impacto_tecnologico"><h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU PROJETO PODERÁ GERAR:</a></h4></label>
-                            <div>
-                                <input type="radio" id="impacto_tecnologico-1" name="impacto_tecnologico" value="5">
-                                <label for="impacto_tecnologico-1">Patente</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="impacto_tecnologico-2" name="impacto_tecnologico" value="5">
-                                <label for="impacto_tecnologico-2">Registro de Software</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="impacto_tecnologico-3" name="impacto_tecnologico" value="4">
-                                <label for="impacto_tecnologico-3">Desenhos industriais</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="impacto_tecnologico-4" name="impacto_tecnologico" value="2">
-                                <label for="impacto_tecnologico-4">Criações artísticas</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="impacto_tecnologico-5" name="impacto_tecnologico" value="1">
-                                <label for="impacto_tecnologico-5">Nenhuma alternativa</label>
-                            </div>
-                        </div>
+                            <label for="setor">Setor:</label>
+                            <!-- <input type="text" class="form-control" id="setor" placeholder="Digite o setor" name="setor"> -->
+                           
+                                <?php echo $select ?>
+                            
+                                
 
-                        <br>
-
-                        <div class="form-group">
-                            <label for="infraestrutura-empresa"><h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MINHA EMPRESA POSSUI INFRA-ESTRUTURA PARA DESENVOLVER O PROJETO:</a></h4></label>
-                            <div>
-                                <input type="radio" id="infraestrutura-empresa-1" name="infraestrutura-empresa"
-                                    value="5">
-                                <label for="infraestrutura-empresa-1">Sim, o projeto será desenvolvido na
-                                    empresa</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="infraestrutura-empresa-2" name="infraestrutura-empresa"
-                                    value="5">
-                                <label for="infraestrutura-empresa-2">Sim, porém apenas parte do projeto será
-                                    desenvolvido
-                                    na
-                                    empresa</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="infraestrutura-empresa-3" name="infraestrutura-empresa"
-                                    value="4">
-                                <label for="infraestrutura-empresa-3">Não, o projeto será desenvolvido na ICT
-                                    (universidade,
-                                    instituto de pesquisa, laboratório público) parceira</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="infraestrutura-empresa-4" name="infraestrutura-empresa"
-                                    value="3">
-                                <label for="infraestrutura-empresa-4">Não, o projeto será desenvolvido na empresa
-                                    contratada/parceira</label>
-                            </div>
 
                         </div>
+                        <div class=" form-group">
+                        
+                                    <label for="setor">Senha:</label>
+                                   
+                                        <!-- <input type="password" name="senha" id="senha" required onkeyup="verificarSenha()"> -->
+     
 
-                        <br>
-
-                        <div class="form-group">
-                            <label for="parcerias"><h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU PROJETO SERÁ DESENVOLVIDO:</a></h4></label>
-                            <div>
-                                <input type="radio" id="parcerias-1" name="parcerias" value="5">
-                                <label for="parcerias-1">Em parceria com universidade ou instituto de pesquisa</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="parcerias-2" name="parcerias" value="4">
-                                <label for="parcerias-2">Em parceria com Startup</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="parcerias-3" name="parcerias" value="4">
-                                <label for="parcerias-3">Em parceria com empresa</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="parcerias-4" name="parcerias" value="1">
-                                <label for="parcerias-4">Sem parceria</label>
-                            </div>
+        <input class="form-control" id="senha" type="password" name="senha" placeholder="Password" required onkeyup="verificarSenha()"/>
+        
+        <p id="forca-senha"></p>
                         </div>
-
                         <br>
-
-                        <div class="form-group">
-                            <label for="impactos-gerais"><h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">A APLICAÇÃO DA MINHA SOLUÇÃO TRARÁ IMPACTO PARA SEGUINTES ÁREAS NOS GRAUS:</a></h4></label>
-                            <select class="form-control" id="impactos-gerais" name="impactos-gerais">
-                                <option value="0">NÃO SE APLICA</option>
-                                <option value="2">BAIXO</option>
-                                <option value="4">MODERADO</option>
-                                <option value="5">ALTO</option>
-                            </select>
-                        </div>
-
-                        <br>
-
-                        <div class="form-group">
-                            <label for="equipe"><h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MINHA EQUIPE POSSUI QUALIFICAÇÃO PARA DESENVOLVER MEU PROJETO:</a></h4></label>
-                            <div>
-                                <input type="radio" id="equipe-1" name="equipe" value="5">
-                                <label for="equipe-1">Sim, a equipe possui qualificação na área do projeto</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="equipe-2" name="equipe" value="3">
-                                <label for="equipe-2">Sim, parte da equipe possui qualificação na área do projeto, mas
-                                    precisaremos contratar outra empresa ou terceiros</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="equipe-3" name="equipe" value="2">
-                                <label for="equipe-3">Não, precisaremos contratar outra empresa ou terceiros para
-                                    desenvolver o
-                                    projeto</label>
-                            </div>
-
-                        </div>
-
-                        <br>
-
-                        <div class="form-group">
-                            <label for="beneficio-inovacao"><h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MINHA EMPRESA JÁ SE BENEFICIOU COM RECURSOS PÚBLICOS PARA INOVAÇÃO:</a></h4></label>
-                            <div>
-                                <input type="radio" id="beneficio-inovacao-1" name="beneficio-inovacao" value="5">
-                                <label for="beneficio-inovacao-1">Sim, Subvenção Econômica</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="beneficio-inovacao-2" name="beneficio-inovacao" value="5">
-                                <label for="beneficio-inovacao-2">Sim, recurso reembolsável</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="beneficio-inovacao-3" name="beneficio-inovacao" value="5">
-                                <label for="beneficio-inovacao-3">Sim, lei de incentivo fiscal para inovação</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="beneficio-inovacao-4" name="beneficio-inovacao" value="3">
-                                <label for="beneficio-inovacao-4">Não, mas já tentamos</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="beneficio-inovacao-5" name="beneficio-inovacao" value="2">
-                                <label for="beneficio-inovacao-5">Não, nunca tentamos</label>
-                            </div>
-                        </div>
-
-
-
-
-
-
-                        <br>
-
-
-
-
-
-
-                        <button type="submit" class="btn btn-success w-100">Cadastrar Questionario</button>
-
+                        <button type="button"  class="btn btn-sm btn-success" onclick="confirmarEnvio()">Submit</button>
                     </form>
 
+                    <body>
+
+</body>
+
                 </div>
-              </div>
-
-
             </div>
         </div>
+
+
+
+
+
+
 
 
 
@@ -476,7 +428,7 @@
                         <div class="row position-relative">
                             <div class="col-12 col-sm-12 col-lg-5 mb-4 order-0 order-sm-0"><a href="#"><img class="mb-3"
                                         src="../assets/img/icons/logo-white.png" height="48" alt="" /></a>
-                                <h3 class="text-white light">phoenix</h3>
+                                <h3 class="text-white light">define</h3>
                                 <p class="text-white opacity-50 light">All over the world. Alice in <br />wonderland and
                                     other places.</p>
                             </div>
@@ -800,6 +752,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARdVcREeBK44lIWnv5-iPijKqvlSAVwbw&callback=initMap"
         async></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="../vendors/choices/choices.min.js"></script>
+
+
 
 </body>
 

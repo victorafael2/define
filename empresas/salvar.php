@@ -1,5 +1,6 @@
 <?php
-// Incluir arquivo de conexão com o banco de dados
+
+
 include '../conexao/conexao.php';
 
 // Obter os valores dos campos do formulário
@@ -26,4 +27,10 @@ if ($conn->query($sql) === TRUE) {
 
 // Fechar a conexão com o banco de dados
 $conn->close();
+
+
 ?>
+
+
+
+

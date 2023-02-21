@@ -16,7 +16,7 @@
     <div class="container py-5">
         <h2>Cadastro realizado com sucesso!</h2>
         <p>Obrigado por se cadastrar em nosso sistema.</p>
-		<a class="btn btn-primary btn-lg" href="../questionario/questionario1.php" role="button">Ir para questionário</a>
+		<a class="btn btn-primary btn-lg" href="../questionario/questionario2_.php" role="button">Ir para questionário</a>
     </div>
 
 
