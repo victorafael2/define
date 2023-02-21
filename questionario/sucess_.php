@@ -21,8 +21,8 @@ if (mysqli_num_rows($result) > 0) {
         $tecnologia = round($row["tecnologia"]);
         $potencial_tecnologico = round($row["potencial_tecnologico"]);
         $tipologia_inovacao = round($row["tipologia_inovacao"]);
-        $risco_tecnologico = round($row["risco_tecnologico"]);
-        $impacto_cientifico_tecnologico = $row["impacto_cientifico_tecnologico"];
+        $risco_tecnologico = $row["risco_tecnologico"];
+        $impacto_cientifico_tecnologico = $row["impacto_tecnologico"];
         $infraestrutura_empresa = round($row["infraestrutura_empresa"]);
         $parcerias = round($row["parcerias"]);
         $impactos_gerais = round($row["impactos_gerais"]);
@@ -41,7 +41,8 @@ mysqli_close($conn);
 
 
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="pt-BR" dir="ltr">
 
 <head>
@@ -219,16 +220,67 @@ mysqli_close($conn);
 
 
 
-        <div class="container py-5">
-            <div class="row">
 
-                <div class="container py-5">
-                    <h2>Cadastro realizado com sucesso!</h2>
-                    <p>Obrigado por se cadastrar em nosso sistema.</p>
-                    <a class="btn btn-primary btn-lg" href="../questionario/questionario1.php" role="button">Ir para
-                        questionário</a>
 
-                    <div id="chart">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row align-items-center g-3 text-center text-xxl-start">
+                    <div class="container py-5">
+                        <div class="row">
+
+                            <div class="container py-5">
+                                <h2>Diagnostico</h2>
+                                <!-- <p>Obrigado por se cadastrar em nosso sistema.</p> -->
+                                <a class="btn btn-primary btn-lg" href="../questionario/questionario1.php"
+                                    role="button">Ir para
+                                    questionário</a>
+
+                                <div id="chart">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row align-items-center g-3 text-center text-xxl-start">
+                    <div class="container py-5">
+                        <div class="row">
+
+                            <div class="container py-5">
+                            <table>
+  <tr>
+    <th>Recurso Não Reembolsável</th>
+    <th>Recurso Reembolsável</th>
+    <th>Lei do Bem</th>
+    <th>Rota 2030</th>
+    <th>Lei de Informática</th>
+    <th>ANP</th>
+    <th>ANEEL</th>
+    <th>Uso indireto das Leis de Incentivo</th>
+    <th>Pró-Startup (FACEPE)</th>
+    <th>Bônus Tecnológico (FACEPE)</th>
+  </tr>
+  <tr>
+    <td>Recursos concedidos sem necessidade de reembolso.</td>
+    <td>Recursos concedidos com a exigência de reembolso futuro.</td>
+    <td>Lei que concede incentivos fiscais para empresas que investem em P&D.</td>
+    <td>Política pública para estimular a inovação e a competitividade da indústria automotiva.</td>
+    <td>Lei que concede incentivos fiscais para empresas que investem em P&D na área de tecnologia da informação.</td>
+    <td>Agência Nacional do Petróleo, Gás Natural e Biocombustíveis.</td>
+    <td>Agência Nacional de Energia Elétrica.</td>
+    <td>Uso de incentivos fiscais para patrocínio de projetos culturais e esportivos.</td>
+    <td>Programa de incentivo ao desenvolvimento de startups em Pernambuco.</td>
+    <td>Programa de incentivo à inovação tecnológica no estado de Pernambuco.</td>
+  </tr>
+</table>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -612,64 +664,66 @@ mysqli_close($conn);
 </html>
 
 <script>
-  var options = {
-          series: [{
-          name: 'Fomento',
-          data: [<?php echo $linha ?>],
-        }],
-          chart: {
-          height: 350,
-          type: 'radar',
-        },
-        dataLabels: {
-          enabled: true
-        },
-        plotOptions: {
-          radar: {
+var options = {
+    series: [{
+        name: 'Fomento',
+        data: [<?php echo $linha ?>],
+    }],
+    chart: {
+        height: 350,
+        type: 'radar',
+    },
+    dataLabels: {
+        enabled: true
+    },
+    plotOptions: {
+        radar: {
             size: 140,
             polygons: {
-              strokeColors: '#e9e9e9',
-              fill: {
-                colors: ['#f8f8f8', '#fff']
-              }
+                strokeColors: '#e9e9e9',
+                fill: {
+                    colors: ['#f8f8f8', '#fff']
+                }
             }
-          }
-        },
-        title: {
-          text: 'Radar with Polygon Fill'
-        },
-        colors: ['#FF4560'],
-        markers: {
-          size: 4,
-          colors: ['#fff'],
-          strokeColor: '#FF4560',
-          strokeWidth: 2,
-        },
-        tooltip: {
-          y: {
-            formatter: function(val) {
-              return val
-            }
-          }
-        },
-        xaxis: {
-          categories: ['tecnologia','potencial_tecnologico','tipologia_inovacao','risco_tecnologico','impacto_cientifico_tecnologico','infraestrutura_empresa','parcerias','impactos_gerais','equipe','beneficio_inovacao'
-]
-        },
-        yaxis: {
-          tickAmount: 7,
-          labels: {
-            formatter: function(val, i) {
-              if (i % 2 === 0) {
-                return val
-              } else {
-                return ''
-              }
-            }
-          }
         }
-        };
+    },
+    title: {
+        text: 'Radar with Polygon Fill'
+    },
+    colors: ['#FF4560'],
+    markers: {
+        size: 4,
+        colors: ['#fff'],
+        strokeColor: '#FF4560',
+        strokeWidth: 2,
+    },
+    tooltip: {
+        y: {
+            formatter: function(val) {
+                return val
+            }
+        }
+    },
+    xaxis: {
+        categories: ['Tecnologia', 'Potencial Tecnologico', 'Tipo Inovação', 'Risco Tecnologico',
+            'Impacto Cientifico Tecnologico', 'Infra estrutura da empresa', 'Parcerias', 'Impacto Gerais',
+            'Equipe', 'Beneficios Inovação'
+        ]
+    },
+    yaxis: {
+        tickAmount: 7,
+        labels: {
+            formatter: function(val, i) {
+                if (i % 2 === 0) {
+                    return val
+                } else {
+                    return ''
+                }
+            }
+        }
+    }
+};
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
+var chart = new ApexCharts(document.querySelector("#chart"), options);
+chart.render();
 </script>
