@@ -72,54 +72,55 @@ mysqli_close($conn);
 
 
     <script>
-        // Verificar a força da senha em tempo real usando JavaScript
-        function verificarSenha() {
-            var senha = document.getElementById("senha").value;
-            var forca = document.getElementById("forca-senha");
+    // Verificar a força da senha em tempo real usando JavaScript
+    function verificarSenha() {
+        var senha = document.getElementById("senha").value;
+        var forca = document.getElementById("forca-senha");
 
-            // Verificar o comprimento da senha
-            if (senha.length < 8) {
-                forca.innerHTML = "Senha fraca";
-                forca.style.color = "red";
-            } else {
-                forca.innerHTML = "Senha forte";
-                forca.style.color = "green";
-            }
-
-            // Verificar se a senha contém letras maiúsculas, minúsculas, números e caracteres especiais
-            var pattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])/;
-            if (!pattern.test(senha)) {
-                forca.innerHTML = "Senha fraca";
-                forca.style.color = "red";
-            }
+        // Verificar o comprimento da senha
+        if (senha.length < 8) {
+            forca.innerHTML = "Senha fraca";
+            forca.style.color = "red";
+        } else {
+            forca.innerHTML = "Senha forte";
+            forca.style.color = "green";
         }
 
-        // Confirmar o envio do formulário usando SweetAlert2
-        function confirmarEnvio() {
-            var senha = document.getElementById("senha").value;
-
-            // Verificar se a senha atende aos critérios de segurança
-            if (senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) && /[!@#$%^&*()\-_=+{};:,<.>]/.test(senha)) {
-                Swal.fire({
-                    title: 'Confirmação',
-                    text: 'Tem certeza de que deseja prosseguir?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Sim',
-                    cancelButtonText: 'Não'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById("empresa").submit();
-                    }
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'A senha deve ter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.',
-                });
-            }
+        // Verificar se a senha contém letras maiúsculas, minúsculas, números e caracteres especiais
+        var pattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])/;
+        if (!pattern.test(senha)) {
+            forca.innerHTML = "Senha fraca";
+            forca.style.color = "red";
         }
+    }
+
+    // Confirmar o envio do formulário usando SweetAlert2
+    function confirmarEnvio() {
+        var senha = document.getElementById("senha").value;
+
+        // Verificar se a senha atende aos critérios de segurança
+        if (senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) &&
+            /[!@#$%^&*()\-_=+{};:,<.>]/.test(senha)) {
+            Swal.fire({
+                title: 'Confirmação',
+                text: 'Tem certeza de que deseja prosseguir?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Não'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("empresa").submit();
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'A senha deve ter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.',
+            });
+        }
+    }
     </script>
 
 
@@ -283,14 +284,27 @@ mysqli_close($conn);
                 <div class="container py-5">
                     <h2>Cadastro de Empresa</h2>
                     <form id="empresa" method="post" action="salvar.php">
-                        <div class="form-group">
+
+                        <div class="row md-12">
+                            <div class="col">
+                            <label for="nome">Nome:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
+                            </div>
+                            <div class="col">
+                            <label for="nome_empresa">Nome da Empresa:</label>
+                            <input type="text" class="form-control" id="nome_empresa" name="nome_empresa" required>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="form-group">
                             <label for="nome">Nome:</label>
                             <input type="text" class="form-control" id="nome" name="nome" required>
                         </div>
                         <div class="form-group">
                             <label for="nome_empresa">Nome da Empresa:</label>
                             <input type="text" class="form-control" id="nome_empresa" name="nome_empresa" required>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="cnpj">CNPJ:</label>
                             <input type="text" class="form-control" id="cnpj" name="cnpj" required>
@@ -345,31 +359,32 @@ mysqli_close($conn);
                         <div class="form-group">
                             <label for="setor">Setor:</label>
                             <!-- <input type="text" class="form-control" id="setor" placeholder="Digite o setor" name="setor"> -->
-                           
-                                <?php echo $select ?>
-                            
-                                
+
+                            <?php echo $select ?>
+
+
 
 
                         </div>
                         <div class=" form-group">
-                        
-                                    <label for="setor">Senha:</label>
-                                   
-                                        <!-- <input type="password" name="senha" id="senha" required onkeyup="verificarSenha()"> -->
-     
 
-        <input class="form-control" id="senha" type="password" name="senha" placeholder="Password" required onkeyup="verificarSenha()"/>
-        
-        <p id="forca-senha"></p>
+                            <label for="setor">Senha:</label>
+
+                            <!-- <input type="password" name="senha" id="senha" required onkeyup="verificarSenha()"> -->
+
+
+                            <input class="form-control" id="senha" type="password" name="senha" placeholder="Password"
+                                required onkeyup="verificarSenha()" />
+
+                            <p id="forca-senha"></p>
                         </div>
                         <br>
-                        <button type="button"  class="btn btn-sm btn-success" onclick="confirmarEnvio()">Submit</button>
+                        <button type="button" class="btn btn-sm btn-success" onclick="confirmarEnvio()">Submit</button>
                     </form>
 
                     <body>
 
-</body>
+                    </body>
 
                 </div>
             </div>

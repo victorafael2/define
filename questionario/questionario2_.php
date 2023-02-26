@@ -16,9 +16,9 @@
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicons/favicon.ico">
     <link rel="manifest" href="../assets/img/favicons/manifest.json">
     <meta name="msapplication-TileImage" content="../assets/img/favicons/mstile-150x150.png">
@@ -27,6 +27,16 @@
     <script src="../vendors/simplebar/simplebar.min.js"></script>
     <script src="../assets/js/config.js"></script>
 
+
+
+  
+<style>
+
+    .radio {
+        text-align: center;
+    }
+
+    </style>
 
     <!-- ===============================================-->
     <!--    Stylesheets-->
@@ -219,11 +229,13 @@
 
 
                             <div class="form-group">
-                                <label for="regime_tributario"><h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">
-                                EM RELAÇÃO AO REGIME TRIBUTÁRIO, MINHA EMPRESA OPERA EM:</a></h4></label>
+                                <label for="regime_tributario">
+                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">
+                                        EM RELAÇÃO AO REGIME TRIBUTÁRIO, MINHA EMPRESA OPERA EM:</a></h4>
+                                </label>
                                 <select id="regime_tributario" name="regime_tributario" data-choices="data-choices"
-                                        data-options='{"removeItemButton":false,"placeholder":true}' require>
-                                        <option value="">Selecionar Regime Tributário</option>
+                                    data-options='{"removeItemButton":false,"placeholder":true}' require>
+                                    <option value="">Selecionar Regime Tributário</option>
                                     <option value="lucro_real">Lucro Real</option>
                                     <option value="lucro_presumido">Lucro Presumido</option>
                                     <option value="simples_nacional">Simples Nacional</option>
@@ -410,20 +422,20 @@
                                         PROJETO SERÁ DESENVOLVIDO:</a></h4>
                                 </label>
                                 <div>
-                                    <input type="radio" id="parcerias-1" name="parcerias" value="5">
+                                    <input type="checkbox" id="parcerias-1" name="parcerias[]" value="5">
                                     <label for="parcerias-1">Em parceria com universidade ou instituto de
                                         pesquisa</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="parcerias-2" name="parcerias" value="4">
+                                    <input type="checkbox" id="parcerias-2" name="parcerias[]" value="4">
                                     <label for="parcerias-2">Em parceria com Startup</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="parcerias-3" name="parcerias" value="4">
+                                    <input type="checkbox" id="parcerias-3" name="parcerias[]" value="4">
                                     <label for="parcerias-3">Em parceria com empresa</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="parcerias-4" name="parcerias" value="1">
+                                    <input type="checkbox" id="parcerias-4" name="parcerias[]" value="1">
                                     <label for="parcerias-4">Sem parceria</label>
                                 </div>
                             </div>
@@ -436,12 +448,59 @@
                                         APLICAÇÃO DA MINHA SOLUÇÃO TRARÁ IMPACTO PARA SEGUINTES ÁREAS NOS GRAUS:</a>
                                     </h4>
                                 </label>
-                                <select class="form-control" id="impactos-gerais" name="impactos-gerais">
+                                <!-- <select class="form-control" id="impactos-gerais" name="impactos-gerais">
                                     <option value="0">NÃO SE APLICA</option>
                                     <option value="2">BAIXO</option>
                                     <option value="4">MODERADO</option>
                                     <option value="5">ALTO</option>
-                                </select>
+                                </select> -->
+
+
+
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th  class="text-center">NÃO SE APLICA</th>
+                                            <th  class="text-center">BAIXO</th>
+                                            <th  class="text-center">MODERADO</th>
+                                            <th  class="text-center">ALTO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td  class="text-center">SOCIEDADE</td>
+                                            <td><input  class="text-center" type="radio" name="impactos-gerais1" value="0"></td>
+                                            <td><input  class="text-center" type="radio" name="impactos-gerais1" value="2"></td>
+                                            <td><input  class="text-center" type="radio" name="impactos-gerais1" value="4"></td>
+                                            <td><input  class="text-center" type="radio" name="impactos-gerais1" value="5"></td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="text-center">MEIO AMBIENTE</td>
+                                            <td><input type="radio" name="impactos-gerais2" value="0"></td>
+                                            <td><input type="radio" name="impactos-gerais2" value="2"></td>
+                                            <td><input type="radio" name="impactos-gerais2" value="4"></td>
+                                            <td><input type="radio" name="impactos-gerais2" value="5"></td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="text-center">MERCADO</td>
+                                            <td><input type="radio" name="impactos-gerais3" value="0"></td>
+                                            <td><input type="radio" name="impactos-gerais3" value="2"></td>
+                                            <td><input type="radio" name="impactos-gerais3" value="4"></td>
+                                            <td><input type="radio" name="impactos-gerais3" value="5"></td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="text-center">GOVERNO</td>
+                                            <td><input type="radio" name="impactos-gerais4" value="0"></td>
+                                            <td><input type="radio" name="impactos-gerais4" value="2"></td>
+                                            <td><input type="radio" name="impactos-gerais4" value="4"></td>
+                                            <td><input type="radio" name="impactos-gerais4" value="5"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
                             </div>
 
                             <br>
@@ -478,23 +537,28 @@
                                         EMPRESA JÁ SE BENEFICIOU COM RECURSOS PÚBLICOS PARA INOVAÇÃO:</a></h4>
                                 </label>
                                 <div>
-                                    <input type="radio" id="beneficio-inovacao-1" name="beneficio-inovacao" value="5">
+                                    <input type="checkbox" id="beneficio-inovacao-1" name="beneficio-inovacao[]"
+                                        value="5">
                                     <label for="beneficio-inovacao-1">Sim, Subvenção Econômica</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="beneficio-inovacao-2" name="beneficio-inovacao" value="5">
+                                    <input type="checkbox" id="beneficio-inovacao-2" name="beneficio-inovacao[]"
+                                        value="5">
                                     <label for="beneficio-inovacao-2">Sim, recurso reembolsável</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="beneficio-inovacao-3" name="beneficio-inovacao" value="5">
+                                    <input type="checkbox" id="beneficio-inovacao-3" name="beneficio-inovacao[]"
+                                        value="5">
                                     <label for="beneficio-inovacao-3">Sim, lei de incentivo fiscal para inovação</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="beneficio-inovacao-4" name="beneficio-inovacao" value="3">
+                                    <input type="checkbox" id="beneficio-inovacao-4" name="beneficio-inovacao[]"
+                                        value="3">
                                     <label for="beneficio-inovacao-4">Não, mas já tentamos</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="beneficio-inovacao-5" name="beneficio-inovacao" value="2">
+                                    <input type="checkbox" id="beneficio-inovacao-5" name="beneficio-inovacao[]"
+                                        value="2">
                                     <label for="beneficio-inovacao-5">Não, nunca tentamos</label>
                                 </div>
                             </div>
