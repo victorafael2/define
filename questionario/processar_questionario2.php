@@ -9,11 +9,17 @@ $risco_tecnologico = $_POST['risco-tecnologico'];
 $impacto_tecnologico = $_POST['impacto_tecnologico'];
 $infraestrutura_empresa = $_POST['infraestrutura-empresa'];
 // $parcerias = $_POST['parcerias'];
-$impactos_gerais = $_POST['impactos-gerais'];
+// $impactos_gerais = $_POST['impactos-gerais'];
+
+$impactos_gerais_1 = $_POST['impactos-gerais1'];
+$impactos_gerais_2 = $_POST['impactos-gerais2'];
+$impactos_gerais_3 = $_POST['impactos-gerais3'];
+$impactos_gerais_4 = $_POST['impactos-gerais4'];
+
+$concat_impacto_gerais = $impactos_gerais_1.",".$impactos_gerais_2.",".$impactos_gerais_3.",".$impactos_gerais_4;
 
 
-
-
+$impactos_gerais = $concat_impacto_gerais;
 
 
 
@@ -26,7 +32,7 @@ $faturamento = $_POST['faturamento'];
 $regime_tributario = $_POST['regime_tributario'];
 
 
-// benefico
+// parceria
 $checkbox_values_parcerias= isset($_POST['parcerias']) ? $_POST['parcerias'] : [];
 $parcerias= implode(",", $checkbox_values_parcerias);
 // fim do beneficios

@@ -1,5 +1,49 @@
 <?php
 include '../conexao/conexao.php';
+session_start();
+// echo $_SESSION['email'];
+$email =  $_SESSION['email'];
+
+
+$sql_usuario = "SELECT * FROM adm_setores AS setores
+
+WHERE id = (SELECT setor FROM empresas WHERE email = '$email')";
+$result_usuario = mysqli_query($conn, $sql_usuario);
+// Verificar se a consulta retornou algum resultado
+if (mysqli_num_rows($result_usuario) > 0) {
+    // Exibir os resultados
+    while($row = mysqli_fetch_assoc($result_usuario)) {
+
+        $setor = $row["setor"];
+        $link = $row["link"];
+        $nova_string = str_replace(";", ",", $link);
+
+    }};
+
+    // echo $nova_string;
+
+
+    $sql_setores = "SELECT tab.id, busca.descricao, busca.icon FROM tabelas AS tab
+
+    LEFT JOIN (SELECT * FROM tabelas
+    
+        WHERE id IN ($nova_string)) AS busca ON tab.id = busca.id";
+
+$result_setores = mysqli_query($conn, $sql_setores);
+// // Verificar se a consulta retornou algum resultado
+// if (mysqli_num_rows($result_setores) > 0) {
+//     // Exibir os resultados
+//     while($row = mysqli_fetch_assoc($result_setores)) {
+
+//         $desc = $row["descricao"];
+//         $id = $row["id"];
+        
+
+//     }};
+
+// echo $sql_setores;
+
+
 
 $diag = $_GET['id'];
 
@@ -25,10 +69,22 @@ if (mysqli_num_rows($result) > 0) {
         $impacto_cientifico_tecnologico = $row["impacto_tecnologico"];
         $infraestrutura_empresa = round($row["infraestrutura_empresa"]);
 
-        $impactos_gerais = round($row["impactos_gerais"]);
+        // $valores_impactos_gerais = $row["impactos_gerais"];
+        $string_impactos_gerais = "$row[impactos_gerais]";
+        $valores_impactos_gerais = explode(",",$string_impactos_gerais);
+            // Calcular a média
+            $contador_impactos_gerais= count($valores_impactos_gerais);
+            $soma_impactos_gerais = array_sum($valores_impactos_gerais);
+            $impactos_gerais = $soma_impactos_gerais / $contador_impactos_gerais;
+
+
+
+
+
+
         $equipe = round($row["equipe"]);
-        $string = "$row[beneficio_inovacao]";
-        $valores_beneficio_inovacao = explode(",",$string);
+        $string_beneficios = "$row[beneficio_inovacao]";
+        $valores_beneficio_inovacao = explode(",",$string_beneficios);
 
         // echo $array;
             // Calcular a média
@@ -40,7 +96,7 @@ if (mysqli_num_rows($result) > 0) {
             // parcerias
             // $parcerias = round($row["parcerias"]);
             $string_parcerias = "$row[parcerias]";
-            $valores_parcerias = explode(",",$string);
+            $valores_parcerias = explode(",",$string_parcerias);
     
             // echo $array;
                 // Calcular a média
@@ -59,8 +115,16 @@ if (mysqli_num_rows($result) > 0) {
     echo "Nenhum resultado encontrado.";
 }
 
+
+
+// Executar a consulta
+$sql_2 = "SELECT * FROM tabelas where id in ('1,2')";
+$result_2 = mysqli_query($conn, $sql_2);
+
+
+
 // Fechar a conexão com o banco de dados
-mysqli_close($conn);
+// mysqli_close($conn);
 
 
 
@@ -244,62 +308,93 @@ mysqli_close($conn);
 
 
 
-
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="row align-items-center g-3 text-center text-xxl-start">
-                    <div class="container py-5">
-                        <div class="row">
-
+        <div class="container py-5">
+            <div class="row">
+                <div class="card col-6">
+                    <div class="card-body">
+                        <div class="row align-items-center g-3 text-center text-xxl-start">
                             <div class="container py-5">
-                                <h2>Diagnostico</h2>
-                                <!-- <p>Obrigado por se cadastrar em nosso sistema.</p> -->
-                                <a class="btn btn-primary btn-lg" href="../questionario/questionario1.php"
-                                    role="button">Ir para
-                                    questionário</a>
+                                <div class="row">
 
-                                <div id="chart">
+                                    <div class="container py-5">
+                                        <h2>Diagnostico</h2>
+                                        <!-- <p>Obrigado por se cadastrar em nosso sistema.</p> -->
+                                        <!-- <a class="btn btn-primary btn-lg" href="../questionario/questionario1.php"
+                                            role="button">Ir para
+                                            questionário</a> -->
+
+                                        <div id="chart">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card col-6">
+                    <div class="card-body">
+                        <div class="row align-items-center g-3 text-center text-xxl-start">
+                            <div class="container py-5">
+                                <div class="row">
+
+                                    <div class="container py-5">
+                                        <h2>Diagnostico</h2>
+                                        <!-- <p>Obrigado por se cadastrar em nosso sistema.</p> -->
+                                        <!-- <a class="btn btn-primary btn-lg" href="../questionario/questionario1.php"
+                                            role="button">Ir para
+                                            questionário</a> -->
+
+                                        <div id="chart">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="row align-items-center g-3 text-center text-xxl-start">
-                    <div class="container py-5">
-                        <div class="row">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row align-items-center g-3 text-center text-xxl-start">
+                        <div class="container py-5">
+                            <div class="row">
 
-                            <div class="container py-5">
-                            <table>
-  <tr>
-    <th>Recurso Não Reembolsável</th>
-    <th>Recurso Reembolsável</th>
-    <th>Lei do Bem</th>
-    <th>Rota 2030</th>
-    <th>Lei de Informática</th>
-    <th>ANP</th>
-    <th>ANEEL</th>
-    <th>Uso indireto das Leis de Incentivo</th>
-    <th>Pró-Startup (FACEPE)</th>
-    <th>Bônus Tecnológico (FACEPE)</th>
-  </tr>
-  <tr>
-    <td>Recursos concedidos sem necessidade de reembolso.</td>
-    <td>Recursos concedidos com a exigência de reembolso futuro.</td>
-    <td>Lei que concede incentivos fiscais para empresas que investem em P&D.</td>
-    <td>Política pública para estimular a inovação e a competitividade da indústria automotiva.</td>
-    <td>Lei que concede incentivos fiscais para empresas que investem em P&D na área de tecnologia da informação.</td>
-    <td>Agência Nacional do Petróleo, Gás Natural e Biocombustíveis.</td>
-    <td>Agência Nacional de Energia Elétrica.</td>
-    <td>Uso de incentivos fiscais para patrocínio de projetos culturais e esportivos.</td>
-    <td>Programa de incentivo ao desenvolvimento de startups em Pernambuco.</td>
-    <td>Programa de incentivo à inovação tecnológica no estado de Pernambuco.</td>
-  </tr>
-</table>
+                                <div class="container py-5">
+                                <div class="table-responsive">
+                                <table class="table table-striped ">
+                                        <tr>
+                                            <th>Recurso Não Reembolsável</th>
+                                            <th>Recurso Reembolsável</th>
+                                            <th>Lei do Bem</th>
+                                            <th>Rota 2030</th>
+                                            <th>Lei de Informática</th>
+                                            <th>ANP</th>
+                                            <th>ANEEL</th>
+                                            <th>Uso indireto das Leis de Incentivo</th>
+                                            <th>Pró-Startup (FACEPE)</th>
+                                            <th>Bônus Tecnológico (FACEPE)</th>
+                                        </tr>
+
+                                        <tr>
+
+                                      
+                                       
+                                           
+                                            <?php
+                                            // Loop para percorrer os resultados da consulta e criar as linhas da tabela
+                                            while ($row = mysqli_fetch_assoc($result_setores)) {
+                                                            
+                                                            echo "<td class='text-center'>" . $row['icon'] . "</td>";                          
+                                                           
+                                                        }
+                                            ?>
+
+
+                                        </tr>
+                                    </table>
+                                </div>
 
                                 </div>
                             </div>
