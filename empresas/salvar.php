@@ -19,7 +19,7 @@ $sql = "INSERT INTO empresas (nome, empresa, cnpj, email, whatsapp, uf, setor, s
 // Executar a consulta SQL e verificar se houve algum erro
 if ($conn->query($sql) === TRUE) {
     // Se a inserção foi bem sucedida, redirecionar para a página de sucesso
-    header('Location: ../empresas/sucess.php');
+    header('Location: ../index.php');
 } else {
     // Se houve um erro na inserção, exibir uma mensagem de erro
     echo "Erro: " . $sql . "<br>" . $conn->error;

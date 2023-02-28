@@ -4,7 +4,25 @@ include 'conexao/conexao.php';
 session_start();
 // echo $_SESSION['email'];
 
+if(!isset($_SESSION["email"]) || !isset($_SESSION["email"]))
+{
+// Usuário não logado! Redireciona para a página de login
+$logado = "deslogado";
+$esconder_ = "d-none";
+$cadastrar = "empresas/empresa__.php";
+$cadastrar_texto = "Cadastre-se";
+// exit;
+} else
+{
+    // logado
+    $logado = "logado";
+    $esconder_entrar = "d-none";
+    $cadastrar = "questionario/questionario2_.php";
+    $cadastrar_texto = "Responder Questionario";
+}
 
+
+echo $logado;
 
 ?>
 
@@ -134,11 +152,12 @@ session_start();
                         </div><a class="text-500 px-2 d-none d-lg-inline me-2" href="#" data-bs-toggle="modal"
                             data-bs-target="#searchBoxModal"><span data-feather="search"
                                 style="height:12px;width:12px;"></span></a><a
-                            class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2" href="login.php">Entrar</a><a
+                            class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2 <?php echo  $esconder_entrar; ?>" href="pages/authentication/simple/sign-in.php">Entrar</a>
+                            <!-- <a
                             class="btn btn-phoenix-primary order-0"
-                            href="pages/authentication/simple/sign-up.html"><span class="fw-bold">Cadastrar</span></a>
+                            href="pages/authentication/simple/sign-up.html"><span class="fw-bold">Cadastrar</span></a> -->
 
-                        <form method="post" action="encerrar_sessao.php">
+                        <form class="<?php echo $esconder_ ?>" method="post" action="encerrar_sessao.php">
                             <input type="hidden" name="encerrar_sessao" value="1">
                             <input class="btn btn-phoenix-danger order-0" type="submit" value="Encerrar sessão">
                         </form>
@@ -182,10 +201,10 @@ session_start();
             </div>
                     <div class="col-12 col-lg-6 text-lg-start text-center pt-8 pb-6 order-0 position-relative">
                         <h1 class="fs-5 fs-lg-6 fs-md-7 fs-lg-6 fs-xl-7 fs fw-black mb-4">Você <span
-                                class="text-primary me-3">D.E.F.I.N.E</span><br />o recurso que sua empresa vai acessar.
+                                class="text-primary me-3">D.E.F.I.N.E.</span><br />o recurso que sua empresa vai acessar.
                         </h1>
                         <p class="mb-5">E a MATECH te apóia</p><a class="btn btn-lg btn-primary rounded-pill me-3"
-                            href="empresas/empresa__.php" role="button">Responder Questionario</a>
+                            href="<?php echo $cadastrar ?>" role="button"><?php echo $cadastrar_texto ?></a>
                             <!-- <a
                             class="btn btn-link me-2 fs-0 p-0 text-decoration-none" href="#!" role="button">Check
                             Demo<span class="fa-solid fa-angle-right ms-2 fs--1"></span></a> -->

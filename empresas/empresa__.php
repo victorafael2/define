@@ -169,8 +169,8 @@ mysqli_close($conn);
     <main style="--phoenix-scroll-margin-top: 1.2rem;">
         <nav class="navbar bg-white navbar-expand-lg sticky-top">
             <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0"
-                    href="../index.html">
-                    <div class="d-flex align-items-center"><img src="../assets/img/icons/logo.png" alt="phoenix"
+                    href="../index.php">
+                    <div class="d-flex align-items-center"><img src="../assets/img/icons/logo.png" alt="define"
                             width="27" />
                         <p class="logo-text ms-2">define</p>
                     </div>
@@ -437,15 +437,22 @@ mysqli_close($conn);
 
                 <!-- ============================================-->
                 <!-- <section> begin ============================-->
-                <section style="padding-top:250px;">
+                <section style="padding-top:50px;">
 
                     <div class="container-small">
                         <div class="row position-relative">
                             <div class="col-12 col-sm-12 col-lg-5 mb-4 order-0 order-sm-0"><a href="#"><img class="mb-3"
-                                        src="../assets/img/icons/logo-white.png" height="48" alt="" /></a>
+                                        src="assets/img/icons/logo-white.png" height="48" alt="" /></a>
                                 <h3 class="text-white light">define</h3>
-                                <p class="text-white opacity-50 light">All over the world. Alice in <br />wonderland and
-                                    other places.</p>
+                                <!-- <p class="text-white opacity-50 light">All over the world. Alice in <br />wonderland and
+                                    other places.</p> -->
+                                    <p class="text-white opacity-50 light"><b>D</b>iagnostico
+                                    <br /> <b>E</b>stratégico de
+                                    <br /><b>F</b>omento à
+                                    <br /><b>I</b>novação
+                                    <br /><b>N</b>as
+                                    <br /><b>E</b>mpresas
+
                             </div>
                             <div class="col-lg-7">
                                 <div class="row justify-content-between">
