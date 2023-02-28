@@ -398,7 +398,7 @@ $result_2 = mysqli_query($conn, $sql_2);
 
                                 <div class="container py-5">
                                 <div class="table-responsive">
-                                <table class="table table-striped table-borderless">
+                                <table class="table table-striped table-bordered">
                                         <tr>
                                             <th>Recurso Não Reembolsável</th>
                                             <th>Recurso Reembolsável</th>
