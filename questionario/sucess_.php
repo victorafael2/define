@@ -5,6 +5,25 @@ session_start();
 $email =  $_SESSION['email'];
 
 
+
+if(!isset($_SESSION["email"]) || !isset($_SESSION["email"]))
+{
+// Usuário não logado! Redireciona para a página de login
+$logado = "deslogado";
+$esconder_ = "d-none";
+$cadastrar = "empresas/empresa__.php";
+$cadastrar_texto = "Cadastre-se";
+// exit;
+} else
+{
+    // logado
+    $logado = "logado";
+    $esconder_entrar = "d-none";
+    $cadastrar = "questionario/questionario2_.php";
+    $cadastrar_texto = "Responder Questionario";
+}
+
+
 $sql_usuario = "SELECT * FROM adm_setores AS setores
 
 WHERE id = (SELECT setor FROM empresas WHERE email = '$email')";
@@ -23,11 +42,13 @@ if (mysqli_num_rows($result_usuario) > 0) {
     // echo $nova_string;
 
 
-    $sql_setores = "SELECT tab.id, busca.descricao, busca.icon FROM tabelas AS tab
+    $sql_setores = "SELECT tab.id, busca.descricao,
 
-    LEFT JOIN (SELECT * FROM tabelas
+    IFNULL(busca.icon , 'novo') as icon
     
-        WHERE id IN ($nova_string)) AS busca ON tab.id = busca.id";
+FROM tabelas AS tab
+
+    LEFT JOIN (SELECT * FROM tabelas WHERE id IN ($nova_string)) AS busca ON tab.id = busca.id ";
 
 $result_setores = mysqli_query($conn, $sql_setores);
 // // Verificar se a consulta retornou algum resultado
@@ -160,6 +181,14 @@ $result_2 = mysqli_query($conn, $sql_2);
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
+
+
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
@@ -254,11 +283,16 @@ $result_2 = mysqli_query($conn, $sql_2);
                         </div><a class="text-500 px-2 d-none d-lg-inline me-2" href="#" data-bs-toggle="modal"
                             data-bs-target="#searchBoxModal"><span data-feather="search"
                                 style="height:12px;width:12px;"></span></a><a
-                            class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2"
-                            href="../pages/authentication/simple/sign-in.html">Entrar</a><a
+                            class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2 <?php echo  $esconder_entrar; ?>"
+                            href="pages/authentication/simple/sign-in.php">Entrar</a>
+                        <!-- <a
                             class="btn btn-phoenix-primary order-0"
-                            href="../pages/authentication/simple/sign-up.html"><span
-                                class="fw-bold">Cadastrar</span></a>
+                            href="pages/authentication/simple/sign-up.html"><span class="fw-bold">Cadastrar</span></a> -->
+
+                        <form class="<?php echo $esconder_ ?>" method="post" action="encerrar_sessao.php">
+                            <input type="hidden" name="encerrar_sessao" value="1">
+                            <input class="btn btn-phoenix-danger order-0" type="submit" value="Encerrar sessão">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -345,8 +379,9 @@ $result_2 = mysqli_query($conn, $sql_2);
                                             role="button">Ir para
                                             questionário</a> -->
 
-                                        <div id="chart">
-                                        </div>
+                                        <!-- <div id="chart2">                                        </div> -->
+                                        <canvas id="chart2"></canvas>
+
                                     </div>
                                 </div>
                             </div>
@@ -363,7 +398,7 @@ $result_2 = mysqli_query($conn, $sql_2);
 
                                 <div class="container py-5">
                                 <div class="table-responsive">
-                                <table class="table table-striped ">
+                                <table class="table table-striped table-borderless">
                                         <tr>
                                             <th>Recurso Não Reembolsável</th>
                                             <th>Recurso Reembolsável</th>
@@ -385,8 +420,8 @@ $result_2 = mysqli_query($conn, $sql_2);
                                             <?php
                                             // Loop para percorrer os resultados da consulta e criar as linhas da tabela
                                             while ($row = mysqli_fetch_assoc($result_setores)) {
-                                                            
-                                                            echo "<td class='text-center'>" . $row['icon'] . "</td>";                          
+                                                $resultado = ($row['icon'] == 'novo') ? '<span class="fa-solid fa-circle-info text-info fs-2"></span>' : $row['icon'];
+                                                            echo "<td class='text-center'>" . $resultado . "</td>";
                                                            
                                                         }
                                             ?>
@@ -844,4 +879,53 @@ var options = {
 
 var chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
+
+
+
+</script>
+
+
+
+
+
+
+
+
+<script>
+$(function() {
+  var ctx = document.getElementById('chart2').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'bubble',
+    data: {
+      datasets: [{
+        label: 'Dados do Gráfico',
+        data: [
+          {x: 3, y: 5, r: 10},
+          {x: 4, y: 8, r: 12},
+          {x: 7, y: 2, r: 8},
+          {x: 10, y: 4, r: 16}
+        ],
+        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+});
+
+
 </script>

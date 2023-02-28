@@ -144,7 +144,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                         <button class="btn btn-primary w-100 mb-3" type="submit" value="Entrar">Login</button>
                         
                         <div class="text-center"><a class="fs--1 fw-bold"
-                                href="../../../pages/authentication/simple/sign-up.html">Criar conta</a>
+                                href="../../../empresas/empresa__.php">Criar conta</a>
                                 
                             </div>
 

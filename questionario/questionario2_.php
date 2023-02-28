@@ -1,3 +1,32 @@
+<?php
+include '../conexao/conexao.php';
+
+session_start();
+// echo $_SESSION['email'];
+$nome_logado = $_SESSION['email'];
+
+if(!isset($_SESSION["email"]) || !isset($_SESSION["email"]))
+{
+// Usuário não logado! Redireciona para a página de login
+$logado = "deslogado";
+$esconder_ = "d-none";
+$cadastrar = "empresas/empresa__.php";
+$cadastrar_texto = "Cadastre-se";
+// exit;
+} else
+{
+    // logado
+    $logado = "logado";
+    $esconder_entrar = "d-none";
+    $cadastrar = "questionario/questionario2_.php";
+    $cadastrar_texto = "Responder Questionario";
+}
+
+
+// echo $logado;
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR" dir="ltr">
 
@@ -29,13 +58,11 @@
 
 
 
-  
-<style>
 
+    <style>
     .radio {
         text-align: center;
     }
-
     </style>
 
     <!-- ===============================================-->
@@ -77,7 +104,7 @@
     <!-- ===============================================-->
     <main style="--phoenix-scroll-margin-top: 1.2rem;">
         <nav class="navbar bg-white navbar-expand-lg sticky-top">
-            <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="index.html">
+            <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="../index.php">
                     <div class="d-flex align-items-center"><img src="../assets/img/icons/logo.png" alt="phoenix"
                             width="27" />
                         <p class="logo-text ms-2">define</p>
@@ -133,11 +160,16 @@
                         </div><a class="text-500 px-2 d-none d-lg-inline me-2" href="#" data-bs-toggle="modal"
                             data-bs-target="#searchBoxModal"><span data-feather="search"
                                 style="height:12px;width:12px;"></span></a><a
-                            class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2"
-                            href="../pages/authentication/simple/sign-in.html">Entrar</a><a
+                            class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2 <?php echo  $esconder_entrar; ?>"
+                            href="pages/authentication/simple/sign-in.php">Entrar</a>
+                        <!-- <a
                             class="btn btn-phoenix-primary order-0"
-                            href="../pages/authentication/simple/sign-up.html"><span
-                                class="fw-bold">Cadastrar</span></a>
+                            href="pages/authentication/simple/sign-up.html"><span class="fw-bold">Cadastrar</span></a> -->
+
+                        <form class="<?php echo $esconder_ ?>" method="post" action="encerrar_sessao.php">
+                            <input type="hidden" name="encerrar_sessao" value="1">
+                            <input class="btn btn-phoenix-danger order-0" type="submit" value="Encerrar sessão">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -183,7 +215,7 @@
           </div>
         </div>
       </section> -->
-<!-- ,,, -->
+        <!-- ,,, -->
 
 
         <div class="container py-5">
@@ -462,36 +494,40 @@
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th  class="text-center">NÃO SE APLICA</th>
-                                            <th  class="text-center">BAIXO</th>
-                                            <th  class="text-center">MODERADO</th>
-                                            <th  class="text-center">ALTO</th>
+                                            <th class="text-center">NÃO SE APLICA</th>
+                                            <th class="text-center">BAIXO</th>
+                                            <th class="text-center">MODERADO</th>
+                                            <th class="text-center">ALTO</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td  class="text-center">SOCIEDADE</td>
-                                            <td><input  class="text-center" type="radio" name="impactos-gerais1" value="0"></td>
-                                            <td><input  class="text-center" type="radio" name="impactos-gerais1" value="2"></td>
-                                            <td><input  class="text-center" type="radio" name="impactos-gerais1" value="4"></td>
-                                            <td><input  class="text-center" type="radio" name="impactos-gerais1" value="5"></td>
+                                            <td class="text-center">SOCIEDADE</td>
+                                            <td><input class="text-center" type="radio" name="impactos-gerais1"
+                                                    value="0"></td>
+                                            <td><input class="text-center" type="radio" name="impactos-gerais1"
+                                                    value="2"></td>
+                                            <td><input class="text-center" type="radio" name="impactos-gerais1"
+                                                    value="4"></td>
+                                            <td><input class="text-center" type="radio" name="impactos-gerais1"
+                                                    value="5"></td>
                                         </tr>
                                         <tr>
-                                            <td  class="text-center">MEIO AMBIENTE</td>
+                                            <td class="text-center">MEIO AMBIENTE</td>
                                             <td><input type="radio" name="impactos-gerais2" value="0"></td>
                                             <td><input type="radio" name="impactos-gerais2" value="2"></td>
                                             <td><input type="radio" name="impactos-gerais2" value="4"></td>
                                             <td><input type="radio" name="impactos-gerais2" value="5"></td>
                                         </tr>
                                         <tr>
-                                            <td  class="text-center">MERCADO</td>
+                                            <td class="text-center">MERCADO</td>
                                             <td><input type="radio" name="impactos-gerais3" value="0"></td>
                                             <td><input type="radio" name="impactos-gerais3" value="2"></td>
                                             <td><input type="radio" name="impactos-gerais3" value="4"></td>
                                             <td><input type="radio" name="impactos-gerais3" value="5"></td>
                                         </tr>
                                         <tr>
-                                            <td  class="text-center">GOVERNO</td>
+                                            <td class="text-center">GOVERNO</td>
                                             <td><input type="radio" name="impactos-gerais4" value="0"></td>
                                             <td><input type="radio" name="impactos-gerais4" value="2"></td>
                                             <td><input type="radio" name="impactos-gerais4" value="4"></td>
@@ -571,6 +607,7 @@
                             <br>
 
 
+                            <input type="text" name="user" value="<?php echo $nome_logado ?>">
 
 
 
@@ -627,15 +664,22 @@
 
                 <!-- ============================================-->
                 <!-- <section> begin ============================-->
-                <section style="padding-top:250px;">
+                <section style="padding-top:50px;">
 
                     <div class="container-small">
                         <div class="row position-relative">
                             <div class="col-12 col-sm-12 col-lg-5 mb-4 order-0 order-sm-0"><a href="#"><img class="mb-3"
-                                        src="../assets/img/icons/logo-white.png" height="48" alt="" /></a>
-                                <h3 class="text-white light">phoenix</h3>
-                                <p class="text-white opacity-50 light">All over the world. Alice in <br />wonderland and
-                                    other places.</p>
+                                        src="assets/img/icons/logo-white.png" height="48" alt="" /></a>
+                                <h3 class="text-white light">define</h3>
+                                <!-- <p class="text-white opacity-50 light">All over the world. Alice in <br />wonderland and
+                                    other places.</p> -->
+                                <p class="text-white opacity-50 light"><b>D</b>iagnostico
+                                    <br /> <b>E</b>stratégico de
+                                    <br /><b>F</b>omento à
+                                    <br /><b>I</b>novação
+                                    <br /><b>N</b>as
+                                    <br /><b>E</b>mpresas
+
                             </div>
                             <div class="col-lg-7">
                                 <div class="row justify-content-between">
