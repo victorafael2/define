@@ -2,9 +2,20 @@
 include 'conexao/conexao.php';
 
 session_start();
-// echo $_SESSION['email'];
 
 
+if(isset($_SESSION['email'])) {
+    $logado = "logado";
+} else {
+    // a sessão não está ativa, redirecione o usuário para a página de login
+   $logado = "deslogado";
+}
+
+
+// $logadao = isset($_SESSION['email']) ?  $_SESSION['email'] : "deslogado";
+
+
+echo $logado;
 
 ?>
 
