@@ -630,7 +630,7 @@ if(isset($_SESSION['email'])) {
                 href="https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/"
                 target="_blank">Purchase template</a>
         </div>
-    </div><a class="card setting-toggle" href="#settings-offcanvas" data-bs-toggle="offcanvas">
+    </div>
         <div class="card-body d-flex align-items-center px-2 py-1">
             <div class="position-relative rounded-start" style="height:34px;width:28px">
                 <div class="settings-popover"><span class="ripple"><span
