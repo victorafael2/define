@@ -357,8 +357,7 @@ $result_2 = mysqli_query($conn, $sql_2);
                                             role="button">Ir para
                                             questionário</a> -->
 
-                                        <div id="chart1">
-                                        </div>
+                                        <div id="chart1">                                       </div>
                                     </div>
                                 </div>
                             </div>
@@ -380,7 +379,7 @@ $result_2 = mysqli_query($conn, $sql_2);
                                             questionário</a> -->
 
                                         <div id="chart2">                                        </div>
-                                        <canvas id="myChart"></canvas>
+                                        <!-- <canvas id="chart2"></canvas> -->
 
                                     </div>
                                 </div>
@@ -811,7 +810,6 @@ $result_2 = mysqli_query($conn, $sql_2);
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARdVcREeBK44lIWnv5-iPijKqvlSAVwbw&callback=initMap"
         async></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 
@@ -819,162 +817,49 @@ $result_2 = mysqli_query($conn, $sql_2);
 
 <script>
 var options1 = {
-    series: [{
-        name: 'Fomento',
-        data: [<?php echo $linha ?>],
-    }],
-    chart: {
-        height: 350,
-        type: 'radar',
-    },
-    dataLabels: {
-        enabled: true
-    },
-    plotOptions: {
-        radar: {
-            size: 140,
-            polygons: {
-                strokeColors: '#e9e9e9',
-                fill: {
-                    colors: ['#f8f8f8', '#fff']
-                }
-            }
-        }
-    },
-    title: {
-        // text: 'Radar with Polygon Fill'
-    },
-    colors: ['#FF4560'],
-    markers: {
-        size: 4,
-        colors: ['#fff'],
-        strokeColor: '#FF4560',
-        strokeWidth: 2,
-    },
-    tooltip: {
-        y: {
-            formatter: function(val) {
-                return val
-            }
-        }
-    },
-    xaxis: {
-        categories: ['Tecnologia', 'Potencial Tecnologico', 'Tipo Inovação', 'Risco Tecnologico',
-            'Impacto Cientifico Tecnologico', 'Infra estrutura da empresa', 'Parcerias', 'Impacto Gerais',
-            'Equipe', 'Beneficios Inovação'
-        ]
-    },
-    yaxis: {
-        tickAmount: 7,
-        labels: {
-            formatter: function(val, i) {
-                if (i % 2 === 0) {
-                    return val
-                } else {
-                    return ''
-                }
-            }
-        }
-    }
-};
+  chart: {
+    type: 'bar',
+    height: 350
+  },
+  series: [{
+    name: 'Series 1',
+    data: [30, 40, 45, 50, 49, 60, 70, 91, 125]
+  }],
+  xaxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+  }
+}
 
 var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+
 chart1.render();
 
 var options2 = {
-          series: [{
-          name: 'Bubble1',
-          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-            min: 10,
-            max: 60
-          })
-        },
-        {
-          name: 'Bubble2',
-          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-            min: 10,
-            max: 60
-          })
-        },
-        {
-          name: 'Bubble3',
-          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-            min: 10,
-            max: 60
-          })
-        },
-        {
-          name: 'Bubble4',
-          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-            min: 10,
-            max: 60
-          })
-        }],
-          chart: {
-            height: 350,
-            type: 'bubble',
-        },
-        dataLabels: {
-            enabled: false
-        },
-        fill: {
-            opacity: 0.8
-        },
-        title: {
-            text: 'Simple Bubble Chart'
-        },
-        xaxis: {
-            tickAmount: 12,
-            type: 'category',
-        },
-        yaxis: {
-            max: 70
-        }
-        };
+  chart: {
+    type: 'line',
+    height: 350
+  },
+  series: [{
+    name: 'Series 1',
+    data: [30, 40, 45, 50, 49, 60, 70, 91, 125]
+  }],
+  xaxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+  }
+}
 
-        var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
-        chart2.render();
+var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+
+chart2.render();
+
 
 
 
 </script>
 
 
-<script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var bubbleChart = new Chart(ctx, {
-            type: 'bubble',
-            data: {
-                datasets: [{
-                    label: 'Dados Bubble',
-                    data: [
-                        {
-                            x: 10,
-                            y: 20,
-                            r: 5
-                        },
-                        {
-                            x: 15,
-                            y: 10,
-                            r: 15
-                        },
-                        {
-                            x: 7,
-                            y: 15,
-                            r: 10
-                        }
-                    ],
-                    backgroundColor: 'rgba(255, 99, 132, 0.6)'
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
+
+
+
+
+
