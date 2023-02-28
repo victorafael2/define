@@ -22,7 +22,7 @@ $cadastrar_texto = "Cadastre-se";
 }
 
 
-echo $logado;
+// echo $logado;
 
 ?>
 
