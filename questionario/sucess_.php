@@ -227,7 +227,7 @@ $result_2 = mysqli_query($conn, $sql_2);
     <!-- ===============================================-->
     <main style="--phoenix-scroll-margin-top: 1.2rem;">
         <nav class="navbar bg-white navbar-expand-lg sticky-top">
-            <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="../index.html">
+            <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="../index.php">
                     <div class="d-flex align-items-center"><img src="../assets/img/icons/logo.png" alt="phoenix"
                             width="27" />
                         <p class="logo-text ms-2">define</p>
@@ -289,7 +289,7 @@ $result_2 = mysqli_query($conn, $sql_2);
                             class="btn btn-phoenix-primary order-0"
                             href="pages/authentication/simple/sign-up.html"><span class="fw-bold">Cadastrar</span></a> -->
 
-                        <form class="<?php echo $esconder_ ?>" method="post" action="encerrar_sessao.php">
+                        <form class="<?php echo $esconder_ ?>" method="post" action="../encerrar_sessao.php">
                             <input type="hidden" name="encerrar_sessao" value="1">
                             <input class="btn btn-phoenix-danger order-0" type="submit" value="Encerrar sessão">
                         </form>
@@ -351,7 +351,7 @@ $result_2 = mysqli_query($conn, $sql_2);
                                 <div class="row">
 
                                     <div class="container py-5">
-                                        <h2>Diagnostico</h2>
+                                        <h2>Diagnóstico</h2>
                                         <!-- <p>Obrigado por se cadastrar em nosso sistema.</p> -->
                                         <!-- <a class="btn btn-primary btn-lg" href="../questionario/questionario1.php"
                                             role="button">Ir para
@@ -373,7 +373,7 @@ $result_2 = mysqli_query($conn, $sql_2);
                                 <div class="row">
 
                                     <div class="container py-5">
-                                        <h2>Diagnostico</h2>
+                                        <h2>Diagnóstico</h2>
                                         <!-- <p>Obrigado por se cadastrar em nosso sistema.</p> -->
                                         <!-- <a class="btn btn-primary btn-lg" href="../questionario/questionario1.php"
                                             role="button">Ir para
