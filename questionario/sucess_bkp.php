@@ -1,7 +1,10 @@
 <?php
-include 'conexao/conexao.php';
-
+include '../conexao/conexao.php';
 session_start();
+// echo $_SESSION['email'];
+$email =  $_SESSION['email'];
+
+
 
 if(!isset($_SESSION["email"]) || !isset($_SESSION["email"]))
 {
@@ -20,25 +23,133 @@ $cadastrar_texto = "Cadastre-se";
     $cadastrar_texto = "Responder Questionario";
 }
 
-if(isset($_SESSION['email'])) {
-    $logado = "logado";
+
+$sql_usuario = "SELECT * FROM adm_setores AS setores
+
+WHERE id = (SELECT setor FROM empresas WHERE email = '$email')";
+$result_usuario = mysqli_query($conn, $sql_usuario);
+// Verificar se a consulta retornou algum resultado
+if (mysqli_num_rows($result_usuario) > 0) {
+    // Exibir os resultados
+    while($row = mysqli_fetch_assoc($result_usuario)) {
+
+        $setor = $row["setor"];
+        $link = $row["link"];
+        $nova_string = str_replace(";", ",", $link);
+
+    }};
+
+    // echo $nova_string;
+
+
+    $sql_setores = "SELECT tab.id, busca.descricao,
+
+    IFNULL(busca.icon , 'novo') as icon
+    
+FROM tabelas AS tab
+
+    LEFT JOIN (SELECT * FROM tabelas WHERE id IN ($nova_string)) AS busca ON tab.id = busca.id ";
+
+$result_setores = mysqli_query($conn, $sql_setores);
+// // Verificar se a consulta retornou algum resultado
+// if (mysqli_num_rows($result_setores) > 0) {
+//     // Exibir os resultados
+//     while($row = mysqli_fetch_assoc($result_setores)) {
+
+//         $desc = $row["descricao"];
+//         $id = $row["id"];
+        
+
+//     }};
+
+// echo $sql_setores;
+
+
+
+$diag = $_GET['id'];
+
+// Verificar se houve algum erro na conexão
+if (!$conn) {
+    die("Conexão falhou: " . mysqli_connect_error());
+}
+
+// Executar a consulta
+$sql = "SELECT * FROM questionario2 where id = '$diag'";
+$result = mysqli_query($conn, $sql);
+
+// Verificar se a consulta retornou algum resultado
+if (mysqli_num_rows($result) > 0) {
+    // Exibir os resultados
+    while($row = mysqli_fetch_assoc($result)) {
+        // echo "ID: " . $row["id"] . " - Nome: " . $row["tecnologia"] . "<br>";
+
+        $tecnologia = round($row["tecnologia"]);
+        $potencial_tecnologico = round($row["potencial_tecnologico"]);
+        $tipologia_inovacao = round($row["tipologia_inovacao"]);
+        $risco_tecnologico = $row["risco_tecnologico"];
+        $impacto_cientifico_tecnologico = $row["impacto_tecnologico"];
+        $infraestrutura_empresa = round($row["infraestrutura_empresa"]);
+
+        // $valores_impactos_gerais = $row["impactos_gerais"];
+        $string_impactos_gerais = "$row[impactos_gerais]";
+        $valores_impactos_gerais = explode(",",$string_impactos_gerais);
+            // Calcular a média
+            $contador_impactos_gerais= count($valores_impactos_gerais);
+            $soma_impactos_gerais = array_sum($valores_impactos_gerais);
+            $impactos_gerais = $soma_impactos_gerais / $contador_impactos_gerais;
+
+
+
+
+
+
+        $equipe = round($row["equipe"]);
+        $string_beneficios = "$row[beneficio_inovacao]";
+        $valores_beneficio_inovacao = explode(",",$string_beneficios);
+
+        // echo $array;
+            // Calcular a média
+            $contador_beneficio_inovacao= count($valores_beneficio_inovacao);
+            $soma_beneficio_inovacao = array_sum($valores_beneficio_inovacao);
+            $beneficio_inovacao = $soma_beneficio_inovacao / $contador_beneficio_inovacao;
+
+
+            // parcerias
+            // $parcerias = round($row["parcerias"]);
+            $string_parcerias = "$row[parcerias]";
+            $valores_parcerias = explode(",",$string_parcerias);
+    
+            // echo $array;
+                // Calcular a média
+                $contador_parcerias= count($valores_parcerias);
+                $soma_parcerias = array_sum($valores_parcerias);
+                $parcerias = $soma_parcerias / $contador_parcerias;
+
+
+
+
+        $dados = array($tecnologia, $potencial_tecnologico, $tipologia_inovacao, $risco_tecnologico, $impacto_cientifico_tecnologico, $infraestrutura_empresa, $parcerias, $impactos_gerais, $equipe, $beneficio_inovacao);
+        $linha = implode(", ", $dados);
+        // echo $linha."<br>";
+    }
 } else {
-    // a sessão não está ativa, redirecione o usuário para a página de login
-   $logado = "deslogado";
+    echo "Nenhum resultado encontrado.";
 }
 
 
-// $logadao = isset($_SESSION['email']) ?  $_SESSION['email'] : "deslogado";
+
+// Executar a consulta
+$sql_2 = "SELECT * FROM tabelas where id in ('1,2')";
+$result_2 = mysqli_query($conn, $sql_2);
 
 
-echo $logado;
 
-// echo $logado;
+// Fechar a conexão com o banco de dados
+// mysqli_close($conn);
+
+
 
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="pt-BR" dir="ltr">
 
@@ -57,16 +168,25 @@ echo $logado;
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/favicon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
-    <link rel="manifest" href="assets/img/favicons/manifest.json">
-    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="../assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="../assets/img/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
-    <script src="vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="vendors/simplebar/simplebar.min.js"></script>
-    <script src="assets/js/config.js"></script>
+    <script src="../vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="../vendors/simplebar/simplebar.min.js"></script>
+    <script src="../assets/js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
 
 
     <!-- ===============================================-->
@@ -76,12 +196,12 @@ echo $logado;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap"
         rel="stylesheet">
-    <link href="vendors/simplebar/simplebar.min.css" rel="stylesheet">
+    <link href="../vendors/simplebar/simplebar.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link href="assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
-    <link href="assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
-    <link href="assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
-    <link href="assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+    <link href="../assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
+    <link href="../assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
+    <link href="../assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
+    <link href="../assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
     <script>
     var phoenixIsRTL = JSON.parse(localStorage.getItem('phoenixIsRTL'));
     if (phoenixIsRTL) {
@@ -107,8 +227,8 @@ echo $logado;
     <!-- ===============================================-->
     <main style="--phoenix-scroll-margin-top: 1.2rem;">
         <nav class="navbar bg-white navbar-expand-lg sticky-top">
-            <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="index.html">
-                    <div class="d-flex align-items-center"><img src="assets/img/icons/logo.png" alt="phoenix"
+            <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="../index.html">
+                    <div class="d-flex align-items-center"><img src="../assets/img/icons/logo.png" alt="phoenix"
                             width="27" />
                         <p class="logo-text ms-2">define</p>
                     </div>
@@ -163,8 +283,9 @@ echo $logado;
                         </div><a class="text-500 px-2 d-none d-lg-inline me-2" href="#" data-bs-toggle="modal"
                             data-bs-target="#searchBoxModal"><span data-feather="search"
                                 style="height:12px;width:12px;"></span></a><a
-                            class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2 <?php echo  $esconder_entrar; ?>" href="pages/authentication/simple/sign-in.php">Entrar</a>
-                            <!-- <a
+                            class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2 <?php echo  $esconder_entrar; ?>"
+                            href="pages/authentication/simple/sign-in.php">Entrar</a>
+                        <!-- <a
                             class="btn btn-phoenix-primary order-0"
                             href="pages/authentication/simple/sign-up.html"><span class="fw-bold">Cadastrar</span></a> -->
 
@@ -192,103 +313,130 @@ echo $logado;
                 </div>
             </div>
         </div>
-        <section class="bg-white pb-8" id="home">
-            <div class="container-small hero-header-container">
-                <div class="row align-items-center">
-                <div class="col-12 col-lg-auto order-0 order-md-1 text-end order-1">
+        <!-- <section class="bg-white pb-8" id="home">
+        <div class="container-small hero-header-container">
+          <div class="row align-items-center">
+            <div class="col-12 col-lg-auto order-0 order-md-1 text-end order-1">
               <div class="position-relative p-5 p-md-7 d-lg-none">
-                <div class="bg-holder" style="background-image:url(assets/img/bg/bg-23.png);background-size:contain;">
+                <div class="bg-holder" style="background-image:url(../assets/img/bg/bg-23.png);background-size:contain;">
                 </div>
-                <!--/.bg-holder-->
+                
 
-                <div class="position-relative"><img class="w-100 shadow-lg d-dark-none rounded-2" src="assets/img/bg/bg-31.png" alt="hero-header" /><img class="w-100 shadow-lg d-light-none rounded-2" src="assets/img/bg/bg-30.png" alt="hero-header" /></div>
+                <div class="position-relative"><img class="w-100 shadow-lg d-dark-none rounded-2" src="assets/img/bg/bg-31.png" alt="hero-header" /><img class="w-100 shadow-lg d-light-none rounded-2" src="../assets/img/bg/bg-30.png" alt="hero-header" /></div>
               </div>
               <div class="hero-image-container position-absolute top-0 bottom-0 end-0 d-none d-lg-block">
                 <div class="position-relative h-100 w-100">
-                  <div class="position-absolute h-100 top-0 d-flex align-items-center end-0 hero-image-container-bg"><img class="pt-7 pt-md-0 w-100" src="assets/img/bg/bg-1-2.png" alt="hero-header" /></div>
-                  <div class="position-absolute h-100 top-0 d-flex align-items-center end-0"><img class="pt-7 pt-md-0 w-100 shadow-lg d-dark-none rounded-2" src="assets/img/bg/bg-28.jpg" alt="hero-header" /><img class="pt-7 pt-md-0 w-100 shadow-lg d-light-none rounded-2" src="assets/img/bg/bg-29.jpg" alt="hero-header" /></div>
+                  <div class="position-absolute h-100 top-0 d-flex align-items-center end-0 hero-image-container-bg"><img class="pt-7 pt-md-0 w-100" src="../assets/img/bg/bg-1-2.png" alt="hero-header" /></div>
+                  <div class="position-absolute h-100 top-0 d-flex align-items-center end-0"><img class="pt-7 pt-md-0 w-100 shadow-lg d-dark-none rounded-2" src="../assets/img/bg/bg-28.png" alt="hero-header" /><img class="pt-7 pt-md-0 w-100 shadow-lg d-light-none rounded-2" src="assets/img/bg/bg-29.png" alt="hero-header" /></div>
                 </div>
               </div>
             </div>
-                    <div class="col-12 col-lg-6 text-lg-start text-center pt-8 pb-6 order-0 position-relative">
-                        <h1 class="fs-5 fs-lg-6 fs-md-7 fs-lg-6 fs-xl-7 fs fw-black mb-4">Você <span
-                                class="text-primary me-3">D.E.F.I.N.E.</span><br />o recurso que sua empresa vai acessar.
-                        </h1>
-                        <p class="mb-5">E a MATECH te apóia</p><a class="btn btn-lg btn-primary rounded-pill me-3"
-                            href="<?php echo $cadastrar ?>" role="button"><?php echo $cadastrar_texto ?></a>
-                            <!-- <a
-                            class="btn btn-link me-2 fs-0 p-0 text-decoration-none" href="#!" role="button">Check
-                            Demo<span class="fa-solid fa-angle-right ms-2 fs--1"></span></a> -->
+            <div class="col-12 col-lg-6 text-lg-start text-center pt-8 pb-6 order-0 position-relative">
+              <h1 class="fs-5 fs-lg-6 fs-md-7 fs-lg-6 fs-xl-7 fs fw-black mb-4"><span class="text-primary me-3">Elegance</span>for<br />your web app</h1>
+              <p class="mb-5">Standard, modern and Elegant solution for your next web app so you don’t have to look further. Sign up or check the demo below.</p><a class="btn btn-lg btn-primary rounded-pill me-3" href="empresas/empresa.php" role="button">Cadastrar</a><a class="btn btn-link me-2 fs-0 p-0 text-decoration-none" href="#!" role="button">Check Demo<span class="fa-solid fa-angle-right ms-2 fs--1"></span></a>
+            </div>
+          </div>
+        </div>
+      </section> -->
+
+
+
+
+        <div class="container py-5">
+            <div class="row">
+                <div class="card col-6">
+                    <div class="card-body">
+                        <div class="row align-items-center g-3 text-center text-xxl-start">
+                            <div class="container py-5">
+                                <div class="row">
+
+                                    <div class="container py-5">
+                                        <h2>Diagnostico</h2>
+                                        <!-- <p>Obrigado por se cadastrar em nosso sistema.</p> -->
+                                        <!-- <a class="btn btn-primary btn-lg" href="../questionario/questionario1.php"
+                                            role="button">Ir para
+                                            questionário</a> -->
+
+                                        <div id="chart1">                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
+                <div class="card col-6">
+                    <div class="card-body">
+                        <div class="row align-items-center g-3 text-center text-xxl-start">
+                            <div class="container py-5">
+                                <div class="row">
 
-        <!-- ============================================-->
-        <!-- <section> begin ============================-->
-        <section class="py-5 pt-xl-13 bg-white">
+                                    <div class="container py-5">
+                                        <h2>Diagnostico</h2>
+                                        <!-- <p>Obrigado por se cadastrar em nosso sistema.</p> -->
+                                        <!-- <a class="btn btn-primary btn-lg" href="../questionario/questionario1.php"
+                                            role="button">Ir para
+                                            questionário</a> -->
 
-            <div class="container-small">
-                <div class="row g-0">
-                    <div class="col-6 col-md-3">
-                        <div
-                            class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end">
-                            <img class="w-100" src="assets/img/brand2/netflix-n.png" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div
-                            class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end-md">
-                            <img class="w-100" src="assets/img/brand2/blender.png" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div
-                            class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end border-end-md">
-                            <img class="w-100" src="assets/img/brand2/upwork.png" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div
-                            class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end-lg-0">
-                            <img class="w-100" src="assets/img/brand2/facebook-f.png" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div
-                            class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end border-bottom border-bottom-md-0">
-                            <img class="w-100" src="assets/img/brand2/pocket.png" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div
-                            class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end-md border-bottom border-bottom-md-0">
-                            <img class="w-100" src="assets/img/brand2/mail-bluster-1.png" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div
-                            class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end">
-                            <img class="w-100" src="assets/img/brand2/discord.png" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div
-                            class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end-lg-0">
-                            <img class="w-100" src="assets/img/brand2/google-g.png" alt="" />
+                                        <div id="chart2">                                        </div>
+                                        <!-- <canvas id="chart2"></canvas> -->
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- end of .container-->
 
-        </section>
-        <!-- <section> close ============================-->
-        <!-- ============================================-->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row align-items-center g-3 text-center text-xxl-start">
+                        <div class="container py-5">
+                            <div class="row">
+
+                                <div class="container py-5">
+                                <div class="table-responsive">
+                                <table class="table table-striped table-borderless">
+                                        <tr>
+                                            <th>Recurso Não Reembolsável</th>
+                                            <th>Recurso Reembolsável</th>
+                                            <th>Lei do Bem</th>
+                                            <th>Rota 2030</th>
+                                            <th>Lei de Informática</th>
+                                            <th>ANP</th>
+                                            <th>ANEEL</th>
+                                            <th>Uso indireto das Leis de Incentivo</th>
+                                            <th>Pró-Startup (FACEPE)</th>
+                                            <th>Bônus Tecnológico (FACEPE)</th>
+                                        </tr>
+
+                                        <tr>
+
+                                      
+                                       
+                                           
+                                            <?php
+                                            // Loop para percorrer os resultados da consulta e criar as linhas da tabela
+                                            while ($row = mysqli_fetch_assoc($result_setores)) {
+                                                $resultado = ($row['icon'] == 'novo') ? '<span class="fa-solid fa-circle-info text-info fs-2"></span>' : $row['icon'];
+                                                            echo "<td class='text-center'>" . $resultado . "</td>";
+                                                           
+                                                        }
+                                            ?>
 
 
+                                        </tr>
+                                    </table>
+                                </div>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -309,45 +457,38 @@ echo $logado;
 
         <div class="position-relative">
             <div class="bg-holder footer-bg"
-                style="background-image:url(assets/img/bg/bg-19.png);background-size:auto;">
+                style="background-image:url(../assets/img/bg/bg-19.png);background-size:auto;">
             </div>
             <!--/.bg-holder-->
 
             <div class="bg-holder"
-                style="background-image:url(assets/img/bg/bg-right-20.png);background-position:right;background-size:auto;">
+                style="background-image:url(../assets/img/bg/bg-right-20.png);background-position:right;background-size:auto;">
             </div>
             <!--/.bg-holder-->
 
             <div class="bg-holder"
-                style="background-image:url(assets/img/bg/bg-left-20.png);background-position:left;background-size:auto;">
+                style="background-image:url(../assets/img/bg/bg-left-20.png);background-position:left;background-size:auto;">
             </div>
             <!--/.bg-holder-->
 
             <div class="position-relative">
-                <!-- <svg class="w-100 text-white" preserveAspectRatio="none" viewBox="0 0 1920 368" fill="none"
+                <svg class="w-100 text-white" preserveAspectRatio="none" viewBox="0 0 1920 368" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M1920 0.44L0 367.74V0H1920V0.44Z" fill="currentColor"></path>
-                </svg> -->
+                </svg>
 
 
                 <!-- ============================================-->
                 <!-- <section> begin ============================-->
-                <section style="padding-top:50px;">
+                <section style="padding-top:250px;">
 
                     <div class="container-small">
                         <div class="row position-relative">
                             <div class="col-12 col-sm-12 col-lg-5 mb-4 order-0 order-sm-0"><a href="#"><img class="mb-3"
-                                        src="assets/img/icons/logo-white.png" height="48" alt="" /></a>
-                                <h3 class="text-white light">define</h3>
-                                <!-- <p class="text-white opacity-50 light">All over the world. Alice in <br />wonderland and
-                                    other places.</p> -->
-                                    <p class="text-white opacity-50 light"><b>D</b>iagnostico
-                                    <br /> <b>E</b>stratégico de
-                                    <br /><b>F</b>omento à
-                                    <br /><b>I</b>novação
-                                    <br /><b>N</b>as
-                                    <br /><b>E</b>mpresas
-
+                                        src="../assets/img/icons/logo-white.png" height="48" alt="" /></a>
+                                <h3 class="text-white light">phoenix</h3>
+                                <p class="text-white opacity-50 light">All over the world. Alice in <br />wonderland and
+                                    other places.</p>
                             </div>
                             <div class="col-lg-7">
                                 <div class="row justify-content-between">
@@ -477,7 +618,7 @@ echo $logado;
                             data-theme-control="phoenixTheme" />
                         <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherLight"> <span
                                 class="mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0"
-                                    src="assets/img/generic/default-light.png" alt="" /></span><span
+                                    src="../assets/img/generic/default-light.png" alt="" /></span><span
                                 class="label-text">Light</span></label>
                     </div>
                     <div class="col-6">
@@ -485,8 +626,8 @@ echo $logado;
                             data-theme-control="phoenixTheme" />
                         <label class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherDark"> <span
                                 class="mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0"
-                                    src="assets/img/generic/default-dark.png" alt="" /></span><span class="label-text">
-                                Dark</span></label>
+                                    src="../assets/img/generic/default-dark.png" alt="" /></span><span
+                                class="label-text"> Dark</span></label>
                     </div>
                 </div>
             </div>
@@ -510,7 +651,7 @@ echo $logado;
                                 class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none"
                                     src="assets/img/generic/default-light.png" alt="" /><img
                                     class="img-fluid img-prototype d-light-none"
-                                    src="assets/img/generic/default-dark.png" alt="" /></span><span
+                                    src="../assets/img/generic/default-dark.png" alt="" /></span><span
                                 class="label-text">Vertical</span></label>
                     </div>
                     <div class="col-6">
@@ -521,7 +662,7 @@ echo $logado;
                                 class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none"
                                     src="assets/img/generic/top-default.png" alt="" /><img
                                     class="img-fluid img-prototype d-light-none"
-                                    src="assets/img/generic/top-default-dark.png" alt="" /></span><span
+                                    src="../assets/img/generic/top-default-dark.png" alt="" /></span><span
                                 class="label-text"> Horizontal</span></label>
                     </div>
                     <div class="col-6">
@@ -532,7 +673,7 @@ echo $logado;
                                 class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none"
                                     src="assets/img/generic/nav-combo-light.png" alt="" /><img
                                     class="img-fluid img-prototype d-light-none"
-                                    src="assets/img/generic/nav-combo-dark.png" alt="" /></span><span
+                                    src="../assets/img/generic/nav-combo-dark.png" alt="" /></span><span
                                 class="label-text"> Combo</span></label>
                     </div>
                 </div>
@@ -549,8 +690,9 @@ echo $logado;
                         <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-default"> <img
                                 class="img-fluid img-prototype d-dark-none" src="assets/img/generic/default-light.png"
                                 alt="" /><img class="img-fluid img-prototype d-light-none"
-                                src="assets/img/generic/default-dark.png" alt="" /><span class="label-text d-dark-none">
-                                Default</span><span class="label-text d-light-none">Default</span></label>
+                                src="../assets/img/generic/default-dark.png" alt="" /><span
+                                class="label-text d-dark-none"> Default</span><span
+                                class="label-text d-light-none">Default</span></label>
                     </div>
                     <div class="col-6">
                         <input class="btn-check" id="navbar-style-dark" type="radio" name="config.name" value="darker"
@@ -558,7 +700,7 @@ echo $logado;
                         <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-dark"> <img
                                 class="img-fluid img-prototype d-dark-none" src="assets/img/generic/vertical-darker.png"
                                 alt="" /><img class="img-fluid img-prototype d-light-none"
-                                src="assets/img/generic/vertical-lighter.png" alt="" /><span
+                                src="../assets/img/generic/vertical-lighter.png" alt="" /><span
                                 class="label-text d-dark-none"> Darker</span><span
                                 class="label-text d-light-none">Lighter</span></label>
                     </div>
@@ -573,18 +715,18 @@ echo $logado;
                     <div class="col-6">
                         <input class="btn-check" id="navbarShapeDefault" name="navbar-shape" type="radio"
                             value="default" data-theme-control="phoenixNavbarTopShape"
-                            data-page-url="documentation/layouts/horizontal-navbar.html" disabled="disabled" />
+                            data-page-url="../documentation/layouts/horizontal-navbar.html" disabled="disabled" />
                         <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarShapeDefault"> <span
                                 class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0"
                                     src="assets/img/generic/top-default.png" alt="" /><img
                                     class="img-fluid img-prototype d-light-none mb-0"
-                                    src="assets/img/generic/top-default-dark.png" alt="" /></span><span
+                                    src="../assets/img/generic/top-default-dark.png" alt="" /></span><span
                                 class="label-text">Default</span></label>
                     </div>
                     <div class="col-6">
                         <input class="btn-check" id="navbarShapeSlim" name="navbar-shape" type="radio" value="slim"
                             data-theme-control="phoenixNavbarTopShape"
-                            data-page-url="documentation/layouts/vertical-navbar.html#horizontal-navbar-slim"
+                            data-page-url="../documentation/layouts/vertical-navbar.html#horizontal-navbar-slim"
                             disabled="disabled" />
                         <label class="btn d-inline-block btn-navbar-style fs--1" for="navbarShapeSlim"> <span
                                 class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0"
@@ -608,7 +750,7 @@ echo $logado;
                                 class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0"
                                     src="assets/img/generic/top-default.png" alt="" /><img
                                     class="img-fluid img-prototype d-light-none mb-0"
-                                    src="assets/img/generic/top-style-darker.png" alt="" /></span><span
+                                    src="../assets/img/generic/top-style-darker.png" alt="" /></span><span
                                 class="label-text">Default</span></label>
                     </div>
                     <div class="col-6">
@@ -618,7 +760,7 @@ echo $logado;
                                 class="mb-2 rounded d-block"><img class="img-fluid img-prototype d-dark-none mb-0"
                                     src="assets/img/generic/navbar-top-style-light.png" alt="" /><img
                                     class="img-fluid img-prototype d-light-none mb-0"
-                                    src="assets/img/generic/top-style-lighter.png" alt="" /></span><span
+                                    src="../assets/img/generic/top-style-lighter.png" alt="" /></span><span
                                 class="label-text d-dark-none">Darker</span><span
                                 class="label-text d-light-none">Lighter</span></label>
                     </div>
@@ -650,21 +792,21 @@ echo $logado;
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    <script src="vendors/popper/popper.min.js"></script>
-    <script src="vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="vendors/anchorjs/anchor.min.js"></script>
-    <script src="vendors/is/is.min.js"></script>
-    <script src="vendors/fontawesome/all.min.js"></script>
-    <script src="vendors/lodash/lodash.min.js"></script>
+    <script src="../vendors/popper/popper.min.js"></script>
+    <script src="../vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="../vendors/anchorjs/anchor.min.js"></script>
+    <script src="../vendors/is/is.min.js"></script>
+    <script src="../vendors/fontawesome/all.min.js"></script>
+    <script src="../vendors/lodash/lodash.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="vendors/list.js/list.min.js"></script>
-    <script src="vendors/feather-icons/feather.min.js"></script>
-    <script src="vendors/dayjs/dayjs.min.js"></script>
-    <script src="assets/js/phoenix.js"></script>
-    <script src="vendors/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="vendors/isotope-packery/packery-mode.pkgd.min.js"></script>
-    <script src="vendors/bigpicture/BigPicture.js"></script>
-    <script src="vendors/countup/countUp.umd.js"></script>
+    <script src="../vendors/list.js/list.min.js"></script>
+    <script src="../vendors/feather-icons/feather.min.js"></script>
+    <script src="../vendors/dayjs/dayjs.min.js"></script>
+    <script src="../assets/js/phoenix.js"></script>
+    <script src="../vendors/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../vendors/isotope-packery/packery-mode.pkgd.min.js"></script>
+    <script src="../vendors/bigpicture/BigPicture.js"></script>
+    <script src="../vendors/countup/countUp.umd.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARdVcREeBK44lIWnv5-iPijKqvlSAVwbw&callback=initMap"
         async></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
@@ -672,3 +814,52 @@ echo $logado;
 </body>
 
 </html>
+
+<script>
+var options1 = {
+  chart: {
+    type: 'bar',
+    height: 350
+  },
+  series: [{
+    name: 'Series 1',
+    data: [30, 40, 45, 50, 49, 60, 70, 91, 125]
+  }],
+  xaxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+  }
+}
+
+var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+
+chart1.render();
+
+var options2 = {
+  chart: {
+    type: 'line',
+    height: 350
+  },
+  series: [{
+    name: 'Series 1',
+    data: [30, 40, 45, 50, 49, 60, 70, 91, 125]
+  }],
+  xaxis: {
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+  }
+}
+
+var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+
+chart2.render();
+
+
+
+
+</script>
+
+
+
+
+
+
+

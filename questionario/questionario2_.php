@@ -166,7 +166,7 @@ $cadastrar_texto = "Cadastre-se";
                             class="btn btn-phoenix-primary order-0"
                             href="pages/authentication/simple/sign-up.html"><span class="fw-bold">Cadastrar</span></a> -->
 
-                        <form class="<?php echo $esconder_ ?>" method="post" action="encerrar_sessao.php">
+                        <form class="<?php echo $esconder_ ?>" method="post" action="../encerrar_sessao.php">
                             <input type="hidden" name="encerrar_sessao" value="1">
                             <input class="btn btn-phoenix-danger order-0" type="submit" value="Encerrar sessão">
                         </form>
@@ -607,7 +607,7 @@ $cadastrar_texto = "Cadastre-se";
                             <br>
 
 
-                            <input type="text" name="user" value="<?php echo $nome_logado ?>">
+                            <input class="d-none" type="text" name="user" value="<?php echo $nome_logado ?>">
 
 
 

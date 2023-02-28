@@ -227,7 +227,7 @@ $result_2 = mysqli_query($conn, $sql_2);
     <!-- ===============================================-->
     <main style="--phoenix-scroll-margin-top: 1.2rem;">
         <nav class="navbar bg-white navbar-expand-lg sticky-top">
-            <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="index.html">
+            <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="../index.php">
                     <div class="d-flex align-items-center"><img src="../assets/img/icons/logo.png" alt="phoenix"
                             width="27" />
                         <p class="logo-text ms-2">define</p>
@@ -289,7 +289,7 @@ $result_2 = mysqli_query($conn, $sql_2);
                             class="btn btn-phoenix-primary order-0"
                             href="pages/authentication/simple/sign-up.html"><span class="fw-bold">Cadastrar</span></a> -->
 
-                        <form class="<?php echo $esconder_ ?>" method="post" action="encerrar_sessao.php">
+                        <form class="<?php echo $esconder_ ?>" method="post" action="../encerrar_sessao.php">
                             <input type="hidden" name="encerrar_sessao" value="1">
                             <input class="btn btn-phoenix-danger order-0" type="submit" value="Encerrar sessão">
                         </form>
@@ -351,13 +351,13 @@ $result_2 = mysqli_query($conn, $sql_2);
                                 <div class="row">
 
                                     <div class="container py-5">
-                                        <h2>Diagnostico</h2>
+                                        <h2>Diagnóstico</h2>
                                         <!-- <p>Obrigado por se cadastrar em nosso sistema.</p> -->
                                         <!-- <a class="btn btn-primary btn-lg" href="../questionario/questionario1.php"
                                             role="button">Ir para
                                             questionário</a> -->
 
-                                        <div id="chart">
+                                        <div id="chart1">
                                         </div>
                                     </div>
                                 </div>
@@ -373,14 +373,14 @@ $result_2 = mysqli_query($conn, $sql_2);
                                 <div class="row">
 
                                     <div class="container py-5">
-                                        <h2>Diagnostico</h2>
+                                        <h2>Diagnóstico</h2>
                                         <!-- <p>Obrigado por se cadastrar em nosso sistema.</p> -->
                                         <!-- <a class="btn btn-primary btn-lg" href="../questionario/questionario1.php"
                                             role="button">Ir para
                                             questionário</a> -->
 
-                                        <!-- <div id="chart2">                                        </div> -->
-                                        <canvas id="chart2"></canvas>
+                                        <div id="chart2">                                        </div>
+                                        <canvas id="myChart"></canvas>
 
                                     </div>
                                 </div>
@@ -811,13 +811,14 @@ $result_2 = mysqli_query($conn, $sql_2);
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARdVcREeBK44lIWnv5-iPijKqvlSAVwbw&callback=initMap"
         async></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 
 </html>
 
 <script>
-var options = {
+var options1 = {
     series: [{
         name: 'Fomento',
         data: [<?php echo $linha ?>],
@@ -841,7 +842,7 @@ var options = {
         }
     },
     title: {
-        text: 'Radar with Polygon Fill'
+        // text: 'Radar with Polygon Fill'
     },
     colors: ['#FF4560'],
     markers: {
@@ -877,55 +878,103 @@ var options = {
     }
 };
 
-var chart = new ApexCharts(document.querySelector("#chart"), options);
-chart.render();
+var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+chart1.render();
+
+var options2 = {
+          series: [{
+          name: 'Bubble1',
+          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+            min: 10,
+            max: 60
+          })
+        },
+        {
+          name: 'Bubble2',
+          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+            min: 10,
+            max: 60
+          })
+        },
+        {
+          name: 'Bubble3',
+          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+            min: 10,
+            max: 60
+          })
+        },
+        {
+          name: 'Bubble4',
+          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+            min: 10,
+            max: 60
+          })
+        }],
+          chart: {
+            height: 350,
+            type: 'bubble',
+        },
+        dataLabels: {
+            enabled: false
+        },
+        fill: {
+            opacity: 0.8
+        },
+        title: {
+            text: 'Simple Bubble Chart'
+        },
+        xaxis: {
+            tickAmount: 12,
+            type: 'category',
+        },
+        yaxis: {
+            max: 70
+        }
+        };
+
+        var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+        chart2.render();
 
 
 
 </script>
-
-
-
-
-
-
 
 
 <script>
-$(function() {
-  var ctx = document.getElementById('chart2').getContext('2d');
-  var chart = new Chart(ctx, {
-    type: 'bubble',
-    data: {
-      datasets: [{
-        label: 'Dados do Gráfico',
-        data: [
-          {x: 3, y: 5, r: 10},
-          {x: 4, y: 8, r: 12},
-          {x: 7, y: 2, r: 8},
-          {x: 10, y: 4, r: 16}
-        ],
-        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }],
-        xAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-  });
-});
-
-
-</script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var bubbleChart = new Chart(ctx, {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: 'Dados Bubble',
+                    data: [
+                        {
+                            x: 10,
+                            y: 20,
+                            r: 5
+                        },
+                        {
+                            x: 15,
+                            y: 10,
+                            r: 15
+                        },
+                        {
+                            x: 7,
+                            y: 15,
+                            r: 10
+                        }
+                    ],
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)'
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
