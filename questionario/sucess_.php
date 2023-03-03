@@ -228,7 +228,7 @@ $result_2 = mysqli_query($conn, $sql_2);
     <main style="--phoenix-scroll-margin-top: 1.2rem;">
         <nav class="navbar bg-white navbar-expand-lg sticky-top">
             <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="../index.php">
-                    <div class="d-flex align-items-center"><img src="../assets/img/icons/logo.png" alt="phoenix"
+                    <div class="d-flex align-items-center"><img src="../assets/img/icons/logo.png" alt="define"
                             width="27" />
                         <p class="logo-text ms-2">define</p>
                     </div>
