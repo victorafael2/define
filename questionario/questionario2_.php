@@ -35,6 +35,9 @@ $cadastrar_texto = "Cadastre-se";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 
     <!-- ===============================================-->
     <!--    Document Title-->
@@ -222,7 +225,8 @@ $cadastrar_texto = "Cadastre-se";
             <div class="row">
                 <div class="card h-100">
                     <div class="card-body">
-                        <form method="POST" action="processar_questionario2.php">
+                        <form id="form">
+                        <!-- method="POST" action="processar_questionario2.php" -->
 
 
                             <div class="form-group">
@@ -282,20 +286,20 @@ $cadastrar_texto = "Cadastre-se";
                                         TECNOLOGIA A SER DESENVOLVIDA É UMA INOVAÇÃO:</a></h4>
                                 </label>
                                 <div>
-                                    <input type="radio" id="tecnologia-1" name="tecnologia" value="2">
-                                    <label for="tecnologia-1">Para minha empresa, já existe no mercado</label>
+                                    <input type="radio" id="tecnologia" name="tecnologia" value="2">
+                                    <label for="tecnologia">Para minha empresa, já existe no mercado</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="tecnologia-2" name="tecnologia" value="4">
-                                    <label for="tecnologia-2">Para meu Estado</label>
+                                    <input type="radio" id="tecnologia" name="tecnologia" value="4">
+                                    <label for="tecnologia">Para meu Estado</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="tecnologia-3" name="tecnologia" value="4">
-                                    <label for="tecnologia-3">Para meu país</label>
+                                    <input type="radio" id="tecnologia" name="tecnologia" value="4">
+                                    <label for="tecnologia">Para meu país</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="tecnologia-4" name="tecnologia" value="5">
-                                    <label for="tecnologia-4">Inovação mundial</label>
+                                    <input type="radio" id="tecnologia" name="tecnologia" value="5">
+                                    <label for="tecnologia">Inovação mundial</label>
                                 </div>
                             </div>
                             <br>
@@ -786,8 +790,8 @@ $cadastrar_texto = "Cadastre-se";
     <!-- ===============================================-->
 
 
- 
-        
+
+
     </a>
 
 
@@ -814,6 +818,39 @@ $cadastrar_texto = "Cadastre-se";
     <script src="https://smtpjs.com/v3/smtp.js"></script>
 
     <script src="../vendors/choices/choices.min.js"></script>
+
+
+
+
+    <!-- <script>
+    document.getElementById("form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const faturamento = document.getElementById("faturamento").value;
+        const regime_tributario = document.getElementById("regime_tributario").value;
+        const tecnologia = document.getElementById("tecnologia").value;
+
+
+        if (faturamento === "" || regime_tributario === "" || tecnologia === "") {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Por favor, preencha todos os campos!",
+            });
+        } else {
+            Swal.fire({
+                icon: "success",
+                title: "Sucesso!",
+                text: "Formulário enviado com sucesso!",
+            });
+
+            // Execute a ação desejada, como enviar os dados do formulário para um servidor
+        }
+    });
+    </script> -->
+
+
+    <script src="main.js"></script>
 
 
 </body>
