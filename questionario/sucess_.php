@@ -42,13 +42,15 @@ if (mysqli_num_rows($result_usuario) > 0) {
     // echo $nova_string;
 
 
-    $sql_setores = "SELECT tab.id, busca.descricao,
+    $sql_setores = "SELECT tab.id,tab.descricao AS desc_inf, busca.descricao, tab.sim, tab.nao,
 
     IFNULL(busca.icon , 'novo') as icon
     
 FROM tabelas AS tab
 
     LEFT JOIN (SELECT * FROM tabelas WHERE id IN ($nova_string)) AS busca ON tab.id = busca.id ";
+
+
 
 $result_setores = mysqli_query($conn, $sql_setores);
 // // Verificar se a consulta retornou algum resultado
@@ -182,7 +184,7 @@ $result_2 = mysqli_query($conn, $sql_2);
 
 
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 
@@ -217,6 +219,39 @@ $result_2 = mysqli_query($conn, $sql_2);
         userLinkRTL.setAttribute('disabled', true);
     }
     </script>
+
+
+    <style>
+    .dialog {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+    }
+
+    .dialog2 {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+    }
+
+    .trigger:hover .dialog {
+        display: block;
+    }
+
+    .trigger2:hover .dialog2 {
+        display: block;
+    }
+    </style>
 </head>
 
 
@@ -379,7 +414,7 @@ $result_2 = mysqli_query($conn, $sql_2);
                                             role="button">Ir para
                                             questionário</a> -->
 
-                                        <div id="chart2">                                        </div>
+                                        <div id="chart2"> </div>
                                         <canvas id="myChart"></canvas>
 
                                     </div>
@@ -397,39 +432,102 @@ $result_2 = mysqli_query($conn, $sql_2);
                             <div class="row">
 
                                 <div class="container py-5">
-                                <div class="table-responsive">
-                                <table class="table table-striped table-bordered">
-                                        <tr>
-                                            <th>Recurso Não Reembolsável</th>
-                                            <th>Recurso Reembolsável</th>
-                                            <th>Lei do Bem</th>
-                                            <th>Rota 2030</th>
-                                            <th>Lei de Informática</th>
-                                            <th>ANP</th>
-                                            <th>ANEEL</th>
-                                            <th>Uso indireto das Leis de Incentivo</th>
-                                            <th>Pró-Startup (FACEPE)</th>
-                                            <th>Bônus Tecnológico (FACEPE)</th>
-                                        </tr>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered">
+                                            <tr>
+                                                <th>Recurso Não Reembolsável</th>
+                                                <th>Recurso Reembolsável</th>
+                                                <th>Lei do Bem</th>
+                                                <th>Rota 2030</th>
+                                                <th>Lei de Informática</th>
+                                                <th>ANP</th>
+                                                <th>ANEEL</th>
+                                                <th>Uso indireto das Leis de Incentivo</th>
+                                                <th>Pró-Startup (FACEPE)</th>
+                                                <th>Bônus Tecnológico (FACEPE)</th>
+                                            </tr>
 
-                                        <tr>
+                                            <tr>
 
-                                      
-                                       
-                                           
-                                            <?php
+
+
+
+                                                <?php
+                                                // Inicializa o contador
+                                            $contador = 0;
                                             // Loop para percorrer os resultados da consulta e criar as linhas da tabela
                                             while ($row = mysqli_fetch_assoc($result_setores)) {
-                                                $resultado = ($row['icon'] == 'novo') ? '<span class="fa-solid fa-circle-info text-info fs-2"></span>' : $row['icon'];
-                                                            echo "<td class='text-center'>" . $resultado . "</td>";
+
+                                                $resultado = ($row['icon'] === 'novo') ? '<span class="fa-solid fa-circle-info text-info fs-2 "></span>' : $row['icon'];
+                                                $link = ($row['icon'] === 'novo') ? $row['nao'] : $row['sim'];
+                                                $youtube = 'https://www.youtube.com/embed/';
+
+                                                // echo $youtube.$link.";";
+
+
+
+                                                            // echo "<td class='text-center trigger". $contador . "'>" . $resultado . "</td>";
+
+                                                            echo '<td class="text-center">
+
+                                                            <button type="button" class="btn btn-ligth" data-bs-toggle="modal"
+                                                            data-bs-target="#videoModal' . $contador . '">
+
+                                                            ' . $resultado . '
+
+                                                        </button>
+                                                            </td>';
+
+
+
+                                                        //     echo '<button type="button" class="btn btn-ligth" data-bs-toggle="modal"
+                                                        //     data-bs-target="#videoModal">
+                                                        //     Open Video Modal
+                                                        // </button>';
+
+                                                                    echo ' <div class="modal fade" id="videoModal' . $contador . '" tabindex="-1"
+                                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">' . $row['desc_inf'] . '</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                                    aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <div class="ratio ratio-16x9">
+                                                                                    <iframe src="https://www.youtube.com/embed/'.$link.'"
+                                                                                        allowfullscreen></iframe>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary"
+                                                                                    data-bs-dismiss="modal">Close</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>';
                                                            
-                                                        }
+                                                        // Incrementa o contador
+                                                        $contador++;
+                                                    }
+
+                                                    // Exibe o valor final do contador
+                                                    // echo "O loop while foi executado $contador vezes.";
                                             ?>
 
 
-                                        </tr>
-                                    </table>
-                                </div>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+
+
+
+
+
+
+
 
                                 </div>
                             </div>
@@ -774,19 +872,19 @@ $result_2 = mysqli_query($conn, $sql_2);
                 target="_blank">Purchase template</a>
         </div>
     </div>
-        <div class="card-body d-flex align-items-center px-2 py-1">
-            <div class="position-relative rounded-start" style="height:34px;width:28px">
-                <div class="settings-popover"><span class="ripple"><span
-                            class="fa-spin position-absolute all-0 d-flex flex-center"><span
-                                class="icon-spin position-absolute all-0 d-flex flex-center">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="#ffffff"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z"
-                                        fill="#2A7BE4"></path>
-                                </svg></span></span></span></div>
-            </div><small class="text-uppercase text-700 fw-bold py-2 pe-2 ps-1 rounded-end">customize</small>
-        </div>
+    <div class="card-body d-flex align-items-center px-2 py-1">
+        <div class="position-relative rounded-start" style="height:34px;width:28px">
+            <div class="settings-popover"><span class="ripple"><span
+                        class="fa-spin position-absolute all-0 d-flex flex-center"><span
+                            class="icon-spin position-absolute all-0 d-flex flex-center">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="#ffffff"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z"
+                                    fill="#2A7BE4"></path>
+                            </svg></span></span></span></div>
+        </div><small class="text-uppercase text-700 fw-bold py-2 pe-2 ps-1 rounded-end">customize</small>
+    </div>
     </a>
 
 
@@ -816,6 +914,22 @@ $result_2 = mysqli_query($conn, $sql_2);
 </body>
 
 </html>
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var videoModal = document.getElementById('videoModal');
+    var videoIframe = videoModal.querySelector('iframe');
+
+    videoModal.addEventListener('hide.bs.modal', function() {
+        var videoSrc = videoIframe.src;
+        videoIframe.src = '';
+        videoIframe.src = videoSrc;
+    });
+});
+</script>
 
 <script>
 var options1 = {
@@ -882,99 +996,125 @@ var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
 chart1.render();
 
 var options2 = {
-          series: [{
-          name: 'Bubble1',
-          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-            min: 10,
-            max: 60
-          })
+    series: [{
+            name: 'Bubble1',
+            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                min: 10,
+                max: 60
+            })
         },
         {
-          name: 'Bubble2',
-          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-            min: 10,
-            max: 60
-          })
+            name: 'Bubble2',
+            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                min: 10,
+                max: 60
+            })
         },
         {
-          name: 'Bubble3',
-          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-            min: 10,
-            max: 60
-          })
+            name: 'Bubble3',
+            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                min: 10,
+                max: 60
+            })
         },
         {
-          name: 'Bubble4',
-          data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-            min: 10,
-            max: 60
-          })
-        }],
-          chart: {
-            height: 350,
-            type: 'bubble',
-        },
-        dataLabels: {
-            enabled: false
-        },
-        fill: {
-            opacity: 0.8
-        },
-        title: {
-            text: 'Simple Bubble Chart'
-        },
-        xaxis: {
-            tickAmount: 12,
-            type: 'category',
-        },
-        yaxis: {
-            max: 70
+            name: 'Bubble4',
+            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
+                min: 10,
+                max: 60
+            })
         }
-        };
+    ],
+    chart: {
+        height: 350,
+        type: 'bubble',
+    },
+    dataLabels: {
+        enabled: false
+    },
+    fill: {
+        opacity: 0.8
+    },
+    title: {
+        text: 'Simple Bubble Chart'
+    },
+    xaxis: {
+        tickAmount: 12,
+        type: 'category',
+    },
+    yaxis: {
+        max: 70
+    }
+};
 
-        var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
-        chart2.render();
-
-
-
+var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+chart2.render();
 </script>
 
 
 <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var bubbleChart = new Chart(ctx, {
-            type: 'bubble',
-            data: {
-                datasets: [{
-                    label: 'Dados Bubble',
-                    data: [
-                        {
-                            x: 10,
-                            y: 20,
-                            r: 5
-                        },
-                        {
-                            x: 15,
-                            y: 10,
-                            r: 15
-                        },
-                        {
-                            x: 7,
-                            y: 15,
-                            r: 10
-                        }
-                    ],
-                    backgroundColor: 'rgba(255, 99, 132, 0.6)'
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+var ctx = document.getElementById('myChart').getContext('2d');
+var bubbleChart = new Chart(ctx, {
+    type: 'bubble',
+    data: {
+        datasets: [{
+            label: 'Dados Bubble',
+            data: [{
+                    x: 10,
+                    y: 20,
+                    r: 5
+                },
+                {
+                    x: 15,
+                    y: 10,
+                    r: 15
+                },
+                {
+                    x: 7,
+                    y: 15,
+                    r: 10
                 }
-            }
-        });
-    </script>
+            ],
+            backgroundColor: 'rgba(255, 99, 132, 0.6)'
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var trigger = document.querySelector('.trigger');
+    var dialog = document.getElementById('dialog');
+
+    trigger.addEventListener('mouseover', function() {
+        dialog.style.display = 'block';
+    });
+
+    trigger.addEventListener('mouseout', function() {
+        dialog.style.display = 'none';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var trigger = document.querySelector('.trigger2');
+    var dialog = document.getElementById('dialog2');
+
+    trigger.addEventListener('mouseover', function() {
+        dialog.style.display = 'block';
+    });
+
+    trigger.addEventListener('mouseout', function() {
+        dialog.style.display = 'none';
+    });
+});
+</script>
