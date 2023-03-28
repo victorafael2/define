@@ -96,7 +96,7 @@
                                     <li class="nav-item"><a class="nav-link px-3" href="#!"> <span
                                                 class="me-2 text-900"
                                                 data-feather="user"></span><span>Profile</span></a></li>
-                                    <li class="nav-item"><a class="nav-link px-3" href="#!"><span
+                                    <li class="nav-item"><a class="nav-link px-3" href="questionario/diagnosticos.php"><span
                                                 class="me-2 text-900"
                                                 data-feather="pie-chart"></span>Meus Diagnosticos
                                         </a></li>

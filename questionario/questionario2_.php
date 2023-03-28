@@ -594,10 +594,10 @@ $cadastrar_texto = "Cadastre-se";
             <!--/.bg-holder-->
 
             <div class="position-relative">
-                <svg class="w-100 text-white" preserveAspectRatio="none" viewBox="0 0 1920 368" fill="none"
+                <!-- <svg class="w-100 text-white" preserveAspectRatio="none" viewBox="0 0 1920 368" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M1920 0.44L0 367.74V0H1920V0.44Z" fill="currentColor"></path>
-                </svg>
+                </svg> -->
 
 
                 <!-- ============================================-->

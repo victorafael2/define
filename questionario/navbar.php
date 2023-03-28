@@ -2,7 +2,12 @@
 include '../conexao/conexao.php';
 
 // session_start();
+
+
+
 $nome_logado = !empty($_SESSION['email']) ? $_SESSION['email'] : '';
+
+echo $nome_logado;
 
 
 $sql_nome = "select * from empresas where email = '$nome_logado'";
@@ -17,13 +22,38 @@ if (mysqli_num_rows($result_nome) > 0) {
 
     }};
 
+
+    if(!isset($_SESSION["email"]) || !isset($_SESSION["email"]))
+{
+// Usuário não logado! Redireciona para a página de login
+$logado = "deslogado";
+$esconder_ = "d-none";
+$cadastrar = "empresas/empresa__.php";
+$cadastrar_texto = "Cadastre-se";
+// exit;
+} else
+{
+    // logado
+    $logado = "logado";
+    $esconder_entrar = "d-none";
+    $cadastrar = "questionario/questionario2_.php";
+    $cadastrar_texto = "Responder Questionario";
+}
+
+if(isset($_SESSION['email'])) {
+    $logado = "logado";
+} else {
+    // a sessão não está ativa, redirecione o usuário para a página de login
+   $logado = "deslogado";
+}
+
 ?>
 
 
 
 
 <nav class="navbar bg-white navbar-expand-lg sticky-top">
-<div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="index.php">
+<div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="../index.php">
         <div class="d-flex align-items-center"><img src="../assets/img/icons/logo.png" alt="define"
                 width="27" />
             <p class="logo-text ms-2">define</p>
@@ -156,7 +186,7 @@ if (mysqli_num_rows($result_nome) > 0) {
                                         out</a></div> -->
                                         <div class="px-3">
                                 <form class="<?php echo $esconder_ ?>" method="post"
-                                    action="encerrar_sessao.php">
+                                    action="../encerrar_sessao.php">
                                     <input type="hidden" name="encerrar_sessao" value="1">
                                     <input class="btn btn-phoenix-danger order-0 d-flex flex-center w-100" type="submit"
                                         value="Encerrar sessão">
