@@ -49,7 +49,7 @@
                       <div class="col-12 col-sm-auto flex-1">
                         <h3><?php echo $first_name ?></h3>
                         <p class="text-800"><?php echo $empresa ?></p>
-                        <div><a class="me-2" href="#!"><span class="fab fa-linkedin-in text-400 hover-primary"></span></a><a class="me-2" href="#!"><span class="fab fa-facebook text-400 hover-primary"></span></a><a href="#!"><span class="fab fa-twitter text-400 hover-primary"></span></a></div>
+                        <!-- <div><a class="me-2" href="#!"><span class="fab fa-linkedin-in text-400 hover-primary"></span></a><a class="me-2" href="#!"><span class="fab fa-facebook text-400 hover-primary"></span></a><a href="#!"><span class="fab fa-twitter text-400 hover-primary"></span></a></div> -->
                       </div>
                     </div>
                   </div>
