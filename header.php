@@ -1,4 +1,5 @@
 <?php
+
 $url_base = htmlspecialchars(dirname($_SERVER['REQUEST_URI']), ENT_QUOTES, 'UTF-8');
 
 $barra =  "/";
@@ -41,12 +42,19 @@ if ($result_nome->num_rows > 0) {
     $row = $result_nome->fetch_assoc();
 
     // Atribuindo o valor do campo 'first_name' à variável $first_name
-    $first_name = $row["nome"];
+    $p_nome = $row["nome"];
     $empresa = $row["empresa"];
     $cnpj = $row["cnpj"];
 
 
+
 };
+
+$first_name = isset($p_nome) ? $p_nome : 'Entrar';
+$v_logado = isset($p_nome) ? $p_nome : 'd-none';
+$first_name = isset($p_nome) ? $p_nome : 'Entrar';
+
+
 // Fechando a conexão com o banco de dados
 // $conn->close();
 
@@ -78,8 +86,12 @@ if ($result_ultimo_quest->num_rows > 0) {
     // Obtendo a linha de resultado como uma matriz associativa
     $row = $result_ultimo_quest->fetch_assoc();
     $created = $row["created"];
+
+
 } else {
-    echo "No records found";
+    // echo "No records found";
+    // Define a variável como vazia
+    $created = "";
 };
 
 

@@ -7,7 +7,7 @@ include '../conexao/conexao.php';
 
 $nome_logado = !empty($_SESSION['email']) ? $_SESSION['email'] : '';
 
-echo $nome_logado;
+// echo $nome_logado;
 
 
 $sql_nome = "select * from empresas where email = '$nome_logado'";

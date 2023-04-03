@@ -156,7 +156,14 @@
 
         <div class="container py-5">
 
-        <input type="text" id="busca" class="form-control" onkeyup="buscar()">
+
+        <div class="card" >
+                            <!-- <img class="card-img-top" src="../../assets/img//generic/66.jpg" alt="..."> -->
+                            <div class="card-body">
+                              <h5 class="card-title">Meus Diagnosticos</h5>
+                              <!-- <p class="card-text">Here is the example of the Multiple Container Sortable feature of the </p> -->
+
+                              <input type="text" id="busca" class="form-control" onkeyup="buscar()">
         <table class="table table-striped table-hover">
 			<thead>
 				<tr>
@@ -195,6 +202,13 @@
 				?>
 			</tbody>
 		</table>
+
+                              <!-- <button class="btn btn-primary">Go somewhere</button> -->
+                            </div>
+                          </div>
+
+
+
 
 
 
