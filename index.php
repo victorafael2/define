@@ -1,4 +1,6 @@
+
 <?php include 'header.php' ?>
+
 
 
 <body>
@@ -6,6 +8,7 @@
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
+
     <main class="main">
     <div class="container-fluid px-0">
     <?php include 'nav.php' ?>
@@ -14,6 +17,7 @@
 
 
         <!-- <div class="modal fade" id="searchBoxModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="true"
+
             data-phoenix-modal="data-phoenix-modal" style="--phoenix-backdrop-opacity: 1;">
             <div class="modal-dialog">
                 <div class="modal-content mt-15">
@@ -138,9 +142,24 @@
         <!-- ============================================-->
 
 
-        <!-- </div> -->
 
-        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <?php include 'footer.php' ?>
 
@@ -149,6 +168,7 @@
     <!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
+
 
 
 

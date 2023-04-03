@@ -23,6 +23,10 @@ $cadastrar_texto = "Cadastre-se";
 }
 
 
+
+
+
+
 // echo $logado;
 
 ?>
@@ -106,77 +110,7 @@ $cadastrar_texto = "Cadastre-se";
     <!--    Main Content-->
     <!-- ===============================================-->
     <main style="--phoenix-scroll-margin-top: 1.2rem;">
-        <nav class="navbar bg-white navbar-expand-lg sticky-top">
-            <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="../index.php">
-                    <div class="d-flex align-items-center"><img src="../assets/img/icons/logo.png" alt="define"
-                            width="27" />
-                        <p class="logo-text ms-2">define</p>
-                    </div>
-                </a>
-                <div class="d-lg-none">
-                    <div class="theme-control-toggle fa-icon-wait px-2">
-                        <input class="form-check-input ms-0 theme-control-toggle-input" type="checkbox"
-                            data-theme-control="phoenixTheme" value="dark" id="themeControlToggleSm" />
-                        <label class="mb-0 theme-control-toggle-label theme-control-toggle-light"
-                            for="themeControlToggleSm" data-bs-toggle="tooltip" data-bs-placement="left"
-                            title="Switch theme"><span class="icon" data-feather="moon"></span></label>
-                        <label class="mb-0 theme-control-toggle-label theme-control-toggle-dark"
-                            for="themeControlToggleSm" data-bs-toggle="tooltip" data-bs-placement="left"
-                            title="Switch theme"><span class="icon" data-feather="sun"></span></label>
-                    </div>
-                </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation"><span
-                        class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="border-bottom border-bottom-lg-0 mb-2">
-                        <div class="search-box d-inline d-lg-none">
-                            <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
-                                <input class="form-control search-input search rounded-pill my-4" type="search"
-                                    placeholder="Search" aria-label="Search" />
-                                <span class="fas fa-search search-box-icon"></span>
-
-                            </form>
-                        </div>
-                    </div>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item border-bottom border-bottom-lg-0"><a
-                                class="nav-link lh-1 py-0 fs--1 fw-bold py-3 active" aria-current="page"
-                                href="#">Home</a></li>
-                        <!-- <li class="nav-item border-bottom border-bottom-lg-0"><a class="nav-link lh-1 py-0 fs--1 fw-bold py-3" href="#feature">Features</a></li>
-              <li class="nav-item border-bottom border-bottom-lg-0"><a class="nav-link lh-1 py-0 fs--1 fw-bold py-3" href="#blog">Blog</a></li>
-              <li class="nav-item"><a class="nav-link lh-1 py-0 fs--1 fw-bold py-3" href="#team">Team</a></li> -->
-                    </ul>
-                    <div class="d-grid d-lg-flex align-items-center">
-                        <div class="nav-item d-flex align-items-center d-none d-lg-block pe-2">
-                            <div class="theme-control-toggle fa-icon-wait px-2">
-                                <input class="form-check-input ms-0 theme-control-toggle-input" type="checkbox"
-                                    data-theme-control="phoenixTheme" value="dark" id="themeControlToggle" />
-                                <label class="mb-0 theme-control-toggle-label theme-control-toggle-light"
-                                    for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    title="Switch theme"><span class="icon" data-feather="moon"></span></label>
-                                <label class="mb-0 theme-control-toggle-label theme-control-toggle-dark"
-                                    for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    title="Switch theme"><span class="icon" data-feather="sun"></span></label>
-                            </div>
-                        </div><a class="text-500 px-2 d-none d-lg-inline me-2" href="#" data-bs-toggle="modal"
-                            data-bs-target="#searchBoxModal"><span data-feather="search"
-                                style="height:12px;width:12px;"></span></a><a
-                            class="btn btn-link text-900 order-1 order-lg-0 ps-3 me-2 <?php echo  $esconder_entrar; ?>"
-                            href="pages/authentication/simple/sign-in.php">Entrar</a>
-                        <!-- <a
-                            class="btn btn-phoenix-primary order-0"
-                            href="pages/authentication/simple/sign-up.html"><span class="fw-bold">Cadastrar</span></a> -->
-
-                        <form class="<?php echo $esconder_ ?>" method="post" action="../encerrar_sessao.php">
-                            <input type="hidden" name="encerrar_sessao" value="1">
-                            <input class="btn btn-phoenix-danger order-0" type="submit" value="Encerrar sessão">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <?php include 'navbar.php' ?>
         <div class="modal fade" id="searchBoxModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="true"
             data-phoenix-modal="data-phoenix-modal" style="--phoenix-backdrop-opacity: 1;">
             <div class="modal-dialog">
@@ -660,121 +594,17 @@ $cadastrar_texto = "Cadastre-se";
             <!--/.bg-holder-->
 
             <div class="position-relative">
-                <svg class="w-100 text-white" preserveAspectRatio="none" viewBox="0 0 1920 368" fill="none"
+                <!-- <svg class="w-100 text-white" preserveAspectRatio="none" viewBox="0 0 1920 368" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M1920 0.44L0 367.74V0H1920V0.44Z" fill="currentColor"></path>
-                </svg>
+                </svg> -->
 
 
                 <!-- ============================================-->
                 <!-- <section> begin ============================-->
                 <section style="padding-top:50px;">
 
-                    <div class="container-small">
-                        <div class="row position-relative">
-                            <div class="col-12 col-sm-12 col-lg-5 mb-4 order-0 order-sm-0"><a href="#"><img class="mb-3"
-                                        src="assets/img/icons/logo-white.png" height="48" alt="" /></a>
-                                <h3 class="text-white light">define</h3>
-                                <!-- <p class="text-white opacity-50 light">All over the world. Alice in <br />wonderland and
-                                    other places.</p> -->
-                                <p class="text-white opacity-50 light"><b>D</b>iagnostico
-                                    <br /> <b>E</b>stratégico de
-                                    <br /><b>F</b>omento à
-                                    <br /><b>I</b>novação
-                                    <br /><b>N</b>as
-                                    <br /><b>E</b>mpresas
-
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="row justify-content-between">
-                                    <div class="col-6 col-sm-4 col-lg-3 mb-3 order-2 order-sm-1">
-                                        <div class="border-dashed border-start border-primary-300 ps-3"
-                                            style="--phoenix-border-opacity: .2;">
-                                            <h5 class="fw-bolder mb-2 text-light light">Help</h5>
-                                            <ul class="list-unstyled mb-3">
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">About</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Contact</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Developers</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="border-dashed border-start border-primary-300 ps-3"
-                                            style="--phoenix-border-opacity: .2;">
-                                            <h5 class="lh-lg fw-bolder mb-2 text-light light">Follow</h5>
-                                            <ul class="list-unstyled mb-2">
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Facebook</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Twitter</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Linkedin</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-sm-4 col-lg-3 mb-3 order-3 order-sm-2">
-                                        <div class="border-dashed border-start border-primary-300 ps-3"
-                                            style="--phoenix-border-opacity: .2;">
-                                            <h5 class="lh-lg fw-bold text-light mb-2 light">Support</h5>
-                                            <ul class="list-unstyled mb-md-2">
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Privacy</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Community</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Contact</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Blog</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">FAQ</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Project</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Team</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-sm-4 col-lg-3 mb-3 order-3 order-sm-2">
-                                        <div class="border-dashed border-start border-primary-300 ps-3"
-                                            style="--phoenix-border-opacity: .2;">
-                                            <h5 class="lh-lg fw-bold text-light mb-2 light"> Info</h5>
-                                            <ul class="list-unstyled mb-md-2">
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Personal</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">NFT System</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Agency</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Contact</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">About</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php include 'footer.php' ?>
                     <!-- end of .container-->
 
                 </section>
