@@ -19,10 +19,6 @@ $concat_impacto_gerais = $impactos_gerais_1.",".$impactos_gerais_2.",".$impactos
 $impactos_gerais = $concat_impacto_gerais;
 
 
-
-
-
-
 $equipe = $_POST['equipe'];
 // $beneficio_inovacao = $_POST['beneficio-inovacao'];
 $faturamento = $_POST['faturamento'];
@@ -47,21 +43,7 @@ $user = $_POST['user'];
 $sql = "INSERT INTO questionario2 (tecnologia, potencial_tecnologico, tipologia_inovacao, risco_tecnologico, impacto_tecnologico, infraestrutura_empresa, parcerias, impactos_gerais, equipe, beneficio_inovacao, faturamento, regime_tributario,user)
         VALUES ('$tecnologia', '$potencial_tecnologico', '$tipologia_inovacao', '$risco_tecnologico', '$impacto_tecnologico', '$infraestrutura_empresa', '$parcerias', '$impactos_gerais', '$equipe', '$beneficio_inovacao', '$faturamento', '$regime_tributario', '$user')";
 
-// echo $sql;
 
-// if ($conn->query($sql) === TRUE) {
-
-
-//     $last_id = mysqli_insert_id($conn);
-//     $last_inserted_id = $conn->insert_id;
-//     echo json_encode(['status' => 'success', 'inserted_id' => $last_inserted_id]);
-
-
-//     header("Location: sucess_.php?id=".urlencode($last_id)."");
-// } else {
-//     echo json_encode(['status' => 'error']);
-//     echo "Erro: " . $sql . "<br>" . $conn->error;
-// }
 
 
 
@@ -71,11 +53,16 @@ if ($result) {
     $last_inserted_id = $conn->insert_id;
     // echo $last_id;
     echo json_encode(['status' => 'success', 'inserted_id' => $last_inserted_id]);
+    // header("Location: questionario.php?success=1&id=$last_inserted_id");
+    exit();
+
 } else {
     echo json_encode(['status' => 'error']);
+    // header("Location: formulario.php?error=1");
+  exit();
 }
 
-$conn->close();
+// $conn->close();
 
 
 ?>

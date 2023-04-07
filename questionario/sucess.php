@@ -40,7 +40,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
     }};
 
-    // echo $nova_string;
+    echo $setor;
 
 
     $sql_setores = "SELECT tab.id,tab.descricao AS desc_inf, busca.descricao, tab.sim, tab.nao,
@@ -148,7 +148,7 @@ $result_2 = mysqli_query($conn, $sql_2);
 
 
 // Fechar a conexão com o banco de dados
-mysqli_close($conn);
+// mysqli_close($conn);
 
 
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $url_base = htmlspecialchars(dirname($_SERVER['REQUEST_URI']), ENT_QUOTES, 'UTF-8');
 
@@ -27,7 +28,7 @@ $caminho_full = $url.$caminhobd;
 
 include($caminho_full);
 
-session_start();
+
 
 
 $nome_logado = isset($_SESSION['email']) ? $_SESSION['email'] : '';
@@ -167,6 +168,20 @@ if(isset($_SESSION['email'])) {
 // echo $url;
 
 
+$nome_completo = "$first_name";
+$palavras = explode(" ", $nome_completo);
+
+$iniciais = "";
+foreach ($palavras as $palavra) {
+   $iniciais .= strtoupper(substr($palavra, 0, 1));
+}
+
+$duas_iniciais = substr($iniciais, 0, 2);
+
+// echo $duas_iniciais; // Saída: JS
+
+
+
 ?>
 
 
@@ -208,6 +223,10 @@ if(isset($_SESSION['email'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.2.0/vanilla-masker.min.js"></script>
 
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
+
+
 
     <!-- ===============================================-->
     <!--    Stylesheets-->
@@ -238,4 +257,20 @@ if(isset($_SESSION['email'])) {
         userLinkRTL.setAttribute('disabled', true);
     }
     </script>
+
+
+
+
+
+<script src="<?php echo $url ?>vendors/popper/popper.min.js"></script>
+<script src="<?php echo $url ?>vendors/bootstrap/bootstrap.min.js"></script>
+<script src="<?php echo $url ?>vendors/anchorjs/anchor.min.js"></script>
+<script src="<?php echo $url ?>vendors/is/is.min.js"></script>
+<script src="<?php echo $url ?>vendors/fontawesome/all.min.js"></script>
+<script src="<?php echo $url ?>vendors/lodash/lodash.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+<script src="<?php echo $url ?>vendors/list.js/list.min.js"></script>
+<script src="<?php echo $url ?>vendors/feather-icons/feather.min.js"></script>
+<script src="<?php echo $url ?>vendors/dayjs/dayjs.min.js"></script>
+<script src="<?php echo $url ?>assets/js/phoenix.js"></script>
 </head>

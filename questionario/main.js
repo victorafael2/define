@@ -5,7 +5,7 @@ function submitForm() {
 
     $.ajax({
         type: 'POST',
-        url: 'questionario/processar_questionario2.php',
+        url: 'processar_questionario2.php',
         data: formData,
         dataType: 'json',
         beforeSend: function() {
@@ -27,7 +27,7 @@ function submitForm() {
                     text: 'Dados enviados e salvos com sucesso!'
                 }).then(() => {
                     const insertedId = response.inserted_id;
-                    window.location.href = `questionario/sucess.php?id=${insertedId}`; // Atualize o URL conforme necessário
+                    window.location.href = `sucess.php?id=${insertedId}`; // Atualize o URL conforme necessário
                 });
             } else {
                 Swal.fire({

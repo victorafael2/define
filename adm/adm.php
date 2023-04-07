@@ -66,8 +66,8 @@
 
                                             <td>
                                               <select class='form-select' aria-label='Selecionar perfil' onchange='mudarPerfil(".$row["id"].", this.value)'>
-                                                <option value='administrador'".($row["permissao"] == "adm" ? " selected" : "").">Administrador</option>
-                                                <option value='usuario'".($row["permissao"] != "adm" ? " selected" : "").">Usuário</option>
+                                                <option value='adm'".($row["permissao"] == "adm" ? " selected" : "").">Administrador</option>
+                                                <option value='user'".($row["permissao"] != "adm" ? " selected" : "").">Usuário</option>
                                               </select>
                                             </td>
                                           </tr>";
@@ -143,10 +143,20 @@ function mudarPerfil(id, perfil) {
     type: "POST",
     data: {id: id, perfil: perfil},
     success: function() {
-      alert("Perfil alterado com sucesso!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Perfil alterado com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+      });
     },
     error: function() {
-      alert("Não foi possível alterar o perfil do usuário.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Não foi possível alterar o perfil do usuário.',
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
   });
 }

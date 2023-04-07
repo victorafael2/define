@@ -111,22 +111,7 @@ $cadastrar_texto = "Cadastre-se";
     <!-- ===============================================-->
     <main style="--phoenix-scroll-margin-top: 1.2rem;">
         <?php include 'navbar.php' ?>
-        <div class="modal fade" id="searchBoxModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="true"
-            data-phoenix-modal="data-phoenix-modal" style="--phoenix-backdrop-opacity: 1;">
-            <div class="modal-dialog">
-                <div class="modal-content mt-15">
-                    <div class="modal-body p-0">
-                        <div class="chat-search-box">
-                            <div class="form-icon-container">
-                                <input class="form-control py-3 form-icon-input rounded-1" type="text"
-                                    autofocus="autofocus" placeholder="Search People, Groups and Messages" /><span
-                                    class="fa-solid fa-magnifying-glass fs--1 form-icon"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- <section class="bg-white pb-8" id="home">
         <div class="container-small hero-header-container">
           <div class="row align-items-center">
@@ -159,8 +144,8 @@ $cadastrar_texto = "Cadastre-se";
             <div class="row">
                 <div class="card h-100">
                     <div class="card-body">
-                        <form id="form">
-                        <!-- method="POST" action="processar_questionario2.php" -->
+                        <form id="formulario_questionario"   >
+                        <!-- method="POST" action="processar_questionario2.php"> -->
 
 
                             <div class="form-group">
@@ -652,7 +637,7 @@ $cadastrar_texto = "Cadastre-se";
 
 
 
-    <!-- <script>
+    <script>
     document.getElementById("form").addEventListener("submit", function(event) {
         event.preventDefault();
 
@@ -677,7 +662,7 @@ $cadastrar_texto = "Cadastre-se";
             // Execute a ação desejada, como enviar os dados do formulário para um servidor
         }
     });
-    </script> -->
+    </script>
 
 
     <script src="main.js"></script>

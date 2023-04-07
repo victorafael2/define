@@ -1,11 +1,9 @@
-
-
 function submitForm() {
     const formData = $('#formulario_questionario').serialize();
 
     $.ajax({
         type: 'POST',
-        url: 'questionario/processar_questionario2.php',
+        url: 'questionario/processar_questionario.php',
         data: formData,
         dataType: 'json',
         beforeSend: function() {

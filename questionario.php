@@ -5,10 +5,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 <style>
-    .radio {
-        text-align: center;
-    }
-    </style>
+.radio {
+    text-align: center;
+}
+</style>
 
 <body>
 
@@ -17,7 +17,7 @@
     <!-- ===============================================-->
     <main style="--phoenix-scroll-margin-top: 1.2rem;">
 
-<?php include 'nav.php' ?>
+        <?php include 'nav.php' ?>
 
 
         <div class="container py-10">
@@ -25,7 +25,7 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <form id="formulario_questionario">
-                        <!-- method="POST" action="processar_questionario2.php" -->
+                            <!-- method="POST" action="processar_questionario2.php" -->
 
 
                             <div class="form-group">
@@ -442,7 +442,7 @@
 
 
 
-       <?php include 'footer.php' ?>
+        <?php include 'footer.php' ?>
     </main>
     <!-- ===============================================-->
     <!--    End of Main Content-->
