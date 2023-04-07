@@ -249,8 +249,11 @@ $result_2 = mysqli_query($conn, $sql_2);
 
 
         <div class="container py-10">
-            <div class="row">
-                <div class="card col-6">
+
+        <div class="card border border-300 mb-3">
+
+            <div class="row list">
+                <div class="col-6">
                     <div class="card-body">
                         <div class="row align-items-center g-3 text-center text-xxl-start">
                             <div class="container py-1">
@@ -261,6 +264,7 @@ $result_2 = mysqli_query($conn, $sql_2);
 
 
                                         <div id="chart1">
+
                                         </div>
                                     </div>
                                 </div>
@@ -269,7 +273,7 @@ $result_2 = mysqli_query($conn, $sql_2);
                     </div>
                 </div>
 
-                <div class="card col-6">
+                <div class="col-6">
                     <div class="card-body">
                         <div class="row align-items-center g-3 text-center text-xxl-start">
                             <div class="container py-1">
@@ -280,7 +284,7 @@ $result_2 = mysqli_query($conn, $sql_2);
 
 
                                         <div id="chart2"> </div>
-                                        <canvas id="myChart"></canvas>
+
 
                                     </div>
                                 </div>
@@ -290,7 +294,7 @@ $result_2 = mysqli_query($conn, $sql_2);
                 </div>
             </div>
 
-            <div class="card mb-3">
+            <div class=" mb-3">
                 <div class="card-body">
                     <div class="row align-items-center g-3 text-center text-xxl-start">
                         <div class="container py-5">
@@ -388,7 +392,7 @@ $result_2 = mysqli_query($conn, $sql_2);
 
 
 
-                                    <?php echo $linha ?>
+                                    <!-- <?php echo $linha ?> -->
 
 
 
@@ -400,6 +404,8 @@ $result_2 = mysqli_query($conn, $sql_2);
                     </div>
                 </div>
             </div>
+
+        </div>
         </div>
 
 
@@ -428,8 +434,8 @@ $result_2 = mysqli_query($conn, $sql_2);
 
 
 
-
-
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 </body>
@@ -452,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script>
+<!-- <script>
 var options1 = {
     series: [{
         name: 'Fomento',
@@ -463,7 +469,11 @@ var options1 = {
         type: 'radar',
     },
     dataLabels: {
-        enabled: true
+        enabled: true,
+        background: {
+    enabled: true,
+    borderRadius:2,
+  }
     },
     plotOptions: {
         radar: {
@@ -479,11 +489,11 @@ var options1 = {
     title: {
         // text: 'Radar with Polygon Fill'
     },
-    colors: ['#FF4560'],
+    colors: ['#2a9df4'],
     markers: {
         size: 4,
         colors: ['#fff'],
-        strokeColor: '#FF4560',
+        strokeColor: '#2a9df4',
         strokeWidth: 2,
     },
     tooltip: {
@@ -493,6 +503,13 @@ var options1 = {
             }
         }
     },
+
+    // tooltip: {
+    //         x: {
+    //             formatter: function (value, { series, seriesIndex, dataPointIndex, w }) {
+    //                 return "Eixo Personalizado " + value;
+    //             },
+    //         },
     xaxis: {
         categories: ['Tecnologia', 'Potencial Tecnologico', 'Tipo Inovação', 'Risco Tecnologico',
             'Impacto Cientifico Tecnologico', 'Infra estrutura da empresa', 'Parcerias', 'Impacto Gerais',
@@ -570,10 +587,117 @@ var options2 = {
 
 var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
 chart2.render();
-</script>
+</script> -->
 
 
 <script>
+function createChart1() {
+    const options1 = {
+        series: [{
+        name: 'Fomento',
+        data: [<?php echo $linha ?>],
+    }],
+    chart: {
+        height: 350,
+        type: 'radar',
+    },
+    dataLabels: {
+        enabled: true,
+        background: {
+    enabled: true,
+    borderRadius:2,
+  }
+    },
+    plotOptions: {
+        radar: {
+            size: 140,
+            polygons: {
+                strokeColors: '#e9e9e9',
+                fill: {
+                    colors: ['#f8f8f8', '#fff']
+                }
+            }
+        }
+    },
+    title: {
+        // text: 'Radar with Polygon Fill'
+    },
+    colors: ['#2a9df4'],
+    markers: {
+        size: 4,
+        colors: ['#fff'],
+        strokeColor: '#2a9df4',
+        strokeWidth: 2,
+    },
+    tooltip: {
+        y: {
+            formatter: function(val) {
+                return val
+            }
+        }
+    },
+
+    // tooltip: {
+    //         x: {
+    //             formatter: function (value, { series, seriesIndex, dataPointIndex, w }) {
+    //                 return "Eixo Personalizado " + value;
+    //             },
+    //         },
+    xaxis: {
+        categories: ['Tecnologia', 'Potencial Tecnologico', 'Tipo Inovação', 'Risco Tecnologico',
+            'Impacto Cientifico Tecnologico', 'Infra estrutura da empresa', 'Parcerias', 'Impacto Gerais',
+            'Equipe', 'Beneficios Inovação'
+        ]
+    },
+    yaxis: {
+        tickAmount: 7,
+        labels: {
+            formatter: function(val, i) {
+                if (i % 2 === 0) {
+                    return val
+                } else {
+                    return ''
+                }
+            }
+        }
+    }
+};
+
+    const chartElement1 = document.querySelector("#chart1");
+    const chart1 = new ApexCharts(chartElement1, options1);
+    chart1.render();
+}
+
+function createChart2() {
+    const options2 = {
+        series: [
+            {
+                name: "Exemplo 2",
+                data: [25, 15, 35, 45, 55],
+            },
+        ],
+        chart: {
+            type: "bar",
+            height: 350,
+        },
+        xaxis: {
+            categories: ["Categoria 1", "Categoria 2", "Categoria 3", "Categoria 4", "Categoria 5"],
+        },
+    };
+
+    const chartElement2 = document.querySelector("#chart2");
+    const chart2 = new ApexCharts(chartElement2, options2);
+    chart2.render();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    createChart1();
+    createChart2();
+});
+</script>
+
+
+<!-- <script>
 var ctx = document.getElementById('myChart').getContext('2d');
 var bubbleChart = new Chart(ctx, {
     type: 'bubble',
@@ -609,7 +733,7 @@ var bubbleChart = new Chart(ctx, {
         }
     }
 });
-</script>
+</script> -->
 
 
 <script>
