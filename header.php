@@ -195,8 +195,6 @@ $duas_iniciais = substr($iniciais, 0, 2);
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
     <!-- ===============================================-->
@@ -222,9 +220,6 @@ $duas_iniciais = substr($iniciais, 0, 2);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.2.0/vanilla-masker.min.js"></script>
 
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
 
 
 

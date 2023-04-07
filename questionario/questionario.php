@@ -8,6 +8,9 @@
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+
 <body>
 
     <!-- ===============================================-->
@@ -18,13 +21,11 @@
 
 
 
-
         <div class="container py-10">
             <div class="row">
                 <div class="card h-100">
                     <div class="card-body">
-                        <form id="formulario_questionario">
-                            <!-- method="POST" action="processar_questionario2.php" -->
+                        <form method="POST" action="salvar.php">
 
 
                             <div class="form-group">
@@ -282,12 +283,7 @@
                                         APLICAÇÃO DA MINHA SOLUÇÃO TRARÁ IMPACTO PARA SEGUINTES ÁREAS NOS GRAUS:</a>
                                     </h4>
                                 </label>
-                                <!-- <select class="form-control" id="impactos-gerais" name="impactos-gerais">
-        <option value="0">NÃO SE APLICA</option>
-        <option value="2">BAIXO</option>
-        <option value="4">MODERADO</option>
-        <option value="5">ALTO</option>
-    </select> -->
+
 
 
 
@@ -414,13 +410,18 @@
 
 
 
-                            <button type="submit" class="btn btn-success w-100">Cadastrar Questionario</button>
+                            <button type="submit" id="btnSubmit" class="btn btn-success w-100">Cadastrar
+                                Questionario</button>
 
                         </form>
 
 
 
                     </div>
+
+
+
+
                 </div>
 
 
@@ -448,10 +449,26 @@
     <!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
+    <!-- <script>
+    document.getElementById("btnSubmit").addEventListener("click", function(event) {
+        event.preventDefault(); // impede que o formulário seja enviado imediatamente
 
-
-
-
+        Swal.fire({
+            title: 'Prosseguir com o cadastro?',
+            text: 'Tem certeza que deseja cadastrar esses dados?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, pode prosseguir',
+            cancelButtonText: 'Não, cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Se o usuário confirmar o cadastro, envia o formulário
+                document.getElementById("btnSubmit").disabled = true;
+                document.querySelector("form").submit();
+            }
+        })
+    });
+    </script> -->
 
 
 
@@ -479,7 +496,7 @@
 
     <script src="../vendors/choices/choices.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script> -->
 
     <!-- <script>
     // Chame a função swal para mostrar uma mensagem
@@ -489,7 +506,7 @@
 
 
 
-    <script src="main.js"></script>
+    <!-- <script src="main.js"></script> -->
 
 
 
