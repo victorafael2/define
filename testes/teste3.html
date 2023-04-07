@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bubble Chart with YouTube Modal</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+    <div id="chart"></div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="youtubeModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <iframe id="youtubeVideo" width="100%" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        const data = [
+          {
+            name: "Video 1",
+            x: 20,
+            y: 30,
+            z: 10,
+            url: "https://www.youtube.com/embed/VIDEO_ID_1"
+          },
+          {
+            name: "Video 2",
+            x: 30,
+            y: 20,
+            z: 15,
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+          },
+        ];
+
+        const options = {
+          chart: {
+            type: "bubble",
+            height: 350,
+            events: {
+              markerClick: function(event, chartContext, { seriesIndex, dataPointIndex }) {
+                const videoUrl = data[dataPointIndex].url;
+                $("#youtubeVideo").attr("src", videoUrl);
+                $("#youtubeModal").modal("show");
+              },
+            },
+          },
+          series: [
+            {
+              name: "Videos",
+              data: data,
+            },
+          ],
+          fill: {
+            type: "solid",
+          },
+        };
+
+        const chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+      </script>
+</body>
+</html>

@@ -154,83 +154,95 @@ $result_2 = mysqli_query($conn, $sql_2);
 
 ?>
 
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 
-    <style>
-    .dialog {
-        display: none;
-        position: absolute;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1;
-    }
 
-    .dialog2 {
-        display: none;
-        position: absolute;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1;
-    }
+<style>
+.dialog {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
 
-    .trigger:hover .dialog {
-        display: block;
-    }
+.dialog2 {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
 
-    .trigger2:hover .dialog2 {
-        display: block;
-    }
+.trigger:hover .dialog {
+    display: block;
+}
+
+.trigger2:hover .dialog2 {
+    display: block;
+}
 
 
-    .tooltip {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-    }
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
 
-    .tooltip::before,
-    .tooltip::after {
-        content: '';
-        position: absolute;
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.2s;
-    }
+.tooltip::before,
+.tooltip::after {
+    content: '';
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
 
-    .tooltip::before {
-        content: attr(data-tooltip);
-        background-color: #555;
-        color: #fff;
-        padding: 4px 8px;
-        font-size: 14px;
-        border-radius: 4px;
-        bottom: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-    }
+.tooltip::before {
+    content: attr(data-tooltip);
+    background-color: #555;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
 
-    .tooltip::after {
-        border-width: 5px;
-        border-style: solid;
-        border-color: #555 transparent transparent transparent;
-        bottom: 90%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+.tooltip::after {
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+    bottom: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-    .tooltip:hover::before,
-    .tooltip:hover::after {
-        visibility: visible;
-        opacity: 1;
-    }
-    </style>
+.tooltip:hover::before,
+.tooltip:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+</style>
 
 
 
@@ -239,7 +251,7 @@ $result_2 = mysqli_query($conn, $sql_2);
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
-    <main >
+    <main>
 
 
         <?php include '../nav.php' ?>
@@ -250,20 +262,96 @@ $result_2 = mysqli_query($conn, $sql_2);
 
         <div class="container py-10">
 
-        <div class="card border border-300 mb-3">
+            <div class="card border border-300 mb-3">
 
-            <div class="row list">
-                <div class="col-6">
-                    <div class="card-body">
-                        <div class="row align-items-center g-3 text-center text-xxl-start">
-                            <div class="container py-1">
-                                <div class="row">
+                <div class="row list">
+                    <div class="col-6">
+                        <div class="card-body">
+                            <div class="row align-items-center g-3 text-center text-xxl-start">
+                                <div class="container py-1">
+                                    <div class="row">
 
-                                    <div class="container py-1">
-                                        <h2>Diagnóstico</h2>
+                                        <div class="container py-1">
+                                            <h2>Diagnóstico</h2>
 
 
-                                        <div id="chart1">
+                                            <!-- <div id="chart1"> -->
+
+
+                                            <canvas id="chart" width="200" height="200"></canvas>
+                                            <div class="modal fade" tabindex="-1" role="dialog" id="videoModal">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Vídeo do YouTube</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="ratio ratio-16x9">
+                                                                <iframe class="embed-responsive-item" id="video" src=""  allowfullscreen></iframe>
+                                                            </div>
+
+
+                                                        </div>
+                                                        <!-- <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Fechar</button>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-6">
+                        <div class="card-body">
+                            <div class="row align-items-center g-3 text-center text-xxl-start">
+                                <div class="container py-1">
+                                    <div class="row">
+
+                                        <div class="container py-1">
+                                            <h2>Diagnóstico</h2>
+
+
+                                            <div id="chart2"></div>
+
+
+                                            <div class="modal fade" tabindex="-1" role="dialog" id="youtubeModal">
+                                                <div class="modal-dialog modal-dialog-centered" >
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                            <h5 class="modal-title">Vídeo do YouTube</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <div class="ratio ratio-16x9">
+                                                            <iframe class="embed-responsive-item" id="youtubeVideo" width="100%" height="315"
+                                                                frameborder="0"
+                                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                allowfullscreen></iframe>
+                                                        </div>
+                                                        </div>
+                                                        <!-- <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Fechar</button>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
 
                                         </div>
                                     </div>
@@ -273,55 +361,34 @@ $result_2 = mysqli_query($conn, $sql_2);
                     </div>
                 </div>
 
-                <div class="col-6">
+                <div class=" mb-3">
                     <div class="card-body">
                         <div class="row align-items-center g-3 text-center text-xxl-start">
-                            <div class="container py-1">
+                            <div class="container py-5">
                                 <div class="row">
 
-                                    <div class="container py-1">
-                                        <h2>Diagnóstico</h2>
+                                    <div class="container py-5">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered">
+                                                <tr>
+                                                    <th>Recurso Não Reembolsável</th>
+                                                    <th>Recurso Reembolsável</th>
+                                                    <th>Lei do Bem</th>
+                                                    <th>Rota 2030</th>
+                                                    <th>Lei de Informática</th>
+                                                    <th>ANP</th>
+                                                    <th>ANEEL</th>
+                                                    <th>Uso indireto das Leis de Incentivo</th>
+                                                    <th>Pró-Startup (FACEPE)</th>
+                                                    <th>Bônus Tecnológico (FACEPE)</th>
+                                                </tr>
 
-
-                                        <div id="chart2"> </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class=" mb-3">
-                <div class="card-body">
-                    <div class="row align-items-center g-3 text-center text-xxl-start">
-                        <div class="container py-5">
-                            <div class="row">
-
-                                <div class="container py-5">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered">
-                                            <tr>
-                                                <th>Recurso Não Reembolsável</th>
-                                                <th>Recurso Reembolsável</th>
-                                                <th>Lei do Bem</th>
-                                                <th>Rota 2030</th>
-                                                <th>Lei de Informática</th>
-                                                <th>ANP</th>
-                                                <th>ANEEL</th>
-                                                <th>Uso indireto das Leis de Incentivo</th>
-                                                <th>Pró-Startup (FACEPE)</th>
-                                                <th>Bônus Tecnológico (FACEPE)</th>
-                                            </tr>
-
-                                            <tr>
+                                                <tr>
 
 
 
 
-                                                <?php
+                                                    <?php
                                                 // Inicializa o contador
                                             $contador = 0;
                                             // Loop para percorrer os resultados da consulta e criar as linhas da tabela
@@ -386,26 +453,26 @@ $result_2 = mysqli_query($conn, $sql_2);
                                             ?>
 
 
-                                            </tr>
-                                        </table>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+
+
+                                        <?php echo $linha ?>
+
+
+
+
+
                                     </div>
-
-
-
-                                    <!-- <?php echo $linha ?> -->
-
-
-
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
         </div>
 
 
@@ -432,15 +499,61 @@ $result_2 = mysqli_query($conn, $sql_2);
     <!-- ===============================================-->
 
 
+    <script>
+        const data = [
+          {
+            name: "Video 1",
+            x: 20,
+            y: 30,
+            z: 10,
+            url: "https://www.youtube.com/embed/VIDEO_ID_1"
+          },
+          {
+            name: "Video 2",
+            x: 30,
+            y: 20,
+            z: 15,
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+          },
+        ];
+
+        const options = {
+          chart: {
+            type: "bubble",
+            height: 350,
+            events: {
+              markerClick: function(event, chartContext, { seriesIndex, dataPointIndex }) {
+                const videoUrl = data[dataPointIndex].url;
+                $("#youtubeVideo").attr("src", videoUrl);
+                $("#youtubeModal").modal("show");
+              },
+            },
+          },
+          series: [
+            {
+              name: "Videos",
+              data: data,
+            },
+          ],
+          fill: {
+            type: "solid",
+          },
+        };
+
+        const chart2 = new ApexCharts(document.querySelector("#chart2"), options);
+        chart2.render();
+      </script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 
 </body>
 
 </html>
+
+
+
 
 
 
@@ -458,138 +571,71 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<!-- <script>
-var options1 = {
-    series: [{
-        name: 'Fomento',
-        data: [<?php echo $linha ?>],
-    }],
-    chart: {
-        height: 350,
-        type: 'radar',
-    },
-    dataLabels: {
-        enabled: true,
-        background: {
-    enabled: true,
-    borderRadius:2,
-  }
-    },
-    plotOptions: {
-        radar: {
-            size: 140,
-            polygons: {
-                strokeColors: '#e9e9e9',
-                fill: {
-                    colors: ['#f8f8f8', '#fff']
-                }
-            }
-        }
-    },
-    title: {
-        // text: 'Radar with Polygon Fill'
-    },
-    colors: ['#2a9df4'],
-    markers: {
-        size: 4,
-        colors: ['#fff'],
-        strokeColor: '#2a9df4',
-        strokeWidth: 2,
-    },
-    tooltip: {
-        y: {
-            formatter: function(val) {
-                return val
-            }
-        }
-    },
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const chartElement = document.getElementById("chart").getContext("2d");
 
-    // tooltip: {
-    //         x: {
-    //             formatter: function (value, { series, seriesIndex, dataPointIndex, w }) {
-    //                 return "Eixo Personalizado " + value;
-    //             },
-    //         },
-    xaxis: {
-        categories: ['Tecnologia', 'Potencial Tecnologico', 'Tipo Inovação', 'Risco Tecnologico',
-            'Impacto Cientifico Tecnologico', 'Infra estrutura da empresa', 'Parcerias', 'Impacto Gerais',
+    const data = {
+        labels: ['Tecnologia', 'Potencial Tecnologico', 'Tipo Inovação', 'Risco Tecnologico',
+            'Impacto Cientifico Tecnologico', 'Infra estrutura da empresa', 'Parcerias',
+            'Impacto Gerais',
             'Equipe', 'Beneficios Inovação'
-        ]
-    },
-    yaxis: {
-        tickAmount: 7,
-        labels: {
-            formatter: function(val, i) {
-                if (i % 2 === 0) {
-                    return val
-                } else {
-                    return ''
-                }
-            }
+        ],
+        datasets: [{
+            label: "Fomento",
+            data: [<?php echo $linha ?>],
+            backgroundColor: "rgba(42, 157, 244, 0.2)",
+            borderColor: "rgb(3, 37, 76)",
+            borderWidth: 1,
+        }, ],
+    };
+
+    const options = {
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
+        },
+
+    };
+
+    const chart = new Chart(chartElement, {
+        type: "radar",
+        data: data,
+        options: options,
+
+    });
+
+    const videos = [
+        "https://www.youtube.com/embed/x1WZZWYUmTA",
+        "https://www.youtube.com/embed/4beAfc2OdFQ",
+        "https://www.youtube.com/embed/video3",
+        "https://www.youtube.com/embed/video4",
+        "https://www.youtube.com/embed/video5",
+    ];
+
+    document.getElementById("chart").onclick = function(event) {
+        const
+            activePoint = chart.getElementsAtEventForMode(event, "nearest", {
+                intersect: true
+            }, true)[0];
+        if (activePoint) {
+            const index = activePoint.index;
+            const videoElement = document.getElementById("video");
+            videoElement.src = videos[index];
+
+            $("#videoModal").on("hidden.bs.modal", function() {
+                videoElement.src = "";
+            });
+
+            $("#videoModal").modal("show");
         }
-    }
-};
-
-var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
-chart1.render();
-
-var options2 = {
-    series: [{
-            name: 'Bubble1',
-            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-                min: 10,
-                max: 60
-            })
-        },
-        {
-            name: 'Bubble2',
-            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-                min: 10,
-                max: 60
-            })
-        },
-        {
-            name: 'Bubble3',
-            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-                min: 10,
-                max: 60
-            })
-        },
-        {
-            name: 'Bubble4',
-            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-                min: 10,
-                max: 60
-            })
-        }
-    ],
-    chart: {
-        height: 350,
-        type: 'bubble',
-    },
-    dataLabels: {
-        enabled: false
-    },
-    fill: {
-        opacity: 0.8
-    },
-    title: {
-        text: 'Simple Bubble Chart'
-    },
-    xaxis: {
-        tickAmount: 12,
-        type: 'category',
-    },
-    yaxis: {
-        max: 70
-    }
-};
-
-var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
-chart2.render();
-</script> -->
+    };
+});
+</script>
 
 
+<!--
 <script>
 function createChart1() {
     const options1 = {
@@ -694,7 +740,7 @@ document.addEventListener("DOMContentLoaded", function () {
     createChart1();
     createChart2();
 });
-</script>
+</script> -->
 
 
 <!-- <script>
