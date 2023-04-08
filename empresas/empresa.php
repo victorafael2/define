@@ -41,8 +41,10 @@ mysqli_close($conn);
 
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
 
 
 <script>
@@ -69,37 +71,36 @@ function verificarSenha() {
 }
 
 // Confirmar o envio do formulário usando SweetAlert2
-function confirmarEnvio() {
-    var senha = document.getElementById("senha").value;
+// function confirmarEnvio() {
+//     var senha = document.getElementById("senha").value;
 
-    // Verificar se a senha atende aos critérios de segurança
-    if (senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) &&
-        /[!@#$%^&*()\-_=+{};:,<.>]/.test(senha)) {
-        Swal.fire({
-            title: 'Confirmação',
-            text: 'Tem certeza de que deseja prosseguir?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sim',
-            cancelButtonText: 'Não'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById("empresa").submit();
-            }
-        });
-    } else {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'A senha deve ter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, um número e um caractere especial.',
-        });
-    }
-}
+//     // Verificar se a senha atende aos critérios de segurança
+//     if (senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) &&
+//         /[!@#$%^&*()\-_=+{};:,<.>]/.test(senha)) {
+//         Swal.fire({
+//             title: 'Confirmação',
+//             text: 'Tem certeza de que deseja prosseguir?',
+//             icon: 'warning',
+//             showCancelButton: true,
+//             confirmButtonText: 'Sim',
+//             cancelButtonText: 'Não'
+//         }).then((result) => {
+//             if (result.isConfirmed) {
+//                 document.getElementById("empresa").submit();
+//             }
+//         });
+//     } else {
+//         Swal.fire({
+//             icon: 'error',
+//             title: 'Oops...',
+//             text: 'A senha deve ter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, um número e um caractere especial.',
+//         });
+//     }
+// }
 </script>
 
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 
@@ -119,7 +120,7 @@ function confirmarEnvio() {
             <div class="row">
                 <div class="container py-1">
                     <h2>Cadastro de Empresa</h2>
-                    <form id="empresa" method="post" action="empresas/salvar.php">
+                    <form id="empresa">
 
                         <div class="row md-12">
                             <div class="col">
@@ -133,7 +134,8 @@ function confirmarEnvio() {
                             </div>
                             <div class="col">
                                 <label for="cnpj">CNPJ:</label>
-                                <input type="text" class="form-control form-control-sm" id="cnpj" name="cnpj" placeholder="XX.XXX.XXX/YYYY-ZZ" required>
+                                <input type="text" class="form-control form-control-sm" id="cnpj" name="cnpj"
+                                    placeholder="XX.XXX.XXX/YYYY-ZZ" required>
                             </div>
                         </div>
 
@@ -221,17 +223,16 @@ function confirmarEnvio() {
                             <p id="forca-senha"></p>
                         </div>
 
-                        <button type="button" class="btn btn-sm btn-success" onclick="confirmarEnvio()">Cadastrar</button>
-                        </form>
+                        <button type="submit" class="btn btn-sm btn-success"
+                            onclick="confirmarEnvio()">Cadastrar</button>
+                    </form>
 
 
 
 
-                    </div>
                 </div>
             </div>
-
-
+        </div>
 
 
 
@@ -266,21 +267,21 @@ function confirmarEnvio() {
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    <script src="vendors/popper/popper.min.js"></script>
-    <script src="vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="vendors/anchorjs/anchor.min.js"></script>
-    <script src="vendors/is/is.min.js"></script>
-    <script src="vendors/fontawesome/all.min.js"></script>
-    <script src="vendors/lodash/lodash.min.js"></script>
+    <script src="../vendors/popper/popper.min.js"></script>
+    <script src="../vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="../vendors/anchorjs/anchor.min.js"></script>
+    <script src="../vendors/is/is.min.js"></script>
+    <script src="../vendors/fontawesome/all.min.js"></script>
+    <script src="../vendors/lodash/lodash.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="vendors/list.js/list.min.js"></script>
-    <script src="vendors/feather-icons/feather.min.js"></script>
-    <script src="vendors/dayjs/dayjs.min.js"></script>
-    <script src="assets/js/phoenix.js"></script>
-    <script src="vendors/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="vendors/isotope-packery/packery-mode.pkgd.min.js"></script>
-    <script src="vendors/bigpicture/BigPicture.js"></script>
-    <script src="vendors/countup/countUp.umd.js"></script>
+    <script src="../vendors/list.js/list.min.js"></script>
+    <script src="../vendors/feather-icons/feather.min.js"></script>
+    <script src="../vendors/dayjs/dayjs.min.js"></script>
+    <script src="../assets/js/phoenix.js"></script>
+    <script src="../vendors/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../vendors/isotope-packery/packery-mode.pkgd.min.js"></script>
+    <script src="../vendors/bigpicture/BigPicture.js"></script>
+    <script src="../vendors/countup/countUp.umd.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARdVcREeBK44lIWnv5-iPijKqvlSAVwbw&callback=initMap"
         async></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
@@ -296,12 +297,77 @@ function confirmarEnvio() {
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-      var cnpjInput = document.getElementById('cnpj');
-      VMasker(cnpjInput).maskPattern('99.999.999/9999-99');
+        var cnpjInput = document.getElementById('cnpj');
+        VMasker(cnpjInput).maskPattern('99.999.999/9999-99');
     });
     </script>
 
 
+<script>
+// Adiciona uma pergunta de confirmação antes de executar o script
+$('#empresa').on('submit', function(event) {
+  event.preventDefault();
+  Swal.fire({
+    icon: 'question',
+    title: 'Você tem certeza?',
+    text: 'Tem certeza de que deseja cadastrar esta empresa?',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim, cadastrar!',
+    cancelButtonText: 'Cancelar',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Executa o restante do script
+      const formData = $(this).serialize();
+      $.ajax({
+        url: 'salvar_2.php', // Substitua pelo caminho do seu arquivo PHP
+        type: 'POST',
+        data: formData,
+        dataType: 'json',
+        success: function(response) {
+          if (response.success) {
+            // Mostrar uma mensagem de sucesso
+            Swal.fire({
+              icon: 'success',
+              title: 'Cadastro efetuado com sucesso!',
+              text: 'O cadastro da empresa foi concluído com êxito.',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'OK',
+            }).then(() => {
+              // Redirecionar para a página de sucesso
+              window.location.href = '../index.php';
+            });
+          } else if (response.duplicateEmail) {
+            // Mostrar um alerta SweetAlert2 de e-mail duplicado
+            Swal.fire({
+              icon: 'error',
+              title: 'Erro',
+              text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
+            });
+          } else {
+            // Mostrar um alerta SweetAlert2 de erro genérico
+            Swal.fire({
+              icon: 'error',
+              title: 'Erro',
+              text: 'Houve um erro ao processar sua solicitação. Por favor, tente novamente.',
+            });
+          }
+        },
+        error: function() {
+          // Mostrar um alerta SweetAlert2 de erro ao se comunicar com o servidor
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
+      });
+    },
+  });
+}
+
+});
+});
+</script>
 
 </body>
 

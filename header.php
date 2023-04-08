@@ -136,7 +136,7 @@ if(!isset($_SESSION["email"]) || !isset($_SESSION["email"]))
 // Usuário não logado! Redireciona para a página de login
 $logado = "deslogado";
 $esconder_ = "d-none";
-$cadastrar = "empresas/empresa__.php";
+$cadastrar = "empresas/empresa.php";
 $cadastrar_texto = "Cadastre-se";
 // exit;
 } else

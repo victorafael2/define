@@ -57,6 +57,10 @@ include($caminho_full);
 
 <nav class="navbar navbar-top navbar-expand" id="navbarDefault">
     <div class="collapse navbar-collapse justify-content-between">
+        <ul class="navbar-nav navbar-nav-icons flex-row">
+        </ul>
+
+
         <div class="navbar-logo">
 
 
@@ -88,9 +92,9 @@ include($caminho_full);
                             data-feather="sun"></span></label>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <!-- <li class="nav-item dropdown">
 
-            </li>
+            </li> -->
 
             <li class="nav-item dropdown"><a class="nav-link lh-1 pe-0" id="navbarDropdownUser" href="#!" role="button"
                     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
@@ -222,6 +226,3 @@ var img = document.getElementById("svg-img-2");
 
 img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgString));
 </script>
-
-
-

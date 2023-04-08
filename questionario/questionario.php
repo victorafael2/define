@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="card h-100">
                     <div class="card-body">
-                        <form method="POST" action="salvar.php">
+                        <form id ="myForm" method="POST" action="salvar.php">
 
 
                             <div class="form-group">
@@ -37,7 +37,7 @@
 
                                     <select class="form-control" id="faturamento" name="faturamento"
                                         data-choices="data-choices"
-                                        data-options='{"removeItemButton":false,"placeholder":true}' require>
+                                        data-options='{"removeItemButton":false,"placeholder":true}' required>
                                         <option value="">Selecione um tipo de empresa</option>
                                         <option value="early_stage">Startup early stage (sem faturamento)</option>
                                         <option value="startup">Startup (R$ 0 a R$ 4,8milhões)</option>
@@ -69,7 +69,7 @@
                                         EM RELAÇÃO AO REGIME TRIBUTÁRIO, MINHA EMPRESA OPERA EM:</a></h4>
                                 </label>
                                 <select id="regime_tributario" name="regime_tributario" data-choices="data-choices"
-                                    data-options='{"removeItemButton":false,"placeholder":true}' require>
+                                    data-options='{"removeItemButton":false,"placeholder":true}' required>
                                     <option value="">Selecionar Regime Tributário</option>
                                     <option value="lucro_real">Lucro Real</option>
                                     <option value="lucro_presumido">Lucro Presumido</option>
@@ -168,7 +168,7 @@
                                 <br>
                                 <select class="form-control" id="risco-tecnologico" name="risco-tecnologico"
                                     data-choices="data-choices"
-                                    data-options='{"removeItemButton":false,"placeholder":true}'>
+                                    data-options='{"removeItemButton":false,"placeholder":true}' required>
                                     <option value="">Escolher</option>
                                     <option value="3">TRL0</option>
                                     <option value="5">TRL1</option>
@@ -450,25 +450,97 @@
     <!--    End of Main Content-->
     <!-- ===============================================-->
     <!-- <script>
-    document.getElementById("btnSubmit").addEventListener("click", function(event) {
+    document.getElementById("btnSubmit").addEventListener("click", function (event) {
         event.preventDefault(); // impede que o formulário seja enviado imediatamente
 
+        // Validar os campos obrigatórios
+        const form = document.getElementById("myForm");
+        if (!form.checkValidity()) {
+            // Exibir o alerta caso o formulário não seja válido
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Por favor, preencha todos os campos obrigatórios!",
+            });
+            return;
+        }
+
+        // Exibir o prompt de confirmação do SweetAlert2
         Swal.fire({
-            title: 'Prosseguir com o cadastro?',
-            text: 'Tem certeza que deseja cadastrar esses dados?',
-            icon: 'question',
+            title: "Prosseguir com o cadastro?",
+            text: "Tem certeza que deseja cadastrar esses dados?",
+            icon: "question",
             showCancelButton: true,
-            confirmButtonText: 'Sim, pode prosseguir',
-            cancelButtonText: 'Não, cancelar'
+            confirmButtonText: "Sim, pode prosseguir",
+            cancelButtonText: "Não, cancelar",
         }).then((result) => {
             if (result.isConfirmed) {
                 // Se o usuário confirmar o cadastro, envia o formulário
                 document.getElementById("btnSubmit").disabled = true;
                 document.querySelector("form").submit();
             }
-        })
+        });
     });
-    </script> -->
+</script> -->
+
+<script>
+    document.getElementById("btnSubmit").addEventListener("click", function (event) {
+        event.preventDefault(); // impede que o formulário seja enviado imediatamente
+
+        // Validar os campos obrigatórios
+        const form = document.getElementById("myForm");
+        if (!form.checkValidity()) {
+            // Exibir o alerta caso o formulário não seja válido
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Por favor, preencha todos os campos obrigatórios!",
+            });
+            return;
+        }
+
+        // Exibir o prompt de confirmação do SweetAlert2
+        Swal.fire({
+            title: "Prosseguir com o cadastro?",
+            text: "Tem certeza que deseja cadastrar esses dados?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Sim, pode prosseguir",
+            cancelButtonText: "Não, cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Se o usuário confirmar o cadastro, envia os dados do formulário via AJAX
+                const formData = new FormData(form);
+
+                fetch("salvar_2.php", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then((response) => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error("Ocorreu um erro ao salvar os dados. Tente novamente.");
+                    }
+                })
+                .then((insertedId) => {
+                    // Redirecionar para outra página com o ID inserido na URL
+                    window.location.href = `sucess.php?id=${insertedId}`;
+                })
+                .catch((error) => {
+                    // Exibir um alerta de erro caso ocorra algum problema
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: error.message,
+                    });
+                });
+            }
+        });
+    });
+</script>
+
+
 
 
 
