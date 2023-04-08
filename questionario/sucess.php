@@ -459,7 +459,7 @@ $result_2 = mysqli_query($conn, $sql_2);
 
 
 
-                                        <?php echo $linha ?>
+                                        <!-- <?php echo $linha ?> -->
 
 
 

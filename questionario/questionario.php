@@ -524,8 +524,17 @@
                     }
                 })
                 .then((insertedId) => {
-                    // Redirecionar para outra página com o ID inserido na URL
-                    window.location.href = `sucess.php?id=${insertedId}`;
+                    // Exibir mensagem de sucesso
+                    Swal.fire({
+                        icon: "success",
+                        title: "Sucesso!",
+                        text: "Cadastro realizado com sucesso!",
+                        showConfirmButton: false,
+                        timer: 2000,
+                    }).then(() => {
+                        // Redirecionar para outra página com o ID inserido na URL
+                        window.location.href = `sucess.php?id=${insertedId}`;
+                    });
                 })
                 .catch((error) => {
                     // Exibir um alerta de erro caso ocorra algum problema
@@ -539,6 +548,7 @@
         });
     });
 </script>
+
 
 
 
