@@ -22,7 +22,7 @@
                 <p class="logo-text ms-2">define</p>
             </div>
         </a>
-        <div class="d-lg-none">
+        <div class="">
             <div class="theme-control-toggle fa-icon-wait px-2">
                 <input class="form-check-input ms-0 theme-control-toggle-input" type="checkbox"
                     data-theme-control="phoenixTheme" value="dark" id="themeControlToggleSm" />

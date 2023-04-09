@@ -554,29 +554,7 @@
 
 
 
-    <!-- ===============================================-->
-    <!--    JavaScripts-->
-    <!-- ===============================================-->
-    <script src="../vendors/popper/popper.min.js"></script>
-    <script src="../vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="../vendors/anchorjs/anchor.min.js"></script>
-    <script src="../vendors/is/is.min.js"></script>
-    <script src="../vendors/fontawesome/all.min.js"></script>
-    <script src="../vendors/lodash/lodash.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="../vendors/list.js/list.min.js"></script>
-    <script src="../vendors/feather-icons/feather.min.js"></script>
-    <script src="../vendors/dayjs/dayjs.min.js"></script>
-    <script src="../assets/js/phoenix.js"></script>
-    <script src="../vendors/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="../vendors/isotope-packery/packery-mode.pkgd.min.js"></script>
-    <script src="../vendors/bigpicture/BigPicture.js"></script>
-    <script src="../vendors/countup/countUp.umd.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARdVcREeBK44lIWnv5-iPijKqvlSAVwbw&callback=initMap"
-        async></script>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
-    <script src="../vendors/choices/choices.min.js"></script>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script> -->
 
@@ -594,6 +572,9 @@
 
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 
