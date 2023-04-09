@@ -35,7 +35,7 @@
                                                 <div class="col-auto">
                                                     <a class="btn btn-phoenix-secondary redirectToPage"
                                                         data-href="../questionario/questionario.php"><span
-                                                            class="fas fa-clipboard me-2"></span>Questionário</a>
+                                                            class="fas fa-clipboard me-2"></span>Novo Questionário</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -48,11 +48,12 @@
                                                         <div
                                                             class="row align-items-center g-3 g-sm-5 text-center text-sm-start">
                                                             <div class="col-12 col-sm-auto">
-                                                                <input class="d-none" id="avatarFile" type="file" />
+                                                                <!-- <input class="d-none" id="avatarFile" type="file" /> -->
                                                                 <label class="cursor-pointer avatar avatar-5xl"
-                                                                    for="avatarFile"><img class="rounded-circle"
-                                                                        src="<?php echo $url ?>assets/img/team/15.png"
-                                                                        alt="" /></label>
+                                                                    for="avatarFile">
+                                                                    <img class="avatar-name rounded-circle" id="img_profile" alt="" />
+
+                                                                      </label>
                                                             </div>
                                                             <div class="col-12 col-sm-auto flex-1">
                                                                 <h3><?php echo $first_name ?></h3>
@@ -130,7 +131,7 @@
                                                             class="fas fa-clipboard me-2"></span>Questionarios
                                                         respondidos <span class="text-700 fw-normal"></span></a>
                                                 </li>
-                                                <li class="nav-item me-3"><a class="nav-link text-nowrap"
+                                                <li class="nav-item me-3 <?php echo $permissao_class ?> "><a class="nav-link text-nowrap"
                                                         id="reviews-tab" data-bs-toggle="tab" href="#tab-reviews"
                                                         role="tab" aria-controls="tab-orders" aria-selected="true"><span
                                                             class="fas fa-star me-2"></span>Lista de Usuarios<span
@@ -150,8 +151,12 @@
 
 
                                                               // Consulta SQL para selecionar todos os usuários
-                                                              $sql = "SELECT id, user, created FROM questionario2 where user = '$nome_logado'";
+
+                                                              $sql_query = $permissao == "user" ? "SELECT id, user, created FROM questionario2 WHERE user = '$nome_logado'" : "SELECT id, user, created FROM questionario2";
+                                                              $sql =  $sql_query;
                                                               $result = $conn->query($sql);
+
+                                                              // echo $sql_query;
 
                                                               if ($result->num_rows > 0) {
                                                                   echo "<table class='table table-striped table-sm'>";
@@ -1588,6 +1593,34 @@ function mudarPerfil(id, perfil) {
 }
 
 
+</script>
+
+
+
+<script>
+// Cria um elemento SVG com a letra 'A'
+var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+svg.setAttribute("width", "100");
+svg.setAttribute("height", "100");
+var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+text.setAttribute("x", "50%");
+text.setAttribute("y", "50%");
+text.setAttribute("font-family", "Arial");
+text.setAttribute("font-size", "40");
+text.setAttribute("text-anchor", "middle"); // define o ponto de ancoragem para o centro do texto
+text.setAttribute("dominant-baseline", "central"); // define a linha de base para o centro do texto
+text.setAttribute("fill", "grey"); // Altera a cor da fonte do texto SVG
+text.textContent = "<?php echo $duas_iniciais ?>";
+svg.appendChild(text);
+
+// Converte o elemento SVG em uma string SVG
+var svgString = new XMLSerializer().serializeToString(svg);
+
+// Define a string SVG como o src da imagem
+var img = document.getElementById("img_profile");
+
+
+img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgString));
 </script>
 
 

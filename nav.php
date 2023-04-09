@@ -98,14 +98,22 @@ include($caminho_full);
 
             <li class="nav-item dropdown"><a class="nav-link lh-1 pe-0" id="navbarDropdownUser" href="#!" role="button"
                     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
+
+
+
+                    <a class="navbar-brand me-1 me-sm-3" href="<?php echo $url ?>index.php">
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center"><img
+                                    src="<?php echo $url ?>assets/img/icons/logo.png" alt="define" width="27" />
+                                <!-- <p class="logo-text ms-2 d-none d-sm-block">d.e.f.i.n.e</p> -->
+                            </div>
+                        </div>
+                    </a>
+
                     <div class="avatar avatar-l ">
-
-
                         <!-- <div class="avatar avatar-xl status-online  me-4"> -->
                         <img id="svg-img" class="avatar-name rounded-circle" alt="" />
-
                         <!-- </div> -->
-
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-profile shadow border border-300"
@@ -131,7 +139,7 @@ include($caminho_full);
                         <div class="overflow-auto scrollbar <?php echo $v_logado ?>" style="height: 5rem;">
                             <ul class="nav d-flex flex-column mb-2 pb-1">
                                 <li class="nav-item"><a class="nav-link px-3" href="<?php echo $url ?>adm/perfil.php">
-                                        <span class="me-2 text-900" data-feather="user"></span><span>Profile</span></a>
+                                        <span class="me-2 text-900" data-feather="user"></span><span>Perfil</span></a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link px-3"
                                         href="<?php echo $url ?>adm/questionarios_respondidos.php"><span
@@ -189,6 +197,8 @@ text.setAttribute("font-family", "Arial");
 text.setAttribute("font-size", "40");
 text.setAttribute("text-anchor", "middle"); // define o ponto de ancoragem para o centro do texto
 text.setAttribute("dominant-baseline", "central"); // define a linha de base para o centro do texto
+text.setAttribute("fill", "grey"); // Altera a cor da fonte do texto SVG
+
 text.textContent = "<?php echo $duas_iniciais ?>";
 svg.appendChild(text);
 
@@ -214,6 +224,8 @@ text.setAttribute("font-family", "Arial");
 text.setAttribute("font-size", "40");
 text.setAttribute("text-anchor", "middle"); // define o ponto de ancoragem para o centro do texto
 text.setAttribute("dominant-baseline", "central"); // define a linha de base para o centro do texto
+text.setAttribute("fill", "grey"); // Altera a cor da fonte do texto SVG
+
 text.textContent = "<?php echo $duas_iniciais ?>";
 svg.appendChild(text);
 

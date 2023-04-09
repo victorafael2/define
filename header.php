@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+
 $url_base = htmlspecialchars(dirname($_SERVER['REQUEST_URI']), ENT_QUOTES, 'UTF-8');
 
 $barra =  "/";
@@ -25,17 +27,40 @@ $caminhobd = "conexao/conexao.php";
 
 $caminho_full = $url.$caminhobd;
 
+$index = "index.php";
 
+$url_index = $url.$index;
+// echo $url_index;
 include($caminho_full);
 
 
+// Verifica se a variável de sessão 'nome_logado' não está configurada
+if (!isset($_SESSION['email'])) {
+    // Verifica se o arquivo atual é index.php
+    if (basename($_SERVER['PHP_SELF']) == "index.php") {
+        // Faça outra coisa aqui
+    } else {
+        header("Location:  $url_index"); // Redireciona o usuário para a página inicial
+        exit(); // Encerra a execução do script atual
+    }
+}
+
+
+
+
+
+// // Verifica se a variável de sessão 'nome_logado' não está configurada
+// if (!isset($_SESSION['email'])) {
+//     header("Location: $url_index "); // Redireciona o usuário para a página inicial
+//     exit(); // Encerra a execução do script atual
+// }
 
 
 $nome_logado = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 
 
 
-$sql_nome = "SELECT nome, empresa, cnpj FROM empresas WHERE email = '$nome_logado'";
+$sql_nome = "SELECT nome, empresa, cnpj, permissao FROM empresas WHERE email = '$nome_logado'";
 $result_nome = $conn->query($sql_nome);
 
 if ($result_nome->num_rows > 0) {
@@ -46,6 +71,7 @@ if ($result_nome->num_rows > 0) {
     $p_nome = $row["nome"];
     $empresa = $row["empresa"];
     $cnpj = $row["cnpj"];
+    $permissao = $row["permissao"];
 
 
 
@@ -54,7 +80,8 @@ if ($result_nome->num_rows > 0) {
 $first_name = isset($p_nome) ? $p_nome : 'Entrar';
 $v_logado = isset($p_nome) ? $p_nome : 'd-none';
 $first_name = isset($p_nome) ? $p_nome : 'Entrar';
-
+$permissao_1 = isset($permissao) ? $permissao : 'Entrar';
+$permissao_class = $permissao_1 == "adm" ? "" : "d-none";
 
 // Fechando a conexão com o banco de dados
 // $conn->close();

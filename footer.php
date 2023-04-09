@@ -189,5 +189,23 @@ $url = str_repeat($stringParaRepetir, $contagem);
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 
 
+    <script src="<?php echo $url ?>vendors/popper/popper.min.js"></script>
+    <script src="<?php echo $url ?>vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="<?php echo $url ?>vendors/anchorjs/anchor.min.js"></script>
+    <script src="<?php echo $url ?>vendors/is/is.min.js"></script>
+    <script src="<?php echo $url ?>vendors/fontawesome/all.min.js"></script>
+    <script src="<?php echo $url ?>vendors/lodash/lodash.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="<?php echo $url ?>vendors/list.js/list.min.js"></script>
+    <script src="<?php echo $url ?>vendors/feather-icons/feather.min.js"></script>
+    <script src="<?php echo $url ?>vendors/dayjs/dayjs.min.js"></script>
+    <script src="<?php echo $url ?>assets/js/phoenix.js"></script>
+    <script src="<?php echo $url ?>vendors/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="<?php echo $url ?>vendors/isotope-packery/packery-mode.pkgd.min.js"></script>
+    <script src="<?php echo $url ?>vendors/bigpicture/BigPicture.js"></script>
+    <script src="<?php echo $url ?>vendors/countup/countUp.umd.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARdVcREeBK44lIWnv5-iPijKqvlSAVwbw&callback=initMap"
+        async></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
     <script src="<?php echo $url ?>vendors/choices/choices.min.js"></script>
