@@ -101,14 +101,14 @@ include($caminho_full);
 
 
 
-                    <a class="navbar-brand me-1 me-sm-3" href="<?php echo $url ?>index.php">
+                    <!-- <a class="navbar-brand me-1 me-sm-3" href="<?php echo $url ?>index.php">
                         <div class="d-flex align-items-center">
                             <div class="d-flex align-items-center"><img
                                     src="<?php echo $url ?>assets/img/icons/logo.png" alt="define" width="27" />
-                                <!-- <p class="logo-text ms-2 d-none d-sm-block">d.e.f.i.n.e</p> -->
+
                             </div>
                         </div>
-                    </a>
+                    </a> -->
 
                     <div class="avatar avatar-l ">
                         <!-- <div class="avatar avatar-xl status-online  me-4"> -->
