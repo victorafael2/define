@@ -152,7 +152,9 @@
 
                                                               // Consulta SQL para selecionar todos os usuários
 
-                                                              $sql_query = $permissao == "user" ? "SELECT id, user, created FROM questionario2 WHERE user = '$nome_logado'" : "SELECT id, user, created FROM questionario2";
+                                                              $sql_query = $permissao == "user" ? "SELECT id, user, created FROM questionario2 WHERE user = '$nome_logado'" : "SELECT empresas.*, questionario2.*
+                                                              FROM empresas
+                                                              INNER JOIN questionario2 ON empresas.email = questionario2.user";
                                                               $sql =  $sql_query;
                                                               $result = $conn->query($sql);
 
@@ -160,22 +162,25 @@
 
                                                               if ($result->num_rows > 0) {
                                                                   echo "<table class='table table-striped table-sm'>";
-                                                                  echo "<thead><tr><th>ID</th><th>First Name</th><th>Created</th><th>ação</th></tr></thead>";
+                                                                  echo "<thead><tr><th>ID</th><th>Empresa</th><th>CNPJ</th><th>Contato</th><th>Porte</th><th>Setor</th><th>Incetivo Fiscal</th><th>Fez Contato</th><th>Relato</th></tr></thead>";
                                                                   echo "<tbody>";
 
                                                                   // Percorrendo os resultados e adicionando-os à tabela HTML
                                                                   while($row = $result->fetch_assoc()) {
                                                                       echo "<tr>";
                                                                       echo "<td>" . $row["id"] . "</td>";
-                                                                      echo "<td>" . $row["user"] . "</td>";
-                                                                      echo "<td>" . $row["created"] . "</td>";
-                                                                      echo "<td><button class='btn btn-primary btn-sm redirectToPage' data-href='../questionario/sucess.php?id=" . $row["id"] . "'>Go</button></td>";
+                                                                      echo "<td>" . $row["empresa"] . "</td>";
+                                                                      echo "<td>" . $row["cnpj"] . "</td>";
+                                                                      echo "<td>" . $row["whatsapp"] . "</td>";
+                                                                      echo "<td>" . $row["faturamento"] . "</td>";
+                                                                      echo "<td>" . $row["setor"] . "</td>";
+                                                                      echo "<td><button class='btn btn-success btn-sm redirectToPage' data-href='../questionario/sucess.php?id=" . $row["id"] . "&email=" . $row["user"] . "'>Ver</button></td>";
                                                                       echo "</tr>";
                                                                   }
                                                                   echo "</tbody>";
                                                                   echo "</table>";
                                                               } else {
-                                                                  echo "0 questionarios";
+                                                                  echo "0 Empresas";
                                                               }
 
                                                               // Fechando a conexão com o banco de dados

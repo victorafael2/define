@@ -164,7 +164,7 @@ if(!isset($_SESSION["email"]) || !isset($_SESSION["email"]))
 $logado = "deslogado";
 $esconder_ = "d-none";
 $cadastrar = "empresas/empresa.php";
-$cadastrar_texto = "Cadastre-se";
+$cadastrar_texto = "Cadastre-se e tenha acesso a oportundiades";
 // exit;
 } else
 {
@@ -172,7 +172,7 @@ $cadastrar_texto = "Cadastre-se";
     $logado = "logado";
     $esconder_entrar = "d-none";
     $cadastrar = "questionario/questionario.php";
-    $cadastrar_texto = "Responder Questionario";
+    $cadastrar_texto = "Responda o questionario e veja como podemos te ajudar";
 }
 
 if(isset($_SESSION['email'])) {

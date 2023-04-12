@@ -1,7 +1,44 @@
 
 <?php include 'header.php' ?>
 
+<style>
 
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid;
+  animation: blink 1s step-end infinite;
+}
+
+/* h1 {
+  font-family: monospace;
+  font-size: 24px;
+} */
+
+h1 .typewriter {
+  white-space: nowrap;
+  animation-name: typewriter;
+  animation-duration: 5s; /* Ajuste a duração da animação */
+  animation-timing-function: steps(100, end); /* Ajuste o número de 'steps' para controlar a velocidade da animação */
+}
+
+
+</style>
 
 <body>
 
@@ -64,8 +101,8 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 text-lg-start text-center pt-8 pb-6 order-0 position-relative">
-                        <h1 class="fs-5 fs-lg-6 fs-md-7 fs-lg-6 fs-xl-7 fs fw-black mb-4">Você <span
-                                class="text-primary me-3">D.E.F.I.N.E.</span><br />o recurso que sua empresa vai
+                        <h1 class="fs-5 fs-lg-6 fs-md-7 fs-lg-6 fs-xl-7 fs fw-black mb-4">Você <br/><span
+                                class="text-primary me-3 " id="texto"></span><br />o recurso que sua empresa vai
                             acessar.
                         </h1>
                         <p class="mb-5">E a MATECH te apóia</p><a class="btn btn-lg btn-primary rounded-pill me-3"
@@ -173,7 +210,36 @@
 
 
 
+<script>
+// Defina o texto a ser exibido
+var texto = "D.E.F.I.N.E.";
 
+// Selecione o elemento HTML onde o texto será exibido
+var textoElemento = document.getElementById("texto");
+
+// Defina a velocidade do efeito (em milissegundos)
+var velocidade = 20;
+
+// Inicialize a variável que será usada para controlar a posição atual do texto
+var posicao = 0;
+
+// Crie um intervalo que irá adicionar um caractere ao texto a cada "velocidade" milissegundos
+var intervalo = setInterval(function() {
+  // Adicione o próximo caractere ao texto
+  textoElemento.innerHTML += texto.charAt(posicao);
+
+  // Avance para o próximo caractere
+  posicao++;
+
+  // Se chegamos ao final do texto, pare o intervalo
+  if (posicao >= texto.length) {
+    clearInterval(intervalo);
+  }
+}, velocidade);
+
+
+
+</script>
 
 
 

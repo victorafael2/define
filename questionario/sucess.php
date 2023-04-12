@@ -3,7 +3,13 @@ include '../header.php';
 // include '../conexao/conexao.php';
 // session_start();
 // echo $_SESSION['email'];
-$email =  $_SESSION['email'];
+
+
+// $outro_email = $_GET["email"];
+
+// $email =  $_SESSION['email'];
+
+$email = empty($_GET["email"]) ? $_SESSION['email'] : $_GET["email"];
 
 // echo $conn;
 
@@ -46,12 +52,12 @@ if (mysqli_num_rows($result_usuario) > 0) {
     $sql_setores = "SELECT tab.id,tab.descricao AS desc_inf, busca.descricao, tab.sim, tab.nao,
 
     IFNULL(busca.icon , 'novo') as icon
-    
+
 FROM tabelas AS tab
 
     LEFT JOIN (SELECT * FROM tabelas WHERE id IN ($nova_string)) AS busca ON tab.id = busca.id ";
 
-
+echo $sql_usuario;
 
 $result_setores = mysqli_query($conn, $sql_setores);
 // // Verificar se a consulta retornou algum resultado
@@ -61,7 +67,7 @@ $result_setores = mysqli_query($conn, $sql_setores);
 
 //         $desc = $row["descricao"];
 //         $id = $row["id"];
-        
+
 
 //     }};
 
@@ -77,7 +83,20 @@ if (!$conn) {
 }
 
 // Executar a consulta
-$sql = "SELECT * FROM questionario2 where id = '$diag'";
+// $sql = "SELECT * FROM questionario2 where id = '$diag'";
+
+
+$sql = "SELECT TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tecnologia, ',', 1), ',', -1)) AS tecnologia,
+TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(potencial_tecnologico, ',', 1), ',', -1)) AS potencial_tecnologico,
+TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tipologia_inovacao, ',', 1), ',', -1)) AS tipologia_inovacao,
+TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(risco_tecnologico, ',', 1), ',', -1)) AS risco_tecnologico,
+TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(impacto_tecnologico, ',', 1), ',', -1)) AS impacto_tecnologico,
+TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(infraestrutura_empresa, ',', 1), ',', -1)) AS infraestrutura_empresa,
+impactos_gerais,
+TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(equipe, ',', 1), ',', -1)) AS equipe,
+beneficio_inovacao,
+parcerias
+ FROM questionario2 where id = '$diag'";
 $result = mysqli_query($conn, $sql);
 
 // Verificar se a consulta retornou algum resultado
@@ -105,7 +124,6 @@ if (mysqli_num_rows($result) > 0) {
 
 
 
-
         $equipe = round($row["equipe"]);
         $string_beneficios = "$row[beneficio_inovacao]";
         $valores_beneficio_inovacao = explode(",",$string_beneficios);
@@ -114,14 +132,14 @@ if (mysqli_num_rows($result) > 0) {
             // Calcular a média
             $contador_beneficio_inovacao= count($valores_beneficio_inovacao);
             $soma_beneficio_inovacao = array_sum($valores_beneficio_inovacao);
-            $beneficio_inovacao = $soma_beneficio_inovacao / $contador_beneficio_inovacao;
+            $beneficio_inovacao = round($soma_beneficio_inovacao / $contador_beneficio_inovacao);
 
 
             // parcerias
             // $parcerias = round($row["parcerias"]);
             $string_parcerias = "$row[parcerias]";
             $valores_parcerias = explode(",",$string_parcerias);
-    
+
             // echo $array;
                 // Calcular a média
                 $contador_parcerias= count($valores_parcerias);
@@ -152,6 +170,37 @@ $result_2 = mysqli_query($conn, $sql_2);
 
 
 
+
+// valores para grafico de bolha
+
+// faturamento porte
+$sql_grafico_bolha = "select * from questionario2 WHERE USER = '$email'";
+$sql_grafico_bolha_result = mysqli_query($conn, $sql_grafico_bolha);
+
+if (mysqli_num_rows($result_usuario) > 0) {
+    // Exibir os resultados
+    while($row = mysqli_fetch_assoc($sql_grafico_bolha_result)) {
+
+        $faturamento = $row["faturamento"];
+        $lucro = $row["regime_tributario"];
+        $g_inovacao = $row["beneficio_inovacao"];
+        $p_inovacao = $row["potencial_tecnologico"];
+        $t_inovacao = $row["tipologia_inovacao"];
+        $r_tecnologico = $row["risco_tecnologico"];
+        $i_tecnologico = $row["impacto_tecnologico"];
+        $i_da_empresa = $row["infraestrutura_empresa"];
+        $parceria = $row["parcerias"];
+        $e_equipe = $row["equipe"];
+
+
+
+
+
+        $nova_string = str_replace(";", ",", $link);
+
+    }};
+
+
 ?>
 
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
@@ -161,10 +210,10 @@ $result_2 = mysqli_query($conn, $sql_2);
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 
 
@@ -265,6 +314,15 @@ $result_2 = mysqli_query($conn, $sql_2);
             <div class="card border border-300 mb-3">
 
                 <div class="row list">
+                    <div class="col-12">
+                        <div class="row text-center">
+                            <div class="container py-1">
+                                <h2><b>Diagnostico:</b>
+                                    <p class="text-muted"><?php echo $email ?></p>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-6">
                         <div class="card-body">
                             <div class="row align-items-center g-3 text-center text-xxl-start">
@@ -272,13 +330,13 @@ $result_2 = mysqli_query($conn, $sql_2);
                                     <div class="row">
 
                                         <div class="container py-1">
-                                            <h2>Diagnóstico</h2>
+                                            <h3>Diagnóstico</h3>
 
 
                                             <!-- <div id="chart1"> -->
 
 
-                                            <canvas id="chart" width="200" height="200"></canvas>
+                                            <!-- <canvas id="chart" width="200" height="200"></canvas> -->
                                             <div class="modal fade" tabindex="-1" role="dialog" id="videoModal">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
@@ -289,7 +347,8 @@ $result_2 = mysqli_query($conn, $sql_2);
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="ratio ratio-16x9">
-                                                                <iframe class="embed-responsive-item" id="video" src=""  allowfullscreen></iframe>
+                                                                <iframe class="embed-responsive-item" id="video" src=""
+                                                                    allowfullscreen></iframe>
                                                             </div>
 
 
@@ -298,6 +357,33 @@ $result_2 = mysqli_query($conn, $sql_2);
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Fechar</button>
                                                         </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="chart23"></div>
+
+
+                                            <div class="modal fade" tabindex="-1" role="dialog" id="youtubeModal">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Vídeo do YouTube</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="ratio ratio-16x9">
+                                                                <iframe class="embed-responsive-item" id="youtubeVideo"
+                                                                    width="100%" height="315" frameborder="0"
+                                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                    allowfullscreen></iframe>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="modal-footer">
+<button type="button" class="btn btn-secondary"
+data-dismiss="modal">Fechar</button>
+</div> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -318,27 +404,29 @@ $result_2 = mysqli_query($conn, $sql_2);
                                     <div class="row">
 
                                         <div class="container py-1">
-                                            <h2>Diagnóstico</h2>
+
+
+                                            <h3>Diagnóstico</h3>
 
 
                                             <div id="chart2"></div>
 
 
                                             <div class="modal fade" tabindex="-1" role="dialog" id="youtubeModal">
-                                                <div class="modal-dialog modal-dialog-centered" >
+                                                <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
-                                                    <div class="modal-header">
+                                                        <div class="modal-header">
                                                             <h5 class="modal-title">Vídeo do YouTube</h5>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                        <div class="ratio ratio-16x9">
-                                                            <iframe class="embed-responsive-item" id="youtubeVideo" width="100%" height="315"
-                                                                frameborder="0"
-                                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                                allowfullscreen></iframe>
-                                                        </div>
+                                                            <div class="ratio ratio-16x9">
+                                                                <iframe class="embed-responsive-item" id="youtubeVideo"
+                                                                    width="100%" height="315" frameborder="0"
+                                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                    allowfullscreen></iframe>
+                                                            </div>
                                                         </div>
                                                         <!-- <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -443,7 +531,7 @@ $result_2 = mysqli_query($conn, $sql_2);
                                                                         </div>
                                                                     </div>
                                                                 </div>';
-                                                           
+
                                                         // Incrementa o contador
                                                         $contador++;
                                                     }
@@ -462,6 +550,17 @@ $result_2 = mysqli_query($conn, $sql_2);
                                         <!-- <?php echo $linha ?> -->
 
 
+
+                                        <div id="chart3"></div>
+<div class="modal fade" id="modal-videot" tabindex="-1" role="dialog" aria-labelledby="modal-video-title" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <video id="video" width="100%" height="auto" controls></video>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -497,52 +596,288 @@ $result_2 = mysqli_query($conn, $sql_2);
     <!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
+<?php
+$sql_grafico_2 = "SELECT CASE WHEN regime_tributario = 'lucro_real' THEN 5 ELSE 3 end as regime_tributario,
+TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tecnologia, ',', 2), ',', -1)) AS g_inovacao_x,
+TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tecnologia, ',', 3), ',', -1)) AS g_inovacao_z
 
+ FROM questionario2 where id = '$diag'";
+
+$result_sql_grafico_2 = mysqli_query($conn, $sql_grafico_2);
+if (mysqli_num_rows($result_sql_grafico_2) > 0) {
+    // Exibir os resultados
+    while($row = mysqli_fetch_assoc($result_sql_grafico_2)) {
+        $regime_tributario = $row["regime_tributario"];
+        $g_inovacao_x = $row["g_inovacao_x"];
+        $g_inovacao_y = $row["g_inovacao_y"];
+
+   } } else {
+        echo "Nenhum resultado encontrado.";
+    }
+
+
+
+
+?>
 
     <script>
-        const data = [
-          {
-            name: "Video 1",
-            x: 20,
-            y: 30,
-            z: 10,
+    const data = [{
+            name: "Faturamento/Porte",
+            x: 5,
+            y: 5,
+            z: 3,
             url: "https://www.youtube.com/embed/VIDEO_ID_1"
-          },
-          {
-            name: "Video 2",
-            x: 30,
-            y: 20,
-            z: 15,
+        },
+        {
+            name: "Lucro",
+            x:  0,
+            y: <?php echo $regime_tributario ?>,
+            z: 4,
             url: "https://www.youtube.com/embed/VIDEO_ID_2"
-          },
-        ];
+        }
+        ,
+        {
+            name: "Lucro",
+            x:  0,
+            y: 4,
+            z: 4,
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+        }
+    ];
 
-        const options = {
-          chart: {
+    const options = {
+        chart: {
             type: "bubble",
             height: 350,
             events: {
-              markerClick: function(event, chartContext, { seriesIndex, dataPointIndex }) {
-                const videoUrl = data[dataPointIndex].url;
-                $("#youtubeVideo").attr("src", videoUrl);
-                $("#youtubeModal").modal("show");
-              },
+                markerClick: function(event, chartContext, {
+                    seriesIndex,
+                    dataPointIndex
+                }) {
+                    const videoUrl = data[dataPointIndex].url;
+                    $("#youtubeVideo").attr("src", videoUrl);
+                    $("#youtubeModal").modal("show");
+                },
             },
-          },
-          series: [
-            {
-              name: "Videos",
-              data: data,
-            },
-          ],
-          fill: {
+        },
+        series: [{
+            name: "Videos",
+            data: data,
+        }, ],
+        fill: {
             type: "solid",
-          },
-        };
+        },
+        xaxis: {
+    tickAmount: 1,
 
-        const chart2 = new ApexCharts(document.querySelector("#chart2"), options);
-        chart2.render();
-      </script>
+    },
+
+        yaxis: {
+            title: {
+                text: "Fomento",
+            },
+            min: 0,
+            max: 6,
+        },
+    };
+
+    const chart2 = new ApexCharts(document.querySelector("#chart2"), options);
+    chart2.render();
+
+
+
+
+
+    const data2 = [{
+
+            x: "Tecnologia",
+            y: <?php echo $tecnologia ?>,
+
+            url: "https://www.youtube.com/embed/VIDEO_ID_1"
+        },
+        {
+
+            x: "Potencial Tecnologico",
+            y:  <?php echo $potencial_tecnologico ?>,
+
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+        },
+        {
+
+            x: "Tipo de Inovação",
+            y:  <?php echo $tipologia_inovacao ?>,
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+        },
+        {
+
+            x: "Risco Tecnologico",
+            y:  <?php echo $risco_tecnologico ?>,
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+        },
+        {
+
+            x: "Impacto Cientifico Tecnologico",
+            y:  <?php echo $impacto_cientifico_tecnologico ?>,
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+        },
+        {
+
+            x: "Infra estrutura da empresa",
+            y:  <?php echo $infraestrutura_empresa ?>,
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+        },
+        {
+
+            x: "Parcerias",
+            y:  <?php echo $parcerias ?>,
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+        },
+        {
+
+            x: "Impactos Gerais",
+            y:  <?php echo $impactos_gerais ?>,
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+        },
+        {
+
+            x: "Equipe",
+            y:  <?php echo $equipe ?>,
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+        },
+        {
+
+            x: "Beneficios Inovação",
+            y:  <?php echo $beneficio_inovacao ?>,
+            url: "https://www.youtube.com/embed/VIDEO_ID_2"
+        },
+    ];
+
+    const options2 = {
+        chart: {
+            type: "radar",
+            height: 500,
+            events: {
+                markerClick: function(event, chartContext, {
+                    seriesIndex,
+                    dataPointIndex
+                }) {
+                    const videoUrl = data2[dataPointIndex].url;
+                    $("#youtubeVideo").attr("src", videoUrl);
+                    $("#youtubeModal").modal("show");
+                }
+            }
+        },
+        series: [{
+            name: "Valor",
+            data: data2
+        }],
+        fill: {
+            type: "solid"
+        },
+        xaxis: {
+            title: {
+                text: "Eixo X"
+            },
+            min: 0,
+            max: 6,
+            reverse: false
+        },
+        yaxis: {
+            show: false,
+            title: {
+                text: "Eixo Y"
+            },
+            min: 0,
+            max: 6
+        },
+        markers: {
+          size: 8,
+          colors: ['#26A0c4'],
+          strokeColor: '#26A0FC',
+          strokeWidth: 2,
+        },
+    };
+
+    const chart23 = new ApexCharts(document.querySelector("#chart23"), options2);
+    chart23.render();
+
+
+
+
+
+
+    var options3 = {
+  series: [
+    {
+      name: 'Série 1',
+      data: [
+        { x: 10, y: 20, z: 30, url: 'https://www.example.com/video1.mp4' }, // URL do vídeo para o primeiro ponto
+        { x: 20, y: 30, z: 40, url: 'https://www.example.com/video2.mp4' }, // URL do vídeo para o segundo ponto
+        { x: 30, y: 40, z: 50, url: 'https://www.example.com/video3.mp4' }, // URL do vídeo para o terceiro ponto
+        { x: 40, y: 50, z: 70, url: 'https://www.example.com/video4.mp4' }, // URL do vídeo para o quarto ponto
+        { x: 45, y: 50, z: 70, url: 'https://www.example.com/video5.mp4' }, // URL do vídeo para o quinto ponto
+      ],
+    },
+  ],
+  chart: {
+    height: 350,
+    type: 'bubble',
+  },
+  title: {
+    text: 'Gráfico de Bolha',
+  },
+  xaxis: {
+    tickAmount: 10,
+    labels: {
+      formatter: function (val) {
+        return val.toFixed(0);
+      },
+    },
+  },
+  yaxis: {
+    tickAmount: 7,
+  },
+  tooltip: {
+    x: {
+      formatter: function (val) {
+        return val.toFixed(0);
+      },
+    },
+    y: {
+      formatter: function (val) {
+        return val.toFixed(0);
+      },
+    },
+  },
+};
+var chart3 = new ApexCharts(document.querySelector('#chart3'), options3);
+chart3.render();
+chart3.addEventListener('dataPointClick', function (event, chartContext, config) {
+  // abre o modal de vídeo com o ID correspondente
+  $('#modal-videot').modal('show');
+
+  // define o URL do vídeo e define como o vídeo deve ser reproduzido
+  var video = document.querySelector('#video');
+  video.src = config.dataPoint.url;
+  video.play();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
 
 
 
@@ -590,14 +925,18 @@ document.addEventListener("DOMContentLoaded", function() {
         }, ],
     };
 
-    const options = {
-        scales: {
-            y: {
-                beginAtZero: true,
-            },
-        },
+    //     const options = {
+    //   scales: {
+    //     x: {
+    //       beginAtZero: true,
+    //     },
+    //     y: {
+    //       beginAtZero: true,
+    //     },
+    //   },
+    // };
 
-    };
+
 
     const chart = new Chart(chartElement, {
         type: "radar",
@@ -609,9 +948,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const videos = [
         "https://www.youtube.com/embed/x1WZZWYUmTA",
         "https://www.youtube.com/embed/4beAfc2OdFQ",
-        "https://www.youtube.com/embed/video3",
-        "https://www.youtube.com/embed/video4",
-        "https://www.youtube.com/embed/video5",
+        "https://www.youtube.com/embed/x1WZZWYUmTA",
+        "https://www.youtube.com/embed/4beAfc2OdFQ",
+        "https://www.youtube.com/embed/x1WZZWYUmTA",
+        "https://www.youtube.com/embed/4beAfc2OdFQ",
+        "https://www.youtube.com/embed/x1WZZWYUmTA",
+        "https://www.youtube.com/embed/4beAfc2OdFQ",
+
+
     ];
 
     document.getElementById("chart").onclick = function(event) {

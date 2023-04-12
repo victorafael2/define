@@ -85,18 +85,18 @@
                                         TECNOLOGIA A SER DESENVOLVIDA É UMA INOVAÇÃO:</h4>
                                 </label>
                                 <div>
-                                    <input type="radio" id="tecnologia1" name="tecnologia" value="2" checked>
+                                    <input type="radio" id="tecnologia1" name="tecnologia" value="2,2,3" checked>
                                     <label for="tecnologia1">Para minha empresa, já existe no mercado</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="tecnologia2" name="tecnologia" value="4">
+                                    <input type="radio" id="tecnologia2" name="tecnologia" value="4,3,4">
                                     <label for="tecnologia2">Para meu Estado</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="tecnologia3" name="tecnologia" value="6">
+                                    <input type="radio" id="tecnologia3" name="tecnologia" value="4,4,5">
                                     <label for="tecnologia3">Para meu país</label>
                                 </div>
-                                <div> <input type="radio" id="tecnologia4" name="tecnologia" value="8">
+                                <div> <input type="radio" id="tecnologia4" name="tecnologia" value="5,5,5">
                                     <label for="tecnologia4">Inovação mundial</label>
                                 </div>
                             </div>
@@ -110,18 +110,18 @@
                                 </label>
                                 <div>
                                     <input type="radio" id="potencial-tecnologico-1" name="potencial-tecnologico"
-                                        value="5">
+                                        value="5,5,5">
                                     <label for="potencial-tecnologico-1">Inovação tecnológica: produto, processo ou
                                         serviço</label>
                                 </div>
                                 <div>
                                     <input type="radio" id="potencial-tecnologico-2" name="potencial-tecnologico"
-                                        value="3">
+                                        value="3,5,3">
                                     <label for="potencial-tecnologico-2">Inovação em modelo de negócio</label>
                                 </div>
                                 <div>
                                     <input type="radio" id="potencial-tecnologico-3" name="potencial-tecnologico"
-                                        value="2">
+                                        value="2,5,2">
                                     <label for="potencial-tecnologico-3">Inovação de Método: Marketing e
                                         Organizacional</label>
                                 </div>
@@ -135,12 +135,12 @@
                                         PROJETO APRESENTA UMA INOVAÇÃO:</a></h4>
                                 </label>
                                 <div>
-                                    <input type="radio" id="tipologia-inovacao-1" name="tipologia-inovacao" value="4">
+                                    <input type="radio" id="tipologia-inovacao-1" name="tipologia-inovacao" value="4,3,3">
                                     <label for="tipologia-inovacao-1">Incremental: Melhorias em produto ou
                                         processos</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="tipologia-inovacao-2" name="tipologia-inovacao" value="5">
+                                    <input type="radio" id="tipologia-inovacao-2" name="tipologia-inovacao" value="5,5,5">
                                     <label for="tipologia-inovacao-2">Disruptiva: Cria novo produto e processo, sem
                                         alterar
                                         a
@@ -148,7 +148,7 @@
                                         de fornecedores existente associada à empresa</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="tipologia-inovacao-3" name="tipologia-inovacao" value="5">
+                                    <input type="radio" id="tipologia-inovacao-3" name="tipologia-inovacao" value="5,5,5">
                                     <label for="tipologia-inovacao-3">Radical: Cria novo produto e processo que redefine
                                         toda a
                                         cadeia de fornecedores bem como o mercado</label>
@@ -170,16 +170,16 @@
                                     data-choices="data-choices"
                                     data-options='{"removeItemButton":false,"placeholder":true}' required>
                                     <option value="">Escolher</option>
-                                    <option value="3">TRL0</option>
-                                    <option value="5">TRL1</option>
-                                    <option value="5">TRL2</option>
-                                    <option value="5">TRL3</option>
-                                    <option value="5">TRL4</option>
-                                    <option value="4">TRL5</option>
-                                    <option value="3">TRL6</option>
-                                    <option value="3">TRL7</option>
-                                    <option value="2">TRL8</option>
-                                    <option value="2">TRL9</option>
+                                    <option value="3,3,3">TRL0</option>
+                                    <option value="5,3,3">TRL1</option>
+                                    <option value="5,5,5">TRL2</option>
+                                    <option value="5,5,5">TRL3</option>
+                                    <option value="5,5,5">TRL4</option>
+                                    <option value="5,5,5">TRL5</option>
+                                    <option value="4,5,4">TRL6</option>
+                                    <option value="3,5,3">TRL7</option>
+                                    <option value="2,5,2">TRL8</option>
+                                    <option value="2,5,2">TRL9</option>
                                 </select>
                             </div>
 
@@ -191,23 +191,23 @@
                                         PROJETO PODERÁ GERAR:</a></h4>
                                 </label>
                                 <div>
-                                    <input type="radio" id="impacto_tecnologico-1" name="impacto_tecnologico" value="5">
+                                    <input type="radio" id="impacto_tecnologico-1" name="impacto_tecnologico" value="5,5,5">
                                     <label for="impacto_tecnologico-1">Patente</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="impacto_tecnologico-2" name="impacto_tecnologico" value="5">
+                                    <input type="radio" id="impacto_tecnologico-2" name="impacto_tecnologico" value="5,5,5">
                                     <label for="impacto_tecnologico-2">Registro de Software</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="impacto_tecnologico-3" name="impacto_tecnologico" value="4">
+                                    <input type="radio" id="impacto_tecnologico-3" name="impacto_tecnologico" value="4,5,5">
                                     <label for="impacto_tecnologico-3">Desenhos industriais</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="impacto_tecnologico-4" name="impacto_tecnologico" value="2">
+                                    <input type="radio" id="impacto_tecnologico-4" name="impacto_tecnologico" value="2,5,3">
                                     <label for="impacto_tecnologico-4">Criações artísticas</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="impacto_tecnologico-5" name="impacto_tecnologico" value="1">
+                                    <input type="radio" id="impacto_tecnologico-5" name="impacto_tecnologico" value="1,1,1">
                                     <label for="impacto_tecnologico-5">Nenhuma alternativa</label>
                                 </div>
                             </div>
@@ -221,13 +221,13 @@
                                 </label>
                                 <div>
                                     <input type="radio" id="infraestrutura-empresa-1" name="infraestrutura-empresa"
-                                        value="5">
+                                        value="5,5,5">
                                     <label for="infraestrutura-empresa-1">Sim, o projeto será desenvolvido na
                                         empresa</label>
                                 </div>
                                 <div>
                                     <input type="radio" id="infraestrutura-empresa-2" name="infraestrutura-empresa"
-                                        value="5">
+                                        value="5,5,5">
                                     <label for="infraestrutura-empresa-2">Sim, porém apenas parte do projeto será
                                         desenvolvido
                                         na
@@ -235,14 +235,14 @@
                                 </div>
                                 <div>
                                     <input type="radio" id="infraestrutura-empresa-3" name="infraestrutura-empresa"
-                                        value="4">
+                                        value="4,5,4">
                                     <label for="infraestrutura-empresa-3">Não, o projeto será desenvolvido na ICT
                                         (universidade,
                                         instituto de pesquisa, laboratório público) parceira</label>
                                 </div>
                                 <div>
                                     <input type="radio" id="infraestrutura-empresa-4" name="infraestrutura-empresa"
-                                        value="3">
+                                        value="3,5,3">
                                     <label for="infraestrutura-empresa-4">Não, o projeto será desenvolvido na empresa
                                         contratada/parceira</label>
                                 </div>
@@ -345,17 +345,17 @@
                                         EQUIPE POSSUI QUALIFICAÇÃO PARA DESENVOLVER MEU PROJETO:</a></h4>
                                 </label>
                                 <div>
-                                    <input type="radio" id="equipe-1" name="equipe" value="5">
+                                    <input type="radio" id="equipe-1" name="equipe" value="5,5,5">
                                     <label for="equipe-1">Sim, a equipe possui qualificação na área do projeto</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="equipe-2" name="equipe" value="3">
+                                    <input type="radio" id="equipe-2" name="equipe" value="3,5,3">
                                     <label for="equipe-2">Sim, parte da equipe possui qualificação na área do projeto,
                                         mas
                                         precisaremos contratar outra empresa ou terceiros</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="equipe-3" name="equipe" value="2">
+                                    <input type="radio" id="equipe-3" name="equipe" value="2,5,2">
                                     <label for="equipe-3">Não, precisaremos contratar outra empresa ou terceiros para
                                         desenvolver o
                                         projeto</label>
