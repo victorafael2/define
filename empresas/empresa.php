@@ -47,7 +47,7 @@ mysqli_close($conn);
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
 
 
-<script>
+<!-- <script>
 // Verificar a força da senha em tempo real usando JavaScript
 function verificarSenha() {
     var senha = document.getElementById("senha").value;
@@ -69,37 +69,41 @@ function verificarSenha() {
         forca.style.color = "red";
     }
 }
+</script> -->
 
-// Confirmar o envio do formulário usando SweetAlert2
-// function confirmarEnvio() {
-//     var senha = document.getElementById("senha").value;
+<script>
 
-//     // Verificar se a senha atende aos critérios de segurança
-//     if (senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) &&
-//         /[!@#$%^&*()\-_=+{};:,<.>]/.test(senha)) {
-//         Swal.fire({
-//             title: 'Confirmação',
-//             text: 'Tem certeza de que deseja prosseguir?',
-//             icon: 'warning',
-//             showCancelButton: true,
-//             confirmButtonText: 'Sim',
-//             cancelButtonText: 'Não'
-//         }).then((result) => {
-//             if (result.isConfirmed) {
-//                 document.getElementById("empresa").submit();
-//             }
-//         });
-//     } else {
-//         Swal.fire({
-//             icon: 'error',
-//             title: 'Oops...',
-//             text: 'A senha deve ter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, um número e um caractere especial.',
-//         });
-//     }
-// }
+function verificarSenha() {
+    var senha = document.getElementById("senha").value;
+
+    if (senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) &&
+        /[!@#$%^&*()\-_=+{};:,<.>]/.test(senha)) {
+        document.getElementById("cadastrarBtn").disabled = false;
+    } else {
+        document.getElementById("cadastrarBtn").disabled = true;
+    }
+
+    var senha = document.getElementById("senha").value;
+    var forca = document.getElementById("forca-senha");
+
+    // Verificar o comprimento da senha
+    if (senha.length < 8) {
+        forca.innerHTML = "Pelo menos 8 digitos";
+        forca.style.color = "red";
+    } else {
+        forca.innerHTML = "Senha forte";
+        forca.style.color = "green";
+    }
+
+    // Verificar se a senha contém letras maiúsculas, minúsculas, números e caracteres especiais
+    var pattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])/;
+    if (!pattern.test(senha)) {
+        forca.innerHTML = "Senha fraca, por favor inserir pelo menos um numero e letras maisculas";
+        forca.style.color = "red";
+    }
+}
+
 </script>
-
-
 
 
 
@@ -218,13 +222,13 @@ function verificarSenha() {
 
 
                             <input class="form-control form-control-sm" id="senha" type="password" name="senha"
-                                placeholder="Password" required onkeyup="verificarSenha()" />
+                                placeholder="Password" required onkeyup="verificarSenha()" onkeyup="validarSenha()" />
 
                             <p id="forca-senha"></p>
                         </div>
 
-                        <button type="submit" class="btn btn-sm btn-success"
-                            onclick="confirmarEnvio()">Cadastrar</button>
+                        <button type="submit" class="btn btn-sm btn-success" id="cadastrarBtn"
+                            onclick="confirmarEnvio()" disabled>Cadastrar</button>
                     </form>
 
 
@@ -303,71 +307,137 @@ function verificarSenha() {
     </script>
 
 
-<script>
-// Adiciona uma pergunta de confirmação antes de executar o script
-$('#empresa').on('submit', function(event) {
-  event.preventDefault();
-  Swal.fire({
-    icon: 'question',
-    title: 'Você tem certeza?',
-    text: 'Tem certeza de que deseja cadastrar esta empresa?',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Sim, cadastrar!',
-    cancelButtonText: 'Cancelar',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // Executa o restante do script
-      const formData = $(this).serialize();
-      $.ajax({
-        url: 'salvar_2.php', // Substitua pelo caminho do seu arquivo PHP
-        type: 'POST',
-        data: formData,
-        dataType: 'json',
-        success: function(response) {
-          if (response.success) {
-            // Mostrar uma mensagem de sucesso
-            Swal.fire({
-              icon: 'success',
-              title: 'Cadastro efetuado com sucesso!',
-              text: 'O cadastro da empresa foi concluído com êxito.',
-              confirmButtonColor: '#3085d6',
-              confirmButtonText: 'OK',
-            }).then(() => {
-              // Redirecionar para a página de sucesso
-              window.location.href = '../index.php';
-            });
-          } else if (response.duplicateEmail) {
-            // Mostrar um alerta SweetAlert2 de e-mail duplicado
-            Swal.fire({
-              icon: 'error',
-              title: 'Erro',
-              text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
-            });
-          } else {
-            // Mostrar um alerta SweetAlert2 de erro genérico
-            Swal.fire({
-              icon: 'error',
-              title: 'Erro',
-              text: 'Houve um erro ao processar sua solicitação. Por favor, tente novamente.',
-            });
-          }
-        },
-        error: function() {
-          // Mostrar um alerta SweetAlert2 de erro ao se comunicar com o servidor
-          Swal.fire({
-            icon: 'error',
-            title: 'Erro',
-            text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
-      });
-    },
-  });
-}
 
-});
-});
-</script>
+
+
+    <!-- <script>
+    // Confirmar o envio do formulário usando SweetAlert2
+    function confirmarEnvio() {
+        var senha = document.getElementById("senha").value;
+
+        // Verificar se a senha atende aos critérios de segurança
+        if (senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) &&
+            /[!@#$%^&*()\-_=+{};:,<.>]/.test(senha)) {
+            Swal.fire({
+                title: 'Confirmação',
+                text: 'Tem certeza de que deseja prosseguir?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Não'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'A senha deve ter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula, um número e um caractere especial.',
+            });
+        }
+    }
+    </script> -->
+
+
+<!-- <script>
+    function confirmarEnvio() {
+        var senha = document.getElementById("senha").value;
+
+        if (senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha)) {
+            Swal.fire({
+                title: 'Confirmação',
+                text: 'Tem certeza que deseja salvar o formulário?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Não'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Enviar formulário para ser salvo
+                    document.getElementById("meuFormulario").submit();
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'A senha deve ter pelo menos 8 caracteres, incluindo pelo menos uma letra maiúscula e um número.',
+            });
+        }
+    }
+</script> -->
+
+
+    <script>
+    // Adiciona uma pergunta de confirmação antes de executar o script
+    $('#empresa').on('submit', function(event) {
+                        event.preventDefault();
+                        Swal.fire({
+                            icon: 'question',
+                            title: 'Você tem certeza?',
+                            text: 'Tem certeza de que deseja cadastrar esta empresa?',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Sim, cadastrar!',
+                            cancelButtonText: 'Cancelar',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Executa o restante do script
+                                const formData = $(this).serialize();
+                                $.ajax({
+                                    url: 'salvar_2.php', // Substitua pelo caminho do seu arquivo PHP
+                                    type: 'POST',
+                                    data: formData,
+                                    dataType: 'json',
+                                    success: function(response) {
+                                        if (response.success) {
+                                            // Mostrar uma mensagem de sucesso
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Cadastro efetuado com sucesso!',
+                                                text: 'O cadastro da empresa foi concluído com êxito.',
+                                                confirmButtonColor: '#3085d6',
+                                                confirmButtonText: 'OK',
+                                            }).then(() => {
+                                                // Redirecionar para a página de sucesso
+                                                window.location.href =
+                                                    '../index.php';
+                                            });
+                                        } else if (response.duplicateEmail) {
+                                            // Mostrar um alerta SweetAlert2 de e-mail duplicado
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Erro',
+                                                text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
+                                            });
+                                        } else {
+                                            // Mostrar um alerta SweetAlert2 de erro genérico
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Erro',
+                                                text: 'Houve um erro ao processar sua solicitação. Por favor, tente novamente.',
+                                            });
+                                        }
+                                    },
+                                    error: function() {
+                                        // Mostrar um alerta SweetAlert2 de erro ao se comunicar com o servidor
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Erro',
+                                            text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
+                                        });
+                                    },
+                                });
+                            }
+
+                        });
+                    });
+    </script>
 
 </body>
 

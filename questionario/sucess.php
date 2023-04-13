@@ -311,9 +311,9 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
         <div class="container py-10">
 
-            <div class="card border border-300 mb-3">
 
-                <div class="row list">
+
+                <div class="row g-3 mb-6">
                     <div class="col-12">
                         <div class="row text-center">
                             <div class="container py-1">
@@ -323,128 +323,319 @@ if (mysqli_num_rows($result_usuario) > 0) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="card-body">
-                            <div class="row align-items-center g-3 text-center text-xxl-start">
-                                <div class="container py-1">
-                                    <div class="row">
+                    <div class="row g-3 mb-6">
+                        <div class="col-12 col-lg-6">
+                            <div class="card h100">
+                            <div class="card-body">
+                                <div class="row align-items-center g-3 text-center text-xxl-start">
+                                    <div class="container py-1">
+                                        <div class="row">
 
-                                        <div class="container py-1">
-                                            <h3>Diagnóstico</h3>
+                                            <div class="container py-1">
+                                                <h3>Diagnóstico de Fomento</h3>
 
 
-                                            <!-- <div id="chart1"> -->
+                                                <!-- <div id="chart1"> -->
 
 
-                                            <!-- <canvas id="chart" width="200" height="200"></canvas> -->
-                                            <div class="modal fade" tabindex="-1" role="dialog" id="videoModal">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Vídeo do YouTube</h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="ratio ratio-16x9">
-                                                                <iframe class="embed-responsive-item" id="video" src=""
-                                                                    allowfullscreen></iframe>
+
+
+                                                <div id="chart23"></div>
+
+
+                                                <div class="modal fade" tabindex="-1" role="dialog" id="youtubeModal">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Vídeo do YouTube</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="ratio ratio-16x9">
+                                                                    <iframe class="embed-responsive-item"
+                                                                        id="youtubeVideo" width="100%" height="315"
+                                                                        frameborder="0"
+                                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                        allowfullscreen></iframe>
+                                                                </div>
                                                             </div>
 
-
                                                         </div>
-                                                        <!-- <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Fechar</button>
-                                                        </div> -->
                                                     </div>
                                                 </div>
+
+
+
+
+
+
+
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
 
-                                            <div id="chart23"></div>
+
+                        <div class="col-6col-12 col-lg-6">
+                        <div class="card h100">
+                            <div class="card-body">
+                                <div class="row align-items-center g-3 text-center text-xxl-start">
+                                    <div class="container py-1">
+                                        <div class="row">
+
+                                            <div class="container py-1">
 
 
-                                            <div class="modal fade" tabindex="-1" role="dialog" id="youtubeModal">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Vídeo do YouTube</h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <h3>Diagnóstico</h3>
+
+
+                                                <div id="chart2"></div>
+
+
+                                                <div class="modal fade" tabindex="-1" role="dialog" id="youtubeModal">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Vídeo do YouTube</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="ratio ratio-16x9">
+                                                                    <iframe class="embed-responsive-item"
+                                                                        id="youtubeVideo" width="100%" height="315"
+                                                                        frameborder="0"
+                                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                        allowfullscreen></iframe>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
-                                                        <div class="modal-body">
-                                                            <div class="ratio ratio-16x9">
-                                                                <iframe class="embed-responsive-item" id="youtubeVideo"
-                                                                    width="100%" height="315" frameborder="0"
-                                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                                    allowfullscreen></iframe>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div id="bubble-chart"></div>
+
+
+                                                <div class="modal fade" id="videoModal" tabindex="-1">
+                                                    <div class="modal-dialog  modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Vídeo do YouTube</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="embed-responsive embed-responsive-16by9">
+                                                                    <iframe id="youtube-video"
+                                                                        class="embed-responsive-item" width="100%"
+                                                                        height="315" frameborder="0"
+                                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                        allowfullscreen></iframe>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <!-- <div class="modal-footer">
-<button type="button" class="btn btn-secondary"
-data-dismiss="modal">Fechar</button>
-</div> -->
                                                     </div>
                                                 </div>
+
+
+                                                <?php
+
+
+                                                                                            // Query SQL
+                                                                                            $sql_graf_2 = "SELECT
+                                                                                            CASE WHEN regime_tributario = 'lucro_real' THEN 5 ELSE 3 end as regime_tributario,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tecnologia, ',', 2), ',', -1))*1 AS g_inovacao_x,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tecnologia, ',', 3), ',', -1))*1 AS g_inovacao_z,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(potencial_tecnologico, ',', 2), ',', -1))*1 AS potencial_tecnologico_x,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(potencial_tecnologico, ',', 3), ',', -1))*1 AS potencial_tecnologico_y,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tipologia_inovacao, ',', 2), ',', -1))*1 AS tipologia_inovacao_x,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tipologia_inovacao, ',', 3), ',', -1))*1 AS tipologia_inovacao_y,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(risco_tecnologico, ',', 2), ',', -1))*1 AS risco_tecnologico_x,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(risco_tecnologico, ',', 3), ',', -1))*1 AS risco_tecnologico_y,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(impacto_tecnologico, ',', 2), ',', -1))*1 AS impacto_tecnologico_x,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(impacto_tecnologico, ',', 3), ',', -1))*1 AS impacto_tecnologico_y,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(infraestrutura_empresa, ',', 2), ',', -1))*1 AS infraestrutura_empresa_x,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(infraestrutura_empresa, ',', 3), ',', -1))*1 AS infraestrutura_empresa_y,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(parcerias, ',', 2), ',', -1))*1 AS parcerias_x,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(parcerias, ',', 3), ',', -1))*1 AS parcerias_y,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(equipe, ',', 2), ',', -1))*1 AS equipe_x,
+                                                                                            TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(equipe, ',', 3), ',', -1))*1 AS equipe_y
+                                                                                            FROM questionario2 WHERE id = '$diag'";
+
+
+                                                                                            $resultado = $conn->query($sql_graf_2);
+
+                                                                                            if (mysqli_num_rows($resultado) > 0) {
+                                                                                                // Retorna o primeiro resultado como um array associativo
+                                                                                                $row = mysqli_fetch_assoc($resultado);
+                                                                                                // chave do array associativo
+                                                                                                $regime_tributario = $row["regime_tributario"];
+                                                                                                $g_inovacao_x = $row["g_inovacao_x"];
+                                                                                                $g_inovacao_z = $row["g_inovacao_z"];
+                                                                                                $potencial_tecnologico_x = $row["potencial_tecnologico_x"];
+                                                                                                $potencial_tecnologico_y = $row["potencial_tecnologico_y"];
+                                                                                                $tipologia_inovacao_x = $row["tipologia_inovacao_x"];
+                                                                                                $tipologia_inovacao_y = $row["tipologia_inovacao_y"];
+                                                                                                $risco_tecnologico_x = $row["risco_tecnologico_x"];
+                                                                                                $risco_tecnologico_y = $row["risco_tecnologico_y"];
+                                                                                                $impacto_tecnologico_x = $row["impacto_tecnologico_x"];
+                                                                                                $impacto_tecnologico_y = $row["impacto_tecnologico_y"];
+                                                                                                $infraestrutura_empresa_x = $row["infraestrutura_empresa_x"];
+                                                                                                $infraestrutura_empresa_y = $row["infraestrutura_empresa_y"];
+                                                                                                $parcerias_x = $row["parcerias_x"];
+                                                                                                $parcerias_y = $row["parcerias_y"];
+                                                                                                $equipe_x = $row["equipe_x"];
+                                                                                                $equipe_y = $row["equipe_y"];
+
+                                                                                                // Calcular a média dos campos que terminam com "x"
+                                                                                                $media_x = round(($g_inovacao_x + $potencial_tecnologico_x + $tipologia_inovacao_x +
+                                                                                                $risco_tecnologico_x + $impacto_tecnologico_x + $infraestrutura_empresa_x +
+                                                                                                $parcerias_x + $equipe_x) / 8,0);
+
+                                                                                                // Calcular a média dos campos que terminam com "y"
+                                                                                                $media_y = round(($g_inovacao_z + $potencial_tecnologico_y + $tipologia_inovacao_y + $risco_tecnologico_y +
+                                                                                                $impacto_tecnologico_y + $infraestrutura_empresa_y + $parcerias_y +
+                                                                                                $equipe_y) / 8,0);
+
+
+                                                                                                // echo $media_x;
+                                                                                                // echo "</br>";
+                                                                                                // echo $media_y;
+
+                                                                                                } else {
+                                                                                                echo "Não foram encontrados resultados.";
+                                                                                                }
+
+                                                                                            ?>
+
+
+
+
+                                                                                                <script>
+                                                                                                const videos = [
+                                                                                                    'https://www.youtube.com/embed/0Qzcw64Bwu0',
+
+                                                                                                ];
+
+                                                                                                const data = [{
+                                                                                                    x: <?php echo $media_x ?>,
+                                                                                                    y: <?php echo $media_y ?>,
+                                                                                                    z: 200,
+                                                                                                    url: "https://www.youtube.com/embed/VIDEO_ID_1"
+                                                                                                }, {
+                                                                                                    x: 0,
+                                                                                                    y: 0,
+                                                                                                    z: 0
+                                                                                                }, {
+                                                                                                    x: 1,
+                                                                                                    y: 0,
+                                                                                                    z: 0
+                                                                                                }, {
+                                                                                                    x: 2,
+                                                                                                    y: 0,
+                                                                                                    z: 0
+                                                                                                }];
+
+                                                                                                data.sort(function(a, b) {
+                                                                                                    return a.x - b.x;
+                                                                                                });
+
+                                                                                                const options = {
+                                                                                                    // chart: {
+                                                                                                    //     type: 'bubble',
+                                                                                                    //     events: {
+                                                                                                    //         click: function(event, chartContext, config) {
+                                                                                                    //             const pointIndex = config.dataPointIndex;
+                                                                                                    //             const videoUrl = videos[pointIndex];
+
+                                                                                                    //             if (videoUrl) {
+                                                                                                    //                 const videoModal = new bootstrap.Modal(document
+                                                                                                    //                     .getElementById('videoModal'));
+                                                                                                    //                 document.getElementById('youtube-video').src =
+                                                                                                    //                     videoUrl;
+                                                                                                    //                 videoModal.show();
+                                                                                                    //             }
+                                                                                                    //         },
+                                                                                                    //     },
+                                                                                                    // },
+
+
+                                                                                                    chart: {
+                                                                                                        type: "bubble",
+                                                                                                        height: 350,
+                                                                                                        events: {
+                                                                                                            markerClick: function(event, chartContext, {
+                                                                                                                seriesIndex,
+                                                                                                                dataPointIndex
+                                                                                                            }) {
+                                                                                                                const videoUrl = data[dataPointIndex].url;
+                                                                                                                $("#youtubeVideo").attr("src", videoUrl);
+                                                                                                                $("#youtubeModal").modal("show");
+                                                                                                            },
+                                                                                                        },
+                                                                                                    },
+
+
+                                                                                                    series: [{
+                                                                                                        name: 'Ponto',
+                                                                                                        data: data,
+                                                                                                    }],
+
+
+                                                                                                    plotOptions: {
+                                                                                                        bubble: {
+                                                                                                            minBubbleRadius: 0,
+                                                                                                            maxBubbleRadius: 200,
+                                                                                                        },
+                                                                                                    },
+                                                                                                    xaxis: {
+                                                                                                        title: {
+                                                                                                            text: 'Potencial de Inovação'
+                                                                                                        },
+                                                                                                        tickInterval: 1,
+                                                                                                        min: 0,
+                                                                                                        max: 5,
+                                                                                                        labels: {
+                                                                                                            formatter: function(val) {
+                                                                                                                return Math.abs(val)
+                                                                                                            }
+                                                                                                        }
+                                                                                                    },
+                                                                                                    yaxis: {
+                                                                                                        title: {
+                                                                                                            text: 'Potencial de Fomento'
+                                                                                                        },
+                                                                                                        tickInterval: 1,
+                                                                                                        min: 0,
+                                                                                                        max: 5,
+                                                                                                        labels: {
+                                                                                                            formatter: function(val) {
+                                                                                                                return Math.abs(val)
+                                                                                                            }
+                                                                                                        }
+                                                                                                    },
+                                                                                                };
+
+                                                                                                const chart = new ApexCharts(document.getElementById('bubble-chart'),
+                                                                                                    options);
+                                                                                                chart.render();
+                                                                                                </script>
+
+
+
                                             </div>
-
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-
-                    <div class="col-6">
-                        <div class="card-body">
-                            <div class="row align-items-center g-3 text-center text-xxl-start">
-                                <div class="container py-1">
-                                    <div class="row">
-
-                                        <div class="container py-1">
-
-
-                                            <h3>Diagnóstico</h3>
-
-
-                                            <div id="chart2"></div>
-
-
-                                            <div class="modal fade" tabindex="-1" role="dialog" id="youtubeModal">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Vídeo do YouTube</h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="ratio ratio-16x9">
-                                                                <iframe class="embed-responsive-item" id="youtubeVideo"
-                                                                    width="100%" height="315" frameborder="0"
-                                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                                    allowfullscreen></iframe>
-                                                            </div>
-                                                        </div>
-                                                        <!-- <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Fechar</button>
-                                                        </div> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -455,7 +646,7 @@ data-dismiss="modal">Fechar</button>
                             <div class="container py-5">
                                 <div class="row">
 
-                                    <div class="container py-5">
+                                    <div class="container py-0">
                                         <div class="table-responsive">
                                             <table class="table table-striped table-bordered">
                                                 <tr>
@@ -551,17 +742,6 @@ data-dismiss="modal">Fechar</button>
 
 
 
-                                        <div id="chart3"></div>
-<div class="modal fade" id="modal-videot" tabindex="-1" role="dialog" aria-labelledby="modal-video-title" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <video id="video" width="100%" height="auto" controls></video>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 
                                     </div>
@@ -571,7 +751,7 @@ data-dismiss="modal">Fechar</button>
                     </div>
                 </div>
 
-            </div>
+
         </div>
 
 
@@ -596,7 +776,7 @@ data-dismiss="modal">Fechar</button>
     <!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
-<?php
+    <?php
 $sql_grafico_2 = "SELECT CASE WHEN regime_tributario = 'lucro_real' THEN 5 ELSE 3 end as regime_tributario,
 TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tecnologia, ',', 2), ',', -1)) AS g_inovacao_x,
 TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tecnologia, ',', 3), ',', -1)) AS g_inovacao_z
@@ -621,68 +801,68 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
 ?>
 
     <script>
-    const data = [{
-            name: "Faturamento/Porte",
-            x: 5,
-            y: 5,
-            z: 3,
-            url: "https://www.youtube.com/embed/VIDEO_ID_1"
-        },
-        {
-            name: "Lucro",
-            x:  0,
-            y: <?php echo $regime_tributario ?>,
-            z: 4,
-            url: "https://www.youtube.com/embed/VIDEO_ID_2"
-        }
-        ,
-        {
-            name: "Lucro",
-            x:  0,
-            y: 4,
-            z: 4,
-            url: "https://www.youtube.com/embed/VIDEO_ID_2"
-        }
-    ];
+    // const data = [{
+    //         name: "Faturamento/Porte",
+    //         x: 5,
+    //         y: 5,
+    //         z: 3,
+    //         url: "https://www.youtube.com/embed/VIDEO_ID_1"
+    //     },
+    //     {
+    //         name: "Lucro",
+    //         x:  0,
+    //         y: <?php echo $regime_tributario ?>,
+    //         z: 4,
+    //         url: "https://www.youtube.com/embed/VIDEO_ID_2"
+    //     }
+    //     ,
+    //     {
+    //         name: "Lucro",
+    //         x:  0,
+    //         y: 4,
+    //         z: 4,
+    //         url: "https://www.youtube.com/embed/VIDEO_ID_2"
+    //     }
+    // ];
 
-    const options = {
-        chart: {
-            type: "bubble",
-            height: 350,
-            events: {
-                markerClick: function(event, chartContext, {
-                    seriesIndex,
-                    dataPointIndex
-                }) {
-                    const videoUrl = data[dataPointIndex].url;
-                    $("#youtubeVideo").attr("src", videoUrl);
-                    $("#youtubeModal").modal("show");
-                },
-            },
-        },
-        series: [{
-            name: "Videos",
-            data: data,
-        }, ],
-        fill: {
-            type: "solid",
-        },
-        xaxis: {
-    tickAmount: 1,
+    // const options = {
+    //     chart: {
+    //         type: "bubble",
+    //         height: 350,
+    //         events: {
+    //             markerClick: function(event, chartContext, {
+    //                 seriesIndex,
+    //                 dataPointIndex
+    //             }) {
+    //                 const videoUrl = data[dataPointIndex].url;
+    //                 $("#youtubeVideo").attr("src", videoUrl);
+    //                 $("#youtubeModal").modal("show");
+    //             },
+    //         },
+    //     },
+    //     series: [{
+    //         name: "Videos",
+    //         data: data,
+    //     }, ],
+    //     fill: {
+    //         type: "solid",
+    //     },
+    //     xaxis: {
+    // tickAmount: 1,
 
-    },
+    // },
 
-        yaxis: {
-            title: {
-                text: "Fomento",
-            },
-            min: 0,
-            max: 6,
-        },
-    };
+    //     yaxis: {
+    //         title: {
+    //             text: "Fomento",
+    //         },
+    //         min: 0,
+    //         max: 6,
+    //     },
+    // };
 
-    const chart2 = new ApexCharts(document.querySelector("#chart2"), options);
-    chart2.render();
+    // const chart2 = new ApexCharts(document.querySelector("#chart2"), options);
+    // chart2.render();
 
 
 
@@ -698,56 +878,56 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
         {
 
             x: "Potencial Tecnologico",
-            y:  <?php echo $potencial_tecnologico ?>,
+            y: <?php echo $potencial_tecnologico ?>,
 
             url: "https://www.youtube.com/embed/VIDEO_ID_2"
         },
         {
 
             x: "Tipo de Inovação",
-            y:  <?php echo $tipologia_inovacao ?>,
+            y: <?php echo $tipologia_inovacao ?>,
             url: "https://www.youtube.com/embed/VIDEO_ID_2"
         },
         {
 
             x: "Risco Tecnologico",
-            y:  <?php echo $risco_tecnologico ?>,
+            y: <?php echo $risco_tecnologico ?>,
             url: "https://www.youtube.com/embed/VIDEO_ID_2"
         },
         {
 
             x: "Impacto Cientifico Tecnologico",
-            y:  <?php echo $impacto_cientifico_tecnologico ?>,
+            y: <?php echo $impacto_cientifico_tecnologico ?>,
             url: "https://www.youtube.com/embed/VIDEO_ID_2"
         },
         {
 
             x: "Infra estrutura da empresa",
-            y:  <?php echo $infraestrutura_empresa ?>,
+            y: <?php echo $infraestrutura_empresa ?>,
             url: "https://www.youtube.com/embed/VIDEO_ID_2"
         },
         {
 
             x: "Parcerias",
-            y:  <?php echo $parcerias ?>,
+            y: <?php echo $parcerias ?>,
             url: "https://www.youtube.com/embed/VIDEO_ID_2"
         },
         {
 
             x: "Impactos Gerais",
-            y:  <?php echo $impactos_gerais ?>,
+            y: <?php echo $impactos_gerais ?>,
             url: "https://www.youtube.com/embed/VIDEO_ID_2"
         },
         {
 
             x: "Equipe",
-            y:  <?php echo $equipe ?>,
+            y: <?php echo $equipe ?>,
             url: "https://www.youtube.com/embed/VIDEO_ID_2"
         },
         {
 
             x: "Beneficios Inovação",
-            y:  <?php echo $beneficio_inovacao ?>,
+            y: <?php echo $beneficio_inovacao ?>,
             url: "https://www.youtube.com/embed/VIDEO_ID_2"
         },
     ];
@@ -791,92 +971,15 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
             max: 6
         },
         markers: {
-          size: 8,
-          colors: ['#26A0c4'],
-          strokeColor: '#26A0FC',
-          strokeWidth: 2,
+            size: 8,
+            colors: ['#26A0c4'],
+            strokeColor: '#26A0FC',
+            strokeWidth: 2,
         },
     };
 
     const chart23 = new ApexCharts(document.querySelector("#chart23"), options2);
     chart23.render();
-
-
-
-
-
-
-    var options3 = {
-  series: [
-    {
-      name: 'Série 1',
-      data: [
-        { x: 10, y: 20, z: 30, url: 'https://www.example.com/video1.mp4' }, // URL do vídeo para o primeiro ponto
-        { x: 20, y: 30, z: 40, url: 'https://www.example.com/video2.mp4' }, // URL do vídeo para o segundo ponto
-        { x: 30, y: 40, z: 50, url: 'https://www.example.com/video3.mp4' }, // URL do vídeo para o terceiro ponto
-        { x: 40, y: 50, z: 70, url: 'https://www.example.com/video4.mp4' }, // URL do vídeo para o quarto ponto
-        { x: 45, y: 50, z: 70, url: 'https://www.example.com/video5.mp4' }, // URL do vídeo para o quinto ponto
-      ],
-    },
-  ],
-  chart: {
-    height: 350,
-    type: 'bubble',
-  },
-  title: {
-    text: 'Gráfico de Bolha',
-  },
-  xaxis: {
-    tickAmount: 10,
-    labels: {
-      formatter: function (val) {
-        return val.toFixed(0);
-      },
-    },
-  },
-  yaxis: {
-    tickAmount: 7,
-  },
-  tooltip: {
-    x: {
-      formatter: function (val) {
-        return val.toFixed(0);
-      },
-    },
-    y: {
-      formatter: function (val) {
-        return val.toFixed(0);
-      },
-    },
-  },
-};
-var chart3 = new ApexCharts(document.querySelector('#chart3'), options3);
-chart3.render();
-chart3.addEventListener('dataPointClick', function (event, chartContext, config) {
-  // abre o modal de vídeo com o ID correspondente
-  $('#modal-videot').modal('show');
-
-  // define o URL do vídeo e define como o vídeo deve ser reproduzido
-  var video = document.querySelector('#video');
-  video.src = config.dataPoint.url;
-  video.play();
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </script>
 
 

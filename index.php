@@ -33,8 +33,8 @@
 h1 .typewriter {
   white-space: nowrap;
   animation-name: typewriter;
-  animation-duration: 5s; /* Ajuste a duração da animação */
-  animation-timing-function: steps(100, end); /* Ajuste o número de 'steps' para controlar a velocidade da animação */
+  animation-duration: 10s; /* Ajuste a duração da animação */
+  animation-timing-function: steps(10, end); /* Ajuste o número de 'steps' para controlar a velocidade da animação */
 }
 
 
@@ -218,7 +218,7 @@ var texto = "D.E.F.I.N.E.";
 var textoElemento = document.getElementById("texto");
 
 // Defina a velocidade do efeito (em milissegundos)
-var velocidade = 20;
+var velocidade = 90;
 
 // Inicialize a variável que será usada para controlar a posição atual do texto
 var posicao = 0;

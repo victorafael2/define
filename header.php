@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 
 
 
@@ -18,7 +20,14 @@ $stringParaRepetir = "../";
 $contagem = substr_count($url, $caractere) - $diminuir;
 
 
-$url = str_repeat($stringParaRepetir, $contagem);
+// $url = str_repeat($stringParaRepetir, $contagem);
+
+if ($contagem > 0) {
+    $url = str_repeat($stringParaRepetir, $contagem);
+  } else {
+
+    $url = "";
+  }
 
 
 // echo $url;
@@ -34,16 +43,29 @@ $url_index = $url.$index;
 include($caminho_full);
 
 
-// Verifica se a variável de sessão 'nome_logado' não está configurada
+// // Verifica se a variável de sessão 'nome_logado' não está configurada
+// if (!isset($_SESSION['email'])) {
+//     // Verifica se o arquivo atual é index.php
+//     if (basename($_SERVER['PHP_SELF']) == "index.php") {
+//         // Faça outra coisa aqui
+//     } else {
+//         header("Location:  $url_index"); // Redireciona o usuário para a página inicial
+//         exit(); // Encerra a execução do script atual
+//     }
+// }
+
+// Verifica se a variável de sessão 'email' não está configurada
 if (!isset($_SESSION['email'])) {
-    // Verifica se o arquivo atual é index.php
-    if (basename($_SERVER['PHP_SELF']) == "index.php") {
-        // Faça outra coisa aqui
+    // Verifica se o arquivo atual é index.php ou empresa.php
+    $current_file = basename($_SERVER['PHP_SELF']);
+    if ($current_file == "index.php" || $current_file == "empresa.php") {
+      // Faça outra coisa aqui
     } else {
-        header("Location:  $url_index"); // Redireciona o usuário para a página inicial
-        exit(); // Encerra a execução do script atual
+      // Redireciona o usuário para a página inicial
+      header("Location: $url_index");
+      exit(); // Encerra a execução do script atual
     }
-}
+  }
 
 
 
@@ -165,6 +187,11 @@ $logado = "deslogado";
 $esconder_ = "d-none";
 $cadastrar = "empresas/empresa.php";
 $cadastrar_texto = "Cadastre-se e tenha acesso a oportundiades";
+$botao_login = '<a class="btn btn-phoenix-secondary d-flex flex-center w-100"
+href="' . $url . 'pages/authentication/simple/sign-in.php"> <span class="me-2"
+    data-feather="log-in"> </span>
+
+</a>' ;
 // exit;
 } else
 {
@@ -173,6 +200,11 @@ $cadastrar_texto = "Cadastre-se e tenha acesso a oportundiades";
     $esconder_entrar = "d-none";
     $cadastrar = "questionario/questionario.php";
     $cadastrar_texto = "Responda o questionario e veja como podemos te ajudar";
+    $botao_login = ' <form class="<?php echo $esconder_ ?>" method="post"
+    action=" ' . $url . 'encerrar_sessao.php">
+    <input type="hidden" name="encerrar_sessao" value="1">
+    <input class="btn btn-phoenix-danger d-flex flex-center w-100" type="submit" value="Encerrar sessão">
+</form>';
 }
 
 if(isset($_SESSION['email'])) {
@@ -296,3 +328,8 @@ $duas_iniciais = substr($iniciais, 0, 2);
 <script src="<?php echo $url ?>vendors/dayjs/dayjs.min.js"></script>
 <script src="<?php echo $url ?>assets/js/phoenix.js"></script>
 </head>
+
+
+
+
+

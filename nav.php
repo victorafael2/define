@@ -15,7 +15,14 @@ $stringParaRepetir = "../";
 $contagem = substr_count($url, $caractere) - $diminuir;
 
 
-$url = str_repeat($stringParaRepetir, $contagem);
+// $url = str_repeat($stringParaRepetir, $contagem);
+
+if ($contagem > 0) {
+    $url = str_repeat($stringParaRepetir, $contagem);
+  } else {
+
+    $url = "";
+  }
 
 
 $caminhobd = "conexao/conexao.php";
@@ -159,18 +166,9 @@ include($caminho_full);
                             <!-- <hr /> -->
                             <div class="px-5 py-2">
 
-                                <a class="btn btn-phoenix-secondary d-flex flex-center w-100"
-                                    href="<?php echo $url ?>pages/authentication/simple/sign-in.php"> <span class="me-2"
-                                        data-feather="log-in"> </span>
 
 
-                                </a>
-
-                                <form class="<?php echo $esconder_ ?>" method="post"
-                                    action="<?php echo $url ?>encerrar_sessao.php">
-                                    <input type="hidden" name="encerrar_sessao" value="1">
-                                    <input class="btn btn-phoenix-danger order-0" type="submit" value="Encerrar sessão">
-                                </form>
+                            <?php echo $botao_login ?>
 
                             </div>
                             <div class="my-2 text-center fw-bold fs--2 text-600"><a class="text-600 me-1"
@@ -238,3 +236,6 @@ var img = document.getElementById("svg-img-2");
 
 img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgString));
 </script>
+
+
+
