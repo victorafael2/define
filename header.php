@@ -1,6 +1,28 @@
 <?php
+// Define o tempo limite da sessão para 20 minutos
+ini_set('session.gc_maxlifetime', 1200);
 
 session_start();
+
+// Verifica se a sessão expirou
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1200)) {
+    // A sessão expirou, destrói todas as variáveis de sessão
+    session_unset();
+    // Destroi a sessão
+    session_destroy();
+    // Redireciona o usuário para a página de login
+    header('Location: index.php');
+    exit;
+}
+
+// Atualiza a hora da última atividade
+$_SESSION['LAST_ACTIVITY'] = time();
+
+
+
+
+
+
 
 
 
@@ -311,6 +333,16 @@ $duas_iniciais = substr($iniciais, 0, 2);
         userLinkRTL.setAttribute('disabled', true);
     }
     </script>
+
+
+
+<script>
+// Agende um "toast" para exibir uma mensagem para o usuário quando a sessão estiver prestes a expirar
+setTimeout(function() {
+    alert('Sua sessão está prestes a expirar em 2 minutos. Por favor, salve seu trabalho e faça login novamente.');
+}, 1080000); // 18 minutos
+
+</script>
 
 
 

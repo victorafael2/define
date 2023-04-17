@@ -136,11 +136,19 @@
 
                                                 <?php if ($permissao != "user") {
                                                      echo '<li class="nav-item me-3 <?php echo $permissao_class ?> "><a
-                                                        class="nav-link text-nowrap" id="reviews-tab"
-                                                        data-bs-toggle="tab" href="#tab-reviews" role="tab"
-                                                        aria-controls="tab-orders" aria-selected="true"><span
-                                                            class="fas fa-star me-2"></span>Lista de Usuarios<span
-                                                            class="text-700 fw-normal"></span></a></li>'; } ?>
+                                                    class="nav-link text-nowrap" id="reviews-tab" data-bs-toggle="tab"
+                                                    href="#tab-reviews" role="tab" aria-controls="tab-orders"
+                                                    aria-selected="true"><span class="fas fa-star me-2"></span>Lista de
+                                                    Usuarios<span class="text-700 fw-normal"></span></a></li>'; } ?>
+
+
+
+                                                <?php if ($permissao != "user") {
+                                                     echo '<li class="nav-item me-3 <?php echo $permissao_class ?> "><a
+                                                    class="nav-link text-nowrap" id="reviews-tab" data-bs-toggle="tab"
+                                                    href="#tab-video" role="tab" aria-controls="tab-orders"
+                                                    aria-selected="true"><span class="fas fa-film me-2"></span>Videos
+                                                    Diagnosticos<span class="text-700 fw-normal"></span></a></li>'; } ?>
                                                 <!--  <li class="nav-item me-3"><a class="nav-link text-nowrap" id="wishlist-tab" data-bs-toggle="tab" href="#tab-wishlist" role="tab" aria-controls="tab-orders" aria-selected="true"><span class="fas fa-heart me-2"></span>Wishlist</a></li>
                 <li class="nav-item me-3"><a class="nav-link text-nowrap" id="stores-tab" data-bs-toggle="tab" href="#tab-stores" role="tab" aria-controls="tab-stores" aria-selected="true"><span class="fas fa-home me-2"></span>Stores</a></li>
                 <li class="nav-item"><a class="nav-link text-nowrap" id="personal-info-tab" data-bs-toggle="tab" href="#tab-personal-info" role="tab" aria-controls="tab-personal-info" aria-selected="true"><span class="fas fa-user me-2"></span>Personal info</a></li> -->
@@ -281,7 +289,7 @@
                                                         </table>";
                                                         echo '</form>';
                                                         echo '</div>';
-                                                            }
+                                                    }
 
                                                     // Fecha a conexão com o banco de dados
                                                     // $mysqli->close();
@@ -291,336 +299,52 @@
 
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="tab-wishlist" role="tabpanel"
+                                        <div class="tab-pane fade" id="tab-video" role="tabpanel"
                                             aria-labelledby="wishlist-tab">
                                             <div class="border-y" id="productWishlistTable"
                                                 data-list='{"valueNames":["products","color","size","price","quantity","total"],"page":5,"pagination":true}'>
                                                 <div class="table-responsive scrollbar">
-                                                    <table class="table fs--1 mb-0">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="sort white-space-nowrap align-middle fs--2"
-                                                                    scope="col" style="width:7%;"></th>
-                                                                <th class="sort white-space-nowrap align-middle"
-                                                                    scope="col" style="width:30%; min-width:250px;"
-                                                                    data-sort="products">PRODUCTS</th>
-                                                                <th class="sort align-middle" scope="col"
-                                                                    data-sort="color" style="width:16%;">COLOR</th>
-                                                                <th class="sort align-middle" scope="col"
-                                                                    data-sort="size" style="width:10%;">SIZE</th>
-                                                                <th class="sort align-middle text-end" scope="col"
-                                                                    data-sort="price" style="width:10%;">PRICE</th>
-                                                                <th class="sort align-middle text-end pe-0" scope="col"
-                                                                    style="width:35%;"> </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody class="list" id="profile-wishlist-table-body">
-                                                            <tr
-                                                                class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                <td class="align-middle white-space-nowrap ps-0 py-0">
-                                                                    <div class="border rounded-2 d-inline-block">
-                                                                        <img src="../../../assets/img//products/1.png"
-                                                                            alt="" width="53" />
-                                                                    </div>
-                                                                </td>
-                                                                <td class="products align-middle pe-11"><a
-                                                                        class="fw-semi-bold mb-0 line-clamp-1"
-                                                                        href="#!">Fitbit Sense Advanced Smartwatch
-                                                                        with Tools for Heart Health, Stress
-                                                                        Management &amp; Skin Temperature Trends,
-                                                                        Carbon/Graphite, One Size (S &amp; L
-                                                                        Bands)</a></td>
-                                                                <td
-                                                                    class="color align-middle white-space-nowrap fs--1 text-900">
-                                                                    Pure matte black</td>
-                                                                <td
-                                                                    class="size align-middle white-space-nowrap text-700 fs--1 fw-semi-bold">
-                                                                    42</td>
-                                                                <td
-                                                                    class="price align-middle text-900 fs--1 fw-semi-bold text-end">
-                                                                    $57</td>
-                                                                <td
-                                                                    class="total align-middle fw-bold text-1000 text-end text-nowrap pe-0">
-                                                                    <button
-                                                                        class="btn btn-sm text-500 hover-text-600 me-2"><span
-                                                                            class="fas fa-trash"></span></button>
-                                                                    <button class="btn btn-primary fs--2"><span
-                                                                            class="fas fa-shopping-cart me-1 fs--2"></span>Add
-                                                                        to cart</button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr
-                                                                class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                <td class="align-middle white-space-nowrap ps-0 py-0">
-                                                                    <div class="border rounded-2 d-inline-block">
-                                                                        <img src="../../../assets/img//products/7.png"
-                                                                            alt="" width="53" />
-                                                                    </div>
-                                                                </td>
-                                                                <td class="products align-middle pe-11"><a
-                                                                        class="fw-semi-bold mb-0 line-clamp-1"
-                                                                        href="#!">2021 Apple 12.9-inch iPad Pro
-                                                                        (Wi‑Fi, 128GB) - Space Gray</a></td>
-                                                                <td
-                                                                    class="color align-middle white-space-nowrap fs--1 text-900">
-                                                                    Black</td>
-                                                                <td
-                                                                    class="size align-middle white-space-nowrap text-700 fs--1 fw-semi-bold">
-                                                                    Pro</td>
-                                                                <td
-                                                                    class="price align-middle text-900 fs--1 fw-semi-bold text-end">
-                                                                    $1,499</td>
-                                                                <td
-                                                                    class="total align-middle fw-bold text-1000 text-end text-nowrap pe-0">
-                                                                    <button
-                                                                        class="btn btn-sm text-500 hover-text-600 me-2"><span
-                                                                            class="fas fa-trash"></span></button>
-                                                                    <button class="btn btn-primary fs--2"><span
-                                                                            class="fas fa-shopping-cart me-1 fs--2"></span>Add
-                                                                        to cart</button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr
-                                                                class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                <td class="align-middle white-space-nowrap ps-0 py-0">
-                                                                    <div class="border rounded-2 d-inline-block">
-                                                                        <img src="../../../assets/img//products/6.png"
-                                                                            alt="" width="53" />
-                                                                    </div>
-                                                                </td>
-                                                                <td class="products align-middle pe-11"><a
-                                                                        class="fw-semi-bold mb-0 line-clamp-1"
-                                                                        href="#!">PlayStation 5 DualSense Wireless
-                                                                        Controller</a></td>
-                                                                <td
-                                                                    class="color align-middle white-space-nowrap fs--1 text-900">
-                                                                    White</td>
-                                                                <td
-                                                                    class="size align-middle white-space-nowrap text-700 fs--1 fw-semi-bold">
-                                                                    Regular</td>
-                                                                <td
-                                                                    class="price align-middle text-900 fs--1 fw-semi-bold text-end">
-                                                                    $299</td>
-                                                                <td
-                                                                    class="total align-middle fw-bold text-1000 text-end text-nowrap pe-0">
-                                                                    <button
-                                                                        class="btn btn-sm text-500 hover-text-600 me-2"><span
-                                                                            class="fas fa-trash"></span></button>
-                                                                    <button class="btn btn-primary fs--2"><span
-                                                                            class="fas fa-shopping-cart me-1 fs--2"></span>Add
-                                                                        to cart</button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr
-                                                                class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                <td class="align-middle white-space-nowrap ps-0 py-0">
-                                                                    <div class="border rounded-2 d-inline-block">
-                                                                        <img src="../../../assets/img//products/3.png"
-                                                                            alt="" width="53" />
-                                                                    </div>
-                                                                </td>
-                                                                <td class="products align-middle pe-11"><a
-                                                                        class="fw-semi-bold mb-0 line-clamp-1"
-                                                                        href="#!">Apple MacBook Pro 13
-                                                                        inch-M1-8/256GB-space</a></td>
-                                                                <td
-                                                                    class="color align-middle white-space-nowrap fs--1 text-900">
-                                                                    Space Gray</td>
-                                                                <td
-                                                                    class="size align-middle white-space-nowrap text-700 fs--1 fw-semi-bold">
-                                                                    Pro</td>
-                                                                <td
-                                                                    class="price align-middle text-900 fs--1 fw-semi-bold text-end">
-                                                                    $1,699</td>
-                                                                <td
-                                                                    class="total align-middle fw-bold text-1000 text-end text-nowrap pe-0">
-                                                                    <button
-                                                                        class="btn btn-sm text-500 hover-text-600 me-2"><span
-                                                                            class="fas fa-trash"></span></button>
-                                                                    <button class="btn btn-primary fs--2"><span
-                                                                            class="fas fa-shopping-cart me-1 fs--2"></span>Add
-                                                                        to cart</button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr
-                                                                class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                <td class="align-middle white-space-nowrap ps-0 py-0">
-                                                                    <div class="border rounded-2 d-inline-block">
-                                                                        <img src="../../../assets/img//products/4.png"
-                                                                            alt="" width="53" />
-                                                                    </div>
-                                                                </td>
-                                                                <td class="products align-middle pe-11"><a
-                                                                        class="fw-semi-bold mb-0 line-clamp-1"
-                                                                        href="#!">Apple iMac 24&quot; 4K Retina
-                                                                        Display M1 8 Core CPU, 7 Core GPU, 256GB
-                                                                        SSD, Green (MJV83ZP/A) 2021</a></td>
-                                                                <td
-                                                                    class="color align-middle white-space-nowrap fs--1 text-900">
-                                                                    Ocean Blue</td>
-                                                                <td
-                                                                    class="size align-middle white-space-nowrap text-700 fs--1 fw-semi-bold">
-                                                                    21&quot;</td>
-                                                                <td
-                                                                    class="price align-middle text-900 fs--1 fw-semi-bold text-end">
-                                                                    $65</td>
-                                                                <td
-                                                                    class="total align-middle fw-bold text-1000 text-end text-nowrap pe-0">
-                                                                    <button
-                                                                        class="btn btn-sm text-500 hover-text-600 me-2"><span
-                                                                            class="fas fa-trash"></span></button>
-                                                                    <button class="btn btn-primary fs--2"><span
-                                                                            class="fas fa-shopping-cart me-1 fs--2"></span>Add
-                                                                        to cart</button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr
-                                                                class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                <td class="align-middle white-space-nowrap ps-0 py-0">
-                                                                    <div class="border rounded-2 d-inline-block">
-                                                                        <img src="../../../assets/img//products/10.png"
-                                                                            alt="" width="53" />
-                                                                    </div>
-                                                                </td>
-                                                                <td class="products align-middle pe-11"><a
-                                                                        class="fw-semi-bold mb-0 line-clamp-1"
-                                                                        href="#!">Apple Magic Mouse (Wireless,
-                                                                        Rechargable) - Silver</a></td>
-                                                                <td
-                                                                    class="color align-middle white-space-nowrap fs--1 text-900">
-                                                                    White</td>
-                                                                <td
-                                                                    class="size align-middle white-space-nowrap text-700 fs--1 fw-semi-bold">
-                                                                    Regular</td>
-                                                                <td
-                                                                    class="price align-middle text-900 fs--1 fw-semi-bold text-end">
-                                                                    $30</td>
-                                                                <td
-                                                                    class="total align-middle fw-bold text-1000 text-end text-nowrap pe-0">
-                                                                    <button
-                                                                        class="btn btn-sm text-500 hover-text-600 me-2"><span
-                                                                            class="fas fa-trash"></span></button>
-                                                                    <button class="btn btn-primary fs--2"><span
-                                                                            class="fas fa-shopping-cart me-1 fs--2"></span>Add
-                                                                        to cart</button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr
-                                                                class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                <td class="align-middle white-space-nowrap ps-0 py-0">
-                                                                    <div class="border rounded-2 d-inline-block">
-                                                                        <img src="../../../assets/img//products/8.png"
-                                                                            alt="" width="53" />
-                                                                    </div>
-                                                                </td>
-                                                                <td class="products align-middle pe-11"><a
-                                                                        class="fw-semi-bold mb-0 line-clamp-1"
-                                                                        href="#!">Amazon Basics Matte Black Wired
-                                                                        Keyboard - US Layout (QWERTY)</a></td>
-                                                                <td
-                                                                    class="color align-middle white-space-nowrap fs--1 text-900">
-                                                                    Black</td>
-                                                                <td
-                                                                    class="size align-middle white-space-nowrap text-700 fs--1 fw-semi-bold">
-                                                                    MD</td>
-                                                                <td
-                                                                    class="price align-middle text-900 fs--1 fw-semi-bold text-end">
-                                                                    $40</td>
-                                                                <td
-                                                                    class="total align-middle fw-bold text-1000 text-end text-nowrap pe-0">
-                                                                    <button
-                                                                        class="btn btn-sm text-500 hover-text-600 me-2"><span
-                                                                            class="fas fa-trash"></span></button>
-                                                                    <button class="btn btn-primary fs--2"><span
-                                                                            class="fas fa-shopping-cart me-1 fs--2"></span>Add
-                                                                        to cart</button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr
-                                                                class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                <td class="align-middle white-space-nowrap ps-0 py-0">
-                                                                    <div class="border rounded-2 d-inline-block">
-                                                                        <img src="../../../assets/img//products/12.png"
-                                                                            alt="" width="53" />
-                                                                    </div>
-                                                                </td>
-                                                                <td class="products align-middle pe-11"><a
-                                                                        class="fw-semi-bold mb-0 line-clamp-1"
-                                                                        href="#!">HORI Racing Wheel Apex for
-                                                                        PlayStation 4_3, and PC</a></td>
-                                                                <td
-                                                                    class="color align-middle white-space-nowrap fs--1 text-900">
-                                                                    Black</td>
-                                                                <td
-                                                                    class="size align-middle white-space-nowrap text-700 fs--1 fw-semi-bold">
-                                                                    45</td>
-                                                                <td
-                                                                    class="price align-middle text-900 fs--1 fw-semi-bold text-end">
-                                                                    $130</td>
-                                                                <td
-                                                                    class="total align-middle fw-bold text-1000 text-end text-nowrap pe-0">
-                                                                    <button
-                                                                        class="btn btn-sm text-500 hover-text-600 me-2"><span
-                                                                            class="fas fa-trash"></span></button>
-                                                                    <button class="btn btn-primary fs--2"><span
-                                                                            class="fas fa-shopping-cart me-1 fs--2"></span>Add
-                                                                        to cart</button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr
-                                                                class="hover-actions-trigger btn-reveal-trigger position-static">
-                                                                <td class="align-middle white-space-nowrap ps-0 py-0">
-                                                                    <div class="border rounded-2 d-inline-block">
-                                                                        <img src="../../../assets/img//products/17.png"
-                                                                            alt="" width="53" />
-                                                                    </div>
-                                                                </td>
-                                                                <td class="products align-middle pe-11"><a
-                                                                        class="fw-semi-bold mb-0 line-clamp-1"
-                                                                        href="#!">Xbox Series S</a></td>
-                                                                <td
-                                                                    class="color align-middle white-space-nowrap fs--1 text-900">
-                                                                    Space Gray</td>
-                                                                <td
-                                                                    class="size align-middle white-space-nowrap text-700 fs--1 fw-semi-bold">
-                                                                    sm</td>
-                                                                <td
-                                                                    class="price align-middle text-900 fs--1 fw-semi-bold text-end">
-                                                                    $99</td>
-                                                                <td
-                                                                    class="total align-middle fw-bold text-1000 text-end text-nowrap pe-0">
-                                                                    <button
-                                                                        class="btn btn-sm text-500 hover-text-600 me-2"><span
-                                                                            class="fas fa-trash"></span></button>
-                                                                    <button class="btn btn-primary fs--2"><span
-                                                                            class="fas fa-shopping-cart me-1 fs--2"></span>Add
-                                                                        to cart</button>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div
-                                                    class="row align-items-center justify-content-between py-2 pe-0 fs--1">
-                                                    <div class="col-auto d-flex">
-                                                        <p class="mb-0 d-none d-sm-block me-3 fw-semi-bold text-900"
-                                                            data-list-info="data-list-info"></p><a class="fw-semi-bold"
-                                                            href="#!" data-list-view="*">View
-                                                            all<span class="fas fa-angle-right ms-1"
-                                                                data-fa-transform="down-1"></span></a><a
-                                                            class="fw-semi-bold d-none" href="#!"
-                                                            data-list-view="less">View Less<span
-                                                                class="fas fa-angle-right ms-1"
-                                                                data-fa-transform="down-1"></span></a>
+
+                                                    <div class="container">
+                                                        <h1 class="mt-4 mb-4">Cadastrar vídeo do YouTube</h1>
+                                                        <form action="update/cadastrar_video.php" method="post">
+
+
+
+
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <label for="item">Item:</label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="First name" name="item" id="item"
+                                                                        required>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label for="video_id">ID do vídeo do
+                                                                        YouTube:</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="video_id" id="video_id" required>
+                                                                </div>
+
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary form-control">Cadastrar</button>
+
+                                                            </div>
+                                                        </form>
                                                     </div>
-                                                    <div class="col-auto d-flex">
-                                                        <button class="page-link" data-list-pagination="prev"><span
-                                                                class="fas fa-chevron-left"></span></button>
-                                                        <ul class="mb-0 pagination"></ul>
-                                                        <button class="page-link pe-0" data-list-pagination="next"><span
-                                                                class="fas fa-chevron-right"></span></button>
-                                                    </div>
+
+                                                    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
+                                                    <script>
+                                                    <?php if(isset($_GET['status']) && $_GET['status'] == 'success') { ?>
+                                                    Swal.fire({
+                                                        icon: 'success',
+                                                        title: 'Vídeo cadastrado com sucesso!',
+                                                    });
+                                                    <?php } ?>
+                                                    </script>
+
                                                 </div>
+
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tab-stores" role="tabpanel"
@@ -1600,7 +1324,7 @@
     </script>
 
 
-<script>
+    <script>
     function fezContato(id, contato) {
         $.ajax({
             url: "update/fez_contato.php",
@@ -1612,7 +1336,7 @@
             success: function() {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Perfil alterado com sucesso!',
+                    title: 'Contato Feito!',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -1620,7 +1344,7 @@
             error: function() {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Não foi possível alterar o perfil do usuário.',
+                    title: 'Não foi possível alterar o status.',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -1660,63 +1384,62 @@
 
 
 
-<script>
-function atualizarCampo(id) {
-    // Recupera o valor do campo
-    var novoValor = document.getElementById("campo_" + id).value;
+    <script>
+    function atualizarCampo(id) {
+        // Recupera o valor do campo
+        var novoValor = document.getElementById("campo_" + id).value;
 
-    // Exibe uma notificação de confirmação ao usuário
-    Swal.fire({
-        title: 'Tem certeza?',
-        text: 'Deseja atualizar o valor do campo?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim, atualizar!',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Envia a requisição AJAX para atualizar o campo no banco de dados
-            $.ajax({
-                url: 'update/atualizar_campo.php',
-                type: 'POST',
-                data: {
-                    id: id,
-                    valor: novoValor
-                },
-                success: function(response) {
-                    // Mostra uma notificação de sucesso
-                    Swal.fire({
-                        title: 'Sucesso!',
-                        text: 'O valor do campo foi atualizado.',
-                        icon: 'success',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
-                    });
-                },
-                error: function() {
-                    // Mostra uma notificação de erro
-                    Swal.fire({
-                        title: 'Oops...',
-                        text: 'Houve um erro ao atualizar o valor do campo.',
-                        icon: 'error',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
-                    });
-                }
-            });
-        }
-    });
-}
+        // Exibe uma notificação de confirmação ao usuário
+        Swal.fire({
+            title: 'Tem certeza?',
+            text: 'Deseja atualizar o valor do campo?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, atualizar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Envia a requisição AJAX para atualizar o campo no banco de dados
+                $.ajax({
+                    url: 'update/atualizar_campo.php',
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        valor: novoValor
+                    },
+                    success: function(response) {
+                        // Mostra uma notificação de sucesso
+                        Swal.fire({
+                            title: 'Sucesso!',
+                            text: 'O valor do campo foi atualizado.',
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        });
+                    },
+                    error: function() {
+                        // Mostra uma notificação de erro
+                        Swal.fire({
+                            title: 'Oops...',
+                            text: 'Houve um erro ao atualizar o valor do campo.',
+                            icon: 'error',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            }
+        });
+    }
+    </script>
 
-</script>
-
-<script>
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-</script>
+    <script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
 
 
 </body>

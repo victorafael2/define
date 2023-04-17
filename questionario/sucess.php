@@ -217,6 +217,11 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
 
 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
 <style>
 .dialog {
     display: none;
@@ -347,7 +352,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">Vídeo do YouTube</h5>
+                                                                <h5 class="modal-title">Fomento</h5>
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
@@ -400,7 +405,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">Vídeo do YouTube</h5>
+                                                                <h5 class="modal-title">Oportunidade</h5>
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
@@ -779,7 +784,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
     <?php
 $sql_grafico_2 = "SELECT CASE WHEN regime_tributario = 'lucro_real' THEN 5 ELSE 3 end as regime_tributario,
 TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tecnologia, ',', 2), ',', -1)) AS g_inovacao_x,
-TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tecnologia, ',', 3), ',', -1)) AS g_inovacao_z
+TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tecnologia, ',', 3), ',', -1)) AS g_inovacao_y
 
  FROM questionario2 where id = '$diag'";
 
@@ -1264,4 +1269,26 @@ document.addEventListener('DOMContentLoaded', function() {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 });
+</script>
+
+<script>
+// Notificação com opções personalizadas
+toastr.options = {
+  closeButton: true,
+  debug: false,
+  newestOnTop: false,
+  progressBar: true,
+  positionClass: 'toast-top-right',
+  preventDuplicates: false,
+  onclick: null,
+  showDuration: '300',
+  hideDuration: '1000',
+  timeOut: '5000',
+  extendedTimeOut: '1000',
+  showEasing: 'swing',
+  hideEasing: 'linear',
+  showMethod: 'fadeIn',
+  hideMethod: 'fadeOut'
+};
+toastr.info('Agora você pode ver os pontos fortes e fracos da sua startup.', 'Informação');
 </script>
