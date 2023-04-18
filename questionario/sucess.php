@@ -318,7 +318,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
 
 
-                <div class="row g-3 mb-6">
+                <div class="row g-3 ">
                     <div class="col-12">
                         <div class="row text-center">
                             <div class="container py-1">
@@ -328,7 +328,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
                             </div>
                         </div>
                     </div>
-                    <div class="row g-3 mb-6">
+                    <div class="row g-3 ">
                         <div class="col-12 col-lg-6">
                             <div class="card h100">
                             <div class="card-body">

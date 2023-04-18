@@ -148,7 +148,7 @@
                                                     class="nav-link text-nowrap" id="reviews-tab" data-bs-toggle="tab"
                                                     href="#tab-video" role="tab" aria-controls="tab-orders"
                                                     aria-selected="true"><span class="fas fa-film me-2"></span>Videos
-                                                    Diagnosticos<span class="text-700 fw-normal"></span></a></li>'; } ?>
+                                                    de Beneficios<span class="text-700 fw-normal"></span></a></li>'; } ?>
                                                 <!--  <li class="nav-item me-3"><a class="nav-link text-nowrap" id="wishlist-tab" data-bs-toggle="tab" href="#tab-wishlist" role="tab" aria-controls="tab-orders" aria-selected="true"><span class="fas fa-heart me-2"></span>Wishlist</a></li>
                 <li class="nav-item me-3"><a class="nav-link text-nowrap" id="stores-tab" data-bs-toggle="tab" href="#tab-stores" role="tab" aria-controls="tab-stores" aria-selected="true"><span class="fas fa-home me-2"></span>Stores</a></li>
                 <li class="nav-item"><a class="nav-link text-nowrap" id="personal-info-tab" data-bs-toggle="tab" href="#tab-personal-info" role="tab" aria-controls="tab-personal-info" aria-selected="true"><span class="fas fa-user me-2"></span>Personal info</a></li> -->
@@ -179,7 +179,7 @@
 
                                                               if ($result->num_rows > 0) {
                                                                   echo "<table class='table table-striped table-sm table-hover'>";
-                                                                  echo "<thead><tr><th>ID</th><th>Empresa</th><th>CNPJ</th><th>Contato</th><th>Porte</th><th>Setor</th><th>Incetivo Fiscal</th><th>Fez Contato</th><th>Relato</th></tr></thead>";
+                                                                  echo "<thead><tr><th>ID</th><th>Empresa</th><th>CNPJ</th><th>Contato</th><th>Porte</th><th>Setor</th><th>Ver</th><th>Fez Contato</th><th>Relato</th></tr></thead>";
                                                                   echo "<tbody>";
 
                                                                   // Percorrendo os resultados e adicionando-os à tabela HTML
@@ -306,42 +306,55 @@
                                                 <div class="table-responsive scrollbar">
 
                                                     <div class="container">
-                                                        <h1 class="mt-4 mb-4">Cadastrar vídeo do YouTube</h1>
-                                                        <form action="update/cadastrar_video.php" method="post">
+                                                        <h2>Formulário de atualização</h2>
+                                                        <table class="table table-sm ">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Descrição</th>
+                                                                    <th><span class="far fa-check-circle text-success "></span> Possui incetivo</th>
+                                                                    <th><span class="fas fa-info-circle text-info "></span> Não possui incentivo</th>
+                                                                    <th>Ação</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                        // Conexão com o banco de dados
+                                                                       include '../conexao/conexao.php';
 
+                                                                        $conn = mysqli_connect($servername, $username, $password, $dbname);
+                                                                        if (!$conn) {
+                                                                        die("Conexão falhou: " . mysqli_connect_error());
+                                                                        }
 
+                                                                        // Selecionar todos os registros da tabela "videos"
+                                                                        $sql = "SELECT * FROM tabelas";
+                                                                        $result = mysqli_query($conn, $sql);
 
+                                                                        // Loop através de todos os registros e exibir os dados em uma tabela HTML
+                                                                        while ($row = mysqli_fetch_assoc($result)) {
+                                                                        ?>
+                                                                <tr>
+                                                                    <td><?php echo $row["descricao"]; ?></td>
+                                                                    <td><input type="text" class="form-control youtube-link" name="youtube_link"
+                                                                            value="<?php echo $row["sim"]; ?>">
+                                                                    </td>
+                                                                    <td><input type="text" class="form-control youtube-link" name="outro_campo"
+                                                                            value="<?php echo $row["nao"]; ?>">
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button"
+                                                                            class="btn btn-primary btn-atualizar-video"
+                                                                            data-id="<?php echo $row["id"]; ?>">Atualizar</button>
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+    }
 
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <label for="item">Item:</label>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="First name" name="item" id="item"
-                                                                        required>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <label for="video_id">ID do vídeo do
-                                                                        YouTube:</label>
-                                                                    <input type="text" class="form-control"
-                                                                        name="video_id" id="video_id" required>
-                                                                </div>
-
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary form-control">Cadastrar</button>
-
-                                                            </div>
-                                                        </form>
+    mysqli_close($conn);
+    ?>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
-
-                                                    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
-                                                    <script>
-                                                    <?php if(isset($_GET['status']) && $_GET['status'] == 'success') { ?>
-                                                    Swal.fire({
-                                                        icon: 'success',
-                                                        title: 'Vídeo cadastrado com sucesso!',
-                                                    });
-                                                    <?php } ?>
-                                                    </script>
 
                                                 </div>
 
@@ -1439,6 +1452,68 @@
     $(function() {
         $('[data-toggle="tooltip"]').tooltip()
     })
+    </script>
+
+
+
+    <script>
+    $(document).ready(function() {
+        $(".btn-atualizar-video").click(function() {
+            // Obter o ID do registro e os valores dos campos de entrada
+            var id = $(this).data("id");
+            var youtubeLink = $(this).closest("tr").find("input[name='youtube_link']").val();
+            var outroCampo = $(this).closest("tr").find("input[name='outro_campo']").val();
+
+            // Exibir uma mensagem de confirmação com o SweetAlert2
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: "Você deseja atualizar este registro?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Enviar uma solicitação AJAX para atualizar o registro no banco de dados
+                    $.ajax({
+                        url: 'update/atualizar_video.php',
+                        method: 'POST',
+                        data: {
+                            id: id,
+                            youtube_link: youtubeLink,
+                            outro_campo: outroCampo
+                        },
+                        success: function(response) {
+                            // Exibir uma mensagem de sucesso com o SweetAlert2 e atualizar a página
+                            Swal.fire({
+                                title: 'Atualizado!',
+                                text: 'O registro foi atualizado com sucesso.',
+                                icon: 'success',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            // Exibir uma mensagem de erro com o SweetAlert2
+                            Swal.fire({
+                                title: 'Erro!',
+                                text: 'Ocorreu um erro ao atualizar o registro.',
+                                icon: 'error',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
     </script>
 
 
