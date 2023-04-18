@@ -219,7 +219,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 
 <style>
@@ -318,19 +318,19 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
 
 
-                <div class="row g-3 ">
-                    <div class="col-12">
-                        <div class="row text-center">
-                            <div class="container py-1">
-                                <h2><b>Diagnostico:</b>
-                                    <p class="text-muted"><?php echo $email ?></p>
-                                </h2>
-                            </div>
+            <div class="row g-3 ">
+                <div class="col-12">
+                    <div class="row text-center">
+                        <div class="container py-1">
+                            <h2><b>Diagnostico:</b>
+                                <p class="text-muted"><?php echo $first_name ?> - <?php echo $empresa ?></p>
+                            </h2>
                         </div>
                     </div>
-                    <div class="row g-3 ">
-                        <div class="col-12 col-lg-6">
-                            <div class="card h100">
+                </div>
+                <div class="row g-3 ">
+                    <div class="col-12 col-lg-6">
+                        <div class="card h100">
                             <div class="card-body">
                                 <div class="row align-items-center g-3 text-center text-xxl-start">
                                     <div class="container py-1">
@@ -381,11 +381,11 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                     </div>
                                 </div>
                             </div>
-                            </div>
                         </div>
+                    </div>
 
 
-                        <div class="col-6col-12 col-lg-6">
+                    <div class="col-6col-12 col-lg-6">
                         <div class="card h100">
                             <div class="card-body">
                                 <div class="row align-items-center g-3 text-center text-xxl-start">
@@ -523,115 +523,116 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
 
 
-                                                                                                <script>
-                                                                                                const videos = [
-                                                                                                    'https://www.youtube.com/embed/0Qzcw64Bwu0',
+                                                <script>
+                                                // const videos = [
+                                                //     'https://www.youtube.com/embed/0Qzcw64Bwu0',
 
-                                                                                                ];
+                                                // ];
 
-                                                                                                const data = [{
-                                                                                                    x: <?php echo $media_x ?>,
-                                                                                                    y: <?php echo $media_y ?>,
-                                                                                                    z: 200,
-                                                                                                    url: "https://www.youtube.com/embed/VIDEO_ID_1"
-                                                                                                }, {
-                                                                                                    x: 0,
-                                                                                                    y: 0,
-                                                                                                    z: 0
-                                                                                                }, {
-                                                                                                    x: 1,
-                                                                                                    y: 0,
-                                                                                                    z: 0
-                                                                                                }, {
-                                                                                                    x: 2,
-                                                                                                    y: 0,
-                                                                                                    z: 0
-                                                                                                }];
+                                                const data = [{
+                                                    x: <?php echo $media_x ?>,
+                                                    y: <?php echo $media_y ?>,
+                                                    z: 10,
+                                                    image: {
+                                                        path: "../assets/img/icons/logo_.png",
+                                                        width: 32,
+                                                        height: 32
+                                                    },
+                                                    type: "image",
+                                                    url: "https://www.youtube.com/embed/0Qzcw64Bwu0"
+                                                }, {
+                                                    x: 0,
+                                                    y: 0,
+                                                    z: 0
+                                                }, {
+                                                    x: 1,
+                                                    y: 0,
+                                                    z: 0
+                                                }, {
+                                                    x: 2,
+                                                    y: 0,
+                                                    z: 0
+                                                }];
 
-                                                                                                data.sort(function(a, b) {
-                                                                                                    return a.x - b.x;
-                                                                                                });
+                                                data.sort(function(a, b) {
+                                                    return a.x - b.x;
+                                                });
 
-                                                                                                const options = {
-                                                                                                    // chart: {
-                                                                                                    //     type: 'bubble',
-                                                                                                    //     events: {
-                                                                                                    //         click: function(event, chartContext, config) {
-                                                                                                    //             const pointIndex = config.dataPointIndex;
-                                                                                                    //             const videoUrl = videos[pointIndex];
-
-                                                                                                    //             if (videoUrl) {
-                                                                                                    //                 const videoModal = new bootstrap.Modal(document
-                                                                                                    //                     .getElementById('videoModal'));
-                                                                                                    //                 document.getElementById('youtube-video').src =
-                                                                                                    //                     videoUrl;
-                                                                                                    //                 videoModal.show();
-                                                                                                    //             }
-                                                                                                    //         },
-                                                                                                    //     },
-                                                                                                    // },
+                                                const options = {
 
 
-                                                                                                    chart: {
-                                                                                                        type: "bubble",
-                                                                                                        height: 350,
-                                                                                                        events: {
-                                                                                                            markerClick: function(event, chartContext, {
-                                                                                                                seriesIndex,
-                                                                                                                dataPointIndex
-                                                                                                            }) {
-                                                                                                                const videoUrl = data[dataPointIndex].url;
-                                                                                                                $("#youtubeVideo").attr("src", videoUrl);
-                                                                                                                $("#youtubeModal").modal("show");
-                                                                                                            },
-                                                                                                        },
-                                                                                                    },
+                                                    chart: {
+                                                        type: "bubble",
+                                                        height: 500,
 
 
-                                                                                                    series: [{
-                                                                                                        name: 'Ponto',
-                                                                                                        data: data,
-                                                                                                    }],
+                                                        events: {
+                                                            markerClick: function(event, chartContext, {
+                                                                seriesIndex,
+                                                                dataPointIndex
+                                                            }) {
+                                                                const videoUrl = data[dataPointIndex].url;
+                                                                $("#youtubeVideo").attr("src", videoUrl);
+                                                                $("#youtubeModal").modal("show");
+                                                            },
+                                                        },
+                                                    },
 
 
-                                                                                                    plotOptions: {
-                                                                                                        bubble: {
-                                                                                                            minBubbleRadius: 0,
-                                                                                                            maxBubbleRadius: 200,
-                                                                                                        },
-                                                                                                    },
-                                                                                                    xaxis: {
-                                                                                                        title: {
-                                                                                                            text: 'Potencial de Inovação'
-                                                                                                        },
-                                                                                                        tickInterval: 1,
-                                                                                                        min: 0,
-                                                                                                        max: 5,
-                                                                                                        labels: {
-                                                                                                            formatter: function(val) {
-                                                                                                                return Math.abs(val)
-                                                                                                            }
-                                                                                                        }
-                                                                                                    },
-                                                                                                    yaxis: {
-                                                                                                        title: {
-                                                                                                            text: 'Potencial de Fomento'
-                                                                                                        },
-                                                                                                        tickInterval: 1,
-                                                                                                        min: 0,
-                                                                                                        max: 5,
-                                                                                                        labels: {
-                                                                                                            formatter: function(val) {
-                                                                                                                return Math.abs(val)
-                                                                                                            }
-                                                                                                        }
-                                                                                                    },
-                                                                                                };
+                                                    series: [{
+                                                        name: 'Ponto',
+                                                        data: data,
+                                                    }],
 
-                                                                                                const chart = new ApexCharts(document.getElementById('bubble-chart'),
-                                                                                                    options);
-                                                                                                chart.render();
-                                                                                                </script>
+
+                                                    markers: {
+                                                        size: 8,
+                                                        image: {
+                                                            width: 32,
+                                                            height: 32
+                                                        }
+                                                    },
+
+
+                                                    plotOptions: {
+                                                        bubble: {
+                                                            minBubbleRadius: 5,
+                                                            maxBubbleRadius: 40,
+                                                        },
+                                                    },
+                                                    xaxis: {
+                                                        title: {
+                                                            text: 'Potencial de Inovação'
+                                                        },
+                                                        tickInterval: 1,
+                                                        min: 0,
+                                                        max: 5,
+                                                        labels: {
+                                                            formatter: function(val) {
+                                                                return Math.abs(val)
+                                                            }
+                                                        }
+                                                    },
+                                                    yaxis: {
+                                                        title: {
+                                                            text: 'Potencial de Fomento'
+                                                        },
+                                                        tickInterval: 1,
+                                                        min: 0,
+                                                        max: 5,
+                                                        labels: {
+                                                            formatter: function(val) {
+                                                                return Math.abs(val)
+                                                            }
+                                                        }
+                                                    },
+                                                };
+
+                                                const chart = new ApexCharts(document.getElementById(
+                                                        'bubble-chart'),
+                                                    options);
+                                                chart.render();
+                                                </script>
 
 
 
@@ -641,38 +642,38 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class=" mb-3">
-                    <div class="card-body">
-                        <div class="row align-items-center g-3 text-center text-xxl-start">
-                            <div class="container py-5">
-                                <div class="row">
+            <div class=" mb-3">
+                <div class="card-body">
+                    <div class="row align-items-center g-3 text-center text-xxl-start">
+                        <div class="container py-5">
+                            <div class="row">
 
-                                    <div class="container py-0">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-bordered">
-                                                <tr>
-                                                    <th>Recurso Não Reembolsável</th>
-                                                    <th>Recurso Reembolsável</th>
-                                                    <th>Lei do Bem</th>
-                                                    <th>Rota 2030</th>
-                                                    <th>Lei de Informática</th>
-                                                    <th>ANP</th>
-                                                    <th>ANEEL</th>
-                                                    <th>Uso indireto das Leis de Incentivo</th>
-                                                    <th>Pró-Startup (FACEPE)</th>
-                                                    <th>Bônus Tecnológico (FACEPE)</th>
-                                                </tr>
+                                <div class="container py-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered">
+                                            <tr>
+                                                <th>Recurso Não Reembolsável</th>
+                                                <th>Recurso Reembolsável</th>
+                                                <th>Lei do Bem</th>
+                                                <th>Rota 2030</th>
+                                                <th>Lei de Informática</th>
+                                                <th>ANP</th>
+                                                <th>ANEEL</th>
+                                                <th>Uso indireto das Leis de Incentivo</th>
+                                                <th>Pró-Startup (FACEPE)</th>
+                                                <th>Bônus Tecnológico (FACEPE)</th>
+                                            </tr>
 
-                                                <tr>
-
-
+                                            <tr>
 
 
-                                                    <?php
+
+
+                                                <?php
                                                 // Inicializa o contador
                                             $contador = 0;
                                             // Loop para percorrer os resultados da consulta e criar as linhas da tabela
@@ -737,24 +738,24 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                             ?>
 
 
-                                                </tr>
-                                            </table>
-                                        </div>
-
-
-
-                                        <!-- <?php echo $linha ?> -->
-
-
-
-
-
+                                            </tr>
+                                        </table>
                                     </div>
+
+
+
+                                    <!-- <?php echo $linha ?> -->
+
+
+
+
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
         </div>
@@ -1274,21 +1275,21 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 // Notificação com opções personalizadas
 toastr.options = {
-  closeButton: true,
-  debug: false,
-  newestOnTop: false,
-  progressBar: true,
-  positionClass: 'toast-top-right',
-  preventDuplicates: false,
-  onclick: null,
-  showDuration: '300',
-  hideDuration: '1000',
-  timeOut: '5000',
-  extendedTimeOut: '1000',
-  showEasing: 'swing',
-  hideEasing: 'linear',
-  showMethod: 'fadeIn',
-  hideMethod: 'fadeOut'
+    closeButton: true,
+    debug: false,
+    newestOnTop: false,
+    progressBar: true,
+    positionClass: 'toast-top-right',
+    preventDuplicates: false,
+    onclick: null,
+    showDuration: '300',
+    hideDuration: '1000',
+    timeOut: '5000',
+    extendedTimeOut: '1000',
+    showEasing: 'swing',
+    hideEasing: 'linear',
+    showMethod: 'fadeIn',
+    hideMethod: 'fadeOut'
 };
 toastr.info('Agora você pode ver os pontos fortes e fracos da sua startup.', 'Informação');
 </script>

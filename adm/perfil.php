@@ -72,7 +72,10 @@
                                                         <div class="text-end">
                                                             <h6 class="mb-2 text-800">Ultimo questionario feito</h6>
                                                             <h4 class="fs-1 text-1000 mb-0">
-                                                                <?php echo "Há " . $days . " dias<br>";  ?></h4>
+                                                                <!-- <?php echo "Há " . $days . " dias<br>";  ?> -->
+                                                                <?php echo "Há " . $dias . " dias e " . $minutos . " minutos";  ?>
+
+                                                            </h4>
                                                         </div>
                                                         <div class="text-end">
                                                             <h6 class="mb-2 text-800">Questionarios feitos</h6>
@@ -177,6 +180,9 @@
 
                                                               // echo $sql_query;
 
+
+                                                              if ($permissao == "admin") {
+
                                                               if ($result->num_rows > 0) {
                                                                   echo "<table class='table table-striped table-sm table-hover'>";
                                                                   echo "<thead><tr><th>ID</th><th>Empresa</th><th>CNPJ</th><th>Contato</th><th>Porte</th><th>Setor</th><th>Ver</th><th>Fez Contato</th><th>Relato</th></tr></thead>";
@@ -212,6 +218,34 @@
                                                                   echo "</table>";
                                                               } else {
                                                                   echo "0 Questionarios";
+                                                              } } else {
+                                                                if ($result->num_rows > 0) {
+                                                                    echo "<table class='table table-striped table-sm table-hover'>";
+                                                                    echo "<thead><tr><th>ID</th><th>Empresa</th><th>CNPJ</th><th>Contato</th><th>Porte</th><th>Setor</th><th>Ver</th></tr></thead>";
+                                                                    echo "<tbody>";
+
+                                                                    // Percorrendo os resultados e adicionando-os à tabela HTML
+                                                                    while($row = $result->fetch_assoc()) {
+                                                                      $relato = htmlspecialchars(isset($row["relato"]) ? $row["relato"] : '');
+                                                                        echo "<tr>";
+                                                                        echo "<td>" . $row["id"] . "</td>";
+                                                                        echo "<td>" . $row["empresa"] . "</td>";
+                                                                        echo "<td>" . $row["cnpj"] . "</td>";
+                                                                        echo "<td>" . $row["whatsapp"] . "</td>";
+                                                                        echo "<td>" . $row["faturamento"] . "</td>";
+                                                                        echo "<td>" . $row["setor_2"] . "</td>";
+                                                                        echo "<td><button class='btn btn-success btn-sm redirectToPage' data-href='../questionario/sucess.php?id=" . $row["id"] . "&email=" . $row["user"] . "'>Ver</button></td>";
+
+
+                                                                    }
+                                                                    echo "</tbody>";
+                                                                    echo "</table>";
+                                                                }
+
+
+
+
+
                                                               }
 
                                                               // Fechando a conexão com o banco de dados

@@ -4,19 +4,7 @@ ini_set('session.gc_maxlifetime', 1200);
 
 session_start();
 
-// Verifica se a sessão expirou
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1200)) {
-    // A sessão expirou, destrói todas as variáveis de sessão
-    session_unset();
-    // Destroi a sessão
-    session_destroy();
-    // Redireciona o usuário para a página de login
-    header('Location: index.php');
-    exit;
-}
 
-// Atualiza a hora da última atividade
-$_SESSION['LAST_ACTIVITY'] = time();
 
 
 
@@ -63,6 +51,23 @@ $index = "index.php";
 $url_index = $url.$index;
 // echo $url_index;
 include($caminho_full);
+
+
+
+
+// Verifica se a sessão expirou
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1200)) {
+    // A sessão expirou, destrói todas as variáveis de sessão
+    session_unset();
+    // Destroi a sessão
+    session_destroy();
+    // Redireciona o usuário para a página de login
+    header('Location: $url_index');
+    exit;
+}
+
+// Atualiza a hora da última atividade
+$_SESSION['LAST_ACTIVITY'] = time();
 
 
 // // Verifica se a variável de sessão 'nome_logado' não está configurada
@@ -178,8 +183,31 @@ $compareDate = new DateTime($dateString);
 $dateInterval = $currentDate->diff($compareDate);
 
 // Exibindo a diferença em dias
-$days = $dateInterval->days;
+$days_time = $dateInterval->days;
 
+
+
+
+//////4
+
+// Defina a data de referência
+$data_referencia = new DateTime($created);
+
+// Obtenha a data e hora atual
+$data_atual = new DateTime();
+
+// Calcule a diferença entre as datas
+$diferenca = date_diff($data_referencia, $data_atual);
+
+// Obtenha a quantidade de dias e minutos
+$dias = $diferenca->days;
+$minutos = $diferenca->i;
+
+// Exiba a quantidade de dias e minutos
+
+
+
+/////
 
 
 
