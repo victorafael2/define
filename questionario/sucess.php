@@ -532,13 +532,8 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                 const data = [{
                                                     x: <?php echo $media_x ?>,
                                                     y: <?php echo $media_y ?>,
-                                                    z: 10,
-                                                    image: {
-                                                        path: "../assets/img/icons/logo_.png",
-                                                        width: 32,
-                                                        height: 32
-                                                    },
-                                                    type: "image",
+                                                    z: 15,
+                                                    img: 'https://link.da.imagem1.com',
                                                     url: "https://www.youtube.com/embed/0Qzcw64Bwu0"
                                                 }, {
                                                     x: 0,
@@ -561,77 +556,82 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                 const options = {
 
 
-                                                    chart: {
-                                                        type: "bubble",
-                                                        height: 500,
+                                                        chart: {
+                                                            type: "bubble",
+                                                            height: 500,
+                                                            toolbar: {
+            show: false
+        },
 
 
-                                                        events: {
-                                                            markerClick: function(event, chartContext, {
-                                                                seriesIndex,
-                                                                dataPointIndex
-                                                            }) {
-                                                                const videoUrl = data[dataPointIndex].url;
-                                                                $("#youtubeVideo").attr("src", videoUrl);
-                                                                $("#youtubeModal").modal("show");
+
+
+                                                                events: {
+                                                                    markerClick: function(event, chartContext, {
+                                                                        seriesIndex,
+                                                                        dataPointIndex
+                                                                    }) {
+                                                                        const videoUrl = data[dataPointIndex].url;
+                                                                        $("#youtubeVideo").attr("src", videoUrl);
+                                                                        $("#youtubeModal").modal("show");
+                                                                    },
+                                                                },
                                                             },
-                                                        },
-                                                    },
 
 
-                                                    series: [{
-                                                        name: 'Ponto',
-                                                        data: data,
-                                                    }],
+                                                            series: [{
+                                                                name: 'Ponto',
+                                                                data: data,
+                                                            }],
 
 
-                                                    markers: {
-                                                        size: 8,
-                                                        image: {
-                                                            width: 32,
-                                                            height: 32
-                                                        }
-                                                    },
+                                                            markers: {
+                                                                size: 8,
+                                                                image: {
+                                                                    width: 32,
+                                                                    height: 32
+                                                                }
+                                                            },
 
 
-                                                    plotOptions: {
-                                                        bubble: {
-                                                            minBubbleRadius: 5,
-                                                            maxBubbleRadius: 40,
-                                                        },
-                                                    },
-                                                    xaxis: {
-                                                        title: {
-                                                            text: 'Potencial de Inovação'
-                                                        },
-                                                        tickInterval: 1,
-                                                        min: 0,
-                                                        max: 5,
-                                                        labels: {
-                                                            formatter: function(val) {
-                                                                return Math.abs(val)
-                                                            }
-                                                        }
-                                                    },
-                                                    yaxis: {
-                                                        title: {
-                                                            text: 'Potencial de Fomento'
-                                                        },
-                                                        tickInterval: 1,
-                                                        min: 0,
-                                                        max: 5,
-                                                        labels: {
-                                                            formatter: function(val) {
-                                                                return Math.abs(val)
-                                                            }
-                                                        }
-                                                    },
-                                                };
+                                                            plotOptions: {
+                                                                bubble: {
+                                                                    minBubbleRadius: 5,
+                                                                    maxBubbleRadius: 40,
+                                                                },
+                                                            },
+                                                            xaxis: {
+                                                                title: {
+                                                                    text: 'Potencial de Inovação'
+                                                                },
+                                                                tickInterval: 1,
+                                                                min: 0,
+                                                                max: 5,
+                                                                labels: {
+                                                                    formatter: function(val) {
+                                                                        return Math.abs(val)
+                                                                    }
+                                                                }
+                                                            },
+                                                            yaxis: {
+                                                                title: {
+                                                                    text: 'Potencial de Fomento'
+                                                                },
+                                                                tickInterval: 1,
+                                                                min: 0,
+                                                                max: 5,
+                                                                labels: {
+                                                                    formatter: function(val) {
+                                                                        return Math.abs(val)
+                                                                    }
+                                                                }
+                                                            },
+                                                        };
 
-                                                const chart = new ApexCharts(document.getElementById(
-                                                        'bubble-chart'),
-                                                    options);
-                                                chart.render();
+                                                        const chart = new ApexCharts(document.getElementById(
+                                                                'bubble-chart'),
+                                                            options);
+                                                        chart.render();
                                                 </script>
 
 
