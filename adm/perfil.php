@@ -181,7 +181,7 @@
                                                               // echo $sql_query;
 
 
-                                                              if ($permissao == "admin") {
+                                                              if ($permissao == "adm") {
 
                                                               if ($result->num_rows > 0) {
                                                                   echo "<table class='table table-striped table-sm table-hover'>";
@@ -384,7 +384,7 @@
                                                                 <?php
     }
 
-    mysqli_close($conn);
+
     ?>
                                                             </tbody>
                                                         </table>
