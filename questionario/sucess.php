@@ -532,7 +532,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                 const data = [{
                                                     x: <?php echo $media_x ?>,
                                                     y: <?php echo $media_y ?>,
-                                                    z: 15,
+                                                    z: 1,
                                                     img: 'https://link.da.imagem1.com',
                                                     url: "https://www.youtube.com/embed/0Qzcw64Bwu0"
                                                 }, {
