@@ -20,13 +20,15 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     } else {
       // Login falhou
       // ...
-      $erro = "erro";
+      $message = "Usuario ou senha errados";
+echo "<script>alert('$message');</script>";
+    //   $erro = "erro";
     }
   }
 ?>
 
 <!DOCTYPE html>
-<html lang="en-US" dir="ltr">
+<html lang="pt-BR" dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -370,6 +372,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     <script src="../../../vendors/feather-icons/feather.min.js"></script>
     <script src="../../../vendors/dayjs/dayjs.min.js"></script>
     <script src="../../../assets/js/phoenix.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 </body>
 
