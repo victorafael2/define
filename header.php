@@ -63,7 +63,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
     // Destroi a sessão
     session_destroy();
     // Redireciona o usuário para a página de login
-    header('Location: $url_index');
+    header('Location: ' . $url_index);
     exit;
 }
 
@@ -330,7 +330,8 @@ $duas_iniciais = substr($iniciais, 0, 2);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.2.0/vanilla-masker.min.js"></script>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
 
 
     <!-- ===============================================-->
@@ -366,10 +367,57 @@ $duas_iniciais = substr($iniciais, 0, 2);
 
 
 <script>
-// Agende um "toast" para exibir uma mensagem para o usuário quando a sessão estiver prestes a expirar
-setTimeout(function() {
-    alert('Sua sessão está prestes a expirar em 2 minutos. Por favor, salve seu trabalho e faça login novamente.');
-}, 1080000); // 18 minutos
+// // Agende um "toast" para exibir uma mensagem para o usuário quando a sessão estiver prestes a expirar
+// setTimeout(function() {
+//     window.alert('Sua sessão está prestes a expirar em 2 minutos. Por favor, salve seu trabalho e faça login novamente.');
+// }, 300); // 2 minutos
+
+
+
+// Definindo o tempo limite de inatividade em minutos
+const timeout = 15;
+
+// Definindo a função que exibe o SweetAlert2
+function exibirAlerta() {
+  Swal.fire({
+    title: 'Sessão prestes a expirar!',
+    text: 'Sua sessão será encerrada em breve. Deseja continuar?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sim',
+    cancelButtonText: 'Não'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Se o usuário confirmar, reinicie o contador de inatividade
+      reiniciarTempoInatividade();
+    } else {
+      // Se o usuário clicar em cancelar, redirecione para a página de login ou encerre a sessão
+      // ...
+
+      <?php
+        session_unset();
+        session_destroy();
+      ?>
+      // Redireciona o usuário para a página de login
+      window.location.href = "<?php echo $url_index; ?>";
+    }
+  });
+}
+
+// Definindo a função que reinicia o contador de inatividade
+function reiniciarTempoInatividade() {
+  clearTimeout(contadorInatividade);
+  contadorInatividade = setTimeout(exibirAlerta, timeout * 60 * 1000);
+}
+
+// Definindo a variável que armazena o tempo de inatividade
+let contadorInatividade = setTimeout(exibirAlerta, timeout * 60 * 1000);
+
+// Definindo os eventos que reiniciam o contador de inatividade
+document.addEventListener('mousemove', reiniciarTempoInatividade);
+document.addEventListener('keydown', reiniciarTempoInatividade);
+document.addEventListener('click', reiniciarTempoInatividade);
+
 
 </script>
 

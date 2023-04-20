@@ -46,7 +46,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
     }};
 
-    echo $setor;
+    // echo $setor;
 
 
     $sql_setores = "SELECT tab.id,tab.descricao AS desc_inf, busca.descricao, tab.sim, tab.nao,
@@ -57,7 +57,7 @@ FROM tabelas AS tab
 
     LEFT JOIN (SELECT * FROM tabelas WHERE id IN ($nova_string)) AS busca ON tab.id = busca.id ";
 
-echo $sql_usuario;
+// echo $sql_usuario;
 
 $result_setores = mysqli_query($conn, $sql_setores);
 // // Verificar se a consulta retornou algum resultado
