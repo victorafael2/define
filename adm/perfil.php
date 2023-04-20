@@ -1,4 +1,7 @@
-<?php include '../header.php' ?>
+<?php include '../header.php';
+date_default_timezone_set('America/Bahia');
+
+?>
 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
@@ -186,14 +189,17 @@
 
                                                               if ($result->num_rows > 0) {
                                                                   echo "<table class='table table-striped table-sm table-hover table fs--1 mb-0'>";
-                                                                  echo "<thead><tr><th data-sort='id'>ID</th><th>Empresa</th><th>CNPJ</th><th>Contato</th><th>Porte</th><th>Setor</th><th>Ver</th><th>Fez Contato</th><th>Relato</th></tr></thead>";
+                                                                  echo "<thead><tr><th data-sort='id'>ID</th><th>Data</th><th>Empresa</th><th>CNPJ</th><th>Contato</th><th>Porte</th><th>Setor</th><th>Ver</th><th>Contato feito</th><th>Relato</th></tr></thead>";
                                                                   echo "<tbody class='list'>";
 
                                                                   // Percorrendo os resultados e adicionando-os à tabela HTML
                                                                   while($row = $result->fetch_assoc()) {
                                                                     $relato = htmlspecialchars(isset($row["relato"]) ? $row["relato"] : '');
+                                                                    $timestamp = strtotime($row["created"]);
+                                                                    $data_formatada = date('d/m/y H:i', $timestamp);
                                                                       echo "<tr>";
                                                                       echo "<td class='delivery_type align-middle white-space-nowrap text-900 fs--1 text-start'>" . $row["id"] . "</td>";
+                                                                      echo "<td class='delivery_type align-middle white-space-nowrap text-900 fs--1 text-start'>" . $data_formatada . "</td>";
                                                                       echo "<td>" . $row["empresa"] . "</td>";
                                                                       echo "<td>" . $row["cnpj"] . "</td>";
                                                                       echo "<td>" . $row["whatsapp"] . "</td>";

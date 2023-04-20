@@ -1,6 +1,6 @@
 <?php
 include '../conexao/conexao.php';
-
+date_default_timezone_set('America/Bahia');
 
 
 // Recupera os dados do formulário
