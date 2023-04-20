@@ -1,7 +1,7 @@
 <?php
 // Define o tempo limite da sessão para 20 minutos
 ini_set('session.gc_maxlifetime', 1200);
-date_default_timezone_set('America/Bahia');
+// date_default_timezone_set('America/Bahia');
 
 session_start();
 
@@ -48,6 +48,10 @@ $caminhobd = "conexao/conexao.php";
 $caminho_full = $url.$caminhobd;
 
 $index = "index.php";
+$encerrar_sessao = "encerrar_sessao.php";
+
+$url_encerrar_session = $url.$encerrar_sessao;
+
 
 $url_index = $url.$index;
 // echo $url_index;
@@ -394,12 +398,9 @@ function exibirAlerta() {
       // Se o usuário clicar em cancelar, redirecione para a página de login ou encerre a sessão
       // ...
 
-      <?php
-        session_unset();
-        session_destroy();
-      ?>
+
       // Redireciona o usuário para a página de login
-      window.location.href = "<?php echo $url_index; ?>";
+      window.location.href = "<?php echo $url_encerrar_session; ?>";
     }
   });
 }

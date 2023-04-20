@@ -1,5 +1,5 @@
 <?php include '../header.php';
-date_default_timezone_set('America/Bahia');
+// date_default_timezone_set('America/Bahia');
 
 ?>
 
