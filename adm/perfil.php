@@ -168,13 +168,14 @@
 
                                                               // Consulta SQL para selecionar todos os usuários
 
-                                                              $sql_query = $permissao == "user" ? "SELECT empresas.*, questionario2.*, adm_setores.setor as setor_2
+                                                              $sql_query = $permissao == "user" ? "SELECT empresas.*, questionario2.*, adm_setores.setor as setor_2,REPLACE(questionario2.faturamento, '_', ' ') AS faturamento_novo
                                                               FROM empresas
                                                               INNER JOIN questionario2 ON empresas.email = questionario2.user
-                                                              INNER JOIN adm_setores ON empresas.setor = adm_setores.id WHERE user = '$nome_logado'" : "SELECT empresas.*, questionario2.*, adm_setores.setor as setor_2
-                                                              FROM empresas
-                                                              INNER JOIN questionario2 ON empresas.email = questionario2.user
-                                                              INNER JOIN adm_setores ON empresas.setor = adm_setores.id";
+                                                              INNER JOIN adm_setores ON empresas.setor = adm_setores.id WHERE user = '$nome_logado'" : "SELECT empresas.*, questionario2.*, adm_setores.setor as setor_2,
+                                                              REPLACE(questionario2.faturamento, '_', ' ') AS faturamento_novo
+                                                                        FROM empresas
+                                                                        INNER JOIN questionario2 ON empresas.email = questionario2.user
+                                                                        INNER JOIN adm_setores ON empresas.setor = adm_setores.id";
                                                               $sql =  $sql_query;
                                                               $result = $conn->query($sql);
 
@@ -184,23 +185,23 @@
                                                               if ($permissao == "adm") {
 
                                                               if ($result->num_rows > 0) {
-                                                                  echo "<table class='table table-striped table-sm table-hover'>";
-                                                                  echo "<thead><tr><th>ID</th><th>Empresa</th><th>CNPJ</th><th>Contato</th><th>Porte</th><th>Setor</th><th>Ver</th><th>Fez Contato</th><th>Relato</th></tr></thead>";
-                                                                  echo "<tbody>";
+                                                                  echo "<table class='table table-striped table-sm table-hover table fs--1 mb-0'>";
+                                                                  echo "<thead><tr><th data-sort='id'>ID</th><th>Empresa</th><th>CNPJ</th><th>Contato</th><th>Porte</th><th>Setor</th><th>Ver</th><th>Fez Contato</th><th>Relato</th></tr></thead>";
+                                                                  echo "<tbody class='list'>";
 
                                                                   // Percorrendo os resultados e adicionando-os à tabela HTML
                                                                   while($row = $result->fetch_assoc()) {
                                                                     $relato = htmlspecialchars(isset($row["relato"]) ? $row["relato"] : '');
                                                                       echo "<tr>";
-                                                                      echo "<td>" . $row["id"] . "</td>";
+                                                                      echo "<td class='delivery_type align-middle white-space-nowrap text-900 fs--1 text-start'>" . $row["id"] . "</td>";
                                                                       echo "<td>" . $row["empresa"] . "</td>";
                                                                       echo "<td>" . $row["cnpj"] . "</td>";
                                                                       echo "<td>" . $row["whatsapp"] . "</td>";
-                                                                      echo "<td>" . $row["faturamento"] . "</td>";
+                                                                      echo "<td>" . ucfirst($row["faturamento_novo"]) . "</td>";
                                                                       echo "<td>" . $row["setor_2"] . "</td>";
-                                                                      echo "<td><button class='btn btn-success btn-sm redirectToPage' data-href='../questionario/sucess.php?id=" . $row["id"] . "&email=" . $row["user"] . "'>Ver</button></td>";
+                                                                      echo "<td><button class='btn btn-success btn-sm redirectToPage' data-href='../questionario/sucess.php?id=" . $row["id"] . "&email=" . $row["user"] . "'><span class='far fa-eye'></span></button></td>";
                                                                       echo "<td>
-                                                                      <select class='form-select'
+                                                                      <select class='form-select form-select-sm'
                                                                           aria-label='Fez Contato'
                                                                           onchange='fezContato(".$row["id"].", this.value)'>
                                                                           <option value='sim'".($row["fez_contato"]=="sim" ? " selected" : ""
@@ -211,7 +212,7 @@
                                                                           </option>
                                                                       </select>
                                                                   </td>";
-                                                                  echo '<td> <div class="input-group"><input type="text" class="form-control"  id="campo_'.$row["id"].'" value="' . $relato . '" data-toggle="tooltip" data-placement="bottom" title="' . $relato . '"> <button type="button" class="btn btn-success" onclick="atualizarCampo('.$row["id"].')"><span class="text-ligth" data-feather="check-circle" ></span></button></div></td>';
+                                                                  echo '<td> <div class="input-group input-group-sm"><input type="text" class="form-control"  id="campo_'.$row["id"].'" value="' . $relato . '" data-toggle="tooltip" data-placement="bottom" title="' . $relato . '"> <button type="button" class="btn btn-success" onclick="atualizarCampo('.$row["id"].')"><span class="text-ligth" data-feather="check-circle" ></span></button></div></td>';
                                                                       echo "</tr>";
                                                                   }
                                                                   echo "</tbody>";

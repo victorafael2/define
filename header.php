@@ -1,6 +1,7 @@
 <?php
 // Define o tempo limite da sessão para 20 minutos
 ini_set('session.gc_maxlifetime', 1200);
+date_default_timezone_set('America/Bahia');
 
 session_start();
 

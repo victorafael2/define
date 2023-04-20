@@ -1,6 +1,8 @@
 <?php
 include '../conexao/conexao.php';
 
+
+
 // Recupera os dados do formulário
 $tecnologia = $_POST['tecnologia'];
 $potencial_tecnologico = $_POST['potencial-tecnologico'];

@@ -5,7 +5,46 @@
 ?>
 
 
+<style>
+.radio {
+    display: block;
+    position: relative;
+    margin-bottom: 10px;
+}
 
+.radio input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio img {
+    border: 4px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.radio input[type="radio"]:checked+img {
+    border-color: #2196F3;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#risco-tecnologico {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio {
+  margin-right: 10px;
+}
+
+</style>
 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
@@ -25,7 +64,7 @@
             <div class="row">
                 <div class="card h-100">
                     <div class="card-body">
-                        <form id ="myForm" method="POST" action="salvar.php">
+                        <form id="myForm" method="POST" action="salvar.php">
 
 
                             <div class="form-group">
@@ -85,7 +124,7 @@
                                         TECNOLOGIA A SER DESENVOLVIDA É UMA INOVAÇÃO:</h4>
                                 </label>
                                 <div>
-                                    <input type="radio" id="tecnologia1" name="tecnologia" value="2,2,3" checked>
+                                    <input type="radio" id="tecnologia1" name="tecnologia" value="2,2,3">
                                     <label for="tecnologia1">Para minha empresa, já existe no mercado</label>
                                 </div>
                                 <div>
@@ -135,12 +174,14 @@
                                         PROJETO APRESENTA UMA INOVAÇÃO:</a></h4>
                                 </label>
                                 <div>
-                                    <input type="radio" id="tipologia-inovacao-1" name="tipologia-inovacao" value="4,3,3">
+                                    <input type="radio" id="tipologia-inovacao-1" name="tipologia-inovacao"
+                                        value="4,3,3">
                                     <label for="tipologia-inovacao-1">Incremental: Melhorias em produto ou
                                         processos</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="tipologia-inovacao-2" name="tipologia-inovacao" value="5,5,5">
+                                    <input type="radio" id="tipologia-inovacao-2" name="tipologia-inovacao"
+                                        value="5,5,5">
                                     <label for="tipologia-inovacao-2">Disruptiva: Cria novo produto e processo, sem
                                         alterar
                                         a
@@ -148,7 +189,8 @@
                                         de fornecedores existente associada à empresa</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="tipologia-inovacao-3" name="tipologia-inovacao" value="5,5,5">
+                                    <input type="radio" id="tipologia-inovacao-3" name="tipologia-inovacao"
+                                        value="5,5,5">
                                     <label for="tipologia-inovacao-3">Radical: Cria novo produto e processo que redefine
                                         toda a
                                         cadeia de fornecedores bem como o mercado</label>
@@ -158,7 +200,7 @@
 
                             <br>
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="risco-tecnologico">
                                     <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU
                                         PROJETO ESTÁ NO TRL:</a></h4>
@@ -181,7 +223,44 @@
                                     <option value="2,5,2">TRL8</option>
                                     <option value="2,5,2">TRL9</option>
                                 </select>
+                            </div> -->
+
+                            <div class="form-group">
+                                <label for="risco-tecnologico">
+                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU
+                                        PROJETO ESTÁ NO TRL:</a></h4>
+                                </label>
+                                <br>
+                                <!-- <img src="../assets/img/maturidade-tecnologicablog.png"> -->
+                                <br>
+                                <div class="flex-container">
+                                    <div id="risco-tecnologico" name="risco-tecnologico" data-choices="data-choices"
+                                        required>
+                                        <label class="radio"><input type="radio" name="risco-tecnologico" value="3,3,3">
+                                            <img src="../assets/tlr/0.png"></label><br>
+                                        <label class="radio"><input type="radio" name="risco-tecnologico" value="5,3,3">
+                                            <img src="../assets/tlr/1.png"></label><br>
+                                        <label class="radio"><input type="radio" name="risco-tecnologico" value="5,5,5">
+                                            <img src="../assets/tlr/2.png"></label><br>
+                                        <label class="radio"><input type="radio" name="risco-tecnologico" value="5,5,5">
+                                            <img src="../assets/tlr/3.png"></label><br>
+                                        <label class="radio"><input type="radio" name="risco-tecnologico" value="5,5,5">
+                                            <img src="../assets/tlr/4.png"></label><br>
+                                        <label class="radio"><input type="radio" name="risco-tecnologico" value="5,5,5">
+                                            <img src="../assets/tlr/5.png"></label><br>
+                                        <label class="radio"><input type="radio" name="risco-tecnologico" value="4,5,4">
+                                            <img src="../assets/tlr/6.png"></label><br>
+                                        <label class="radio"><input type="radio" name="risco-tecnologico" value="3,5,3">
+                                            <img src="../assets/tlr/7.png"></label><br>
+                                        <label class="radio"><input type="radio" name="risco-tecnologico" value="2,5,2">
+                                            <img src="../assets/tlr/8.png"></label><br>
+                                        <label class="radio"><input type="radio" name="risco-tecnologico" value="2,5,2">
+                                            <img src="../assets/tlr/9.png"></label><br>
+                                    </div>
+                                </div>
+
                             </div>
+
 
                             <br>
 
@@ -191,23 +270,28 @@
                                         PROJETO PODERÁ GERAR:</a></h4>
                                 </label>
                                 <div>
-                                    <input type="radio" id="impacto_tecnologico-1" name="impacto_tecnologico" value="5,5,5">
+                                    <input type="radio" id="impacto_tecnologico-1" name="impacto_tecnologico"
+                                        value="5,5,5">
                                     <label for="impacto_tecnologico-1">Patente</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="impacto_tecnologico-2" name="impacto_tecnologico" value="5,5,5">
+                                    <input type="radio" id="impacto_tecnologico-2" name="impacto_tecnologico"
+                                        value="5,5,5">
                                     <label for="impacto_tecnologico-2">Registro de Software</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="impacto_tecnologico-3" name="impacto_tecnologico" value="4,5,5">
+                                    <input type="radio" id="impacto_tecnologico-3" name="impacto_tecnologico"
+                                        value="4,5,5">
                                     <label for="impacto_tecnologico-3">Desenhos industriais</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="impacto_tecnologico-4" name="impacto_tecnologico" value="2,5,3">
+                                    <input type="radio" id="impacto_tecnologico-4" name="impacto_tecnologico"
+                                        value="2,5,3">
                                     <label for="impacto_tecnologico-4">Criações artísticas</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="impacto_tecnologico-5" name="impacto_tecnologico" value="1,1,1">
+                                    <input type="radio" id="impacto_tecnologico-5" name="impacto_tecnologico"
+                                        value="1,1,1">
                                     <label for="impacto_tecnologico-5">Nenhuma alternativa</label>
                                 </div>
                             </div>
@@ -483,8 +567,8 @@
     });
 </script> -->
 
-<script>
-    document.getElementById("btnSubmit").addEventListener("click", function (event) {
+    <script>
+    document.getElementById("btnSubmit").addEventListener("click", function(event) {
         event.preventDefault(); // impede que o formulário seja enviado imediatamente
 
         // Validar os campos obrigatórios
@@ -513,41 +597,41 @@
                 const formData = new FormData(form);
 
                 fetch("salvar_2.php", {
-                    method: "POST",
-                    body: formData,
-                })
-                .then((response) => {
-                    if (response.ok) {
-                        return response.text();
-                    } else {
-                        throw new Error("Ocorreu um erro ao salvar os dados. Tente novamente.");
-                    }
-                })
-                .then((insertedId) => {
-                    // Exibir mensagem de sucesso
-                    Swal.fire({
-                        icon: "success",
-                        title: "Sucesso!",
-                        text: "Cadastro realizado com sucesso!",
-                        showConfirmButton: false,
-                        timer: 2000,
-                    }).then(() => {
-                        // Redirecionar para outra página com o ID inserido na URL
-                        window.location.href = `sucess.php?id=${insertedId}`;
+                        method: "POST",
+                        body: formData,
+                    })
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.text();
+                        } else {
+                            throw new Error("Ocorreu um erro ao salvar os dados. Tente novamente.");
+                        }
+                    })
+                    .then((insertedId) => {
+                        // Exibir mensagem de sucesso
+                        Swal.fire({
+                            icon: "success",
+                            title: "Sucesso!",
+                            text: "Cadastro realizado com sucesso!",
+                            showConfirmButton: false,
+                            timer: 2000,
+                        }).then(() => {
+                            // Redirecionar para outra página com o ID inserido na URL
+                            window.location.href = `sucess.php?id=${insertedId}`;
+                        });
+                    })
+                    .catch((error) => {
+                        // Exibir um alerta de erro caso ocorra algum problema
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: error.message,
+                        });
                     });
-                })
-                .catch((error) => {
-                    // Exibir um alerta de erro caso ocorra algum problema
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: error.message,
-                    });
-                });
             }
         });
     });
-</script>
+    </script>
 
 
 
