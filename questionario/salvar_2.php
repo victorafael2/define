@@ -4,6 +4,7 @@ date_default_timezone_set('America/Bahia');
 
 
 // Recupera os dados do formulário
+$nome_diag = $_POST['nome_diag'];
 $tecnologia = $_POST['tecnologia'];
 $potencial_tecnologico = $_POST['potencial-tecnologico'];
 $tipologia_inovacao = $_POST['tipologia-inovacao'];
@@ -33,8 +34,8 @@ $user = $_POST['user'];
 
 
 
-$sql = "INSERT INTO questionario2 (tecnologia, potencial_tecnologico, tipologia_inovacao, risco_tecnologico, impacto_tecnologico, infraestrutura_empresa, parcerias, impactos_gerais, equipe, beneficio_inovacao, faturamento, regime_tributario,user)
-        VALUES ('$tecnologia', '$potencial_tecnologico', '$tipologia_inovacao', '$risco_tecnologico', '$impacto_tecnologico', '$infraestrutura_empresa', '$parcerias', '$impactos_gerais', '$equipe', '$beneficio_inovacao', '$faturamento', '$regime_tributario', '$user')";
+$sql = "INSERT INTO questionario2 (nome_diag,tecnologia, potencial_tecnologico, tipologia_inovacao, risco_tecnologico, impacto_tecnologico, infraestrutura_empresa, parcerias, impactos_gerais, equipe, beneficio_inovacao, faturamento, regime_tributario,user)
+        VALUES ('$nome_diag','$tecnologia', '$potencial_tecnologico', '$tipologia_inovacao', '$risco_tecnologico', '$impacto_tecnologico', '$infraestrutura_empresa', '$parcerias', '$impactos_gerais', '$equipe', '$beneficio_inovacao', '$faturamento', '$regime_tributario', '$user')";
 
 
 // echo $sql;

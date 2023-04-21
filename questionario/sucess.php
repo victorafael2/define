@@ -11,6 +11,8 @@ include '../header.php';
 
 $email = empty($_GET["email"]) ? $_SESSION['email'] : $_GET["email"];
 
+$diag = $_GET['id'];
+
 // echo $conn;
 
 if(!isset($_SESSION["email"]) || !isset($_SESSION["email"]))
@@ -47,35 +49,94 @@ if (mysqli_num_rows($result_usuario) > 0) {
     }};
 
     // echo $setor;
+//     SELECT tab.id,tab.descricao AS desc_inf, busca.descricao, tab.sim, tab.nao,
 
+//     IFNULL(busca.icon , 'novo') as icon
+
+// FROM tabelas AS tab
+
+//     LEFT JOIN (SELECT * FROM tabelas WHERE id IN ($nova_string)) AS busca ON tab.id = busca.id
 
     $sql_setores = "SELECT tab.id,tab.descricao AS desc_inf, busca.descricao, tab.sim, tab.nao,
 
-    IFNULL(busca.icon , 'novo') as icon
+    IFNULL(busca.icon , 'novo') as icon_1,
+
+    lei_do_bem.regime_tributario AS lei_do_bem,
+    uf.uf AS pro_startup,
+    early.faturamento AS early,
+    bonus.faturamento AS bonus,
+    ufbonus.uf AS ufbonus,
+
+    case
+	 when lei_do_bem.regime_tributario = 'lucro_real' then 'icone_verde'
+	 when uf.uf = 'PE' AND early.faturamento = 'early_stage' then 'icone_verde'
+	 when ufbonus.uf = 'PE' and bonus.faturamento <> 'grande_empresa' then 'icone_verde'
+	 ELSE IFNULL(busca.icon , 'novo')
+	 END AS icon
 
 FROM tabelas AS tab
 
-    LEFT JOIN (SELECT * FROM tabelas WHERE id IN ($nova_string)) AS busca ON tab.id = busca.id ";
+    LEFT JOIN (SELECT * FROM tabelas WHERE id IN ($nova_string)) AS busca ON tab.id = busca.id
 
-// echo $sql_usuario;
+
+LEFT JOIN (SELECT id,
+       CASE
+         WHEN id <> '' THEN 3
+         ELSE ''
+       END AS STATUS, regime_tributario FROM questionario2
+
+WHERE id = $diag) AS lei_do_bem ON tab.id = lei_do_bem.status
+
+LEFT JOIN(
+SELECT
+       CASE
+         WHEN id <> '' THEN 9
+         ELSE ''
+       END AS id, uf FROM empresas
+
+WHERE email = '$email') AS uf ON tab.id = uf.id
+
+
+LEFT JOIN(
+SELECT id,
+       CASE
+         WHEN id <> '' THEN 9
+         ELSE ''
+       END AS id_early, faturamento FROM questionario2
+
+WHERE id = $diag) AS early ON tab.id = early.id_early
+
+LEFT JOIN(SELECT
+       CASE
+         WHEN id <> '' THEN 10
+         ELSE ''
+       END AS idbonus, faturamento FROM questionario2
+
+WHERE id = $diag
+) AS bonus ON tab.id = bonus.idbonus
+
+LEFT JOIN(
+SELECT
+       CASE
+         WHEN id <> '' THEN 10
+         ELSE ''
+       END AS idufbonus, uf FROM empresas
+
+WHERE email = '$email') AS ufbonus ON tab.id = ufbonus.idufbonus
+
+WHERE tab.id <> 9 AND tab.id <> 10";
+
+
+
+
+
 
 $result_setores = mysqli_query($conn, $sql_setores);
-// // Verificar se a consulta retornou algum resultado
-// if (mysqli_num_rows($result_setores) > 0) {
-//     // Exibir os resultados
-//     while($row = mysqli_fetch_assoc($result_setores)) {
-
-//         $desc = $row["descricao"];
-//         $id = $row["id"];
-
-
-//     }};
-
-// echo $sql_setores;
 
 
 
-$diag = $_GET['id'];
+
+
 
 // Verificar se houve algum erro na conexão
 if (!$conn) {
@@ -316,13 +377,13 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
         <div class="container py-10">
 
-
+<!-- <?php echo $sql_setores; ?> -->
 
             <div class="row g-3 ">
                 <div class="col-12">
                     <div class="row text-center">
                         <div class="container py-1">
-                            <h2><b>Diagnostico:</b>
+                            <h2><b>Diagnóstico:</b>
                                 <p class="text-muted"><?php echo $first_name ?> - <?php echo $empresa ?></p>
                             </h2>
                         </div>
@@ -556,82 +617,82 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                 const options = {
 
 
-                                                        chart: {
-                                                            type: "bubble",
-                                                            height: 500,
-                                                            toolbar: {
-            show: false
-        },
+                                                    chart: {
+                                                        type: "bubble",
+                                                        height: 500,
+                                                        toolbar: {
+                                                            show: false
+                                                        },
 
 
 
 
-                                                                events: {
-                                                                    markerClick: function(event, chartContext, {
-                                                                        seriesIndex,
-                                                                        dataPointIndex
-                                                                    }) {
-                                                                        const videoUrl = data[dataPointIndex].url;
-                                                                        $("#youtubeVideo").attr("src", videoUrl);
-                                                                        $("#youtubeModal").modal("show");
-                                                                    },
-                                                                },
+                                                        events: {
+                                                            markerClick: function(event, chartContext, {
+                                                                seriesIndex,
+                                                                dataPointIndex
+                                                            }) {
+                                                                const videoUrl = data[dataPointIndex].url;
+                                                                $("#youtubeVideo").attr("src", videoUrl);
+                                                                $("#youtubeModal").modal("show");
                                                             },
+                                                        },
+                                                    },
 
 
-                                                            series: [{
-                                                                name: 'Ponto',
-                                                                data: data,
-                                                            }],
+                                                    series: [{
+                                                        name: 'Ponto',
+                                                        data: data,
+                                                    }],
 
 
-                                                            markers: {
-                                                                size: 8,
-                                                                image: {
-                                                                    width: 32,
-                                                                    height: 32
-                                                                }
-                                                            },
+                                                    markers: {
+                                                        size: 8,
+                                                        image: {
+                                                            width: 32,
+                                                            height: 32
+                                                        }
+                                                    },
 
 
-                                                            plotOptions: {
-                                                                bubble: {
-                                                                    minBubbleRadius: 5,
-                                                                    maxBubbleRadius: 40,
-                                                                },
-                                                            },
-                                                            xaxis: {
-                                                                title: {
-                                                                    text: 'Potencial de Inovação'
-                                                                },
-                                                                tickInterval: 1,
-                                                                min: 0,
-                                                                max: 5,
-                                                                labels: {
-                                                                    formatter: function(val) {
-                                                                        return Math.abs(val)
-                                                                    }
-                                                                }
-                                                            },
-                                                            yaxis: {
-                                                                title: {
-                                                                    text: 'Potencial de Fomento'
-                                                                },
-                                                                tickInterval: 1,
-                                                                min: 0,
-                                                                max: 5,
-                                                                labels: {
-                                                                    formatter: function(val) {
-                                                                        return Math.abs(val)
-                                                                    }
-                                                                }
-                                                            },
-                                                        };
+                                                    plotOptions: {
+                                                        bubble: {
+                                                            minBubbleRadius: 5,
+                                                            maxBubbleRadius: 40,
+                                                        },
+                                                    },
+                                                    xaxis: {
+                                                        title: {
+                                                            text: 'Potencial de Inovação'
+                                                        },
+                                                        tickInterval: 1,
+                                                        min: 0,
+                                                        max: 5,
+                                                        labels: {
+                                                            formatter: function(val) {
+                                                                return Math.abs(val)
+                                                            }
+                                                        }
+                                                    },
+                                                    yaxis: {
+                                                        title: {
+                                                            text: 'Potencial de Fomento'
+                                                        },
+                                                        tickInterval: 1,
+                                                        min: 0,
+                                                        max: 5,
+                                                        labels: {
+                                                            formatter: function(val) {
+                                                                return Math.abs(val)
+                                                            }
+                                                        }
+                                                    },
+                                                };
 
-                                                        const chart = new ApexCharts(document.getElementById(
-                                                                'bubble-chart'),
-                                                            options);
-                                                        chart.render();
+                                                const chart = new ApexCharts(document.getElementById(
+                                                        'bubble-chart'),
+                                                    options);
+                                                chart.render();
                                                 </script>
 
 
@@ -654,18 +715,22 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
                                 <div class="container py-0">
                                     <div class="table-responsive">
+
+                                        <div class="d-flex justify-content-center py-3">
+                                            <h3>Mecanismos de fomento para inovação</h3>
+                                        </div>
                                         <table class="table table-striped table-bordered">
+
                                             <tr>
-                                                <th>Recurso Não Reembolsável</th>
-                                                <th>Recurso Reembolsável</th>
-                                                <th>Lei do Bem</th>
-                                                <th>Rota 2030</th>
-                                                <th>Lei de Informática</th>
-                                                <th>ANP</th>
-                                                <th>ANEEL</th>
-                                                <th>Uso indireto das Leis de Incentivo</th>
-                                                <th>Pró-Startup (FACEPE)</th>
-                                                <th>Bônus Tecnológico (FACEPE)</th>
+                                                <th style="text-align: center;">Recurso Não Reembolsável <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
+                                                <th style="text-align: center;">Recurso Reembolsável <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
+                                                <th style="text-align: center;">Lei do Bem <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
+                                                <th style="text-align: center;">Rota 2030 <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
+                                                <th style="text-align: center;">Lei de Informática <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
+                                                <th style="text-align: center;">ANP <sup><span class="fa-solid fa-circle-info text-info  "></span></sup> </th>
+                                                <th style="text-align: center;">ANEEL <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
+                                                <th style="text-align: center;">Embrapii <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
+
                                             </tr>
 
                                             <tr>
@@ -679,7 +744,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                             // Loop para percorrer os resultados da consulta e criar as linhas da tabela
                                             while ($row = mysqli_fetch_assoc($result_setores)) {
 
-                                                $resultado = ($row['icon'] === 'novo') ? '<span class="fa-solid fa-circle-info text-info fs-2 "></span>' : $row['icon'];
+                                                $resultado = ($row['icon'] === 'novo') ? '-' : ($row['icon'] === 'icone_verde' ? '<span class="far fa-check-circle text-success fs-2"></span>' : $row['icon']);
                                                 $link = ($row['icon'] === 'novo') ? $row['nao'] : $row['sim'];
                                                 $youtube = 'https://www.youtube.com/embed/';
 
@@ -691,7 +756,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
                                                             echo '<td class="text-center">
 
-                                                            <button type="button" class="btn btn-ligth " data-bs-toggle="modal" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip no topo!"
+                                                            <button type="button" class="btn btn-ligth " data-bs-toggle="modal" data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-target="#videoModal' . $contador . '">
 
                                                             ' . $resultado . '

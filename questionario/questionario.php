@@ -1,6 +1,8 @@
 <?php include '../header.php';
 
+$dataHoraAtual = date('Y-m-d H:i:s');
 
+$informacoesUsuario = $nome_logado . '-' . $dataHoraAtual;
 
 ?>
 
@@ -29,21 +31,20 @@
 }
 
 .flex-container {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #risco-tecnologico {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .radio {
-  margin-right: 10px;
+    margin-right: 10px;
 }
-
 </style>
 
 
@@ -66,31 +67,52 @@
                     <div class="card-body">
                         <form id="myForm" method="POST" action="salvar.php">
 
+                            <div class="col-md-12">
+
+                            <label for="faturamento">
+                                    <h4 class="text-900 mb-0">NOME DO DIAGNÓSTICO</a></h4>
+                                </label>
+
+                                <input class="form-control" type="text" name="nome_diag" value="<?php echo $informacoesUsuario ?>"
+                                    required="" />
+
+                            </div>
+
+                            <BR>
+
 
                             <div class="form-group">
                                 <label for="faturamento">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">A
-                                        MINHA EMPRESA É:</a></h4>
+                                    <h4 class="text-900 mb-0">A
+                                        MINHA EMPRESA É:</h4>
                                 </label>
                                 <div>
 
                                     <select class="form-control" id="faturamento" name="faturamento"
                                         data-choices="data-choices"
-                                        data-options='{"removeItemButton":false,"placeholder":true}' required>
+                                        data-options='{"removeItemButton":false,"placeholder":true, "shouldSort":false}' required>
                                         <option value="">Selecione um tipo de empresa</option>
+
                                         <option value="early_stage">Startup early stage (sem faturamento)</option>
+
                                         <option value="startup">Startup (R$ 0 a R$ 4,8milhões)</option>
+
                                         <option value="microempresa">Microempresa (até R$ 360mil)</option>
+
                                         <option value="pequeno_porte">Empresa de pequeno porte (R$ 360.000,01mil a R$
                                             4,8milhões)</option>
+
                                         <option value="pequena_empresa">Pequena Empresa (De R$ 4.800.000,01 a R$
                                             16.000.000,00)</option>
+
                                         <option value="media_empresa">Media Empresa (De R$ 16.000.000,01 a R$
                                             90.000.000,00)
                                         </option>
+
                                         <option value="media_grande">Media Grande (De R$ 90.000.000,01 a R$
                                             300.000.000,00)
                                         </option>
+
                                         <option value="grande_empresa">Grande Empresa (Acima de R$ 300.000.000,01)
                                         </option>
                                     </select>
@@ -104,7 +126,7 @@
 
                             <div class="form-group">
                                 <label for="regime_tributario">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">
+                                    <h4 class="text-900 mb-0">
                                         EM RELAÇÃO AO REGIME TRIBUTÁRIO, MINHA EMPRESA OPERA EM:</a></h4>
                                 </label>
                                 <select id="regime_tributario" name="regime_tributario" data-choices="data-choices"
@@ -120,7 +142,7 @@
 
                             <div class="form-group">
                                 <label for="tecnologia">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">A
+                                    <h4 class="text-900 mb-0">A
                                         TECNOLOGIA A SER DESENVOLVIDA É UMA INOVAÇÃO:</h4>
                                 </label>
                                 <div>
@@ -144,7 +166,7 @@
 
                             <div class="form-group">
                                 <label for="potencial-tecnologico">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU
+                                    <h4 class="text-900 mb-0">MEU
                                         PROJETO VISA DESENVOLVER:</a></h4>
                                 </label>
                                 <div>
@@ -170,7 +192,7 @@
 
                             <div class="form-group">
                                 <label for="tipologia-inovacao">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU
+                                    <h4 class="text-900 mb-0">MEU
                                         PROJETO APRESENTA UMA INOVAÇÃO:</a></h4>
                                 </label>
                                 <div>
@@ -202,7 +224,7 @@
 
                             <!-- <div class="form-group">
                                 <label for="risco-tecnologico">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU
+                                    <h4 class="text-900 mb-0" >MEU
                                         PROJETO ESTÁ NO TRL:</a></h4>
                                 </label>
                                 <br>
@@ -227,7 +249,7 @@
 
                             <div class="form-group">
                                 <label for="risco-tecnologico">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU
+                                    <h4 class="text-900 mb-0">MEU
                                         PROJETO ESTÁ NO TRL:</a></h4>
                                 </label>
                                 <br>
@@ -266,7 +288,7 @@
 
                             <div class="form-group">
                                 <label for="impacto_tecnologico">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU
+                                    <h4 class="text-900 mb-0">MEU
                                         PROJETO PODERÁ GERAR:</a></h4>
                                 </label>
                                 <div>
@@ -300,7 +322,7 @@
 
                             <div class="form-group">
                                 <label for="infraestrutura-empresa">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MINHA
+                                    <h4 class="text-900 mb-0">MINHA
                                         EMPRESA POSSUI INFRA-ESTRUTURA PARA DESENVOLVER O PROJETO:</a></h4>
                                 </label>
                                 <div>
@@ -337,7 +359,7 @@
 
                             <div class="form-group">
                                 <label for="parcerias">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MEU
+                                    <h4 class="text-900 mb-0">MEU
                                         PROJETO SERÁ DESENVOLVIDO:</a></h4>
                                 </label>
                                 <div>
@@ -363,7 +385,7 @@
 
                             <div class="form-group">
                                 <label for="impactos-gerais">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">A
+                                    <h4 class="text-900 mb-0">A
                                         APLICAÇÃO DA MINHA SOLUÇÃO TRARÁ IMPACTO PARA SEGUINTES ÁREAS NOS GRAUS:</a>
                                     </h4>
                                 </label>
@@ -425,7 +447,7 @@
 
                             <div class="form-group">
                                 <label for="equipe">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MINHA
+                                    <h4 class="text-900 mb-0">MINHA
                                         EQUIPE POSSUI QUALIFICAÇÃO PARA DESENVOLVER MEU PROJETO:</a></h4>
                                 </label>
                                 <div>
@@ -451,7 +473,7 @@
 
                             <div class="form-group">
                                 <label for="beneficio-inovacao">
-                                    <h4 class="text-900 mb-0" data-anchor="data-anchor" id="custom-styles-example">MINHA
+                                    <h4 class="text-900 mb-0">MINHA
                                         EMPRESA JÁ SE BENEFICIOU COM RECURSOS PÚBLICOS PARA INOVAÇÃO:</a></h4>
                                 </label>
                                 <div>
@@ -494,8 +516,8 @@
 
 
 
-                            <button type="submit" id="btnSubmit" class="btn btn-success w-100">Cadastrar
-                                Questionario</button>
+                            <button type="submit" id="btnSubmit" class="btn btn-success w-100">Gerar
+                                Diagnóstico</button>
 
                         </form>
 

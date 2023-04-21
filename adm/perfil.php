@@ -154,7 +154,8 @@
                                                     class="nav-link text-nowrap" id="reviews-tab" data-bs-toggle="tab"
                                                     href="#tab-video" role="tab" aria-controls="tab-orders"
                                                     aria-selected="true"><span class="fas fa-film me-2"></span>Videos
-                                                    de Beneficios<span class="text-700 fw-normal"></span></a></li>'; } ?>
+                                                    de Beneficios<span class="text-700 fw-normal"></span></a></li>'; }
+                                                ?>
                                                 <!--  <li class="nav-item me-3"><a class="nav-link text-nowrap" id="wishlist-tab" data-bs-toggle="tab" href="#tab-wishlist" role="tab" aria-controls="tab-orders" aria-selected="true"><span class="fas fa-heart me-2"></span>Wishlist</a></li>
                 <li class="nav-item me-3"><a class="nav-link text-nowrap" id="stores-tab" data-bs-toggle="tab" href="#tab-stores" role="tab" aria-controls="tab-stores" aria-selected="true"><span class="fas fa-home me-2"></span>Stores</a></li>
                 <li class="nav-item"><a class="nav-link text-nowrap" id="personal-info-tab" data-bs-toggle="tab" href="#tab-personal-info" role="tab" aria-controls="tab-personal-info" aria-selected="true"><span class="fas fa-user me-2"></span>Personal info</a></li> -->
@@ -163,9 +164,8 @@
                                         <div class="tab-content" id="profileTabContent">
                                             <div class="tab-pane fade show active" id="tab-orders" role="tabpanel"
                                                 aria-labelledby="orders-tab">
-                                                <div class="border-top border-bottom border-200" id="profileOrdersTable"
-                                                    data-list='{"valueNames":["order","status","delivery","date","total"],"page":6,"pagination":true}'>
-                                                    <div class="table-responsive scrollbar">
+                                                <div class="border-top border-bottom border-200" id="profileOrdersTable">
+                                                    <div class="table-responsive">
                                                         <?php
 
 
@@ -223,6 +223,15 @@
                                                                   }
                                                                   echo "</tbody>";
                                                                   echo "</table>";
+
+                                                                //   echo '<ul class="pagination">';
+                                                                //     echo '<li class="page-item"><a class="page-link" href="#">Anterior</a></li>';
+                                                                //     echo '<li class="page-item active"><a class="page-link" href="#">1</a></li>';
+                                                                //     echo '<li class="page-item"><a class="page-link" href="#">2</a></li>';
+                                                                //     echo '<li class="page-item"><a class="page-link" href="#">3</a></li>';
+                                                                //     echo '<li class="page-item"><a class="page-link" href="#">4</a></li>';
+                                                                //     echo '<li class="page-item"><a class="page-link" href="#">Próxima</a></li>';
+                                                                //     echo '</ul>';
                                                               } else {
                                                                   echo "0 Questionarios";
                                                               } } else {
@@ -258,6 +267,8 @@
                                                               // Fechando a conexão com o banco de dados
                                                               // $conn->close();
                                                               ?>
+
+
                                                     </div>
 
                                                 </div>
@@ -352,8 +363,12 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>Descrição</th>
-                                                                    <th><span class="far fa-check-circle text-success "></span> Possui incetivo</th>
-                                                                    <th><span class="fas fa-info-circle text-info "></span> Não possui incentivo</th>
+                                                                    <th><span
+                                                                            class="far fa-check-circle text-success "></span>
+                                                                        Possui incetivo</th>
+                                                                    <th><span
+                                                                            class="fas fa-info-circle text-info "></span>
+                                                                        Não possui incentivo</th>
                                                                     <th>Ação</th>
                                                                 </tr>
                                                             </thead>
@@ -376,10 +391,14 @@
                                                                         ?>
                                                                 <tr>
                                                                     <td><?php echo $row["descricao"]; ?></td>
-                                                                    <td><input type="text" class="form-control youtube-link" name="youtube_link"
+                                                                    <td><input type="text"
+                                                                            class="form-control youtube-link"
+                                                                            name="youtube_link"
                                                                             value="<?php echo $row["sim"]; ?>">
                                                                     </td>
-                                                                    <td><input type="text" class="form-control youtube-link" name="outro_campo"
+                                                                    <td><input type="text"
+                                                                            class="form-control youtube-link"
+                                                                            name="outro_campo"
                                                                             value="<?php echo $row["nao"]; ?>">
                                                                     </td>
                                                                     <td>
@@ -1335,17 +1354,65 @@
 
 
 
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
     <script>
-    $(document).ready(function() {
-        $('.redirectToPage').on('click', function() {
-            window.location.href = $(this).data('href');
-        });
-    });
+//     $(document).ready(function() {
+//   // define o número de linhas por página
+//   var rowsPerPage = 10;
+
+//   // esconde todas as linhas da tabela, exceto as primeiras n
+//   $('.table tbody tr').hide();
+//   $('.table tbody tr').slice(0, rowsPerPage).show();
+
+//   // atualiza o número de páginas e adiciona os links de paginação
+//   var numRows = $('.table tbody tr').length;
+//   var numPages = Math.ceil(numRows / rowsPerPage);
+//   var paginationList = $('.pagination');
+
+//   // remove os links de paginação anteriores (se houver)
+//   paginationList.empty();
+
+//   // adiciona os links de paginação
+//   for (var i = 1; i <= numPages; i++) {
+//     var pageLink = $('<a>').addClass('page-link').attr('href', '#').text(i);
+//     var pageItem = $('<li>').addClass('page-item').append(pageLink);
+//     if (i === 1) {
+//       pageItem.addClass('active');
+//     }
+//     paginationList.append(pageItem);
+//   }
+
+//   // adiciona a ação de clique nos links de paginação
+//   paginationList.on('click', '.page-link', function(event) {
+//     event.preventDefault();
+
+//     // atualiza a classe "active" do link de página atual
+//     $('.page-link').parent().removeClass('active');
+//     $(this).parent().addClass('active');
+
+//     // define o índice da primeira e última linhas a serem mostradas
+//     var currentPage = parseInt($(this).text());
+//     var firstRow = (currentPage - 1) * rowsPerPage;
+//     var lastRow = firstRow + rowsPerPage;
+
+//     // esconde todas as linhas da tabela, exceto as linhas da página atual
+//     $('.table tbody tr').hide();
+//     $('.table tbody tr').slice(firstRow, lastRow).show();
+//   });
+// });
+
+//     </script>
+//     <script>
+//     $(document).ready(function() {
+//         $('.redirectToPage').on('click', function() {
+//             window.location.href = $(this).data('href');
+//         });
+//     });
     </script>
 
     <script>

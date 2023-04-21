@@ -126,7 +126,7 @@ function verificarSenha() {
                     <h2>Cadastro de Empresa</h2>
                     <form id="empresa">
 
-                        <div class="row md-12">
+                        <!-- <div class="row md-12"> -->
                             <div class="col">
                                 <label for="nome">Nome:</label>
                                 <input type="text" class="form-control form-control-sm" id="nome" name="nome" required>
@@ -141,9 +141,9 @@ function verificarSenha() {
                                 <input type="text" class="form-control form-control-sm" id="cnpj" name="cnpj"
                                     placeholder="XX.XXX.XXX/YYYY-ZZ" required>
                             </div>
-                        </div>
+                        <!-- </div> -->
 
-                        <div class="row md-12">
+                        <!-- <div class="row md-12"> -->
 
                             <div class="col">
                                 <label for="email">Email:</label>
@@ -157,11 +157,11 @@ function verificarSenha() {
                             </div>
 
 
-                        </div>
+                        <!-- </div> -->
 
 
 
-                        <div class="row md-12">
+                        <!-- <div class="row md-12"> -->
                             <div class="col">
                                 <label for="uf">UF:</label>
                                 <select class="form-control form-control-sm" id="uf" name="uf"
@@ -213,8 +213,8 @@ function verificarSenha() {
 
                             </div>
 
-                        </div>
-                        <div class=" form-group col-4">
+                        <!-- </div> -->
+                        <div class=" form-group ">
 
                             <label for="setor">Senha:</label>
 
@@ -225,6 +225,7 @@ function verificarSenha() {
                                 placeholder="Password" required onkeyup="verificarSenha()" onkeyup="validarSenha()" />
 
                             <p id="forca-senha"></p>
+
                         </div>
 
                         <button type="submit" class="btn btn-sm btn-success" id="cadastrarBtn"

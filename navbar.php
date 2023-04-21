@@ -18,8 +18,8 @@
 
 <nav class="navbar bg-white navbar-expand-lg sticky-top">
     <div class="container-small px-0 px-sm-3"><a class="navbar-brand flex-1 flex-lg-grow-0" href="index.php">
-            <div class="d-flex align-items-center"><img src="assets/img/icons/logo.png" alt="define" width="27" />
-                <p class="logo-text ms-2">define</p>
+            <div class="d-flex align-items-center"><img src="assets/img/icons/logo.png" alt="define" width="60" />
+                <p class="logo-text ms-2">DEFINE</p>
             </div>
         </a>
         <div class="">

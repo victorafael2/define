@@ -38,6 +38,9 @@ h1 .typewriter {
 }
 
 
+
+
+
 </style>
 
 <body>
@@ -82,8 +85,8 @@ h1 .typewriter {
                             <!--/.bg-holder-->
 
                             <div class="position-relative"><img class="w-100 shadow-lg d-dark-none rounded-2"
-                                    src="assets/img/bg/bg-28.jpg" alt="hero-header" /><img
-                                    class="w-100 shadow-lg d-light-none rounded-2" src="assets/img/bg/bg-28.jpg"
+                                    src="assets/img/bg/matech_imag.jpg" alt="hero-header" /><img
+                                    class="w-100 shadow-lg d-light-none rounded-2" src="assets/img/bg/matech_imag.jpg"
                                     alt="hero-header" /></div>
                         </div>
                         <div class="hero-image-container position-absolute top-0 bottom-0 end-0 d-none d-lg-block">
@@ -94,18 +97,20 @@ h1 .typewriter {
                                 </div>
                                 <div class="position-absolute h-100 top-0 d-flex align-items-center end-0"><img
                                         class="pt-7 pt-md-0 w-100 shadow-lg d-dark-none rounded-2"
-                                        src="assets/img/bg/bg-28.jpg" alt="hero-header" /><img
+                                        src="assets/img/bg/matech_imag.jpg" alt="hero-header" /><img
                                         class="pt-7 pt-md-0 w-100 shadow-lg d-light-none rounded-2"
-                                        src="assets/img/bg/bg-29.jpg" alt="hero-header" /></div>
+                                        src="assets/img/bg/matech_imag.jpg" alt="hero-header" /></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 text-lg-start text-center pt-8 pb-6 order-0 position-relative">
                         <h1 class="fs-5 fs-lg-6 fs-md-7 fs-lg-6 fs-xl-7 fs fw-black mb-4">Você <br/><span
                                 class="text-primary me-3 " id="texto"></span><br />o recurso que sua empresa vai
-                            acessar.
+                            acessar,
                         </h1>
-                        <p class="mb-5">E a MATECH te apóia</p><a class="btn btn-lg btn-primary rounded-pill me-3"
+                        <h4 class="mb-5"  font-size: 1em !important>E a MATECH te apoia</h4>
+
+                        <a class="btn btn-lg btn-primary rounded-pill me-3"
                             href="<?php echo $cadastrar ?>" role="button"><?php echo $cadastrar_texto ?></a>
                         <!-- <a
                             class="btn btn-link me-2 fs-0 p-0 text-decoration-none" href="#!" role="button">Check

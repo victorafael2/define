@@ -79,8 +79,8 @@ include($caminho_full);
             <a class="navbar-brand me-1 me-sm-3" href="<?php echo $url ?>index.php">
                 <div class="d-flex align-items-center">
                     <div class="d-flex align-items-center"><img src="<?php echo $url ?>assets/img/icons/logo.png"
-                            alt="define" width="27" />
-                        <p class="logo-text ms-2 d-none d-sm-block">d.e.f.i.n.e</p>
+                            alt="define" width="60" />
+                        <p class="logo-text ms-2 d-none d-sm-block">D.E.F.I.N.E</p>
                     </div>
                 </div>
             </a>
