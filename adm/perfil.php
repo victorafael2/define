@@ -1408,11 +1408,11 @@
 
 //     </script>
 //     <script>
-//     $(document).ready(function() {
-//         $('.redirectToPage').on('click', function() {
-//             window.location.href = $(this).data('href');
-//         });
-//     });
+    $(document).ready(function() {
+        $('.redirectToPage').on('click', function() {
+            window.location.href = $(this).data('href');
+        });
+    });
     </script>
 
     <script>

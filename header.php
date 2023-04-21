@@ -247,11 +247,13 @@ href="' . $url . 'pages/authentication/simple/sign-in.php"> <span class="me-2"
     data-feather="log-in"> </span>
 
 </a>' ;
+$ir_login = 'href="' . $url . 'pages/authentication/simple/sign-in.php"';
 // exit;
 } else
 {
     // logado
     $logado = "logado";
+    $ir_login = 'href="' . $url . 'pages/authentication/simple/sign-in.php"';
     $esconder_entrar = "d-none";
     $cadastrar = "questionario/questionario.php";
     $cadastrar_texto = "Responda o questionario e veja como podemos te ajudar";
@@ -267,6 +269,13 @@ if(isset($_SESSION['email'])) {
 } else {
     // a sessão não está ativa, redirecione o usuário para a página de login
    $logado = "deslogado";
+}
+
+if(isset($_SESSION['email'])) {
+  $ver = "";
+} else {
+  // a sessão não está ativa, redirecione o usuário para a página de login
+ $ver = "d-none";
 }
 
 
