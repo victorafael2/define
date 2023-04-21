@@ -1,4 +1,23 @@
 <?php
+// $url_base = htmlspecialchars(dirname($_SERVER['REQUEST_URI']), ENT_QUOTES, 'UTF-8');
+
+// $barra =  "/";
+
+// $diminuir = 2;
+
+// $url = $url_base.$barra;
+
+// $caractere = "/";
+
+// $stringParaRepetir = "../";
+
+// $contagem = substr_count($url, $caractere) - $diminuir;
+
+
+// $url = str_repeat($stringParaRepetir, $contagem);
+
+
+
 $url_base = htmlspecialchars(dirname($_SERVER['REQUEST_URI']), ENT_QUOTES, 'UTF-8');
 
 $barra =  "/";
@@ -14,7 +33,15 @@ $stringParaRepetir = "../";
 $contagem = substr_count($url, $caractere) - $diminuir;
 
 
-$url = str_repeat($stringParaRepetir, $contagem);
+// $url = str_repeat($stringParaRepetir, $contagem);
+
+if ($contagem > 0) {
+    $url = str_repeat($stringParaRepetir, $contagem);
+  } else {
+
+    $url = "";
+  }
+
 
 
 
