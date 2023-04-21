@@ -124,55 +124,58 @@ h1 .typewriter {
         <!-- ============================================-->
         <!-- <section> begin ============================-->
         <section class="py-5 pt-xl-13 bg-white">
+        <div class="d-flex justify-content-center py-3">
+                                            <h3>Apoiadores</h3>
+                                        </div>
 
             <div class="container-small">
                 <div class="row g-0">
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end">
-                            <img class="w-100" src="assets/img/brand2/netflix-n.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/centelha.png" alt="" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end-md">
-                            <img class="w-100" src="assets/img/brand2/blender.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/finep.png" alt="" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end border-end-md">
-                            <img class="w-100" src="assets/img/brand2/upwork.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/logo-footer.png" alt="" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end-lg-0">
-                            <img class="w-100" src="assets/img/brand2/facebook-f.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/Logo-Pró-Startups.png" alt="" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end border-bottom border-bottom-md-0">
-                            <img class="w-100" src="assets/img/brand2/pocket.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/logo_facepe.png" alt="" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end-md border-bottom border-bottom-md-0">
-                            <img class="w-100" src="assets/img/brand2/mail-bluster-1.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/logo_mcti_2023.png" alt="" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end">
-                            <img class="w-100" src="assets/img/brand2/discord.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/fast.png" alt="" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end-lg-0">
-                            <img class="w-100" src="assets/img/brand2/google-g.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/PortoDigital_2019.png" alt="" />
                         </div>
                     </div>
                 </div>

@@ -323,7 +323,7 @@ $duas_iniciais = substr($iniciais, 0, 2);
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $url ?>assets/img/favicons/favicon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $url ?>assets/img/favicons/favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $url ?>assets/img/favicons/favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo $url ?>assets/img/favicons/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo $url ?>assets/img/favicons/favicon.png">
     <link rel="manifest" href="<?php echo $url ?>assets/img/favicons/manifest.json">
     <meta name="msapplication-TileImage" content="<?php echo $url ?>assets/img/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
