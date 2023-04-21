@@ -406,8 +406,14 @@ function verificarSenha() {
                                                 confirmButtonText: 'OK',
                                             }).then(() => {
                                                 // Redirecionar para a página de sucesso
-                                                window.location.href =
-                                                    '../index.php';
+                                                // window.location.href =
+                                                //     '../index.php';
+
+                                                    // redireciona para a página de destino usando o email e senha cadastrados
+                                                    var email = encodeURIComponent($('#email').val());
+                                                    var password = encodeURIComponent($('#senha').val());
+                                                    var redirectUrl = 'empresa_log.php?email=' + email + '&password=' + password;
+                                                    window.location.href = redirectUrl;
                                             });
                                         } else if (response.duplicateEmail) {
                                             // Mostrar um alerta SweetAlert2 de e-mail duplicado

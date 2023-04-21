@@ -4,6 +4,12 @@ $dataHoraAtual = date('Y-m-d H:i:s');
 
 $informacoesUsuario = $nome_logado . '-' . $dataHoraAtual;
 
+
+
+
+
+
+
 ?>
 
 
@@ -658,7 +664,24 @@ $informacoesUsuario = $nome_logado . '-' . $dataHoraAtual;
 
 
 
+<?php
 
+
+// Verifica se o parâmetro 'mensagem' existe na URL
+if (isset($_GET['mensagem'])) {
+    // Exibe um SweetAlert com a mensagem do parâmetro
+    echo "<script>
+        Swal.fire({
+            title: 'Parabens, você entrou no D.E.F.I.N.E',
+            text: 'Agora você pode responder o questionario a seguir, e encontrar o recurso que sua empresa vai acessar.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    </script>";
+}
+
+
+?>
 
 
 

@@ -133,49 +133,49 @@ h1 .typewriter {
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end">
-                            <img class="w-100" src="assets/img/brand2/centelha.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/centelha.png" alt="Centelha" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end-md">
-                            <img class="w-100" src="assets/img/brand2/finep.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/finep.png" alt="Finep" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end border-end-md">
-                            <img class="w-100" src="assets/img/brand2/logo-footer.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/logo-footer.png" alt="Governo de Pernambuco" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-bottom border-end-lg-0">
-                            <img class="w-100" src="assets/img/brand2/Logo-Pró-Startups.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/Logo-Pró-Startups.png" alt="Pró Startups" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end border-bottom border-bottom-md-0">
-                            <img class="w-100" src="assets/img/brand2/logo_facepe.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/logo_facepe.png" alt="Facepe" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end-md border-bottom border-bottom-md-0">
-                            <img class="w-100" src="assets/img/brand2/logo_mcti_2023.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/logo_mcti_2023.png" alt="MCTI" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end">
-                            <img class="w-100" src="assets/img/brand2/fast.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/fast.png" alt="Fast Motion" />
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div
                             class="p-2 p-sm-5 p-md-2 p-lg-5 d-flex flex-center h-100 border-1 border-dashed border-end-lg-0">
-                            <img class="w-100" src="assets/img/brand2/PortoDigital_2019.png" alt="" />
+                            <img class="w-100" src="assets/img/brand2/PortoDigital_2019.png" alt="Porto Digital" />
                         </div>
                     </div>
                 </div>
