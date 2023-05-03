@@ -70,7 +70,7 @@ h1 .typewriter {
             </div>
         </div> -->
             <!-- <div class="content"> -->
-            <section class="bg-white pb-5" id="home">
+            <section class="bg-white pb-1" id="home">
                 <div class="container-small hero-header-container">
                     <div class="row align-items-center">
                         <div class="col-12 col-lg-auto order-0 order-md-1 text-end order-1">
@@ -124,7 +124,7 @@ h1 .typewriter {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-6 text-lg-start text-center pt-8 pb-6 order-0 position-relative">
+                        <div class="col-12 col-lg-6 text-lg-start text-center pt-0 pb-6 order-0 position-relative">
                             <h1 class="fs-5 fs-lg-6 fs-md-7 fs-lg-6 fs-xl-7 fs fw-black mb-4">Você <br /><span
                                     class="text-primary me-3 " id="texto"></span><br />o recurso que sua empresa vai
                                 acessar,
