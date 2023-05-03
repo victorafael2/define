@@ -70,7 +70,7 @@ h1 .typewriter {
             </div>
         </div> -->
             <!-- <div class="content"> -->
-            <section class="bg-white pb-8" id="home">
+            <section class="bg-white pb-5" id="home">
                 <div class="container-small hero-header-container">
                     <div class="row align-items-center">
                         <div class="col-12 col-lg-auto order-0 order-md-1 text-end order-1">
@@ -144,7 +144,7 @@ h1 .typewriter {
 
             <!-- ============================================-->
             <!-- <section> begin ============================-->
-            <section class="py-5 pt-xl-13 bg-white">
+            <section class="py-5 pt-xl-0 bg-white">
                 <div class="d-flex justify-content-center py-3">
                     <h3>Apoiadores</h3>
                 </div>
