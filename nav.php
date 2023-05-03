@@ -139,7 +139,7 @@ include($caminho_full);
             echo '<div class="overflow-auto scrollbar ' . $v_logado . '" style="height: 5rem;">';
             echo '<ul class="nav d-flex flex-column mb-2 pb-1">';
             echo '<li class="nav-item"><a class="nav-link px-3" href="' . $url . 'adm/perfil.php">';
-            echo '<span class="me-2 text-900" data-feather="user"></span><span>Perfil / Ajustes</span></a></li>';
+            echo '<span class="me-2 text-900" data-feather="user"></span><span>Perfil / Ajustes </span></a></li>';
             echo '<li class="nav-item"><a class="nav-link px-3" href="' . $url . 'adm/questionarios_respondidos.php">';
             echo '<span class="me-2 text-900" data-feather="pie-chart"></span>Meus Relatórios</a></li>';
             echo '</ul>';
