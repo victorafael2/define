@@ -85,12 +85,18 @@ h1 .typewriter {
                                             Seu navegador não suporta a tag de vídeo.
                                         </video> -->
                                     <!-- <iframe  src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                                        <video class="w-100 shadow-lg d-dark-none rounded-2" width="640" height="360" autoplay loop >
+                                            Seu navegador não suporta a tag de vídeo.
+                                        </video>
+                                        <video class="w-100 shadow-lg d-light-none rounded-2" src="assets/videos/define.mp4" width="640" height="360" autoplay loop >
+                                            Seu navegador não suporta a tag de vídeo.
+                                        </video>
 
-                                    <img class="w-100 shadow-lg d-dark-none rounded-2"
+                                    <!-- <img class="w-100 shadow-lg d-dark-none rounded-2"
                                     src="assets/img/bg/matech_imag.jpg" alt="hero-header" />
                                     <img
                                     class="w-100 shadow-lg d-light-none rounded-2" src="assets/img/bg/matech_imag.jpg"
-                                    alt="hero-header" />
+                                    alt="hero-header" /> -->
                                 </div>
                             </div>
                             <div class="hero-image-container position-absolute top-0 bottom-0 end-0 d-none d-lg-block">
