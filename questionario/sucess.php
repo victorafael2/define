@@ -128,7 +128,7 @@ WHERE tab.id <> 9 AND tab.id <> 10";
 
 
 
-
+// echo $sql_setores;
 
 
 $result_setores = mysqli_query($conn, $sql_setores);

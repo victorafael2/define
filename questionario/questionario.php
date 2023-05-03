@@ -105,21 +105,21 @@ $informacoesUsuario = $nome_logado . '-' . $dataHoraAtual;
 
                                         <option value="microempresa">Microempresa (até R$ 360mil)</option>
 
-                                        <option value="pequeno_porte">Empresa de pequeno porte (R$ 360.000,01mil a R$
-                                            4,8milhões)</option>
+                                        <option value="pequeno_porte">Empresa de pequeno porte (R$ 360 mil a R$
+                                            4,8 milhões)</option>
 
-                                        <option value="pequena_empresa">Pequena Empresa (De R$ 4.800.000,01 a R$
-                                            16.000.000,00)</option>
+                                        <option value="pequena_empresa">Pequena Empresa (De R$ 4.8 milhões a R$
+                                            16 milhões)</option>
 
-                                        <option value="media_empresa">Media Empresa (De R$ 16.000.000,01 a R$
-                                            90.000.000,00)
+                                        <option value="media_empresa">Media Empresa (De R$ 16 milhões a R$
+                                            90 milhões)
                                         </option>
 
-                                        <option value="media_grande">Media Grande (De R$ 90.000.000,01 a R$
-                                            300.000.000,00)
+                                        <option value="media_grande">Media Grande (De R$ 90 milhões a R$
+                                            300 milhões)
                                         </option>
 
-                                        <option value="grande_empresa">Grande Empresa (Acima de R$ 300.000.000,01)
+                                        <option value="grande_empresa">Grande Empresa (Acima de R$ 300 milhões)
                                         </option>
                                     </select>
                                 </div>
