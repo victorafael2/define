@@ -81,14 +81,14 @@ h1 .typewriter {
                                 <!--/.bg-holder-->
 
                                 <div class="position-relative">
-                                <!-- <video class="w-100 shadow-lg d-dark-none rounded-2" src="assets/videos/define.mp4" width="640" height="360" autoplay loop muted>
+                                <!-- <video class="w-100 shadow-lg d-dark-none rounded-2" src="assets/videos/define.mp4" width="720" height="405" autoplay loop muted>
                                             Seu navegador não suporta a tag de vídeo.
                                         </video> -->
                                     <!-- <iframe  src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-                                        <video class="w-100 shadow-lg d-dark-none rounded-2" src="assets/videos/define.mp4" type="video/mp4" width="640" height="360" autoplay loop controls muted >
+                                        <video class="w-100  d-dark-none rounded-2" src="assets/videos/define.mp4" type="video/mp4" width="720" height="405" autoplay loop controls muted >
                                             Seu navegador não suporta a tag de vídeo.
                                         </video>
-                                        <video class="w-100 shadow-lg d-light-none rounded-2" src="assets/videos/define.mp4" type="video/mp4" width="640" height="360" autoplay loop controls muted >
+                                        <video class="w-100  d-light-none rounded-2" src="assets/videos/define.mp4" type="video/mp4" width="720" height="405" autoplay loop controls muted >
                                             Seu navegador não suporta a tag de vídeo.
                                         </video>
 
@@ -107,10 +107,10 @@ h1 .typewriter {
                                             alt="hero-header" />
                                     </div>
                                     <div class="position-absolute h-100 top-0 d-flex align-items-center end-0">
-                                        <video class="pt-7 pt-md-0 w-100 shadow-lg d-dark-none rounded-2" src="assets/videos/define.mp4" type="video/mp4" width="640" height="360" muted  autoplay loop controls >
+                                        <video class="pt-7 pt-md-0 w-100  d-dark-none rounded-2" src="assets/videos/define.mp4" type="video/mp4" width="720" height="405" muted  autoplay loop controls >
                                             Seu navegador não suporta a tag de vídeo.
                                         </video>
-                                        <video class="pt-7 pt-md-0 w-100 shadow-lg d-light-none rounded-2" src="assets/videos/define.mp4" type="video/mp4" width="640" height="360" muted autoplay loop controls >
+                                        <video class="pt-7 pt-md-0 w-100  d-light-none rounded-2" src="assets/videos/define.mp4" type="video/mp4" width="720" height="405" muted autoplay loop controls >
                                             Seu navegador não suporta a tag de vídeo.
                                         </video>
 
