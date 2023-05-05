@@ -399,7 +399,7 @@ $informacoesUsuario = $nome_logado . '-' . $dataHoraAtual;
 
 
 
-
+                                <div class="table-responsive scrollbar ms-n1 px1">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -413,40 +413,40 @@ $informacoesUsuario = $nome_logado . '-' . $dataHoraAtual;
                                     <tbody>
                                         <tr>
                                             <td class="text-center">SOCIEDADE</td>
-                                            <td><input class="text-center" type="radio" name="impactos-gerais1"
+                                            <td class="text-center"><input class="form-check-input form-control-lg" type="radio" name="impactos-gerais1"
                                                     value="0"></td>
-                                            <td><input class="text-center" type="radio" name="impactos-gerais1"
+                                            <td class="text-center"><input class="form-check-input form-control-lg" type="radio" name="impactos-gerais1"
                                                     value="2"></td>
-                                            <td><input class="text-center" type="radio" name="impactos-gerais1"
+                                            <td class="text-center"><input class="form-check-input form-control-lg" type="radio" name="impactos-gerais1"
                                                     value="4"></td>
-                                            <td><input class="text-center" type="radio" name="impactos-gerais1"
+                                            <td class="text-center"><input class="form-check-input form-control-lg" type="radio" name="impactos-gerais1"
                                                     value="5"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">MEIO AMBIENTE</td>
-                                            <td><input type="radio" name="impactos-gerais2" value="0"></td>
-                                            <td><input type="radio" name="impactos-gerais2" value="2"></td>
-                                            <td><input type="radio" name="impactos-gerais2" value="4"></td>
-                                            <td><input type="radio" name="impactos-gerais2" value="5"></td>
+                                            <td class="text-center"><input class="form-check-input form-control-lg" class="form-control-lg" type="radio" name="impactos-gerais2" value="0"></td>
+                                            <td class="text-center"><input class="form-check-input form-control-lg" type="radio" name="impactos-gerais2" value="2"></td>
+                                            <td class="text-center"><input class="form-check-input form-control-lg" type="radio" name="impactos-gerais2" value="4"></td>
+                                            <td class="text-center"><input class="form-check-input form-control-lg" type="radio" name="impactos-gerais2" value="5"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">MERCADO</td>
-                                            <td><input type="radio" name="impactos-gerais3" value="0"></td>
-                                            <td><input type="radio" name="impactos-gerais3" value="2"></td>
-                                            <td><input type="radio" name="impactos-gerais3" value="4"></td>
-                                            <td><input type="radio" name="impactos-gerais3" value="5"></td>
+                                            <td class="text-center"><input class="form-check-input form-control-lg" type="radio" name="impactos-gerais3" value="0"></td>
+                                            <td class="text-center"><input class="form-check-input form-control-lg" type="radio" name="impactos-gerais3" value="2"></td>
+                                            <td class="text-center"><input class="form-check-input form-control-lg" type="radio" name="impactos-gerais3" value="4"></td>
+                                            <td class="text-center"><input class="form-check-input form-control-lg" type="radio" name="impactos-gerais3" value="5"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">GOVERNO</td>
-                                            <td><input type="radio" name="impactos-gerais4" value="0"></td>
-                                            <td><input type="radio" name="impactos-gerais4" value="2"></td>
-                                            <td><input type="radio" name="impactos-gerais4" value="4"></td>
-                                            <td><input type="radio" name="impactos-gerais4" value="5"></td>
+                                            <td class="text-center"><input class="form-check-input form-control-lg"type="radio" name="impactos-gerais4" value="0"></td>
+                                            <td class="text-center"><input  class="form-check-input form-control-lg"type="radio" name="impactos-gerais4" value="2"></td>
+                                            <td class="text-center"><input  class="form-check-input form-control-lg"type="radio" name="impactos-gerais4" value="4"></td>
+                                            <td class="text-center"><input  class="form-check-input form-control-lg"type="radio" name="impactos-gerais4" value="5"></td>
                                         </tr>
                                     </tbody>
                                 </table>
 
-
+</div>
                             </div>
 
                             <br>
@@ -594,6 +594,35 @@ $informacoesUsuario = $nome_logado . '-' . $dataHoraAtual;
         });
     });
 </script> -->
+
+<script>
+// Seletor para os campos obrigatórios do formulário
+var requiredFields = document.querySelectorAll('input[required], select[required], textarea[required]');
+
+// Função para verificar se todos os campos obrigatórios foram preenchidos
+function checkRequiredFields() {
+  for (var i = 0; i < requiredFields.length; i++) {
+    if (!requiredFields[i].value) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// Seletor para o botão de envio
+var submitButton = document.getElementById('btnSubmit');
+
+// Adicionar um ouvinte de eventos para verificar quando os campos mudarem
+document.addEventListener('input', function() {
+  if (checkRequiredFields()) {
+    submitButton.removeAttribute('disabled');
+  } else {
+    submitButton.setAttribute('disabled', 'disabled');
+  }
+});
+
+
+</script>
 
     <script>
     document.getElementById("btnSubmit").addEventListener("click", function(event) {

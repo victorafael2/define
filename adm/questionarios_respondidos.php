@@ -43,7 +43,8 @@
             echo "</tbody>";
             echo "</table>";
         } else {
-            echo "0 results";
+          echo "Você ainda não fez nenhum questionário, vamos fazer um? Clique <a href='../questionario/questionario.php.php'>aqui</a> para começar.";
+
         }
 
         // Fechando a conexão com o banco de dados
