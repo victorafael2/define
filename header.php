@@ -88,7 +88,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
 if (!isset($_SESSION['email'])) {
     // Verifica se o arquivo atual é index.php ou empresa.php
     $current_file = basename($_SERVER['PHP_SELF']);
-    if ($current_file == "index.php" || $current_file == "empresa.php") {
+    if ($current_file == "index.php" || $current_file == "empresa.php" || $current_file == "sobre.php" || $current_file == "developers.php") {
       // Faça outra coisa aqui
     } else {
       // Redireciona o usuário para a página inicial
