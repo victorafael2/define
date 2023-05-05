@@ -103,7 +103,10 @@
       info: false,
       language: {
         searchPlaceholder: "Pesquisar...",
-        search: "",
+        search: "",paginate: {
+        next: "Próximo",
+        previous: "Anterior"
+      }
       },
     });
   });
