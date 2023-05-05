@@ -79,7 +79,7 @@
                                                 <i class="fab fa-instagram me-2"></i>
                                                     <a href="https://www.instagram.com/palomagomes.dsgn/" target="_blank" id="instagram-link1">@palomagomes.dsgn</a>
                                                 </h5>
-                                                <p class="card-text" id="instagram-job1">Atriz</p>
+                                                <p class="card-text" id="instagram-job1">Publicitária</p>
                                             </div>
                                         </div>
                                     </div>
