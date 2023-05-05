@@ -3,6 +3,8 @@ include '../header.php';
 // include '../conexao/conexao.php';
 // session_start();
 // echo $_SESSION['email'];
+error_reporting(0);
+ini_set('display_errors', 0);
 
 
 // $outro_email = $_GET["email"];
@@ -12,6 +14,11 @@ include '../header.php';
 $email = empty($_GET["email"]) ? $_SESSION['email'] : $_GET["email"];
 
 $diag = $_GET['id'];
+
+if (empty($diag)) {
+    echo '<script>window.location.href = "../adm/questionarios_respondidos.php";</script>';
+    exit();
+  }
 
 // echo $conn;
 
@@ -379,8 +386,11 @@ if (mysqli_num_rows($result_usuario) > 0) {
     animation-timing-function: linear;
   }
 
-
-
+  @media (max-width: 768px) {
+  #chart23 .apexcharts-data-labels {
+    display: none !important;
+  }
+}
 
 </style>
 
@@ -770,9 +780,9 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                             while ($row = mysqli_fetch_assoc($result_setores)) {
                                                 // <span class="gif"></span>
                                                 // <span class="far fa-check-circle text-success fs-2"></span>
-                                                $gif = '<img src="../assets/gif/reprodutor-de-video.png" width="32" height="32" class="animated">';
+                                                $gif = '<img src="../assets/gif/video-player.png" width="32" height="32" class="animated">';
 
-                                                $resultado = ($row['icon'] === 'novo') ? '-' : ($gif === 'icone_verde' ? '<span class="gif"></span>' :$gif);
+                                                $resultado = ($row['icon'] === 'novo') ? '-' : ($row['icon'] === 'icone_verde' ? '<span class="gif"></span>' :$gif);
                                                 $link = ($row['icon'] === 'novo') ? $row['nao'] : $row['sim'];
                                                 $youtube = 'https://www.youtube.com/embed/';
 
@@ -1094,6 +1104,22 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
             name: "Valor",
             data: data2
         }],
+        responsive: [{
+    breakpoint: 768,
+    options: {
+      chart: {
+        sparkline: {
+          enabled: true
+        },
+        animations: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      }
+    }
+  }],
         fill: {
             type: "solid"
         },
@@ -1192,14 +1218,14 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     const videos = [
-        "https://www.youtube.com/embed/x1WZZWYUmTA",
-        "https://www.youtube.com/embed/4beAfc2OdFQ",
-        "https://www.youtube.com/embed/x1WZZWYUmTA",
-        "https://www.youtube.com/embed/4beAfc2OdFQ",
-        "https://www.youtube.com/embed/x1WZZWYUmTA",
-        "https://www.youtube.com/embed/4beAfc2OdFQ",
-        "https://www.youtube.com/embed/x1WZZWYUmTA",
-        "https://www.youtube.com/embed/4beAfc2OdFQ",
+        // "https://www.youtube.com/embed/x1WZZWYUmTA",
+        // "https://www.youtube.com/embed/4beAfc2OdFQ",
+        // "https://www.youtube.com/embed/x1WZZWYUmTA",
+        // "https://www.youtube.com/embed/4beAfc2OdFQ",
+        // "https://www.youtube.com/embed/x1WZZWYUmTA",
+        // "https://www.youtube.com/embed/4beAfc2OdFQ",
+        // "https://www.youtube.com/embed/x1WZZWYUmTA",
+        // "https://www.youtube.com/embed/4beAfc2OdFQ",
 
 
     ];
@@ -1430,3 +1456,29 @@ toastr.options = {
 };
 toastr.info('Agora você pode ver os pontos fortes e fracos da sua startup.', 'Informação');
 </script>
+
+
+<script>
+function hideLabelsOnMobile() {
+  if (window.innerWidth <= 768) {
+    var options = chart23.options;
+    options.labels = ['', '', '', '', '', ''];
+    chart23.updateOptions(options);
+  }
+}
+
+
+</script>
+
+<script>
+window.onload = function() {
+  hideLabelsOnMobile();
+}
+
+window.addEventListener('resize', function() {
+  hideLabelsOnMobile();
+});
+
+
+</script>
+

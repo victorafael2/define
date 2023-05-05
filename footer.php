@@ -81,7 +81,7 @@ if ($contagem > 0) {
                                 <h3 class="text-white light">D.E.F.I.N.E</h3>
                                 <!-- <p class="text-white opacity-50 light">All over the world. Alice in <br />wonderland and
                                     other places.</p> -->
-                                <p class="text-white opacity-50 light"><b>D</b>iagnÓstico
+                                <p class="text-white opacity-50 light"><b>D</b>iagnóstico
                                     <br /> <b>E</b>stratégico de
                                     <br /><b>F</b>omento à
                                     <br /><b>I</b>novação
