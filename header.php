@@ -239,7 +239,7 @@ if(!isset($_SESSION["email"]) || !isset($_SESSION["email"]))
 $logado = "deslogado";
 $esconder_ = "d-none";
 $cadastrar = "empresas/empresa.php";
-$cadastrar_texto = "Cadastre-se e tenha acesso à oportunidades";
+$cadastrar_texto = "Cadastre-se e tenha acesso às oportunidades";
 $botao_login = '<a class="btn btn-phoenix-secondary d-flex flex-center w-100"
 href="' . $url . 'pages/authentication/simple/sign-in.php"> <span class="me-2"
     data-feather="log-in"> </span>
