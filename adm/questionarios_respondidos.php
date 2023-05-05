@@ -1,6 +1,6 @@
 <?php include '../header.php' ?>
 
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
 <body>
 
     <!-- ===============================================-->
@@ -15,19 +15,19 @@
                 <div class="card h-100">
                     <div class="card-body">
 
-<h3>Meus questionarios</h3>
+<h3>Meus questionários</h3>
 
 
 <?php
 
 
         // Consulta SQL para selecionar todos os usuários
-        $sql = "SELECT id, user, created FROM questionario2 where user = '$nome_logado'";
+        $sql = "SELECT id, user, created, nome_diag FROM questionario2 where user = '$nome_logado'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            echo "<table class='table table-striped table-sm'>";
-            echo "<thead><tr><th>ID</th><th>First Name</th><th>Created</th><th>ação</th></tr></thead>";
+            echo "<table id='questionario' class='table table-striped table-sm'>";
+            echo "<thead><tr><th>ID</th><th>Email</th><th>Nome do Diagnóstico</th><th>Criado em</th><th>ação</th></tr></thead>";
             echo "<tbody>";
 
             // Percorrendo os resultados e adicionando-os à tabela HTML
@@ -35,8 +35,9 @@
                 echo "<tr>";
                 echo "<td>" . $row["id"] . "</td>";
                 echo "<td>" . $row["user"] . "</td>";
+                echo "<td>" . $row["nome_diag"] . "</td>";
                 echo "<td>" . $row["created"] . "</td>";
-                echo "<td><button class='btn btn-primary btn-sm redirectToPage' data-href='../questionario/sucess.php?id=" . $row["id"] . "'>Go</button></td>";
+                echo "<td><button class='btn btn-primary btn-sm redirectToPage' data-href='../questionario/sucess.php?id=" . $row["id"] . "'>Ver</button></td>";
                 echo "</tr>";
             }
             echo "</tbody>";
@@ -81,6 +82,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
     <script>
         $(document).ready(function(){
             $('.redirectToPage').on('click', function() {
@@ -88,6 +93,22 @@
             });
         });
     </script>
+
+<script>
+  $(document).ready(function() {
+    $('#questionario').DataTable({
+      searching: true,
+      ordering: true,
+      lengthChange: false,
+      info: false,
+      language: {
+        searchPlaceholder: "Pesquisar...",
+        search: "",
+      },
+    });
+  });
+</script>
+
 
 
 </body>

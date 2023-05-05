@@ -98,7 +98,7 @@ function verificarSenha() {
     // Verificar se a senha contém letras maiúsculas, minúsculas, números e caracteres especiais
     var pattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])/;
     if (!pattern.test(senha)) {
-        forca.innerHTML = "Senha fraca, por favor inserir pelo menos um numero e letras maisculas";
+        forca.innerHTML = "Senha fraca, por favor inserir pelo menos um numero e letras maiúscula";
         forca.style.color = "red";
     }
 }

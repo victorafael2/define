@@ -357,6 +357,31 @@ if (mysqli_num_rows($result_usuario) > 0) {
     visibility: visible;
     opacity: 1;
 }
+
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+  .animated {
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+
+
+
 </style>
 
 
@@ -743,8 +768,11 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                             $contador = 0;
                                             // Loop para percorrer os resultados da consulta e criar as linhas da tabela
                                             while ($row = mysqli_fetch_assoc($result_setores)) {
+                                                // <span class="gif"></span>
+                                                // <span class="far fa-check-circle text-success fs-2"></span>
+                                                $gif = '<img src="../assets/gif/reprodutor-de-video.png" width="32" height="32" class="animated">';
 
-                                                $resultado = ($row['icon'] === 'novo') ? '-' : ($row['icon'] === 'icone_verde' ? '<span class="far fa-check-circle text-success fs-2"></span>' : $row['icon']);
+                                                $resultado = ($row['icon'] === 'novo') ? '-' : ($gif === 'icone_verde' ? '<span class="gif"></span>' :$gif);
                                                 $link = ($row['icon'] === 'novo') ? $row['nao'] : $row['sim'];
                                                 $youtube = 'https://www.youtube.com/embed/';
 
@@ -764,15 +792,8 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                         </button>
                                                             </td>';
 
-
-
-                                                        //     echo '<button type="button" class="btn btn-ligth" data-bs-toggle="modal"
-                                                        //     data-bs-target="#videoModal">
-                                                        //     Open Video Modal
-                                                        // </button>';
-
                                                                     echo ' <div class="modal fade" id="videoModal' . $contador . '" tabindex="-1"
-                                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                                                     <div class="modal-dialog modal-dialog-centered">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
@@ -781,18 +802,37 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                                                     aria-label="Close"></button>
                                                                             </div>
                                                                             <div class="modal-body">
-                                                                                <div class="ratio ratio-16x9">
+                                                                                <div class="ratio ratio-16x9" id="player' . $contador . '">
                                                                                     <iframe src="https://www.youtube.com/embed/'.$link.'"
                                                                                         allowfullscreen></iframe>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary"
-                                                                                    data-bs-dismiss="modal">Fechar</button>
+                                                                                    data-bs-dismiss="modal" onclick="pauseVideo()">Fechar</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>';
+
+                                                                // echo '<script>';
+                                                                // echo 'var player;';
+                                                                // echo 'function onYouTubeIframeAPIReady() {';
+                                                                // echo '  player = new YT.Player(\'player'. $contador .'\', {';
+                                                                // echo '    videoId: \''. $link .'\'';
+                                                                // echo '  });';
+                                                                // echo '}';
+                                                                // echo 'function pauseVideo'. $contador .'() {';
+                                                                // echo '  player.pauseVideo'. $contador .'();';
+                                                                // echo '}';
+                                                                // echo '</script>';
+
+
+
+
+                                                                    echo '     </script>';
+
+
 
                                                         // Incrementa o contador
                                                         $contador++;
@@ -870,6 +910,38 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
 
 
 ?>
+
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+  var players = [];
+
+  function onYouTubeIframeAPIReady() {
+    players.push(new YT.Player('player0', {videoId: 'G6oGbQrXLjE'}));
+    players.push(new YT.Player('player1', {videoId: 'bI834H6ZklE'}));
+    players.push(new YT.Player('player2', {videoId: '2Q3iY3ElPdU'}));
+    players.push(new YT.Player('player3', {videoId: '1m4Ex7rC8Ik'}));
+    players.push(new YT.Player('player4', {videoId: 'j3MpT043uPQ'}));
+    players.push(new YT.Player('player5', {videoId: '7zftaLNpeJw'}));
+    players.push(new YT.Player('player6', {videoId: 'RrX0qPELsRA'}));
+    players.push(new YT.Player('player7', {videoId: 'VFrIzp_ThMk'}));
+  }
+
+  function pauseAllVideos() {
+    players.forEach(function(player) {
+      player.pauseVideo();
+    });
+  }
+
+  var closeButtons = document.querySelectorAll('[data-bs-dismiss="modal"]');
+  closeButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      pauseAllVideos();
+    });
+  });
+</script>
+
 
     <script>
     // const data = [{

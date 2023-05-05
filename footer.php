@@ -78,10 +78,10 @@ if ($contagem > 0) {
                         <div class="row position-relative">
                             <div class="col-4 col-sm-4 col-lg-5 mb-4 order-0 order-sm-0"><a href="#"><img class="mb-3"
                                         src="<?php echo $url ?>assets/img/icons/logo-white.png" height="48" alt="" /></a>
-                                <h3 class="text-white light">define</h3>
+                                <h3 class="text-white light">D.E.F.I.N.E</h3>
                                 <!-- <p class="text-white opacity-50 light">All over the world. Alice in <br />wonderland and
                                     other places.</p> -->
-                                <p class="text-white opacity-50 light"><b>D</b>iagnostico
+                                <p class="text-white opacity-50 light"><b>D</b>iagnÓstico
                                     <br /> <b>E</b>stratégico de
                                     <br /><b>F</b>omento à
                                     <br /><b>I</b>novação

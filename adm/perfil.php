@@ -7,6 +7,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+
 <body>
 
     <!-- ===============================================-->
@@ -73,7 +75,7 @@
                                                             <h4 class="fs-1 text-1000 mb-0"><?php echo $cnpj ?></h4>
                                                         </div>
                                                         <div class="text-end">
-                                                            <h6 class="mb-2 text-800">Ultimo questionario feito</h6>
+                                                            <h6 class="mb-2 text-800">Último questionário feito</h6>
                                                             <h4 class="fs-1 text-1000 mb-0">
                                                                 <!-- <?php echo "Há " . $days . " dias<br>";  ?> -->
                                                                 <?php echo "Há " . $dias . " dias e " . $minutos . " minutos";  ?>
@@ -81,7 +83,7 @@
                                                             </h4>
                                                         </div>
                                                         <div class="text-end">
-                                                            <h6 class="mb-2 text-800">Questionarios feitos</h6>
+                                                            <h6 class="mb-2 text-800">Questionários feitos</h6>
                                                             <h4 class="fs-1 text-1000 mb-0">
                                                                 <?php echo $contagem_questionarios ?></h4>
                                                         </div>
@@ -188,7 +190,7 @@
                                                               if ($permissao == "adm") {
 
                                                               if ($result->num_rows > 0) {
-                                                                  echo "<table class='table table-striped table-sm table-hover table fs--1 mb-0'>";
+                                                                  echo "<table id='feitos' class='table table-striped table-sm table-hover table fs--1 mb-0'>";
                                                                   echo "<thead><tr><th data-sort='id'>ID</th><th>Data</th><th>Empresa</th><th>CNPJ</th><th>Contato</th><th>Porte</th><th>Setor</th><th>Ver</th><th>Contato feito</th><th>Relato</th></tr></thead>";
                                                                   echo "<tbody class='list'>";
 
@@ -1353,6 +1355,24 @@
     <!-- ===============================================-->
 
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <!-- <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script> -->
+
+  <script>
+  $(document).ready(function() {
+    $('#feitos').DataTable({
+      searching: true,
+      ordering: true,
+      lengthChange: false,
+      info: false,
+      language: {
+        searchPlaceholder: "Pesquisar...",
+        search: "",
+      },
+    });
+  });
+</script>
 
 
 

@@ -6,9 +6,7 @@ ini_set('session.gc_maxlifetime', 1200);
 session_start();
 
 
-
-
-
+date_default_timezone_set('America/Sao_Paulo');
 
 // echo date('Y-m-d H:i:s');
 
@@ -241,7 +239,7 @@ if(!isset($_SESSION["email"]) || !isset($_SESSION["email"]))
 $logado = "deslogado";
 $esconder_ = "d-none";
 $cadastrar = "empresas/empresa.php";
-$cadastrar_texto = "Cadastre-se e tenha acesso a oportundiades";
+$cadastrar_texto = "Cadastre-se e tenha acesso à oportunidades";
 $botao_login = '<a class="btn btn-phoenix-secondary d-flex flex-center w-100"
 href="' . $url . 'pages/authentication/simple/sign-in.php"> <span class="me-2"
     data-feather="log-in"> </span>
@@ -256,7 +254,7 @@ $ir_login = 'href="' . $url . 'pages/authentication/simple/sign-in.php"';
     $ir_login = 'href="' . $url . 'pages/authentication/simple/sign-in.php"';
     $esconder_entrar = "d-none";
     $cadastrar = "questionario/questionario.php";
-    $cadastrar_texto = "Responda o questionario e veja como podemos te ajudar";
+    $cadastrar_texto = "Responda o questionário e veja como podemos te ajudar";
     $botao_login = ' <form class="<?php echo $esconder_ ?>" method="post"
     action=" ' . $url . 'encerrar_sessao.php">
     <input type="hidden" name="encerrar_sessao" value="1">

@@ -125,7 +125,7 @@ h1 .typewriter {
                             </div>
                         </div>
                         <div class="col-12 col-lg-6 text-lg-start text-center pt-0 pb-6 order-0 position-relative">
-                            <h1 class="fs-5 fs-lg-6 fs-md-7 fs-lg-6 fs-xl-7 fs fw-black mb-4">Você <br /><span
+                            <h1 class="fs-5 fs-lg-6 fs-md-7 fs-lg-6 fs-xl-7 fs fw-black mb-4 pt-5">Você <br /><span
                                     class="text-primary me-3 " id="texto"></span><br />o recurso que sua empresa vai
                                 acessar,
                             </h1>
