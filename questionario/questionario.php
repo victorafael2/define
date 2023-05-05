@@ -595,7 +595,7 @@ $informacoesUsuario = $nome_logado . '-' . $dataHoraAtual;
     });
 </script> -->
 
-<script>
+<!-- <script>
 // Seletor para os campos obrigatórios do formulário
 var requiredFields = document.querySelectorAll('input[required], select[required], textarea[required]');
 
@@ -622,7 +622,7 @@ document.addEventListener('input', function() {
 });
 
 
-</script>
+</script> -->
 
     <script>
     document.getElementById("btnSubmit").addEventListener("click", function(event) {
