@@ -43,7 +43,7 @@
             echo "</tbody>";
             echo "</table>";
         } else {
-          echo "Você ainda não fez nenhum questionário, vamos fazer um? Clique <a href='../questionario/questionario.php.php'>aqui</a> para começar.";
+          echo "Você ainda não fez nenhum questionário, vamos fazer um? Clique <a href='../questionario/questionario.php'>aqui</a> para começar.";
 
         }
 
