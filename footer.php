@@ -91,7 +91,12 @@ if ($contagem > 0) {
                             </div>
                             <div class="col-lg-7">
                                 <div class="row justify-content-between">
-
+                                <?php
+        $current_path = $_SERVER['PHP_SELF'];
+        $count_slashes = substr_count($current_path, '/')-2;
+        $relative_path = str_repeat('../', $count_slashes);
+        // echo $relative_path;
+    ?>
                                     <div class="col-6 col-sm-4 col-lg-3 mb-3 order-3 order-sm-2">
                                     <div class="border-dashed border-start border-primary-300 ps-3"
                                             style="--phoenix-border-opacity: .2;">
@@ -99,17 +104,18 @@ if ($contagem > 0) {
                                             <ul class="list-unstyled mb-3">
                                             <li class="mb-1"><a
                                                         class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="../index.php">Home</a></li>
+                                                        href="<?php echo $relative_path ?>index.php">Home</a></li>
                                                 <li class="mb-1"><a
                                                         class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="../adm/sobre.php">Sobre</a></li>
+                                                        href="<?php echo $relative_path ?>adm/sobre.php">Sobre</a></li>
                                                 <li class="mb-1"><a
                                                         class="text-500 hover-text-100 light text-decoration-none"
                                                         href="mailto:fabiana@matech-solution.com.br">Contato</a></li>
                                                 <li class="mb-1"><a
                                                         class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="../adm/developers.php">Developers</a></li>
+                                                        href="<?php echo $relative_path ?>adm/developers.php">Developers</a></li>
                                             </ul>
+
                                         </div>
                                     </div>
                                     <div class="col-6 col-sm-4 col-lg-3 mb-3 order-3 order-sm-2">
