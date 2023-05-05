@@ -97,15 +97,18 @@ if ($contagem > 0) {
                                             style="--phoenix-border-opacity: .2;">
                                             <h5 class="fw-bolder mb-2 text-light light">Ajuda</h5>
                                             <ul class="list-unstyled mb-3">
+                                            <li class="mb-1"><a
+                                                        class="text-500 hover-text-100 light text-decoration-none"
+                                                        href="../index.php">Home</a></li>
                                                 <li class="mb-1"><a
                                                         class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Sobre</a></li>
+                                                        href="../adm/sobre.php">Sobre</a></li>
                                                 <li class="mb-1"><a
                                                         class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Contato</a></li>
+                                                        href="mailto:fabiana@matech-solution.com.br">Contato</a></li>
                                                 <li class="mb-1"><a
                                                         class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Developers</a></li>
+                                                        href="../adm/developers.php">Developers</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -114,15 +117,10 @@ if ($contagem > 0) {
                                             style="--phoenix-border-opacity: .2;">
                                             <h5 class="lh-lg fw-bolder mb-2 text-light light">Redes Sociais</h5>
                                             <ul class="list-unstyled mb-2">
+
                                                 <li class="mb-1"><a
                                                         class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Facebook</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Twitter</a></li>
-                                                <li class="mb-1"><a
-                                                        class="text-500 hover-text-100 light text-decoration-none"
-                                                        href="#!">Linkedin</a></li>
+                                                        href="https://www.linkedin.com/company/matech-solution/">Linkedin</a></li>
                                             </ul>
                                         </div>
                                     </div>
