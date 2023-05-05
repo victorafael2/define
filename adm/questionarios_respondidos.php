@@ -17,7 +17,7 @@
 
 <h3>Meus questionários</h3>
 
-
+<div class="table-responsive scrollbar ms-n1 px1">
 <?php
 
 
@@ -50,7 +50,7 @@
         $conn->close();
         ?>
 
-
+</div>
 
 
 
