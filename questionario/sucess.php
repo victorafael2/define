@@ -444,7 +444,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                 <div id="chart23"></div>
 
 
-                                                <div class="modal fade" tabindex="-1" role="dialog" id="youtubeModal">
+                                                <!-- <div class="modal fade" tabindex="-1" role="dialog" id="youtubeModal">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -464,7 +464,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
 
 
@@ -662,16 +662,16 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
 
 
-                                                        events: {
-                                                            markerClick: function(event, chartContext, {
-                                                                seriesIndex,
-                                                                dataPointIndex
-                                                            }) {
-                                                                const videoUrl = data[dataPointIndex].url;
-                                                                $("#youtubeVideo").attr("src", videoUrl);
-                                                                $("#youtubeModal").modal("show");
-                                                            },
-                                                        },
+                                                        // events: {
+                                                        //     markerClick: function(event, chartContext, {
+                                                        //         seriesIndex,
+                                                        //         dataPointIndex
+                                                        //     }) {
+                                                        //         const videoUrl = data[dataPointIndex].url;
+                                                        //         $("#youtubeVideo").attr("src", videoUrl);
+                                                        //         $("#youtubeModal").modal("show");
+                                                        //     },
+                                                        // },
                                                     },
 
 
@@ -703,11 +703,11 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                         tickInterval: 1,
                                                         min: 0,
                                                         max: 5,
-                                                        labels: {
-                                                            formatter: function(val) {
-                                                                return Math.abs(val)
-                                                            }
-                                                        }
+                                                        // labels: {
+                                                        //     formatter: function(val) {
+                                                        //         return Math.abs(val)
+                                                        //     }
+                                                        // }
                                                     },
                                                     yaxis: {
                                                         title: {
@@ -716,11 +716,11 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                         tickInterval: 1,
                                                         min: 0,
                                                         max: 5,
-                                                        labels: {
-                                                            formatter: function(val) {
-                                                                return Math.abs(val)
-                                                            }
-                                                        }
+                                                        // labels: {
+                                                        //     formatter: function(val) {
+                                                        //         return Math.abs(val)
+                                                        //     }
+                                                        // }
                                                     },
                                                 };
 
@@ -1089,16 +1089,16 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
         chart: {
             type: "radar",
             height: 500,
-            events: {
-                markerClick: function(event, chartContext, {
-                    seriesIndex,
-                    dataPointIndex
-                }) {
-                    const videoUrl = data2[dataPointIndex].url;
-                    $("#youtubeVideo").attr("src", videoUrl);
-                    $("#youtubeModal").modal("show");
-                }
-            }
+            // events: {
+            //     markerClick: function(event, chartContext, {
+            //         seriesIndex,
+            //         dataPointIndex
+            //     }) {
+            //         const videoUrl = data2[dataPointIndex].url;
+            //         $("#youtubeVideo").attr("src", videoUrl);
+            //         $("#youtubeModal").modal("show");
+            //     }
+            // }
         },
         series: [{
             name: "Valor",
