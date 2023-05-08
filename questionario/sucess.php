@@ -662,6 +662,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
 
 
+
                                                         // events: {
                                                         //     markerClick: function(event, chartContext, {
                                                         //         seriesIndex,
@@ -722,6 +723,9 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                         //     }
                                                         // }
                                                     },
+                                                    zaxis: {
+    show: false,
+  },
                                                 };
 
                                                 const chart = new ApexCharts(document.getElementById(
