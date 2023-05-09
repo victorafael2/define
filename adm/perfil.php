@@ -302,10 +302,10 @@
                                   // echo $result;
 
                                   // Exibe os usuários em uma tabela
-                                  echo '<div class="table-responsive">';
+                                  echo '<div class="table-responsive scrollbar ms-n1 px1">';
 
                                   echo '<form method="POST" action="<?php echo $url ?>/adm.php">';
-                                                        echo '<table class="table table-sm table-stripped table-hover">
+                                                        echo '<table id="usuarios" class="table table-sm table-stripped table-hover">
                                                             ';
                                                             echo '<thead>';
                                                                 echo '<tr>';
@@ -367,11 +367,11 @@
                                                                     <th>Descrição</th>
                                                                     <th><span
                                                                             class="far fa-check-circle text-success "></span>
-                                                                        Possui incetivo</th>
-                                                                    <th><span
+                                                                        Possui incentivo</th>
+                                                                    <!-- <th><span
                                                                             class="fas fa-info-circle text-info "></span>
                                                                         Não possui incentivo</th>
-                                                                    <th>Ação</th>
+                                                                    <th>Ação</th> -->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -398,11 +398,11 @@
                                                                             name="youtube_link"
                                                                             value="<?php echo $row["sim"]; ?>">
                                                                     </td>
-                                                                    <td><input type="text"
+                                                                    <!-- <td><input type="text"
                                                                             class="form-control youtube-link"
                                                                             name="outro_campo"
                                                                             value="<?php echo $row["nao"]; ?>">
-                                                                    </td>
+                                                                    </td> -->
                                                                     <td>
                                                                         <button type="button"
                                                                             class="btn btn-primary btn-atualizar-video"
@@ -1380,6 +1380,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
     <script>
 //     $(document).ready(function() {
 //   // define o número de linhas por página
@@ -1643,6 +1647,25 @@
         });
     });
     </script>
+
+
+<script>
+  $(document).ready(function() {
+    $('#usuarios').DataTable({
+      searching: true,
+      ordering: true,
+      lengthChange: false,
+      info: false,
+      language: {
+        searchPlaceholder: "Pesquisar...",
+        search: "",paginate: {
+        next: "Próximo",
+        previous: "Anterior"
+      }
+      },
+    });
+  });
+</script>
 
 
 </body>

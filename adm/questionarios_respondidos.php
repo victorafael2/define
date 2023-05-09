@@ -113,6 +113,24 @@
   });
 </script>
 
+<script>
+  $(document).ready(function() {
+    $('#feitos').DataTable({
+      searching: true,
+      ordering: true,
+      lengthChange: false,
+      info: false,
+      language: {
+        searchPlaceholder: "Pesquisar...",
+        search: "",paginate: {
+        next: "Próximo",
+        previous: "Anterior"
+      }
+      },
+    });
+  });
+</script>
+
 
 
 </body>
