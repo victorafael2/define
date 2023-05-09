@@ -208,7 +208,7 @@
                                                                       echo "<td>" . $row["whatsapp"] . "</td>";
                                                                       echo "<td>" . ucfirst($row["faturamento_novo"]) . "</td>";
                                                                       echo "<td>" . $row["setor_2"] . "</td>";
-                                                                      echo "<td><button class='btn btn-success btn-sm redirectToPage' data-href='../questionario/sucess.php?id=" . $row["id"] . "&email=" . $row["user"] . "'><span class='far fa-eye'></span></button></td>";
+                                                                      echo "<td><a class='btn btn-success btn-sm' href='../questionario/sucess.php?id=" . $row["id"] . "&email=" . $row["user"] . "'><span class='far fa-eye'></span></a></td>";
                                                                       echo "<td>
                                                                       <select class='form-select form-select-sm'
                                                                           aria-label='Fez Contato'
@@ -1432,13 +1432,13 @@
 // });
 
 //     </script>
-     <script>
+     <!-- <script>
     $(document).ready(function() {
         $('.redirectToPage').on('click', function() {
             window.location.href = $(this).data('href');
         });
     });
-    </script>
+    </script> -->
 
     <script>
     function mudarPerfil(id, perfil) {
