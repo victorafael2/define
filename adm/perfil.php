@@ -185,6 +185,7 @@
                                                               $result = $conn->query($sql);
 
                                                               // echo $sql_query;
+                                                            //   Novo
 
 
                                                               if ($permissao == "adm") {
