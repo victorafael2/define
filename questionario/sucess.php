@@ -368,30 +368,31 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
 
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
-  .animated {
+.animated {
     animation-name: pulse;
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-  }
-
-  @media (max-width: 768px) {
-  #chart23 .apexcharts-data-labels {
-    display: none !important;
-  }
 }
 
+@media (max-width: 768px) {
+    #chart23 .apexcharts-data-labels {
+        display: none !important;
+    }
+}
 </style>
 
 
@@ -412,7 +413,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
 
         <div class="container py-10">
 
-<!-- <?php echo $sql_setores; ?> -->
+            <!-- <?php echo $sql_setores; ?> -->
 
             <div class="row g-3 ">
                 <div class="col-12">
@@ -422,6 +423,19 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                 <p class="text-muted"><?php echo $first_name ?> - <?php echo $empresa ?></p>
                             </h2>
                         </div>
+                    </div>
+                </div>
+                <div class="row g-0 mb-0 align-items-center">
+                    <div class="col-5 col-md-6">
+                        <!-- <h4 class="mb-0 text-1100 fw-bold fs-md-2"><span
+                                class="calendar-day d-block d-md-inline mb-1">Tuesday</span><span
+                                class="px-3 fw-thin text-400 d-none d-md-inline">|</span><span class="calendar-date">9
+                                May, 2023</span></h4> -->
+                    </div>
+                    <div class="col-7 col-md-6 d-flex justify-content-end">
+
+                        <a class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" href="../adm/questionarios_respondidos.php"
+                            data-bs-target="#addEventModal"><i class="fa-regular fa-rectangle-list pe-2 fs--2"></i> Meus Relatórios </a>
                     </div>
                 </div>
                 <div class="row g-3 ">
@@ -724,8 +738,8 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                         // }
                                                     },
                                                     zaxis: {
-    show: false,
-  },
+                                                        show: false,
+                                                    },
                                                 };
 
                                                 const chart = new ApexCharts(document.getElementById(
@@ -761,14 +775,30 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                         <table class="table table-striped table-bordered">
 
                                             <tr>
-                                                <th style="text-align: center;">Recurso Não Reembolsável <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
-                                                <th style="text-align: center;">Recurso Reembolsável <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
-                                                <th style="text-align: center;">Lei do Bem <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
-                                                <th style="text-align: center;">Rota 2030 <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
-                                                <th style="text-align: center;">Lei de Informática <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
-                                                <th style="text-align: center;">ANP <sup><span class="fa-solid fa-circle-info text-info  "></span></sup> </th>
-                                                <th style="text-align: center;">ANEEL <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
-                                                <th style="text-align: center;">Embrapii <sup><span class="fa-solid fa-circle-info text-info  "></span></sup></th>
+                                                <th style="text-align: center;">Recurso Não Reembolsável <sup><span
+                                                            class="fa-solid fa-circle-info text-info  "></span></sup>
+                                                </th>
+                                                <th style="text-align: center;">Recurso Reembolsável <sup><span
+                                                            class="fa-solid fa-circle-info text-info  "></span></sup>
+                                                </th>
+                                                <th style="text-align: center;">Lei do Bem <sup><span
+                                                            class="fa-solid fa-circle-info text-info  "></span></sup>
+                                                </th>
+                                                <th style="text-align: center;">Rota 2030 <sup><span
+                                                            class="fa-solid fa-circle-info text-info  "></span></sup>
+                                                </th>
+                                                <th style="text-align: center;">Lei de Informática <sup><span
+                                                            class="fa-solid fa-circle-info text-info  "></span></sup>
+                                                </th>
+                                                <th style="text-align: center;">ANP <sup><span
+                                                            class="fa-solid fa-circle-info text-info  "></span></sup>
+                                                </th>
+                                                <th style="text-align: center;">ANEEL <sup><span
+                                                            class="fa-solid fa-circle-info text-info  "></span></sup>
+                                                </th>
+                                                <th style="text-align: center;">Embrapii <sup><span
+                                                            class="fa-solid fa-circle-info text-info  "></span></sup>
+                                                </th>
 
                                             </tr>
 
@@ -926,35 +956,51 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
 ?>
 
 
-<script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
 
-<script>
-  var players = [];
+    <script>
+    var players = [];
 
-  function onYouTubeIframeAPIReady() {
-    players.push(new YT.Player('player0', {videoId: 'G6oGbQrXLjE'}));
-    players.push(new YT.Player('player1', {videoId: 'bI834H6ZklE'}));
-    players.push(new YT.Player('player2', {videoId: '2Q3iY3ElPdU'}));
-    players.push(new YT.Player('player3', {videoId: '1m4Ex7rC8Ik'}));
-    players.push(new YT.Player('player4', {videoId: 'j3MpT043uPQ'}));
-    players.push(new YT.Player('player5', {videoId: '7zftaLNpeJw'}));
-    players.push(new YT.Player('player6', {videoId: 'RrX0qPELsRA'}));
-    players.push(new YT.Player('player7', {videoId: 'VFrIzp_ThMk'}));
-  }
+    function onYouTubeIframeAPIReady() {
+        players.push(new YT.Player('player0', {
+            videoId: 'G6oGbQrXLjE'
+        }));
+        players.push(new YT.Player('player1', {
+            videoId: 'bI834H6ZklE'
+        }));
+        players.push(new YT.Player('player2', {
+            videoId: '2Q3iY3ElPdU'
+        }));
+        players.push(new YT.Player('player3', {
+            videoId: '1m4Ex7rC8Ik'
+        }));
+        players.push(new YT.Player('player4', {
+            videoId: 'j3MpT043uPQ'
+        }));
+        players.push(new YT.Player('player5', {
+            videoId: '7zftaLNpeJw'
+        }));
+        players.push(new YT.Player('player6', {
+            videoId: 'RrX0qPELsRA'
+        }));
+        players.push(new YT.Player('player7', {
+            videoId: 'VFrIzp_ThMk'
+        }));
+    }
 
-  function pauseAllVideos() {
-    players.forEach(function(player) {
-      player.pauseVideo();
+    function pauseAllVideos() {
+        players.forEach(function(player) {
+            player.pauseVideo();
+        });
+    }
+
+    var closeButtons = document.querySelectorAll('[data-bs-dismiss="modal"]');
+    closeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            pauseAllVideos();
+        });
     });
-  }
-
-  var closeButtons = document.querySelectorAll('[data-bs-dismiss="modal"]');
-  closeButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-      pauseAllVideos();
-    });
-  });
-</script>
+    </script>
 
 
     <script>
@@ -1109,21 +1155,21 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
             data: data2
         }],
         responsive: [{
-    breakpoint: 768,
-    options: {
-      chart: {
-        sparkline: {
-          enabled: true
-        },
-        animations: {
-          enabled: false
-        }
-      },
-      dataLabels: {
-        enabled: false
-      }
-    }
-  }],
+            breakpoint: 768,
+            options: {
+                chart: {
+                    sparkline: {
+                        enabled: true
+                    },
+                    animations: {
+                        enabled: false
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                }
+            }
+        }],
         fill: {
             type: "solid"
         },
@@ -1464,25 +1510,20 @@ toastr.info('Agora você pode ver os pontos fortes e fracos da sua startup.', 'I
 
 <script>
 function hideLabelsOnMobile() {
-  if (window.innerWidth <= 768) {
-    var options = chart23.options;
-    options.labels = ['', '', '', '', '', ''];
-    chart23.updateOptions(options);
-  }
+    if (window.innerWidth <= 768) {
+        var options = chart23.options;
+        options.labels = ['', '', '', '', '', ''];
+        chart23.updateOptions(options);
+    }
 }
-
-
 </script>
 
 <script>
 window.onload = function() {
-  hideLabelsOnMobile();
+    hideLabelsOnMobile();
 }
 
 window.addEventListener('resize', function() {
-  hideLabelsOnMobile();
+    hideLabelsOnMobile();
 });
-
-
 </script>
-
