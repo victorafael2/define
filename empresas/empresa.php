@@ -70,37 +70,7 @@ function verificarSenha() {
 }
 </script> -->
 
-<script>
-function verificarSenha() {
-    var senha = document.getElementById("senha").value;
 
-    if (senha.length >= 8 && /[A-Z]/.test(senha) && /[a-z]/.test(senha) && /\d/.test(senha) &&
-        /[!@#$%^&*()\-_=+{};:,<.>]/.test(senha)) {
-        document.getElementById("cadastrarBtn").disabled = false;
-    } else {
-        document.getElementById("cadastrarBtn").disabled = true;
-    }
-
-    var senha = document.getElementById("senha").value;
-    var forca = document.getElementById("forca-senha");
-
-    // Verificar o comprimento da senha
-    if (senha.length < 8) {
-        forca.innerHTML = "Pelo menos 8 digitos";
-        forca.style.color = "red";
-    } else {
-        forca.innerHTML = "Senha forte";
-        forca.style.color = "green";
-    }
-
-    // Verificar se a senha contém letras maiúsculas, minúsculas, números e caracteres especiais
-    var pattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])/;
-    if (!pattern.test(senha)) {
-        forca.innerHTML = "Senha fraca, por favor inserir pelo menos um numero e letras maiúscula";
-        forca.style.color = "red";
-    }
-}
-</script>
 
 
 
@@ -590,8 +560,10 @@ function atualizaValidacaoSenha() {
 
   if (validaTudo && senhaInput.value !== '') {
     validacaoSenha.style.borderColor = '#28a745';
+    document.getElementById("cadastrarBtn").disabled = false;
   } else {
     validacaoSenha.style.borderColor = '#ddd';
+    document.getElementById("cadastrarBtn").disabled = true;
   }
 }
 
