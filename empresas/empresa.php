@@ -40,7 +40,6 @@ mysqli_close($conn);
 
 
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
@@ -72,7 +71,6 @@ function verificarSenha() {
 </script> -->
 
 <script>
-
 function verificarSenha() {
     var senha = document.getElementById("senha").value;
 
@@ -102,12 +100,31 @@ function verificarSenha() {
         forca.style.color = "red";
     }
 }
-
 </script>
 
 
 
 
+
+<style>
+#validacao-senha {
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.item-requisito {
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.item-requisito.ok {
+    color: #28a745;
+    font-weight: bold;
+}
+</style>
 
 <body>
 
@@ -127,34 +144,44 @@ function verificarSenha() {
                     <form id="empresa">
 
                         <!-- <div class="row md-12"> -->
-                            <div class="col">
-                                <label for="nome">Nome:</label>
-                                <input type="text" class="form-control form-control-sm" id="nome" name="nome" required>
-                            </div>
-                            <div class="col">
-                                <label for="nome_empresa">Nome da Empresa:</label>
-                                <input type="text" class="form-control form-control-sm" id="nome_empresa"
-                                    name="nome_empresa" required>
-                            </div>
-                            <div class="col">
-                                <label for="cnpj">CNPJ:</label>
-                                <input type="text" class="form-control form-control-sm" id="cnpj" name="cnpj"
-                                    placeholder="XX.XXX.XXX/YYYY-ZZ" required>
-                            </div>
+                        <div class="col">
+                            <label for="nome">Nome:</label>
+                            <input type="text" class="form-control form-control-sm" id="nome" name="nome" required>
+                        </div>
+                        <div class="col">
+                            <label for="nome_empresa">Nome da Empresa:</label>
+                            <input type="text" class="form-control form-control-sm" id="nome_empresa"
+                                name="nome_empresa" required>
+                        </div>
+                        <!-- <div class="col">
+                            <label for="cnpj">CNPJ:</label>
+                            <input type="text" class="form-control form-control-sm" id="cnpj" name="cnpj"
+                                placeholder="XX.XXX.XXX/YYYY-ZZ" required>
+                        </div> -->
+                        <div class="col">
+                            <!-- <label for="cnpj">CPF ou CNPJ:</label>
+
+                            <input type="text" id="cnpj" name="cnpj" placeholder="Digite um CPF ou CNPJ" class="form-control form-control-sm cnpj">
+                            <small>Insira um CPF no formato xxx.xxx.xxx-xx ou um CNPJ no formato
+                                xx.xxx.xxx/xxxx-xx</small> -->
+                            <label for="cnpj">CPF ou CNPJ:</label>
+                            <input type="text" id="cnpj" name="cnpj" placeholder="Digite um CPF ou CNPJ"
+                                class="form-control form-control-sm input-cpf-cnpj">
+
+                        </div>
                         <!-- </div> -->
 
                         <!-- <div class="row md-12"> -->
 
-                            <div class="col">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control form-control-sm" id="email" name="email"
-                                    required>
-                            </div>
-                            <div class="col">
-                                <label for="whatsapp">Whatsapp:</label>
-                                <input type="text" class="form-control form-control-sm" id="whatsapp" name="whatsapp"
-                                    placeholder="(XX) XXXXX-XXXX" required>
-                            </div>
+                        <div class="col">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control form-control-sm" id="email" name="email" required>
+                        </div>
+                        <div class="col">
+                            <label for="whatsapp">Whatsapp:</label>
+                            <input type="text" class="form-control form-control-sm" id="whatsapp" name="whatsapp"
+                                placeholder="(XX) XXXXX-XXXX" required>
+                        </div>
 
 
                         <!-- </div> -->
@@ -162,56 +189,92 @@ function verificarSenha() {
 
 
                         <!-- <div class="row md-12"> -->
-                            <div class="col">
-                                <label for="uf">UF:</label>
-                                <select class="form-control form-control-sm" id="uf" name="uf"
-                                    data-choices="data-choices"
-                                    data-options='{"removeItemButton":false,"placeholder":true}' required>
-                                    <option value="">Selecione</option>
-                                    <option value="AC">Acre</option>
-                                    <option value="AL">Alagoas</option>
-                                    <option value="AP">Amapá</option>
-                                    <option value="AM">Amazonas</option>
-                                    <option value="BA">Bahia</option>
-                                    <option value="CE">Ceará</option>
-                                    <option value="DF">Distrito Federal</option>
-                                    <option value="ES">Espírito Santo</option>
-                                    <option value="GO">Goiás</option>
-                                    <option value="MA">Maranhão</option>
-                                    <option value="MT">Mato Grosso</option>
-                                    <option value="MS">Mato Grosso do Sul</option>
-                                    <option value="MG">Minas Gerais</option>
-                                    <option value="PA">Pará</option>
-                                    <option value="PB">Paraíba</option>
-                                    <option value="PR">Paraná</option>
-                                    <option value="PE">Pernambuco</option>
-                                    <option value="PI">Piauí</option>
-                                    <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Rio Grande do Norte</option>
-                                    <option value="RS">Rio Grande do Sul</option>
-                                    <option value="RO">Rondônia</option>
-                                    <option value="RR">Roraima</option>
-                                    <option value="SC">Santa Catarina</option>
-                                    <option value="SP">São Paulo</option>
-                                    <option value="SE">Sergipe</option>
-                                    <option value="TO">Tocantins</option>
+                        <div class="col">
+                            <label for="uf">UF:</label>
+                            <select class="form-control form-control-sm" id="uf" name="uf" data-choices="data-choices"
+                                data-options='{"removeItemButton":false,"placeholder":true}' required>
+                                <option value="">Selecione</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
 
-                                </select>
-
-
-                            </div>
+                            </select>
 
 
-                            <div class="col">
-                                <label for="setor">Setor:</label>
-                                <!-- <input type="text" class="form-control" id="setor" placeholder="Digite o setor" name="setor"> -->
-
-                                <?php echo $select ?>
+                        </div>
 
 
+                        <div class="col">
+                            <label for="setor">Setor:</label>
+                            <!-- <input type="text" class="form-control" id="setor" placeholder="Digite o setor" name="setor"> -->
+
+                            <!-- <select class='form-control form-control-sm' id='setor' name='setor' data-choices='data-choices' value="">Selecione uma opção</select> -->
+                            <!-- <?php echo $select ?> -->
+                            <!-- <?php
+                                                                // Executar a consulta SQL para selecionar os dados
+                                $sql = "SELECT setor,id FROM adm_setores";
+                                $result = mysqli_query($conn, $sql);
+
+                                // Processar os resultados da consulta e criar o array de opções do select
+                                $options = array();
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $id = $row['id'];
+                                    $nome = $row['setor'];
+                                    $options[] = "<option value=\"$id\">$nome</option>";
+                                }
+                                echo "<select class='form-control form-control-sm' id='setor' name='setor' data-choices='data-choices'
+                                data-options='{'removeItemButton':true,'placeholder':true}' required></select>";
+                                // Criar o elemento select e adicionar as opções
+                                echo "<select class='form-control form-control-sm' id='setor' name='setor' data-choices='data-choices'
+                                data-options='{'removeItemButton':true,'placeholder':true}' required>" . implode('', $options) . "</select>";
+                                ?> -->
+
+                            <?php
+                                            // Executar a consulta SQL para selecionar os dados
+                                            $sql = "SELECT setor, id FROM adm_setores";
+                                            $result = mysqli_query($conn, $sql);
+
+                                            // Processar os resultados da consulta e criar o array de opções do select
+                                            $options = array();
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                $id = $row['id'];
+                                                $nome = $row['setor'];
+                                                $options[] = "<option value=\"$id\">$nome</option>";
+                                            }
+
+                                            // Criar o elemento select e adicionar as opções
+                                            echo "<select class='form-control form-control-sm' id='setor' name='setor' data-choices='data-choices' data-options='{\"removeItemButton\":true, \"placeholder\":true}' required>";
+                                            echo "<option value=''>Selecione um setor</option>";
+                                            echo implode('', $options);
+                                            echo "</select>";
+                                            ?>
 
 
-                            </div>
+                        </div>
 
                         <!-- </div> -->
                         <div class=" form-group ">
@@ -222,13 +285,21 @@ function verificarSenha() {
 
 
                             <input class="form-control form-control-sm" id="senha" type="password" name="senha"
-                                placeholder="Password" required onkeyup="verificarSenha()" onkeyup="validarSenha()" />
+                                placeholder="Password" required />
+                            <!-- onkeyup="verificarSenha()" onkeyup="validarSenha()" -->
 
                             <p id="forca-senha"></p>
 
+                            <div id="validacao-senha" class="bm-2">
+                                <div class="item-requisito">Pelo menos 8 caracteres</div>
+                                <div class="item-requisito">Pelo menos uma letra maiúscula</div>
+                                <div class="item-requisito">Pelo menos um número</div>
+                                <div class="item-requisito">Pelo menos um caractere especial</div>
+                            </div>
+
                         </div>
 
-                        <button type="submit" class="btn btn-sm btn-success" id="cadastrarBtn"
+                        <button type="submit" class="btn btn-sm btn-success mt-2" id="cadastrarBtn"
                             onclick="confirmarEnvio()" disabled>Cadastrar</button>
                     </form>
 
@@ -294,6 +365,14 @@ function verificarSenha() {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.2.0/vanilla-masker.min.js"></script>
 
 
+    <!-- jQuery é necessário para inputmask -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- inputmask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
+
+
+
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -301,11 +380,22 @@ function verificarSenha() {
         VMasker(whatsappInput).maskPattern('(99) 99999-9999');
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var cnpjInput = document.getElementById('cnpj');
-        VMasker(cnpjInput).maskPattern('99.999.999/9999-99');
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     var cnpjInput = document.getElementById('cnpj');
+    //     VMasker(cnpjInput).maskPattern('99.999.999/9999-99');
+    // });
+    </script>
+
+    <script>
+    $(document).ready(function() {
+        $('.input-cpf-cnpj').inputmask({
+            mask: ['999.999.999-99', '99.999.999/9999-99'],
+            keepStatic: true
+        });
     });
     </script>
+
+
 
 
 
@@ -342,7 +432,7 @@ function verificarSenha() {
     </script> -->
 
 
-<!-- <script>
+    <!-- <script>
     function confirmarEnvio() {
         var senha = document.getElementById("senha").value;
 
@@ -376,74 +466,141 @@ function verificarSenha() {
     <script>
     // Adiciona uma pergunta de confirmação antes de executar o script
     $('#empresa').on('submit', function(event) {
-                        event.preventDefault();
+        event.preventDefault();
+        Swal.fire({
+            icon: 'question',
+            title: 'Você tem certeza?',
+            text: 'Tem certeza de que deseja cadastrar esta empresa?',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, cadastrar!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Executa o restante do script
+                const formData = $(this).serialize();
+                $.ajax({
+                    url: 'salvar_2.php', // Substitua pelo caminho do seu arquivo PHP
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            // Mostrar uma mensagem de sucesso
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Cadastro efetuado com sucesso!',
+                                text: 'O cadastro da empresa foi concluído com êxito.',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'OK',
+                            }).then(() => {
+                                // Redirecionar para a página de sucesso
+                                // window.location.href =
+                                //     '../index.php';
+
+                                // redireciona para a página de destino usando o email e senha cadastrados
+                                var email = encodeURIComponent($('#email').val());
+                                var password = encodeURIComponent($('#senha')
+                                    .val());
+                                var redirectUrl = 'empresa_log.php?email=' + email +
+                                    '&password=' + password;
+                                window.location.href = redirectUrl;
+                            });
+                        } else if (response.duplicateEmail) {
+                            // Mostrar um alerta SweetAlert2 de e-mail duplicado
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro',
+                                text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
+                            });
+                        } else {
+                            // Mostrar um alerta SweetAlert2 de erro genérico
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro',
+                                text: 'Houve um erro ao processar sua solicitação. Por favor, tente novamente.',
+                            });
+                        }
+                    },
+                    error: function() {
+                        // Mostrar um alerta SweetAlert2 de erro ao se comunicar com o servidor
                         Swal.fire({
-                            icon: 'question',
-                            title: 'Você tem certeza?',
-                            text: 'Tem certeza de que deseja cadastrar esta empresa?',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Sim, cadastrar!',
-                            cancelButtonText: 'Cancelar',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                // Executa o restante do script
-                                const formData = $(this).serialize();
-                                $.ajax({
-                                    url: 'salvar_2.php', // Substitua pelo caminho do seu arquivo PHP
-                                    type: 'POST',
-                                    data: formData,
-                                    dataType: 'json',
-                                    success: function(response) {
-                                        if (response.success) {
-                                            // Mostrar uma mensagem de sucesso
-                                            Swal.fire({
-                                                icon: 'success',
-                                                title: 'Cadastro efetuado com sucesso!',
-                                                text: 'O cadastro da empresa foi concluído com êxito.',
-                                                confirmButtonColor: '#3085d6',
-                                                confirmButtonText: 'OK',
-                                            }).then(() => {
-                                                // Redirecionar para a página de sucesso
-                                                // window.location.href =
-                                                //     '../index.php';
-
-                                                    // redireciona para a página de destino usando o email e senha cadastrados
-                                                    var email = encodeURIComponent($('#email').val());
-                                                    var password = encodeURIComponent($('#senha').val());
-                                                    var redirectUrl = 'empresa_log.php?email=' + email + '&password=' + password;
-                                                    window.location.href = redirectUrl;
-                                            });
-                                        } else if (response.duplicateEmail) {
-                                            // Mostrar um alerta SweetAlert2 de e-mail duplicado
-                                            Swal.fire({
-                                                icon: 'error',
-                                                title: 'Erro',
-                                                text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
-                                            });
-                                        } else {
-                                            // Mostrar um alerta SweetAlert2 de erro genérico
-                                            Swal.fire({
-                                                icon: 'error',
-                                                title: 'Erro',
-                                                text: 'Houve um erro ao processar sua solicitação. Por favor, tente novamente.',
-                                            });
-                                        }
-                                    },
-                                    error: function() {
-                                        // Mostrar um alerta SweetAlert2 de erro ao se comunicar com o servidor
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'Erro',
-                                            text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
-                                        });
-                                    },
-                                });
-                            }
-
+                            icon: 'error',
+                            title: 'Erro',
+                            text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
                         });
-                    });
+                    },
+                });
+            }
+
+        });
+    });
+    </script>
+
+
+
+<script>
+// Seleciona os elementos HTML relevantes
+const senhaInput = document.getElementById('senha');
+const validacaoSenha = document.getElementById('validacao-senha');
+const requisitosSenha = validacaoSenha.querySelectorAll('.item-requisito');
+
+// Define as regras de validação da senha
+const requisitos = [
+  {
+    descricao: 'Pelo menos 8 caracteres',
+    valida: function(senha) {
+      return senha.length >= 8;
+    }
+  },
+  {
+    descricao: 'Pelo menos uma letra maiúscula',
+    valida: function(senha) {
+      return /[A-Z]/.test(senha);
+    }
+  },
+  {
+    descricao: 'Pelo menos um número',
+    valida: function(senha) {
+      return /\d/.test(senha);
+    }
+  },
+  {
+    descricao: 'Pelo menos um caractere especial',
+    valida: function(senha) {
+      return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(senha);
+    }
+  }
+];
+
+// Função para atualizar a exibição dos requisitos de validação da senha
+function atualizaValidacaoSenha() {
+  let validaTudo = true;
+  requisitos.forEach(function(requisito, index) {
+    const requisitoHTML = requisitosSenha[index];
+    const valido = requisito.valida(senhaInput.value);
+    if (valido) {
+      requisitoHTML.classList.add('ok');
+    } else {
+      validaTudo = false;
+      requisitoHTML.classList.remove('ok');
+    }
+  });
+
+  if (validaTudo && senhaInput.value !== '') {
+    validacaoSenha.style.borderColor = '#28a745';
+  } else {
+    validacaoSenha.style.borderColor = '#ddd';
+  }
+}
+
+// Adiciona um ouvinte de eventos para a entrada do campo de senha
+senhaInput.addEventListener('input', function() {
+  atualizaValidacaoSenha();
+});
+</script>
+
     </script>
 
 </body>
