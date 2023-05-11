@@ -284,6 +284,10 @@ if (mysqli_num_rows($result_usuario) > 0) {
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 
+<!-- Inclua a biblioteca do Magnific Popup -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
@@ -434,8 +438,9 @@ if (mysqli_num_rows($result_usuario) > 0) {
                     </div>
                     <div class="col-7 col-md-6 d-flex justify-content-end">
 
-                        <a class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" href="../adm/questionarios_respondidos.php"
-                            data-bs-target="#addEventModal"><i class="fa-regular fa-rectangle-list pe-2 fs--2"></i> Meus Relatórios </a>
+                        <a class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal"
+                            href="../adm/questionarios_respondidos.php" data-bs-target="#addEventModal"><i
+                                class="fa-regular fa-rectangle-list pe-2 fs--2"></i> Meus Relatórios </a>
                     </div>
                 </div>
                 <div class="row g-3 ">
@@ -774,7 +779,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                         </div>
                                         <table class="table table-striped table-bordered">
 
-                                            <tr>
+                                            <!-- <tr>
                                                 <th style="text-align: center;">Recurso Não Reembolsável <sup><span
                                                             class="fa-solid fa-circle-info text-info  "></span></sup>
                                                 </th>
@@ -800,7 +805,86 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                             class="fa-solid fa-circle-info text-info  "></span></sup>
                                                 </th>
 
-                                            </tr>
+                                            </tr> -->
+
+                                            <!-- <tr>
+                                                <th style="text-align: center;"><a
+                                                        href="https://www.youtube.com/watch?v=VIDEO_ID"
+                                                        class="video-link">Recurso Não Reembolsável</a></th>
+                                                <th style="text-align: center;"><a
+                                                        href="https://www.youtube.com/watch?v=VIDEO_ID"
+                                                        class="video-link">Recurso Reembolsável</a></th>
+                                                <th style="text-align: center;"><a
+                                                        href="https://www.youtube.com/watch?v=VIDEO_ID"
+                                                        class="video-link">Lei do Bem</a></th>
+                                                <th style="text-align: center;"><a
+                                                        href="https://www.youtube.com/watch?v=VIDEO_ID"
+                                                        class="video-link">Rota 2030</a></th>
+                                                <th style="text-align: center;"><a
+                                                        href="https://www.youtube.com/watch?v=VIDEO_ID"
+                                                        class="video-link">Lei de Informática</a></th>
+                                                <th style="text-align: center;"><a
+                                                        href="https://www.youtube.com/watch?v=VIDEO_ID"
+                                                        class="video-link">ANP</a></th>
+                                                <th style="text-align: center;"><a
+                                                        href="https://www.youtube.com/watch?v=VIDEO_ID"
+                                                        class="video-link">ANEEL</a></th>
+                                                <th style="text-align: center;"><a
+                                                        href="https://www.youtube.com/watch?v=VIDEO_ID"
+                                                        class="video-link">Embrapii</a></th>
+                                            </tr> -->
+                                                <?php
+                                                                                            // Executa o SELECT
+                                                $sql = "SELECT descricao, sim FROM tabelas";
+                                                $result = $conn->query($sql);
+
+                                                // Verifica se há resultados
+                                                if ($result->num_rows > 0) {
+                                                    echo "<tr>";
+                                                    // Itera sobre os resultados e constrói cada <th> da tabela
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        $nome_coluna = $row["descricao"];
+                                                        $video =  $row["sim"];
+
+                                                        // Constrói o <th> para cada linha do banco de dados
+                                                        echo "<th style='text-align: center;'><a href='https://www.youtube.com/watch?v=$video' class='video-link dropdown-item'>$nome_coluna <img src='../assets/gif/video-player.png' width='18' height='18' class='animated'></a></th>";
+                                                    }
+                                                    echo "</tr>";
+                                                } else {
+                                                    echo "Nenhum resultado encontrado.";
+                                                }
+                                                ?>
+
+
+                                                            <script>
+                                                                $(document).ready(function() {
+                                                                $('.video-link').magnificPopup({
+                                                                    type: 'iframe',
+                                                                    iframe: {
+                                                                    patterns: {
+                                                                        youtube: {
+                                                                        index: 'youtube.com/',
+                                                                        id: 'v=',
+                                                                        src: 'https://www.youtube.com/embed/%id%?autoplay=1' // Defina autoplay como 1 para iniciar automaticamente o vídeo
+                                                                        }
+                                                                    }
+                                                                    },
+                                                                    callbacks: {
+                                                                    open: function() {
+                                                                        var magnificPopup = $.magnificPopup.instance;
+                                                                        // Verifica se o conteúdo é um vídeo do YouTube
+                                                                        if (magnificPopup.content.find('iframe').length > 0) {
+                                                                        // Pausa qualquer vídeo existente antes de iniciar o novo vídeo
+                                                                        magnificPopup.content.find('iframe').each(function() {
+                                                                            this.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                                                                        });
+                                                                        }
+                                                                    }
+                                                                    }
+                                                                });
+                                                                });
+                                                            </script>
+
 
                                             <tr>
 
@@ -814,9 +898,11 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                             while ($row = mysqli_fetch_assoc($result_setores)) {
                                                 // <span class="gif"></span>
                                                 // <span class="far fa-check-circle text-success fs-2"></span>
-                                                $gif = '<img src="../assets/gif/video-player.png" width="32" height="32" class="animated">';
+                                                // $gif = '<img src="../assets/gif/video-player.png" width="32" height="32" class="animated">';
+                                                $gif = '<span class="far fa-check-circle text-success fs-3"></span>';
+                                                $gif_atention = '<i class="fa-solid fa-circle-info text-info fs-3"></i>';
 
-                                                $resultado = ($row['icon'] === 'novo') ? '-' : ($row['icon'] === 'icone_verde' ? $gif :$gif);
+                                                $resultado = ($row['icon'] === 'novo') ? '' : ($row['icon'] === 'icone_verde' ? $gif :$gif);
                                                 $link = ($row['icon'] === 'novo') ? $row['nao'] : $row['sim'];
                                                 $youtube = 'https://www.youtube.com/embed/';
 
@@ -1158,10 +1244,10 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
             breakpoint: 768,
             options: {
                 series: [{
-        markers: {
-          size: 4 // Altere o tamanho dos marcadores aqui
-        }
-      }],
+                    markers: {
+                        size: 4 // Altere o tamanho dos marcadores aqui
+                    }
+                }],
                 chart: {
                     sparkline: {
                         enabled: false
