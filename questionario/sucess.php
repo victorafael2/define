@@ -1157,16 +1157,21 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
         responsive: [{
             breakpoint: 768,
             options: {
+                series: [{
+        markers: {
+          size: 4 // Altere o tamanho dos marcadores aqui
+        }
+      }],
                 chart: {
                     sparkline: {
-                        enabled: true
+                        enabled: false
                     },
                     animations: {
                         enabled: false
                     }
                 },
                 dataLabels: {
-                    enabled: false
+                    enabled: true
                 }
             }
         }],
@@ -1190,10 +1195,10 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
             max: 6
         },
         markers: {
-            size: 8,
+            size: 5,
             colors: ['#26A0c4'],
             strokeColor: '#26A0FC',
-            strokeWidth: 2,
+            strokeWidth: 1,
         },
     };
 
@@ -1228,224 +1233,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const chartElement = document.getElementById("chart").getContext("2d");
-
-    const data = {
-        labels: ['Tecnologia', 'Potencial Tecnologico', 'Tipo Inovação', 'Risco Tecnologico',
-            'Impacto Cientifico Tecnologico', 'Infra estrutura da empresa', 'Parcerias',
-            'Impacto Gerais',
-            'Equipe', 'Beneficios Inovação'
-        ],
-        datasets: [{
-            label: "Fomento",
-            data: [<?php echo $linha ?>],
-            backgroundColor: "rgba(42, 157, 244, 0.2)",
-            borderColor: "rgb(3, 37, 76)",
-            borderWidth: 1,
-        }, ],
-    };
-
-    //     const options = {
-    //   scales: {
-    //     x: {
-    //       beginAtZero: true,
-    //     },
-    //     y: {
-    //       beginAtZero: true,
-    //     },
-    //   },
-    // };
-
-
-
-    const chart = new Chart(chartElement, {
-        type: "radar",
-        data: data,
-        options: options,
-
-    });
-
-    const videos = [
-        // "https://www.youtube.com/embed/x1WZZWYUmTA",
-        // "https://www.youtube.com/embed/4beAfc2OdFQ",
-        // "https://www.youtube.com/embed/x1WZZWYUmTA",
-        // "https://www.youtube.com/embed/4beAfc2OdFQ",
-        // "https://www.youtube.com/embed/x1WZZWYUmTA",
-        // "https://www.youtube.com/embed/4beAfc2OdFQ",
-        // "https://www.youtube.com/embed/x1WZZWYUmTA",
-        // "https://www.youtube.com/embed/4beAfc2OdFQ",
-
-
-    ];
-
-    document.getElementById("chart").onclick = function(event) {
-        const
-            activePoint = chart.getElementsAtEventForMode(event, "nearest", {
-                intersect: true
-            }, true)[0];
-        if (activePoint) {
-            const index = activePoint.index;
-            const videoElement = document.getElementById("video");
-            videoElement.src = videos[index];
-
-            $("#videoModal").on("hidden.bs.modal", function() {
-                videoElement.src = "";
-            });
-
-            $("#videoModal").modal("show");
-        }
-    };
-});
-</script>
-
-
-<!--
-<script>
-function createChart1() {
-    const options1 = {
-        series: [{
-        name: 'Fomento',
-        data: [<?php echo $linha ?>],
-    }],
-    chart: {
-        height: 350,
-        type: 'radar',
-    },
-    dataLabels: {
-        enabled: true,
-        background: {
-    enabled: true,
-    borderRadius:2,
-  }
-    },
-    plotOptions: {
-        radar: {
-            size: 140,
-            polygons: {
-                strokeColors: '#e9e9e9',
-                fill: {
-                    colors: ['#f8f8f8', '#fff']
-                }
-            }
-        }
-    },
-    title: {
-        // text: 'Radar with Polygon Fill'
-    },
-    colors: ['#2a9df4'],
-    markers: {
-        size: 4,
-        colors: ['#fff'],
-        strokeColor: '#2a9df4',
-        strokeWidth: 2,
-    },
-    tooltip: {
-        y: {
-            formatter: function(val) {
-                return val
-            }
-        }
-    },
-
-    // tooltip: {
-    //         x: {
-    //             formatter: function (value, { series, seriesIndex, dataPointIndex, w }) {
-    //                 return "Eixo Personalizado " + value;
-    //             },
-    //         },
-    xaxis: {
-        categories: ['Tecnologia', 'Potencial Tecnologico', 'Tipo Inovação', 'Risco Tecnologico',
-            'Impacto Cientifico Tecnologico', 'Infra estrutura da empresa', 'Parcerias', 'Impacto Gerais',
-            'Equipe', 'Beneficios Inovação'
-        ]
-    },
-    yaxis: {
-        tickAmount: 7,
-        labels: {
-            formatter: function(val, i) {
-                if (i % 2 === 0) {
-                    return val
-                } else {
-                    return ''
-                }
-            }
-        }
-    }
-};
-
-    const chartElement1 = document.querySelector("#chart1");
-    const chart1 = new ApexCharts(chartElement1, options1);
-    chart1.render();
-}
-
-function createChart2() {
-    const options2 = {
-        series: [
-            {
-                name: "Exemplo 2",
-                data: [25, 15, 35, 45, 55],
-            },
-        ],
-        chart: {
-            type: "bar",
-            height: 350,
-        },
-        xaxis: {
-            categories: ["Categoria 1", "Categoria 2", "Categoria 3", "Categoria 4", "Categoria 5"],
-        },
-    };
-
-    const chartElement2 = document.querySelector("#chart2");
-    const chart2 = new ApexCharts(chartElement2, options2);
-    chart2.render();
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    createChart1();
-    createChart2();
-});
-</script> -->
-
-
-<!-- <script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var bubbleChart = new Chart(ctx, {
-    type: 'bubble',
-    data: {
-        datasets: [{
-            label: 'Dados Bubble',
-            data: [{
-                    x: 10,
-                    y: 20,
-                    r: 5
-                },
-                {
-                    x: 15,
-                    y: 10,
-                    r: 15
-                },
-                {
-                    x: 7,
-                    y: 15,
-                    r: 10
-                }
-            ],
-            backgroundColor: 'rgba(255, 99, 132, 0.6)'
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script> -->
 
 
 <script>
@@ -1518,7 +1305,7 @@ function hideLabelsOnMobile() {
 }
 </script>
 
-<script>
+<!-- <script>
 window.onload = function() {
     hideLabelsOnMobile();
 }
@@ -1526,4 +1313,4 @@ window.onload = function() {
 window.addEventListener('resize', function() {
     hideLabelsOnMobile();
 });
-</script>
+</script> -->
