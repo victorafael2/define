@@ -135,7 +135,7 @@ WHERE tab.id <> 9 AND tab.id <> 10";
 
 
 
-// echo $sql_setores;
+echo $sql_setores;
 
 
 $result_setores = mysqli_query($conn, $sql_setores);
@@ -772,10 +772,11 @@ if (mysqli_num_rows($result_usuario) > 0) {
                             <div class="row">
 
                                 <div class="container py-0">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive scrollbar ms-n1 px1">
 
                                         <div class="d-flex justify-content-center py-3">
                                             <h3>Mecanismos de fomento para inovação</h3>
+
                                         </div>
                                         <table class="table table-striped table-bordered">
 
@@ -847,7 +848,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                         $video =  $row["sim"];
 
                                                         // Constrói o <th> para cada linha do banco de dados
-                                                        echo "<th style='text-align: center;'><a href='https://www.youtube.com/watch?v=$video' class='video-link dropdown-item'>$nome_coluna <img src='../assets/gif/video-player.png' width='18' height='18' class='animated'></a></th>";
+                                                        echo "<th style='text-align: center;'><a href='https://www.youtube.com/watch?v=$video' class='video-link dropdown-item fs--1'>$nome_coluna <img src='../assets/gif/video-player.png' width='18' height='18' class='animated'></a></th>";
                                                     }
                                                     echo "</tr>";
                                                 } else {
@@ -1253,11 +1254,11 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
                         enabled: true
                     },
                     animations: {
-                        enabled: false
+                        enabled: true
                     }
                 },
                 dataLabels: {
-                    enabled: true
+                    enabled: false
                 }
             }
         }],
