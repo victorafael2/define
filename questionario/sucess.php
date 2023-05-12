@@ -1250,7 +1250,7 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
                 }],
                 chart: {
                     sparkline: {
-                        enabled: false
+                        enabled: true
                     },
                     animations: {
                         enabled: false
