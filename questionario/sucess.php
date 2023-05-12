@@ -1243,11 +1243,11 @@ if (mysqli_num_rows($result_sql_grafico_2) > 0) {
         responsive: [{
             breakpoint: 768,
             options: {
-                series: [{
-                    markers: {
-                        size: 4 // Altere o tamanho dos marcadores aqui
-                    }
-                }],
+                // series: [{
+                //     markers: {
+                //         size: 4 // Altere o tamanho dos marcadores aqui
+                //     }
+                // }],
                 chart: {
                     sparkline: {
                         enabled: true
