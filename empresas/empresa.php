@@ -270,26 +270,51 @@ function verificarSenha() {
                         </div>
 
                         <div class="form-check mb-3 mt-2">
-    <input class="form-check-input" id="termsService" type="checkbox" onchange="toggleButton()" />
-    <label class="form-label fs--1 text-none" for="termsService">Concordo com o processamento dos meus dados de acordo com a Lei 13.709/2018 LGPD. <a href="#!">(Link para os Termos LGPD)</a></label>
-</div>
+                            <input class="form-check-input" id="termsService" type="checkbox"
+                                onchange="toggleButton()" />
+                            <label class="form-label fs--1 text-none" for="termsService">Concordo com o processamento
+                                dos meus dados de acordo com a Lei 13.709/2018 LGPD. <a href="#!" onclick="openModal()">Ver termo</a></label>
+                        </div>
 
-<button type="submit" class="btn btn-sm btn-success mt-2" id="cadastrarBtn" onclick="confirmarEnvio()" disabled>Cadastrar</button>
+                        <button type="submit" class="btn btn-sm btn-success mt-2" id="cadastrarBtn"
+                            onclick="confirmarEnvio()" disabled>Cadastrar</button>
 
-<script>
-    function toggleButton() {
-        var checkbox = document.getElementById("termsService");
-        var button = document.getElementById("cadastrarBtn");
+                        <script>
+                        function toggleButton() {
+                            var checkbox = document.getElementById("termsService");
+                            var button = document.getElementById("cadastrarBtn");
 
-        if (checkbox.checked) {
-            button.disabled = false;
-        } else {
-            button.disabled = true;
-        }
+                            if (checkbox.checked) {
+                                button.disabled = false;
+                            } else {
+                                button.disabled = true;
+                            }
+                        }
+
+                        function openModal() {
+        var modal = new bootstrap.Modal(document.getElementById("lgpdModal"));
+        modal.show();
     }
+                        </script>
 
-
-</script>
+                        <!-- Modal -->
+<div class="modal fade" id="lgpdModal" tabindex="-1" aria-labelledby="lgpdModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lgpdModalLabel">Termo de LGPD</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Insert your LGPD terms content here -->
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
                     </form>
 
