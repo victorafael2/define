@@ -255,7 +255,7 @@ function verificarSenha() {
 
 
                             <input class="form-control form-control-sm" id="senha" type="password" name="senha"
-                                placeholder="Password" required />
+                                placeholder="Senha" required />
                             <!-- onkeyup="verificarSenha()" onkeyup="validarSenha()" -->
 
                             <p id="forca-senha"></p>
@@ -269,8 +269,28 @@ function verificarSenha() {
 
                         </div>
 
-                        <button type="submit" class="btn btn-sm btn-success mt-2" id="cadastrarBtn"
-                            onclick="confirmarEnvio()" disabled>Cadastrar</button>
+                        <div class="form-check mb-3 mt-2">
+    <input class="form-check-input" id="termsService" type="checkbox" onchange="toggleButton()" />
+    <label class="form-label fs--1 text-none" for="termsService">Concordo com o processamento dos meus dados de acordo com a Lei 13.709/2018 LGPD. <a href="#!">(Link para os Termos LGPD)</a></label>
+</div>
+
+<button type="submit" class="btn btn-sm btn-success mt-2" id="cadastrarBtn" onclick="confirmarEnvio()" disabled>Cadastrar</button>
+
+<script>
+    function toggleButton() {
+        var checkbox = document.getElementById("termsService");
+        var button = document.getElementById("cadastrarBtn");
+
+        if (checkbox.checked) {
+            button.disabled = false;
+        } else {
+            button.disabled = true;
+        }
+    }
+
+
+</script>
+
                     </form>
 
 
@@ -510,68 +530,67 @@ function verificarSenha() {
 
 
 
-<script>
-// Seleciona os elementos HTML relevantes
-const senhaInput = document.getElementById('senha');
-const validacaoSenha = document.getElementById('validacao-senha');
-const requisitosSenha = validacaoSenha.querySelectorAll('.item-requisito');
+    <script>
+    // Seleciona os elementos HTML relevantes
+    const senhaInput = document.getElementById('senha');
+    const validacaoSenha = document.getElementById('validacao-senha');
+    const requisitosSenha = validacaoSenha.querySelectorAll('.item-requisito');
 
-// Define as regras de validação da senha
-const requisitos = [
-  {
-    descricao: 'Pelo menos 8 caracteres',
-    valida: function(senha) {
-      return senha.length >= 8;
-    }
-  },
-  {
-    descricao: 'Pelo menos uma letra maiúscula',
-    valida: function(senha) {
-      return /[A-Z]/.test(senha);
-    }
-  },
-  {
-    descricao: 'Pelo menos um número',
-    valida: function(senha) {
-      return /\d/.test(senha);
-    }
-  },
-  {
-    descricao: 'Pelo menos um caractere especial',
-    valida: function(senha) {
-      return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(senha);
-    }
-  }
-];
+    // Define as regras de validação da senha
+    const requisitos = [{
+            descricao: 'Pelo menos 8 caracteres',
+            valida: function(senha) {
+                return senha.length >= 8;
+            }
+        },
+        {
+            descricao: 'Pelo menos uma letra maiúscula',
+            valida: function(senha) {
+                return /[A-Z]/.test(senha);
+            }
+        },
+        {
+            descricao: 'Pelo menos um número',
+            valida: function(senha) {
+                return /\d/.test(senha);
+            }
+        },
+        {
+            descricao: 'Pelo menos um caractere especial',
+            valida: function(senha) {
+                return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(senha);
+            }
+        }
+    ];
 
-// Função para atualizar a exibição dos requisitos de validação da senha
-function atualizaValidacaoSenha() {
-  let validaTudo = true;
-  requisitos.forEach(function(requisito, index) {
-    const requisitoHTML = requisitosSenha[index];
-    const valido = requisito.valida(senhaInput.value);
-    if (valido) {
-      requisitoHTML.classList.add('ok');
-    } else {
-      validaTudo = false;
-      requisitoHTML.classList.remove('ok');
+    // Função para atualizar a exibição dos requisitos de validação da senha
+    function atualizaValidacaoSenha() {
+        let validaTudo = true;
+        requisitos.forEach(function(requisito, index) {
+            const requisitoHTML = requisitosSenha[index];
+            const valido = requisito.valida(senhaInput.value);
+            if (valido) {
+                requisitoHTML.classList.add('ok');
+            } else {
+                validaTudo = false;
+                requisitoHTML.classList.remove('ok');
+            }
+        });
+
+        if (validaTudo && senhaInput.value !== '') {
+            validacaoSenha.style.borderColor = '#28a745';
+            document.getElementById("cadastrarBtn").disabled = false;
+        } else {
+            validacaoSenha.style.borderColor = '#ddd';
+            document.getElementById("cadastrarBtn").disabled = true;
+        }
     }
-  });
 
-  if (validaTudo && senhaInput.value !== '') {
-    validacaoSenha.style.borderColor = '#28a745';
-    document.getElementById("cadastrarBtn").disabled = false;
-  } else {
-    validacaoSenha.style.borderColor = '#ddd';
-    document.getElementById("cadastrarBtn").disabled = true;
-  }
-}
-
-// Adiciona um ouvinte de eventos para a entrada do campo de senha
-senhaInput.addEventListener('input', function() {
-  atualizaValidacaoSenha();
-});
-</script>
+    // Adiciona um ouvinte de eventos para a entrada do campo de senha
+    senhaInput.addEventListener('input', function() {
+        atualizaValidacaoSenha();
+    });
+    </script>
 
     </script>
 
