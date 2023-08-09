@@ -317,7 +317,7 @@ function verificarSenha() {
                                     </div>
                                     <div class="modal-body">
 
-<?php include '../lgpd_define.html' ?>
+                                                <?php include '../lgpd_define.html' ?>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-primary" type="button">Okay</button>
