@@ -273,48 +273,59 @@ function verificarSenha() {
                             <input class="form-check-input" id="termsService" type="checkbox"
                                 onchange="toggleButton()" />
                             <label class="form-label fs--1 text-none" for="termsService">Concordo com o processamento
-                                dos meus dados de acordo com a Lei 13.709/2018 LGPD. <a href="#!" onclick="openModal()">Ver termo</a></label>
+                                dos meus dados de acordo com a Lei 13.709/2018 LGPD. <a href="#!"
+                                    onclick="openModal()">Ver Termos LGPD</a></label>
                         </div>
 
-                        <button type="submit" class="btn btn-sm btn-success mt-2" id="cadastrarBtn"
+                        <button type="submit" class="btn btn-sm btn-primary mt-2" id="cadastrarBtn"
                             onclick="confirmarEnvio()" disabled>Cadastrar</button>
 
+
+
+
                         <script>
-                        function toggleButton() {
-                            var checkbox = document.getElementById("termsService");
-                            var button = document.getElementById("cadastrarBtn");
+                          document.addEventListener("DOMContentLoaded", function() {
+            var checkbox = document.getElementById("termsService");
+            var button = document.getElementById("cadastrarBtn");
 
-                            if (checkbox.checked) {
-                                button.disabled = false;
-                            } else {
-                                button.disabled = true;
-                            }
-                        }
+            button.disabled = !checkbox.checked;
 
-                        function openModal() {
-        var modal = new bootstrap.Modal(document.getElementById("lgpdModal"));
-        modal.show();
-    }
+            checkbox.addEventListener("change", function() {
+                button.disabled = !checkbox.checked;
+            });
+        });
+
+        function openModal() {
+            var modal = new bootstrap.Modal(document.getElementById("lgpdModal"));
+            modal.show();
+        }
                         </script>
 
-                        <!-- Modal -->
-<div class="modal fade" id="lgpdModal" tabindex="-1" aria-labelledby="lgpdModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="lgpdModalLabel">Termo de LGPD</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Insert your LGPD terms content here -->
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+                        <!-- lgpdModalLabel -->
+                        <div class="modal fade" id="lgpdModal" tabindex="-1" aria-labelledby="lgpdModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="lgpdModalLabel">Termo de LGPD</h5>
+                                        <button class="btn p-1" type="button" data-bs-dismiss="modal"
+                                            aria-label="Close"><span class="fas fa-times fs--1"></span></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" type="button">Okay</button>
+                                        <button class="btn btn-outline-primary" type="button"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </form>
 
@@ -478,7 +489,7 @@ function verificarSenha() {
 </script> -->
 
 
-    <script>
+    <!-- <script>
     // Adiciona uma pergunta de confirmação antes de executar o script
     $('#empresa').on('submit', function(event) {
         event.preventDefault();
@@ -551,7 +562,91 @@ function verificarSenha() {
 
         });
     });
-    </script>
+    </script> -->
+
+
+<script>
+function confirmarEnvio() {
+    var checkbox = document.getElementById("termsService");
+    if (checkbox.checked) {
+        Swal.fire({
+            icon: 'question',
+            title: 'Você tem certeza?',
+            text: 'Tem certeza de que deseja cadastrar esta empresa?',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, cadastrar!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("cadastrarBtn").disabled = true; // Desabilita o botão
+                const formData = $("#empresa").serialize();
+                $.ajax({
+                    url: 'salvar_2.php', // Substitua pelo caminho do seu arquivo PHP
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            // Mostrar uma mensagem de sucesso
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Cadastro efetuado com sucesso!',
+                                text: 'O cadastro da empresa foi concluído com êxito.',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'OK',
+                            }).then(() => {
+                                // Redirecionar para a página de sucesso
+                                // window.location.href =
+                                //     '../index.php';
+
+                                // redireciona para a página de destino usando o email e senha cadastrados
+                                var email = encodeURIComponent($('#email').val());
+                                var password = encodeURIComponent($('#senha')
+                                    .val());
+                                var redirectUrl = 'empresa_log.php?email=' + email +
+                                    '&password=' + password;
+                                window.location.href = redirectUrl;
+                            });
+                        } else if (response.duplicateEmail) {
+                            // Mostrar um alerta SweetAlert2 de e-mail duplicado
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro',
+                                text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
+                            });
+                        } else {
+                            // Mostrar um alerta SweetAlert2 de erro genérico
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro',
+                                text: 'Houve um erro ao processar sua solicitação. Por favor, tente novamente.',
+                            });
+                        }
+                    },
+                    error: function() {
+                        // Mostrar um alerta SweetAlert2 de erro ao se comunicar com o servidor
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Erro',
+                            text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
+                        });
+                    },
+                });
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'Você deve concordar com os termos para prosseguir.',
+        });
+    }
+}
+
+
+</script>
 
 
 
