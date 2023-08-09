@@ -6,25 +6,40 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $password = $_POST['password'];
 
     // Consulta no banco de dados
-    $query = "SELECT * FROM empresas WHERE email = '$email' AND senha = '$password'";
+    $query = "SELECT * FROM empresas WHERE email = '$email'";
     $result = mysqli_query($conn, $query);
 
-    if (mysqli_num_rows($result) == 1) {
-      // Iniciar sessão
-      session_start();
-      $_SESSION['email'] = $email;
-
-      // Redirecionar para a página principal
-      header("Location: ../../../index.php");
-      exit();
-    } else {
-      // Login falhou
-      // ...
-      $message = "Usuario ou senha errados";
-echo "<script>alert('$message');</script>";
-    //   $erro = "erro";
+    if (!$result) {
+        die('Erro na consulta: ' . mysqli_error($conn));
     }
-  }
+
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
+
+        // Verificar a senha usando password_verify
+        if (password_verify($password, $row['senha'])) {
+            // Iniciar sessão
+            session_start();
+            $_SESSION['email'] = $email;
+
+            // Redirecionar para a página principal
+            header("Location: ../../../index.php");
+            exit();
+        } else {
+            // Senha incorreta
+            // ...
+            $message = "Usuário ou senha incorretos!";
+            echo "<script>alert('$message');</script>";
+            // $erro = "erro";
+        }
+    } else {
+        // Usuário não encontrado
+        // ...
+        $message = "Usuário ou senha incorretos!";
+        echo "<script>alert('$message');</script>";
+        // $erro = "erro";
+    }
+}
 ?>
 
 <!DOCTYPE html>
