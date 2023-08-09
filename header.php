@@ -323,7 +323,39 @@ $duas_iniciais = substr($iniciais, 0, 2);
     <!-- ===============================================-->
     <title>D.E.F.I.N.E</title>
 
+<style>
+/* Estilizando a barra de rolagem */
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
 
+body::-webkit-scrollbar-track {
+  background: rgb(251, 251, 250);        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(197, 197, 201);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 1px solid rgb(197, 197, 201);  /* creates padding around scroll thumb */
+}
+
+/* Estilizando a barra de rolagem dentro do modal */
+.modal-body::-webkit-scrollbar {
+  width: 12px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: rgb(251, 251, 250);
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background-color: rgb(197, 197, 201);
+  border-radius: 20px;
+  border: 1px solid rgb(197, 197, 201);
+}
+
+
+</style>
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
