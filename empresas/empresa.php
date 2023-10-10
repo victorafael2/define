@@ -111,7 +111,7 @@ function verificarSenha() {
             <div class="row">
                 <div class="container py-1">
                     <h2>Cadastro de Empresa</h2>
-                    <form id="empresa">
+                    <form id="empresa" onsubmit="confirmarEnvio(event)">
 
                         <!-- <div class="row md-12"> -->
                         <div class="col">
@@ -285,21 +285,21 @@ function verificarSenha() {
 
                         <script>
                           document.addEventListener("DOMContentLoaded", function() {
-            var checkbox = document.getElementById("termsService");
-            var button = document.getElementById("cadastrarBtn");
+                                var checkbox = document.getElementById("termsService");
+                                var button = document.getElementById("cadastrarBtn");
 
-            button.disabled = !checkbox.checked;
+                                button.disabled = !checkbox.checked;
 
-            checkbox.addEventListener("change", function() {
-                button.disabled = !checkbox.checked;
-            });
-        });
+                                checkbox.addEventListener("change", function() {
+                                    button.disabled = !checkbox.checked;
+                                });
+                            });
 
-        function openModal() {
-            var modal = new bootstrap.Modal(document.getElementById("lgpdModal"));
-            modal.show();
-        }
-                        </script>
+                            function openModal() {
+                                var modal = new bootstrap.Modal(document.getElementById("lgpdModal"));
+                                modal.show();
+                            }
+                                            </script>
 
 
 
@@ -566,10 +566,12 @@ function verificarSenha() {
     </script> -->
 
 
-<script>
-function confirmarEnvio() {
+    <script>
+function confirmarEnvio(e) {
+    e.preventDefault(); // Impede a ação padrão do botão de envio
     var checkbox = document.getElementById("termsService");
     if (checkbox.checked) {
+        console.log("Botão clicado"); // Adicione este log
         Swal.fire({
             icon: 'question',
             title: 'Você tem certeza?',
@@ -581,6 +583,7 @@ function confirmarEnvio() {
             cancelButtonText: 'Cancelar',
         }).then((result) => {
             if (result.isConfirmed) {
+                console.log("Confirmação confirmada"); // Adicione este log
                 document.getElementById("cadastrarBtn").disabled = true; // Desabilita o botão
                 const formData = $("#empresa").serialize();
                 $.ajax({
@@ -591,6 +594,7 @@ function confirmarEnvio() {
                     success: function(response) {
                         if (response.success) {
                             // Mostrar uma mensagem de sucesso
+                            console.log("Cadastro bem-sucedido");
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Cadastro efetuado com sucesso!',
@@ -598,10 +602,7 @@ function confirmarEnvio() {
                                 confirmButtonColor: '#3085d6',
                                 confirmButtonText: 'OK',
                             }).then(() => {
-                                // Redirecionar para a página de sucesso
-                                // window.location.href =
-                                //     '../index.php';
-
+                                console.log("Redirecionando...");
                                 // redireciona para a página de destino usando o email e senha cadastrados
                                 var email = encodeURIComponent($('#email').val());
                                 var password = encodeURIComponent($('#senha')
@@ -631,7 +632,7 @@ function confirmarEnvio() {
                         Swal.fire({
                             icon: 'error',
                             title: 'Erro',
-                            text: 'E-mail já cadastrado. Por favor, insira um e-mail diferente.',
+                            text: 'Houve um erro ao se comunicar com o servidor.',
                         });
                     },
                 });
@@ -645,9 +646,8 @@ function confirmarEnvio() {
         });
     }
 }
-
-
 </script>
+
 
 
 

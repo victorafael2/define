@@ -11,8 +11,11 @@ $uf = $_POST['uf'];
 $setor = $_POST['setor'];
 $senha = $_POST['senha'];
 
-// Preparar a consulta SQL para inserir os dados na tabela "clientes"
-$sql = "INSERT INTO empresas (nome, empresa, cnpj, email, whatsapp, uf, setor, senha) VALUES ('$nome', '$nome_empresa', '$cnpj', '$email', '$whatsapp', '$uf', '$setor', '$senha')";
+// Hash da senha
+$senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+// Preparar a consulta SQL para inserir os dados na tabela "empresas"
+$sql = "INSERT INTO empresas (nome, empresa, cnpj, email, whatsapp, uf, setor, senha) VALUES ('$nome', '$nome_empresa', '$cnpj', '$email', '$whatsapp', '$uf', '$setor', '$senhaHash')";
 
 // Executar a consulta SQL e verificar se houve algum erro
 if ($conn->query($sql) === TRUE) {
