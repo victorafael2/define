@@ -1,7 +1,33 @@
-<?php $servername = "define.cduh3xdezln5.us-east-1.rds.amazonaws.com";
-$username = "admindefine";
-$password = "vr88094852";
-$connname = "define";
+<?php
+
+
+
+    // Seleciona as configurações do banco de dados com base no ambiente
+
+    if ($_SERVER['SERVER_NAME'] === 'localhost') {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $connname = "define";
+} else {
+//     require('../ssh/phpseclib-master/phpseclib/Net/SSH2.php');
+
+
+//     $ssh = new Net_SSH2('191.96.31.197'); // Substitua 'localhost' pelo endereço do servidor SSH remoto
+// if (!$ssh->login('victorrafael', 'victor001@2023')) {
+//     exit('Falha na autenticação SSH');
+// }
+
+    $servidor = "45.152.44.103";
+    $usuario = "root";
+    $senha = "";
+    $dbname = "u358437276_angelo";
+            // $servidor = "localhost";
+            // $usuario = "xpeer_adm";
+            // $senha = "xpeer_adm_victor";
+            // $dbname = "xpeer_adm";
+
+}
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $connname);
