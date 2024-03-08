@@ -19,9 +19,9 @@
 // }
 
     $servidor = "45.152.44.103";
-    $usuario = "root";
-    $senha = "";
-    $dbname = "u358437276_angelo";
+    $usuario = "u358437276_define";
+    $senha = "Vr88094852.";
+    $dbname = "u358437276_define";
             // $servidor = "localhost";
             // $usuario = "xpeer_adm";
             // $senha = "xpeer_adm_victor";
