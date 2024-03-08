@@ -1,7 +1,5 @@
 <?php
 
-
-
     // Seleciona as configurações do banco de dados com base no ambiente
 
     if ($_SERVER['SERVER_NAME'] === 'localhost') {
@@ -18,10 +16,10 @@
 //     exit('Falha na autenticação SSH');
 // }
 
-    $servidor = "45.152.44.103";
-    $usuario = "u358437276_define";
-    $senha = "Vr88094852.";
-    $dbname = "u358437276_define";
+    $servername = "45.152.44.103";
+    $username = "u358437276_define";
+    $password = "Vr88094852.";
+    $connname = "u358437276_define";
             // $servidor = "localhost";
             // $usuario = "xpeer_adm";
             // $senha = "xpeer_adm_victor";
