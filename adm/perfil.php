@@ -40,7 +40,7 @@
                 </div> -->
                                                 <div class="col-auto">
                                                     <a class="btn btn-phoenix-secondary redirectToPage"
-                                                        data-href="../questionario/questionario.php"><span
+                                                       href="../questionario/questionario.php"><span
                                                             class="fas fa-clipboard me-2"></span>Novo Questionário</a>
                                                 </div>
                                             </div>
@@ -253,7 +253,7 @@
                                                                         echo "<td>" . $row["whatsapp"] . "</td>";
                                                                         echo "<td>" . $row["faturamento"] . "</td>";
                                                                         echo "<td>" . $row["setor_2"] . "</td>";
-                                                                        echo "<td><button class='btn btn-success btn-sm redirectToPage' data-href='../questionario/sucess.php?id=" . $row["id"] . "&email=" . $row["user"] . "'>Ver</button></td>";
+                                                                        echo "<td><a class='btn btn-success btn-sm redirectToPage' href='../questionario/sucess.php?id=" . $row["id"] . "&email=" . $row["user"] . "'>Ver</a></td>";
 
 
                                                                     }
