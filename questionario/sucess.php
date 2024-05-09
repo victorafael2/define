@@ -903,7 +903,7 @@ if (mysqli_num_rows($result_usuario) > 0) {
                                                 $gif = '<span class="far fa-check-circle text-success fs-3"></span>';
                                                 $gif_atention = '<i class="fa-solid fa-circle-info text-info fs-3"></i>';
 
-                                                $resultado = ($row['icon'] === 'novo') ? '' : ($row['icon'] === 'icone_verde' ? $gif :$gif);
+                                                $resultado = ($row['icon'] === 'novo') ? $gif_atention : ($row['icon'] === 'icone_verde' ? $gif :$gif);
                                                 $link = ($row['icon'] === 'novo') ? $row['nao'] : $row['sim'];
                                                 $youtube = 'https://www.youtube.com/embed/';
 
