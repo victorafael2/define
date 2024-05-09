@@ -2,7 +2,7 @@
 // Conectar ao banco de dados
 include '../../conexao/conexao.php';
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $connname);
 
 if (!$conn) {
     die("Conexão falhou: " . mysqli_connect_error());
