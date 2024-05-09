@@ -20,5 +20,5 @@ if (mysqli_query($conn, $sql)) {
     echo "Erro ao atualizar o perfil: " . mysqli_error($conn);
 }
 
-mysqli_close($conn);
+// mysqli_close($conn);
 ?>
