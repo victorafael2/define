@@ -16,10 +16,10 @@
 //     exit('Falha na autenticação SSH');
 // }
 
-    $servername = "45.152.44.103";
-    $username = "u358437276_define";
-    $password = "Vr88094852.";
-    $connname = "u358437276_define";
+$servername = "banco-matech.cr68o4qiqxql.us-east-1.rds.amazonaws.com";
+$username = "admin";
+$password = "vr88094852";
+$connname = "define";
             // $servidor = "localhost";
             // $usuario = "xpeer_adm";
             // $senha = "xpeer_adm_victor";
